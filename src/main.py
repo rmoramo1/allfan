@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, Nfl, Baseball, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers ,Golf ,Golfer ,News
+from models import db, Nfl, Baseball, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Golf, Golfer, News
 #from models import Person
 
 app = Flask(__name__)
@@ -21,14 +21,19 @@ CORS(app)
 setup_admin(app)
 
 # Handle/serialize errors like a JSON object
+
+
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
 # generate sitemap with all your endpoints
+
+
 @app.route('/')
 def sitemap():
     return generate_sitemap(app)
+
 
 @app.route("/baseball", methods=["GET"])
 #   @limiter.limit("12 per hour")
