@@ -112,16 +112,6 @@ def nascar_drivers():
     else:
         return jsonify({"msg": "no autorizado"})
 
- # ---------------------------------------------------------------------------
-
-
-@app.route("/race", methods=["GET"])
-def race():
-    if request.method == "GET":
-        records = Race.query.all()
-        return jsonify([Race.serialize(record) for record in records])
-    else:
-        return jsonify({"msg": "no autorizado"})
 
  # ---------------------------------------------------------------------------
 
