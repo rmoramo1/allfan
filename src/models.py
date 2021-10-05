@@ -377,6 +377,7 @@ class News(db.Model):
     __tablename__ = "news"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150), nullable=False)
+    img = db.Column(db.String(150), nullable=False)
     short_description = db.Column(db.String(1000), nullable=False)
     news_post = db.Column(db.Text, nullable=False)
     date = db.Column(db.Date, nullable=False)
@@ -384,6 +385,7 @@ class News(db.Model):
     def serialize(self):
         return {
             "title": self.title,
+            "img": self.img,
             "short_description": self.short_description,
             "url_image": self.url_image,
             "news_post": self.news_post,
