@@ -8,8 +8,8 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, Nfl, Baseball, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers ,Golf ,Golfer ,News
-#from models import Person
+from models import db, Nfl, Mbl, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, News
+# from models import Person
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -21,21 +21,26 @@ CORS(app)
 setup_admin(app)
 
 # Handle/serialize errors like a JSON object
+
+
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
 # generate sitemap with all your endpoints
+
+
 @app.route('/')
 def sitemap():
     return generate_sitemap(app)
 
-@app.route("/baseball", methods=["GET"])
+
+@app.route("/mbl", methods=["GET"])
 #   @limiter.limit("12 per hour")
-def baseball():
+def mbl():
     if request.method == "GET":
-        records = Baseball.query.all()
-        return jsonify([Baseball.serialize(record) for record in records])
+        records = Mbl.query.all()
+        return jsonify([Mbl.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
 
@@ -112,6 +117,15 @@ def nascar_drivers():
     else:
         return jsonify({"msg": "no autorizado"})
 
+ # ---------------------------------------------------------------------------
+
+@app.route("/match_ups_nascar", methods=["GET"])
+def match_ups_nascar():
+    if request.method == "GET":
+        records = Match_Ups_Nacar.query.all()
+        return jsonify([Match_Ups_Nacar.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
 
  # ---------------------------------------------------------------------------
 
