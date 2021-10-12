@@ -110,7 +110,7 @@ class Mbl(db.Model):
     sa_1inning = db.Column(db.Integer, default=0, nullable=False)
     sh_1inning = db.Column(db.Integer, default=0, nullable=False)
 
-    date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
@@ -398,7 +398,7 @@ class Nfl(db.Model):
     q4_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
     q4_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
 
-    date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
@@ -727,7 +727,7 @@ class Nba(db.Model):
     q4_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
     q4_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
 
-    date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
@@ -947,7 +947,7 @@ class Nhl(db.Model):
     sa_3Q= db.Column(db.Integer, default=0, nullable=False)
     sh_3Q= db.Column(db.Integer, default=0, nullable=False)
 
-    date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
     def serialize(self):
         return {
@@ -1045,7 +1045,7 @@ class Boxeo(db.Model):
     r14_result = db.Column(db.String(150), nullable=False)
     r15_result = db.Column(db.String(150), nullable=False)
 
-    date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
@@ -1113,7 +1113,7 @@ class Mma(db.Model):
     r14_result = db.Column(db.String(150), nullable=False)
     r15_result = db.Column(db.String(150), nullable=False)
 
-    date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
@@ -1162,7 +1162,7 @@ class Nascar(db.Model):
     place1 = db.Column(db.String(150), nullable=False)
     place2 = db.Column(db.String(150), nullable=False)
     place3 = db.Column(db.String(150), nullable=False)
-    date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
@@ -1225,7 +1225,7 @@ class Golf(db.Model):
     place1 = db.Column(db.String(150), nullable=False)
     place2 = db.Column(db.String(150), nullable=False)
     place3 = db.Column(db.String(150), nullable=False)
-    date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
@@ -1265,7 +1265,7 @@ class News(db.Model):
     short_description = db.Column(db.String(1000), nullable=False)
     news_post = db.Column(db.Text, nullable=False)
     written = db.Column(db.String(150), nullable=False)
-    date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
