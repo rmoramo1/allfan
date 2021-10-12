@@ -35,7 +35,7 @@ def sitemap():
     return generate_sitemap(app)
 
 
-@app.route("/mbl", methods=["GET"])
+@app.route("/mlb", methods=["GET"])
 #   @limiter.limit("12 per hour")
 def mbl():
     if request.method == "GET":

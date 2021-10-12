@@ -218,10 +218,7 @@ class Mbl(db.Model):
             "sa_23inning": self.sa_23inning,
             "sh_23inning": self.sh_23inning,
             "sa_24inning": self.sa_24inning,
-            "sh_24inning": self.sh_23inning,
-            "sa_25inning": self.sa_25inning,
-            "sh_25inning": self.sh_25inning,
-
+            "sh_24inning": self.sh_24inning,
 
             "date": self.date,
             "hour": self.hour
