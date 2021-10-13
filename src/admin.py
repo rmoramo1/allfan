@@ -13,6 +13,7 @@ def setup_admin(app):
     admin.add_view(ModelView(Mbl, db.session))
     admin.add_view(ModelView(Nfl, db.session))
     admin.add_view(ModelView(Nba, db.session))
+    admin.add_view(ModelView(Nhl, db.session))
     admin.add_view(ModelView(Boxeo, db.session))
     admin.add_view(ModelView(Mma, db.session))
     admin.add_view(ModelView(Nascar, db.session))
