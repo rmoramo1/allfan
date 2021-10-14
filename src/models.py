@@ -3,8 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
-class Mbl(db.Model):
-    __tablename__ = "mbl"
+class Mlb(db.Model):
+    __tablename__ = "mlb"
     id = db.Column(db.Integer, primary_key=True)
     away = db.Column(db.String(150), nullable=False)
     home = db.Column(db.String(150), nullable=False)

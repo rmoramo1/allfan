@@ -1,6 +1,6 @@
 import os
 from flask_admin import Admin
-from models import db, Nfl, Mbl, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,News
+from models import db, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,News
 from flask_admin.contrib.sqla import ModelView
 
 def setup_admin(app):
@@ -10,7 +10,7 @@ def setup_admin(app):
 
     
     # Add your models here, for example this is how we add a the User model to the admin
-    admin.add_view(ModelView(Mbl, db.session))
+    admin.add_view(ModelView(Mlb, db.session))
     admin.add_view(ModelView(Nfl, db.session))
     admin.add_view(ModelView(Nba, db.session))
     admin.add_view(ModelView(Nhl, db.session))

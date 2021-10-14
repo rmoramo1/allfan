@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, Nfl, Mbl, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, News
+from models import db, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, News
 # from models import Person
 
 app = Flask(__name__)
@@ -37,10 +37,10 @@ def sitemap():
 
 @app.route("/mlb", methods=["GET"])
 #   @limiter.limit("12 per hour")
-def mbl():
+def mlb():
     if request.method == "GET":
-        records = Mbl.query.all()
-        return jsonify([Mbl.serialize(record) for record in records])
+        records = Mlb.query.all()
+        return jsonify([Mlb.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
 
