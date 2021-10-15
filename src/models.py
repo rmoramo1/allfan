@@ -17,7 +17,6 @@ class Mlb(db.Model):
     moneyLineAway = db.Column(db.String(50), nullable=False)
     moneyLineHome = db.Column(db.String(50), nullable=False)
     total = db.Column(db.String(50), nullable=False)
-    Q1_juice_over = db.Column(db.String(50), default=-110, nullable=False)
     juice_total_over = db.Column(db.String(50), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(50), default=-110, nullable=False)
     tt_away = db.Column(db.String(50), nullable=False)
