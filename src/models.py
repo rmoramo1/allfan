@@ -118,7 +118,6 @@ class Mlb(db.Model):
             "moneyLineAway": self.moneyLineAway,
 
             "total": self.total,
-            "juice_total": self.juice_total,
 
             "tt_away": self.tt_away,
             "tt_home": self.tt_home,
@@ -373,16 +372,14 @@ class Nfl(db.Model):
             "moneyLineAway": self.moneyLineAway,
 
             "total": self.total,
-            "juice_total": self.juice_total,
+            "juice_total_over": self.juice_total_over,
+            "juice_total_under": self.juice_total_under,
 
             "tt_away": self.tt_away,
             "tt_home": self.tt_home,
 
             "juice_over_away": self.juice_over_away,
             "juice_over_home": self.juice_over_home,
-
-            "juice_total_over": self.juice_total_over,
-            "juice_total_ounder": self.juice_total_ounder,
 
             "juice_under_away": self.juice_under_away,
             "juice_under_home": self.juice_under_home,
@@ -465,7 +462,8 @@ class Nfl(db.Model):
             "q1_half_moneyLineHome": self.q1_half_moneyLineHome,
             "q1_half_moneyLineAway": self.q1_half_moneyLineAway,
             "q1_half_total": self.q1_half_total,
-            "q1_half_juice_total": self.q1_half_juice_total,
+            "q1_juice_over": self.q1_juice_over,
+            "q1_juice_under": self.q1_juice_under,
             "q1_half_tt_away": self.q1_half_tt_away,
             "q1_half_tt_home": self.q1_half_tt_home,
             "q1_half_juice_over_away": self.q1_half_juice_over_away,
@@ -480,7 +478,8 @@ class Nfl(db.Model):
             "q2_half_moneyLineHome": self.q2_half_moneyLineHome,
             "q2_half_moneyLineAway": self.q2_half_moneyLineAway,
             "q2_half_total": self.q2_half_total,
-            "q2_half_juice_total": self.q2_half_juice_total,
+            "q2_juice_over": self.q2_juice_over,
+            "q2_juice_under": self.q2_juice_under,
             "q2_half_tt_away": self.q2_half_tt_away,
             "q2_half_tt_home": self.q2_half_tt_home,
             "q2_half_juice_over_away": self.q2_half_juice_over_away,
@@ -495,7 +494,8 @@ class Nfl(db.Model):
             "q3_half_moneyLineHome": self.q3_half_moneyLineHome,
             "q3_half_moneyLineAway": self.q3_half_moneyLineAway,
             "q3_half_total": self.q3_half_total,
-            "q3_half_juice_total": self.q3_half_juice_total,
+            "q3_juice_over": self.q3_juice_over,
+            "q3_juice_under": self.q3_juice_under,
             "q3_half_tt_away": self.q3_half_tt_away,
             "q3_half_tt_home": self.q3_half_tt_home,
             "q3_half_juice_over_away": self.q3_half_juice_over_away,
@@ -510,7 +510,8 @@ class Nfl(db.Model):
             "q4_half_moneyLineHome": self.q4_half_moneyLineHome,
             "q4_half_moneyLineAway": self.q4_half_moneyLineAway,
             "q4_half_total": self.q4_half_total,
-            "q4_half_juice_total": self.q4_half_juice_total,
+            "q4_juice_over": self.q4_juice_over,
+            "q4_juice_under": self.q4_juice_under,
             "q4_half_tt_away": self.q4_half_tt_away,
             "q4_half_tt_home": self.q4_half_tt_home,
             "q4_half_juice_over_away": self.q4_half_juice_over_away,
