@@ -9,7 +9,9 @@ class Mlb(db.Model):
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
     away = db.Column(db.String(50), nullable=False)
+    peacher_a = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
+    peacher_h = db.Column(db.String(50), nullable=False)
     rl_away = db.Column(db.String(50), nullable=False)
     rl_home = db.Column(db.String(50), nullable=False)
     juice_rl_away = db.Column(db.String(50), default=-110, nullable=False)
@@ -105,7 +107,9 @@ class Mlb(db.Model):
         return {
             "id": self.id,
             "away": self.away,
+            "peacher_a": self.away,
             "home": self.home,
+            "peacher_h": self.away,
 
             "rl_away": self.rl_away,
             "rl_home": self.rl_home,
