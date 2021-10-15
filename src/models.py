@@ -6,6 +6,8 @@ db = SQLAlchemy()
 class Mlb(db.Model):
     __tablename__ = "mlb"
     id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(100), nullable=False)
+    hour = db.Column(db.String(100), nullable=False)
     away = db.Column(db.String(150), nullable=False)
     home = db.Column(db.String(150), nullable=False)
     rl_away = db.Column(db.String(150), nullable=False)
@@ -14,92 +16,91 @@ class Mlb(db.Model):
     juice_rl_home = db.Column(db.String(150), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(150), nullable=False)
     moneyLineHome = db.Column(db.String(150), nullable=False)
-    total = db.Column(db.Integer, nullable=False)
+    total = db.Column(db.String(150), nullable=False)
+    Q1_juice_over = db.Column(db.String(150), default=-110, nullable=False)
     juice_total_over = db.Column(db.String(150), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(150), default=-110, nullable=False)
-    tt_away = db.Column(db.DECIMAL(7,2), nullable=False)
+    tt_away = db.Column(db.String(150), nullable=False)
     juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    tt_home = db.Column(db.DECIMAL(7,2), nullable=False)
+    tt_home = db.Column(db.String(150), nullable=False)
     juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    final_score_away = db.Column(db.Integer,default=0, nullable=False)
-    final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
     # ------------------------------------------------------------------------
-    rl_away_f5 = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    rl_away_f5 = db.Column(db.String(150),default=0, nullable=False)
+    rl_home_f5 = db.Column(db.String(150),default=0, nullable=False)
     juice_rl_away_f5 = db.Column(db.String(150), default=-110, nullable=False)
+    juice_rl_home_f5 = db.Column(db.String(150), default=-110, nullable=False)
     moneyLineAway_f5 = db.Column(db.String(150),default=0, nullable=False)
-    total_f5 = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    juice_total_f5 = db.Column(db.String(150), default=-110, nullable=False)
-    tt_away_f5 = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    moneyLineHome_f5 = db.Column(db.String(150),default=0, nullable=False)
+    total_f5 = db.Column(db.String(150),default=0, nullable=False)
+    juice_total_over_f5 = db.Column(db.String(150), default=-110, nullable=False)
+    juice_total_under_f5 = db.Column(db.String(150), default=-110, nullable=False)
+    tt_away_f5 = db.Column(db.String(150),default=0, nullable=False)
     juice_over_away_f5 = db.Column(db.String(150), default=-110, nullable=False)
     juice_under_away_f5 = db.Column(db.String(150), default=-110, nullable=False)
-    fs_away_f5 = db.Column(db.Integer,default=0, nullable=False)
-
-    rl_home_f5 = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    juice_rl_home_f5 = db.Column(db.String(150), default=-110, nullable=False)
-    moneyLineHome_f5 = db.Column(db.String(150),default=0, nullable=False)
-    tt_home_f5 = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    tt_home_f5 = db.Column(db.String(150),default=0, nullable=False)
     juice_over_home_f5 = db.Column(db.String(150), default=-110, nullable=False)
     juice_under_home_f5 = db.Column(db.String(150), default=-110, nullable=False)
-    fs_home_f5 = db.Column(db.Integer,default=0, nullable=False)
+    fs_away_f5 = db.Column(db.String(150),default=0, nullable=False)
+    fs_home_f5 = db.Column(db.String(150),default=0, nullable=False)
 
     # ----------------------------------------------------------------------
 
-    sa_1inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_1inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_2inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_2inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_3inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_3inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_4inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_4inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_5inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_5inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_6inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_6inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_7inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_7inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_8inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_8inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_9inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_9inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_10inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_10inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_11inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_11inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_12inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_12inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_13inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_13inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_14inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_14inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_15inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_15inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_16inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_16inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_17inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_17inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_18inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_18inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_19inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_19inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_20inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_20inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_21inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_21inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_22inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_22inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_23inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_23inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_24inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_24inning = db.Column(db.Integer, default=0, nullable=False)
-    sa_1inning = db.Column(db.Integer, default=0, nullable=False)
-    sh_1inning = db.Column(db.Integer, default=0, nullable=False)
+    sa_1inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_1inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_2inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_2inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_3inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_3inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_4inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_4inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_5inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_5inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_6inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_6inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_7inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_7inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_8inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_8inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_9inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_9inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_10inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_10inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_11inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_11inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_12inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_12inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_13inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_13inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_14inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_14inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_15inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_15inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_16inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_16inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_17inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_17inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_18inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_18inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_19inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_19inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_20inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_20inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_21inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_21inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_22inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_22inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_23inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_23inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_24inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_24inning = db.Column(db.String(150), default=0, nullable=False)
+    sa_1inning = db.Column(db.String(150), default=0, nullable=False)
+    sh_1inning = db.Column(db.String(150), default=0, nullable=False)
 
-    date = db.Column(db.String(100), nullable=False)
-    hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -125,6 +126,9 @@ class Mlb(db.Model):
             "juice_over_away": self.juice_over_away,
             "juice_over_home": self.juice_over_home,
 
+            "juice_total_over_f5": self.juice_total_over_f5,
+            "juice_total_under_f5": self.juice_total_under_f5,
+
             "juice_total_over": self.juice_total_over,
             "juice_total_under": self.juice_total_under,
 
@@ -144,7 +148,8 @@ class Mlb(db.Model):
             "moneyLineAway_f5": self.moneyLineAway_f5,
 
             "total_f5": self.total_f5,
-            "tt_home_f5": self.tt_home_f5,
+            "juice_total_over_f5": self.juice_total_over_f5,
+            "juice_total_under_f5": self.juice_total_under_f5,
 
             "tt_away_f5": self.tt_away_f5,
             "tt_home_f5": self.tt_home_f5,
@@ -216,6 +221,8 @@ class Mlb(db.Model):
 class Nfl(db.Model):
     __tablename__ = "nfl"
     id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(100), nullable=False)
+    hour = db.Column(db.String(100), nullable=False)
     away = db.Column(db.String(150), nullable=False)
     home = db.Column(db.String(150), nullable=False)
     spread_away = db.Column(db.String(150), nullable=False)
@@ -224,133 +231,131 @@ class Nfl(db.Model):
     juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(150), nullable=False)
     moneyLineHome = db.Column(db.String(150), nullable=False)
-    total = db.Column(db.DECIMAL(7,2), nullable=False)
+    total = db.Column(db.String(150), nullable=False)
     juice_total_over = db.Column(db.String(150), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(150), default=-110, nullable=False)
-    tt_away = db.Column(db.DECIMAL(7,2), nullable=False)
+    tt_away = db.Column(db.String(150), nullable=False)
     juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    tt_home = db.Column(db.DECIMAL(7,2), nullable=False)
+    tt_home = db.Column(db.String(150), nullable=False)
     juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    final_score_away = db.Column(db.Integer,default=0, nullable=False)
-    final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
 # ----------
-    first_half_spread_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    first_half_spread_away = db.Column(db.String(150),default=0, nullable=False)
+    first_half_spread_home = db.Column(db.String(150),default=0, nullable=False)
     first_half_juice_spread_away = db.Column(db.String(150), default=-110, nullable=False)
-    first_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
-    first_half_total = db.Column(db.Integer,default=0, nullable=False)
-    first_half_juice_total = db.Column(db.String(150), default=-110, nullable=False)
-    first_half_tt_away = db.Column(db.Integer,default=0, nullable=False)
-    first_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
-    first_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    first_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
-
-    first_half_spread_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
     first_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     first_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
-    first_half_tt_home = db.Column(db.Integer,default=0, nullable=False)
+    first_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
+    first_half_total = db.Column(db.String(150),default=0, nullable=False)
+    fh_juice_total_over = db.Column(db.String(150), default=-110, nullable=False)
+    fh_juice_total_under = db.Column(db.String(150), default=-110, nullable=False)
+    first_half_tt_away = db.Column(db.String(150),default=0, nullable=False)
+    first_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
+    first_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
+    first_half_tt_home = db.Column(db.String(150),default=0, nullable=False)
     first_half_juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     first_half_juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    first_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    first_half_final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    first_half_final_score_home = db.Column(db.String(150),default=0, nullable=False)
+
 # ------------------------------------------------------------------------------
-    second_half_spread_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    second_half_spread_away = db.Column(db.String(150),default=0, nullable=False)
+    second_half_spread_home = db.Column(db.String(150),default=0, nullable=False)
     second_half_juice_spread_away = db.Column(db.String(150), default=-110, nullable=False)
+    second_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     second_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
-    second_half_total = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    second_half_juice_total = db.Column(db.String(150), default=-110, nullable=False)
-    second_half_tt_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    second_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
+    second_half_total = db.Column(db.String(150),default=0, nullable=False)
+    sh_juice_total_over = db.Column(db.String(150), default=-110, nullable=False)
+    sh_juice_total_under = db.Column(db.String(150), default=-110, nullable=False)
+    second_half_tt_away = db.Column(db.String(150),default=0, nullable=False)
     second_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     second_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    second_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
-
-    second_half_spread_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    second_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
-    second_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
-    second_half_tt_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    second_half_tt_home = db.Column(db.String(150),default=0, nullable=False)
     second_half_juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     second_half_juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    second_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    second_half_final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    second_half_final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
 # ------------------------------------------------------------------------------
-    q1_half_spread_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q1_half_spread_away = db.Column(db.String(150),default=0, nullable=False)
+    q1_half_spread_home = db.Column(db.String(150),default=0, nullable=False)
     q1_half_juice_spread_away = db.Column(db.String(150), default=-110, nullable=False)
+    q1_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     q1_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
-    q1_half_total = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q1_half_juice_total = db.Column(db.String(150), default=-110, nullable=False)
-    q1_half_tt_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q1_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
+    q1_half_total = db.Column(db.String(150),default=0, nullable=False)
+    q1_juice_over = db.Column(db.String(150), default=-110, nullable=False)
+    q1_juice_under = db.Column(db.String(150), default=-110, nullable=False)
+    q1_half_tt_away = db.Column(db.String(150),default=0, nullable=False)
     q1_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     q1_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    q1_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
-
-    q1_half_spread_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q1_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
-    q1_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
-    q1_half_tt_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q1_half_tt_home = db.Column(db.String(150),default=0, nullable=False)
     q1_half_juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     q1_half_juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    q1_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    q1_half_final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    q1_half_final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
     # -----------------------------------------------------------------------
-    q2_half_spread_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q2_half_spread_away = db.Column(db.String(150),default=0, nullable=False)
+    q2_half_spread_home = db.Column(db.String(150),default=0, nullable=False)
     q2_half_juice_spread_away = db.Column(db.String(150), default=-110, nullable=False)
+    q2_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     q2_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
-    q2_half_total = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q2_half_juice_total = db.Column(db.String(150), default=-110, nullable=False)
-    q2_half_tt_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q2_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
+    q2_half_total = db.Column(db.String(150),default=0, nullable=False)
+    q2_juice_over = db.Column(db.String(150), default=-110, nullable=False)
+    q2_juice_under = db.Column(db.String(150), default=-110, nullable=False)
+    q2_half_tt_away = db.Column(db.String(150),default=0, nullable=False)
     q2_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     q2_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    q2_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
-
-    q2_half_spread_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q2_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
-    q2_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
-    q2_half_tt_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q2_half_tt_home = db.Column(db.String(150),default=0, nullable=False)
     q2_half_juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     q2_half_juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    q2_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    q2_half_final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    q2_half_final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
 # -------------------------------------------------------------------------------
-    q3_half_spread_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q3_half_spread_away = db.Column(db.String(150),default=0, nullable=False)
+    q3_half_spread_home = db.Column(db.String(150),default=0, nullable=False)
     q3_half_juice_spread_away = db.Column(db.String(150), default=-110, nullable=False)
+    q3_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     q3_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
-    q3_half_total = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q3_half_juice_total = db.Column(db.String(150), default=-110, nullable=False)
-    q3_half_tt_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q3_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
+    q3_half_total = db.Column(db.String(150),default=0, nullable=False)
+    q3_juice_over = db.Column(db.String(150), default=-110, nullable=False)
+    q3_juice_under = db.Column(db.String(150), default=-110, nullable=False)
+    q3_half_tt_away = db.Column(db.String(150),default=0, nullable=False)
     q3_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     q3_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    q3_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
-
-    q3_half_spread_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q3_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
-    q3_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
-    q3_half_tt_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q3_half_tt_home = db.Column(db.String(150),default=0, nullable=False)
     q3_half_juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     q3_half_juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    q3_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    q3_half_final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    q3_half_final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
 # ----------------------------------------------------------------------------------
-    q4_half_spread_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q4_half_spread_away = db.Column(db.String(150),default=0, nullable=False)
+    q4_half_spread_home = db.Column(db.String(150),default=0, nullable=False)
     q4_half_juice_spread_away = db.Column(db.String(150), default=-110, nullable=False)
+    q4_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     q4_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
-    q4_half_total = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q4_half_juice_total = db.Column(db.String(150), default=-110, nullable=False)
-    q4_half_tt_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q4_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
+    q4_half_total = db.Column(db.String(150),default=0, nullable=False)
+    q4_juice_over = db.Column(db.String(150), default=-110, nullable=False)
+    q4_juice_under = db.Column(db.String(150), default=-110, nullable=False)
+    q4_half_tt_away = db.Column(db.String(150),default=0, nullable=False)
     q4_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     q4_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    q4_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
-
-    q4_half_spread_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q4_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
-    q4_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
-    q4_half_tt_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q4_half_tt_home = db.Column(db.String(150),default=0, nullable=False)
     q4_half_juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     q4_half_juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    q4_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
-
-    date = db.Column(db.String(100), nullable=False)
-    hour = db.Column(db.String(100), nullable=False)
+    q4_half_final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    q4_half_final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
     def serialize(self):
         return {
@@ -384,6 +389,20 @@ class Nfl(db.Model):
 
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
+
+            "fh_juice_total_over": self.fh_juice_total_over,
+            "fh_juice_total_under": self.fh_juice_total_under,
+            "sh_juice_total_over": self.sh_juice_total_over,
+            "sh_juice_total_under": self.sh_juice_total_under,
+
+            "q1_juice_over": self.q1_juice_over,
+            "q1_juice_under": self.q1_juice_under,
+            "q2_juice_over": self.q2_juice_over,
+            "q2_juice_under": self.q2_juice_under,
+            "q3_juice_over": self.q3_juice_over,
+            "q3_juice_under": self.q3_juice_under,
+            "q4_juice_over": self.q4_juice_over,
+            "q4_juice_under": self.q4_juice_under,
 
             "first_half_spread_away": self.first_half_spread_away,
             "first_half_spread_home": self.first_half_spread_home,
@@ -508,6 +527,8 @@ class Nfl(db.Model):
 class Nba(db.Model):
     __tablename__ = "nba"
     id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(100), nullable=False)
+    hour = db.Column(db.String(100), nullable=False)
     away = db.Column(db.String(150), nullable=False)
     home = db.Column(db.String(150), nullable=False)
     spread_away = db.Column(db.String(150), nullable=False)
@@ -516,134 +537,132 @@ class Nba(db.Model):
     juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(150), nullable=False)
     moneyLineHome = db.Column(db.String(150), nullable=False)
-    total = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    total = db.Column(db.String(150),default=0, nullable=False)
     juice_total_over = db.Column(db.String(150), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(150), default=-110, nullable=False)
-    tt_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    tt_away = db.Column(db.String(150),default=0, nullable=False)
     juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    tt_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    tt_home = db.Column(db.String(150),default=0, nullable=False)
     juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
     
-    final_score_away = db.Column(db.Integer,default=0, nullable=False)
-    final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    final_score_home = db.Column(db.String(150),default=0, nullable=False)
 # ----------
-    first_half_spread_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    first_half_spread_away = db.Column(db.String(150),default=0, nullable=False)
+    first_half_spread_home = db.Column(db.String(150),default=0, nullable=False)
     first_half_juice_spread_away = db.Column(db.String(150), default=-110, nullable=False)
+    first_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     first_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
-    first_half_total = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    first_half_juice_total = db.Column(db.String(150), default=-110, nullable=False)
-    first_half_tt_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    first_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
+    first_half_total = db.Column(db.String(150),default=0, nullable=False)
+    fh_juice_over = db.Column(db.String(150), default=-110, nullable=False)
+    fh_juice_under = db.Column(db.String(150), default=-110, nullable=False)
+    first_half_tt_away = db.Column(db.String(150),default=0, nullable=False)
     first_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     first_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    first_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
-
-    first_half_spread_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    first_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
-    first_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
-    first_half_tt_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    first_half_tt_home = db.Column(db.String(150),default=0, nullable=False)
     first_half_juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     first_half_juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    first_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    first_half_final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    first_half_final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
 # ------------------------------------------------------------------------------
-    second_half_spread_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    second_half_spread_away = db.Column(db.String(150),default=0, nullable=False)
+    second_half_spread_home = db.Column(db.String(150),default=0, nullable=False)
     second_half_juice_spread_away = db.Column(db.String(150), default=-110, nullable=False)
-    second_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
-    second_half_total = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    second_half_juice_total = db.Column(db.String(150), default=-110, nullable=False)
-    second_half_tt_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    second_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
-    second_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    second_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
-
-    second_half_spread_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
     second_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     second_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
-    second_half_tt_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    second_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
+    second_half_total = db.Column(db.String(150),default=0, nullable=False)
+    sh_juice_over = db.Column(db.String(150), default=-110, nullable=False)
+    sh_juice_under = db.Column(db.String(150), default=-110, nullable=False)
+    second_half_tt_away = db.Column(db.String(150),default=0, nullable=False)
+    second_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
+    second_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
+    second_half_tt_home = db.Column(db.String(150),default=0, nullable=False)
     second_half_juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     second_half_juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    second_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    second_half_final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    second_half_final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
 # ------------------------------------------------------------------------------
-    q1_half_spread_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q1_half_spread_away = db.Column(db.String(150),default=0, nullable=False)
+    q1_half_spread_home = db.Column(db.String(150),default=0, nullable=False)
     q1_half_juice_spread_away = db.Column(db.String(150), default=-110, nullable=False)
+    q1_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     q1_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
-    q1_half_total = db.Column(db.Integer,default=0, nullable=False)
-    q1_half_juice_total = db.Column(db.String(150), default=-110, nullable=False)
-    q1_half_tt_away = db.Column(db.Integer,default=0, nullable=False)
+    q1_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
+    q1_half_total = db.Column(db.String(150),default=0, nullable=False)
+    q1_juice_over = db.Column(db.String(150), default=-110, nullable=False)
+    q1_juice_under = db.Column(db.String(150), default=-110, nullable=False)
+    q1_half_tt_away = db.Column(db.String(150),default=0, nullable=False)
     q1_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     q1_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    q1_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
-
-    q1_half_spread_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q1_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
-    q1_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
-    q1_half_tt_home = db.Column(db.Integer,default=0, nullable=False)
+    q1_half_tt_home = db.Column(db.String(150),default=0, nullable=False)
     q1_half_juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     q1_half_juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    q1_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    q1_half_final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    q1_half_final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
     # -----------------------------------------------------------------------
-    q2_half_spread_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q2_half_spread_away = db.Column(db.String(150),default=0, nullable=False)
+    q2_half_spread_home = db.Column(db.String(150),default=0, nullable=False)
     q2_half_juice_spread_away = db.Column(db.String(150), default=-110, nullable=False)
+    q2_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     q2_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
-    q2_half_total = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q2_half_juice_total = db.Column(db.String(150), default=-110, nullable=False)
-    q2_half_tt_away = db.Column(db.Integer,default=0, nullable=False)
+    q2_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
+    q2_half_total = db.Column(db.String(150),default=0, nullable=False)
+    q2_juice_over = db.Column(db.String(150), default=-110, nullable=False)
+    q2_juice_under = db.Column(db.String(150), default=-110, nullable=False)
+    q2_half_tt_away = db.Column(db.String(150),default=0, nullable=False)
     q2_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     q2_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    q2_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
-
-    q2_half_spread_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q2_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
-    q2_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
-    q2_half_tt_home = db.Column(db.Integer,default=0, nullable=False)
+    q2_half_tt_home = db.Column(db.String(150),default=0, nullable=False)
     q2_half_juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     q2_half_juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    q2_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    q2_half_final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    q2_half_final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
 # -------------------------------------------------------------------------------
-    q3_half_spread_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q3_half_spread_away = db.Column(db.String(150),default=0, nullable=False)
+    q3_half_spread_home = db.Column(db.String(150),default=0, nullable=False)
     q3_half_juice_spread_away = db.Column(db.String(150), default=-110, nullable=False)
+    q3_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     q3_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
-    q3_half_total = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q3_half_juice_total = db.Column(db.String(150), default=-110, nullable=False)
-    q3_half_tt_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q3_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
+    q3_half_total = db.Column(db.String(150),default=0, nullable=False)
+    q3_juice_over = db.Column(db.String(150), default=-110, nullable=False)
+    q3_juice_under = db.Column(db.String(150), default=-110, nullable=False)
+    q3_half_tt_away = db.Column(db.String(150),default=0, nullable=False)
     q3_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     q3_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    q3_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
-
-    q3_half_spread_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q3_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
-    q3_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
-    q3_half_tt_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q3_half_tt_home = db.Column(db.String(150),default=0, nullable=False)
     q3_half_juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     q3_half_juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    q3_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    q3_half_final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    q3_half_final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
 # ----------------------------------------------------------------------------------
-    q4_half_spread_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q4_half_spread_away = db.Column(db.String(150),default=0, nullable=False)
+    q4_half_spread_home = db.Column(db.String(150),default=0, nullable=False)
     q4_half_juice_spread_away = db.Column(db.String(150), default=-110, nullable=False)
-    q4_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
-    q4_half_total = db.Column(db.Integer,default=0, nullable=False)
-    q4_half_juice_total = db.Column(db.String(150), default=-110, nullable=False)
-    q4_half_tt_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    q4_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
-    q4_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    q4_half_final_score_away = db.Column(db.Integer,default=0, nullable=False)
-
-    q4_half_spread_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
     q4_half_juice_spread_home = db.Column(db.String(150), default=-110, nullable=False)
     q4_half_moneyLineAway = db.Column(db.String(150),default=0, nullable=False)
-    q4_half_tt_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    q4_half_moneyLineHome = db.Column(db.String(150),default=0, nullable=False)
+    q4_half_total = db.Column(db.String(150),default=0, nullable=False)
+    q4_juice_over = db.Column(db.String(150), default=-110, nullable=False)
+    q4_juice_under = db.Column(db.String(150), default=-110, nullable=False)
+    q4_half_tt_away = db.Column(db.String(150),default=0, nullable=False)
+    q4_half_juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
+    q4_half_juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
+    q4_half_tt_home = db.Column(db.String(150),default=0, nullable=False)
     q4_half_juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     q4_half_juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    q4_half_final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    q4_half_final_score_away = db.Column(db.String(150),default=0, nullable=False)
+    q4_half_final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
-    date = db.Column(db.String(100), nullable=False)
-    hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -674,6 +693,20 @@ class Nba(db.Model):
 
             "juice_under_away": self.juice_under_away,
             "juice_under_home": self.juice_under_home,
+
+            "juice_total_over": self.juice_total_over,
+            "juice_total_under": self.juice_total_under,
+            "fh_juice_over": self.fh_juice_over,
+            "fh_juice_under": self.fh_juice_under,
+
+            "q1_juice_over": self.q1_juice_over,
+            "q1_juice_under": self.q1_juice_under,
+            "q2_juice_over": self.q2_juice_over,
+            "q2_juice_under": self.q2_juice_under,
+            "q3_juice_over": self.q3_juice_over,
+            "q3_juice_under": self.q3_juice_under,
+            "q4_juice_over": self.q4_juice_over,
+            "q4_juice_under": self.q4_juice_under,
 
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
@@ -801,6 +834,8 @@ class Nba(db.Model):
 class Nhl(db.Model):
     __tablename__ = "nhl"
     id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(100), nullable=False)
+    hour = db.Column(db.String(100), nullable=False)
     away = db.Column(db.String(150), nullable=False)
     home = db.Column(db.String(150), nullable=False)
     pot_line_away = db.Column(db.String(150), nullable=False)
@@ -809,49 +844,47 @@ class Nhl(db.Model):
     juice_pot_home = db.Column(db.String(150), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(150), nullable=False)
     moneyLineHome = db.Column(db.String(150), nullable=False)
-    total = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    total = db.Column(db.String(150),default=0, nullable=False)
     juice_total_over = db.Column(db.String(150), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(150), default=-110, nullable=False)
 
-    tt_away = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    tt_away = db.Column(db.String(150),default=0, nullable=False)
     juice_over_away = db.Column(db.String(150), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(150), default=-110, nullable=False)
-    final_score_away = db.Column(db.Integer,default=0, nullable=False)
+    final_score_away = db.Column(db.String(150),default=0, nullable=False)
 
-    tt_home = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    tt_home = db.Column(db.String(150),default=0, nullable=False)
     juice_over_home = db.Column(db.String(150), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(150), default=-110, nullable=False)
-    final_score_home = db.Column(db.Integer,default=0, nullable=False)
+    final_score_home = db.Column(db.String(150),default=0, nullable=False)
 
 #-----------------------------------------------------------------------
-    pot_away_1Q = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    pot_away_1Q = db.Column(db.String(150),default=0, nullable=False)
+    pot_home_1Q = db.Column(db.String(150),default=0, nullable=False)
     juice_pot_away_1Q = db.Column(db.String(150), default=-110, nullable=False)
+    juice_pot_home_1Q = db.Column(db.String(150), default=-110, nullable=False)
     moneyLineHome_1Q = db.Column(db.String(150),default=0, nullable=False)
-    total_1Q = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    juice_total_1Q = db.Column(db.String(150), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    moneyLineAway_1Q = db.Column(db.String(150),default=0, nullable=False)
+    total_1Q = db.Column(db.String(150),default=0, nullable=False)
+    Q1_juice_over = db.Column(db.String(150), default=-110, nullable=False)
+    Q1_juice_under = db.Column(db.String(150), default=-110, nullable=False)
+    tt_away_1Q = db.Column(db.String(150),default=0, nullable=False)
     juice_over_away_1Q = db.Column(db.String(150), default=-110, nullable=False)
     juice_under_away_1Q = db.Column(db.String(150), default=-110, nullable=False)
-    fs_away_1Q = db.Column(db.Integer,default=0, nullable=False)
-
-    pot_home_1Q = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
-    juice_pot_home_1Q = db.Column(db.String(150), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(150),default=0, nullable=False)
-    tt_home_1Q = db.Column(db.DECIMAL(7,2),default=0, nullable=False)
+    tt_home_1Q = db.Column(db.String(150),default=0, nullable=False)
     juice_over_home_1Q = db.Column(db.String(150), default=-110, nullable=False)
     juice_under_home_1Q = db.Column(db.String(150), default=-110, nullable=False)
-    fs_home_1Q = db.Column(db.Integer,default=0, nullable=False)
+    fs_away_1Q = db.Column(db.String(150),default=0, nullable=False)
+    fs_home_1Q = db.Column(db.String(150),default=0, nullable=False)
 
 #----------------------------------------------------------------------
-    sa_1Q= db.Column(db.Integer, default=0, nullable=False)
-    sh_1Q= db.Column(db.Integer, default=0, nullable=False)
-    sa_2Q= db.Column(db.Integer, default=0, nullable=False)
-    sh_2Q= db.Column(db.Integer, default=0, nullable=False)
-    sa_3Q= db.Column(db.Integer, default=0, nullable=False)
-    sh_3Q= db.Column(db.Integer, default=0, nullable=False)
+    sa_1Q= db.Column(db.String(150), default=0, nullable=False)
+    sh_1Q= db.Column(db.String(150), default=0, nullable=False)
+    sa_2Q= db.Column(db.String(150), default=0, nullable=False)
+    sh_2Q= db.Column(db.String(150), default=0, nullable=False)
+    sa_3Q= db.Column(db.String(150), default=0, nullable=False)
+    sh_3Q= db.Column(db.String(150), default=0, nullable=False)
 
-    date = db.Column(db.String(100), nullable=False)
-    hour = db.Column(db.String(100), nullable=False)
     def serialize(self):
         return {
             "id": self.id,
@@ -868,7 +901,6 @@ class Nhl(db.Model):
             "moneyLineAway": self.moneyLineAway,
 
             "total": self.total,
-            "juice_total": self.juice_total,
 
             "tt_away": self.tt_away,
             "tt_home": self.tt_home,
@@ -878,6 +910,7 @@ class Nhl(db.Model):
 
             "juice_under_away": self.juice_under_away,
             "juice_under_home": self.juice_under_home,
+
             "juice_total_over": self.juice_total_over,
             "juice_total_under": self.juice_total_under,
 
@@ -889,6 +922,9 @@ class Nhl(db.Model):
 
             "juice_pot_away_1Q": self.juice_pot_away_1Q,
             "juice_pot_home_1Q": self.juice_pot_home_1Q,
+            
+            "Q1_juice_over": self.Q1_juice_over,
+            "Q1_juice_under": self.Q1_juice_under,
 
             "moneyLineHome_1Q": self.moneyLineHome_1Q,
             "moneyLineAway_1Q": self.moneyLineAway_1Q,
@@ -923,8 +959,10 @@ class Nhl(db.Model):
 class Boxeo(db.Model):
     __tablename__ = "boxeo"
     id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(100), nullable=False)
+    hour = db.Column(db.String(100), nullable=False)
     event = db.Column(db.String(150), nullable=False)
-    rounds = db.Column(db.Integer, nullable=False)
+    rounds = db.Column(db.String(150), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
     fighter_One = db.Column(db.String(150), nullable=False)
     money_Line_One = db.Column(db.String(150), nullable=False)
@@ -950,8 +988,6 @@ class Boxeo(db.Model):
     r14_result = db.Column(db.String(150), nullable=False)
     r15_result = db.Column(db.String(150), nullable=False)
 
-    date = db.Column(db.String(100), nullable=False)
-    hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -991,8 +1027,10 @@ class Boxeo(db.Model):
 class Mma(db.Model):
     __tablename__ = "mma"
     id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(100), nullable=False)
+    hour = db.Column(db.String(100), nullable=False)
     event = db.Column(db.String(150), nullable=False)
-    rounds = db.Column(db.Integer, nullable=False)
+    rounds = db.Column(db.String(150), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
     fighter_One = db.Column(db.String(150), nullable=False)
     money_Line_One = db.Column(db.String(150), nullable=False)
@@ -1018,8 +1056,6 @@ class Mma(db.Model):
     r14_result = db.Column(db.String(150), nullable=False)
     r15_result = db.Column(db.String(150), nullable=False)
 
-    date = db.Column(db.String(100), nullable=False)
-    hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -1060,15 +1096,15 @@ class Mma(db.Model):
 class Nascar(db.Model):
     __tablename__ = "nascar"
     id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(100), nullable=False)
+    hour = db.Column(db.String(100), nullable=False)
     race = db.Column(db.String(150), nullable=False)
-    track = db.Column(db.Integer, nullable=False)
+    track = db.Column(db.String(150), nullable=False)
     country = db.Column(db.String(150), nullable=False)
     location = db.Column(db.String(100), nullable=False)
     place1 = db.Column(db.String(150), nullable=False)
     place2 = db.Column(db.String(150), nullable=False)
     place3 = db.Column(db.String(150), nullable=False)
-    date = db.Column(db.String(100), nullable=False)
-    hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -1092,8 +1128,8 @@ class Nascar_drivers(db.Model):
     country = db.Column(db.String(150), nullable=False)
     sponsor = db.Column(db.String(100), nullable=False)
     engine = db.Column(db.String(150), nullable=False)
-    number_car = db.Column(db.Integer, nullable=False)
-    odds = db.Column(db.Integer, nullable=False)
+    number_car = db.Column(db.String(150), nullable=False)
+    odds = db.Column(db.String(150), nullable=False)
 
     def serialize(self):
         return {
@@ -1125,13 +1161,13 @@ class Match_Ups_Nacar(db.Model):
 class Golf(db.Model):
     __tablename__ = "golf"
     id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(100), nullable=False)
+    hour = db.Column(db.String(100), nullable=False)
     event = db.Column(db.String(150), nullable=False)
     location = db.Column(db.String(150), nullable=False)
     place1 = db.Column(db.String(150), nullable=False)
     place2 = db.Column(db.String(150), nullable=False)
     place3 = db.Column(db.String(150), nullable=False)
-    date = db.Column(db.String(100), nullable=False)
-    hour = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -1151,7 +1187,7 @@ class Golfer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), nullable=False)
     country = db.Column(db.String(150), nullable=False)
-    odds = db.Column(db.Integer, nullable=False)
+    odds = db.Column(db.String(150), nullable=False)
 
     def serialize(self):
         return {
@@ -1165,12 +1201,12 @@ class Golfer(db.Model):
 class News(db.Model):
     __tablename__ = "news"
     id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(100), nullable=False)
     title = db.Column(db.String(150), nullable=False)
     url_image = db.Column(db.String(150), nullable=False)
     short_description = db.Column(db.String(1000), nullable=False)
     news_post = db.Column(db.Text, nullable=False)
     written = db.Column(db.String(150), nullable=False)
-    date = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
