@@ -8,10 +8,11 @@ class Mlb(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.String(100),default=Pending, nullable=False)
     away = db.Column(db.String(50), nullable=False)
-    peacher_a = db.Column(db.String(50), nullable=False)
+    pitcher_a = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
-    peacher_h = db.Column(db.String(50), nullable=False)
+    pitcher_h = db.Column(db.String(50), nullable=False)
     rl_away = db.Column(db.String(50), nullable=False)
     rl_home = db.Column(db.String(50), nullable=False)
     juice_rl_away = db.Column(db.String(50), default=-110, nullable=False)
@@ -106,10 +107,11 @@ class Mlb(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "status": self.status,
             "away": self.away,
-            "peacher_a": self.away,
+            "pitcher_a": self.away,
             "home": self.home,
-            "peacher_h": self.away,
+            "pitcher_h": self.away,
 
             "rl_away": self.rl_away,
             "rl_home": self.rl_home,
@@ -225,6 +227,7 @@ class Nfl(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.String(100),default=Pending, nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     spread_away = db.Column(db.String(50), nullable=False)
@@ -362,6 +365,7 @@ class Nfl(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "status": self.status,
             "home": self.home,
             "away": self.away,
 
@@ -533,6 +537,7 @@ class Nba(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.String(100),default=Pending, nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     spread_away = db.Column(db.String(50), nullable=False)
@@ -670,6 +675,7 @@ class Nba(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "status": self.status,
             "home": self.home,
             "away": self.away,
 
@@ -844,6 +850,7 @@ class Nhl(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.String(100),default=Pending, nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     pot_line_away = db.Column(db.String(50), nullable=False)
@@ -896,6 +903,7 @@ class Nhl(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "status": self.status,
             "away": self.away,
             "home": self.home,
 
@@ -969,6 +977,7 @@ class Boxeo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.String(100),default=Pending, nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
@@ -1000,6 +1009,7 @@ class Boxeo(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "status": self.status,
             "event": self.event,
             "rounds": self.rounds,
             "location_Fight": self.location_Fight,
@@ -1037,6 +1047,7 @@ class Mma(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.String(100),default=Pending, nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
@@ -1068,6 +1079,7 @@ class Mma(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "status": self.status,
             "event": self.event,
             "rounds": self.rounds,
             "location_Fight": self.location_Fight,
@@ -1106,6 +1118,7 @@ class Nascar(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.String(100),default=Pending, nullable=False)
     race = db.Column(db.String(50), nullable=False)
     track = db.Column(db.String(50), nullable=False)
     country = db.Column(db.String(50), nullable=False)
@@ -1116,6 +1129,7 @@ class Nascar(db.Model):
 
     def serialize(self):
         return {
+            "status": self.status,
             "race": self.race,
             "track": self.track,
             "country": self.country,
@@ -1171,6 +1185,7 @@ class Golf(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.String(100),default=Pending, nullable=False)
     event = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
     place1 = db.Column(db.String(50), nullable=False)
@@ -1179,6 +1194,7 @@ class Golf(db.Model):
 
     def serialize(self):
         return {
+            "status": self.status,
             "event": self.event,
             "location": self.location,
             "place1": self.place1,
