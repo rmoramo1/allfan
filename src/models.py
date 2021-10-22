@@ -977,6 +977,7 @@ class Boxeo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(100), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
@@ -1018,6 +1019,7 @@ class Boxeo(db.Model):
             "money_Line_One": self.money_Line_One,
             "money_Line_Two": self.money_Line_Two,
             "winner": self.winner,
+            "week": self.week,
             "finish_Type": self.finish_Type,
             "finish_by": self.finish_by,
 
@@ -1047,6 +1049,7 @@ class Mma(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(100), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
@@ -1088,6 +1091,7 @@ class Mma(db.Model):
             "money_Line_One": self.money_Line_One,
             "money_Line_Two": self.money_Line_Two,
             "winner": self.winner,
+            "week": self.week,
             "finish_Type": self.finish_Type,
             "finish_by": self.finish_by,
 
@@ -1118,6 +1122,7 @@ class Nascar(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(100), nullable=False)
     race = db.Column(db.String(50), nullable=False)
     track = db.Column(db.String(50), nullable=False)
@@ -1139,6 +1144,7 @@ class Nascar(db.Model):
             "place3": self.place3,
             "date": self.date,
             "hour": self.hour,
+            "week": self.week,
             # do not serialize the password, its a security breach
         }
 
@@ -1185,6 +1191,7 @@ class Golf(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(100), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
@@ -1202,6 +1209,7 @@ class Golf(db.Model):
             "place3": self.place3,
             "date": self.date,
             "hour": self.hour,
+            "week": self.week,
             # do not serialize the password, its a security breach
         }
 
