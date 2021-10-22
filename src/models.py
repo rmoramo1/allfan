@@ -109,9 +109,9 @@ class Mlb(db.Model):
             "id": self.id,
             "status": self.status,
             "away": self.away,
-            "pitcher_a": self.away,
+            "pitcher_a": self.pitcher_a,
             "home": self.home,
-            "pitcher_h": self.away,
+            "pitcher_h": self.pitcher_h,
 
             "rl_away": self.rl_away,
             "rl_home": self.rl_home,
