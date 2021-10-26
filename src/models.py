@@ -227,6 +227,7 @@ class Nfl(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     hour = db.Column(db.String(100), nullable=False)
+    week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(100), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
@@ -368,6 +369,7 @@ class Nfl(db.Model):
             "status": self.status,
             "home": self.home,
             "away": self.away,
+            "week": self.week,
 
             "spread_away": self.spread_away,
             "spread_home": self.spread_home,
