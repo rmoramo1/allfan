@@ -910,7 +910,7 @@ class Nba(db.Model):
             # do not serialize the password, its a security breach
         }
 class Ncaa_Basketball(db.Model):
-    __tablename__ = "nacc_basketball"
+    __tablename__ = "ncaa_basketball"
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
@@ -1220,7 +1220,6 @@ class Boxeo(db.Model):
     fighter_Two = db.Column(db.String(50), nullable=False)
     money_Line_Two = db.Column(db.String(10), nullable=False)
     winner = db.Column(db.String(50), nullable=False)
-    finish_Type = db.Column(db.String(50), nullable=False)
     finish_by = db.Column(db.String(50), nullable=False)
     
     r1_result = db.Column(db.String(50), nullable=False)
@@ -1253,7 +1252,6 @@ class Boxeo(db.Model):
             "money_Line_Two": self.money_Line_Two,
             "winner": self.winner,
             "week": self.week,
-            "finish_Type": self.finish_Type,
             "finish_by": self.finish_by,
 
             "r1_result": self.r1_result,
@@ -1292,7 +1290,6 @@ class Mma(db.Model):
     fighter_Two = db.Column(db.String(50), nullable=False)
     money_Line_Two = db.Column(db.String(50), nullable=False)
     winner = db.Column(db.String(50), nullable=False)
-    finish_Type = db.Column(db.String(50), nullable=False)
     finish_by = db.Column(db.String(50), nullable=False)
     
     r1_result = db.Column(db.String(50), nullable=False)
@@ -1325,7 +1322,6 @@ class Mma(db.Model):
             "money_Line_Two": self.money_Line_Two,
             "winner": self.winner,
             "week": self.week,
-            "finish_Type": self.finish_Type,
             "finish_by": self.finish_by,
 
             "r1_result": self.r1_result,
