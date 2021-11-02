@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, News, Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Champions_League,Confederations_Cup,W_C_Qualifying,CONCACAF,Europa_League,International_Friendlies,France_League,Bundesliga,International_Matches,Italia_Serie_A,Mx_Expansion,Mx_Apertura,Spain_Primera_Liga,USA_MLS,Brazil_Serie_A,Colombia_Primera_A
+from models import db,User, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, News, Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Champions_League,Confederations_Cup,W_C_Qualifying,CONCACAF,Europa_League,International_Friendlies,France_League,Bundesliga,International_Matches,Italia_Serie_A,Mx_Expansion,Mx_Apertura,Spain_Primera_Liga,USA_MLS,Brazil_Serie_A,Colombia_Primera_A
 # from models import Person
 
 app = Flask(__name__)
@@ -27,6 +27,21 @@ def handle_invalid_usage(error):
 @app.route('/')
 def sitemap():
     return generate_sitemap(app)
+    
+#obtener usuario de base de datos y crea token
+@app.route('/login', methods=['POST'])
+def login():
+    mail = request.json.get("mail", None)
+    password = request.json.get("password", None)
+    print(mail)
+    print(password)
+    user = User.query.filter_by(mail=mail, password=password).first()
+    # valida si estan vacios los ingresos
+    if user is None:
+       return jsonify({"msg": "Bad mail or password"}), 401
+    # crear token login
+    access_token = create_access_token(identity=mail)
+    return jsonify({"token": access_token, "username":user.name})
 #----------------------------------------------------------------------------
 @app.route("/mlb", methods=["GET"])
 #   @limiter.limit("12 per hour")

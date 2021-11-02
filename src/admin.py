@@ -1,6 +1,6 @@
 import os
 from flask_admin import Admin
-from models import db, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,News,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Champions_League,Confederations_Cup,W_C_Qualifying,CONCACAF,England_Premier_League,Europa_League,International_Friendlies,France_League,Bundesliga,International_Matches,Italia_Serie_A,Mx_Expansion,Mx_Apertura,Spain_Primera_Liga,USA_MLS,Brazil_Serie_A,Colombia_Primera_A
+from models import db,User, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,News,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Champions_League,Confederations_Cup,W_C_Qualifying,CONCACAF,England_Premier_League,Europa_League,International_Friendlies,France_League,Bundesliga,International_Matches,Italia_Serie_A,Mx_Expansion,Mx_Apertura,Spain_Primera_Liga,USA_MLS,Brazil_Serie_A,Colombia_Primera_A
 from flask_admin.contrib.sqla import ModelView
 
 def setup_admin(app):
@@ -9,6 +9,7 @@ def setup_admin(app):
     admin = Admin(app, name='Admin', template_mode='bootstrap3')
 
     # Add your models here, for example this is how we add a the User model to the admin
+    admin.add_view(ModelView(User, db.session))
     admin.add_view(ModelView(Mlb, db.session))
     admin.add_view(ModelView(Ncaa_Baseball, db.session))
     admin.add_view(ModelView(Nfl, db.session))
