@@ -7396,7 +7396,6 @@ def createnews():
 
 @app.route('/news/<id>', methods=['PUT'])
 def createnewsEdit(id):
-    new-News.query.get(id)
     date = request.json.get("date", None)
     title = request.json.get("title", None)
     url_image = request.json.get("url_image", None)
@@ -7406,13 +7405,11 @@ def createnewsEdit(id):
 
     if date is None:
         return jsonify({"msg": "No date was provided"}), 400
-        
+
     # busca team en BBDD
     news = News.query.filter_by(date=date, title=title).first()
     # the team was not found on the database
     if news:
-        return jsonify({"msg": "news already exists", "title": news.title}), 401
-    else:
         # crea encuentro nuevo
         # crea registro nuevo en BBDD de
         news = News(
@@ -7426,3 +7423,5 @@ def createnewsEdit(id):
         db.session.add(news)
         db.session.commit()
         return jsonify({"msg": "News created successfully"}), 200
+    else:
+        return jsonify({"msg": "news already exists", "title": new s.title}), 401
