@@ -7396,6 +7396,7 @@ def createnews():
 
 @app.route('/news/<id>', methods=['PUT'])
 def createnewsEdit(id):
+    new-News.query.get(id)
     date = request.json.get("date", None)
     title = request.json.get("title", None)
     url_image = request.json.get("url_image", None)
@@ -7403,10 +7404,9 @@ def createnewsEdit(id):
     news_post = request.json.get("news_post", None)
     written = request.json.get("written", None)
 
-    # valida si estan vacios los ingresos
-    missing_params = [key for key, value in body.items() if value is None]
-    error = f'No {", ".join(missing_params)} was provided'
-
+    if date is None:
+        return jsonify({"msg": "No date was provided"}), 400
+        
     # busca team en BBDD
     news = News.query.filter_by(date=date, title=title).first()
     # the team was not found on the database
