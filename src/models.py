@@ -11,7 +11,7 @@ class User(db.Model):
     name = db.Column(db.String(20), nullable=False)
     mail = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(50), nullable=False)
-    
+
     # def __repr__(self):
     #     return '<User %r>' % self.name
 
@@ -22,6 +22,7 @@ class User(db.Model):
             "name": self.name
             # do not serialize the password, its a security breach
         }
+
 
 class Mlb(db.Model):
     __tablename__ = "mlb"
@@ -48,26 +49,30 @@ class Mlb(db.Model):
     tt_home = db.Column(db.String(10), nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
     # ------------------------------------------------------------------------
-    rl_away_f5 = db.Column(db.String(50),default=0, nullable=False)
-    rl_home_f5 = db.Column(db.String(50),default=0, nullable=False)
+    rl_away_f5 = db.Column(db.String(50), default=0, nullable=False)
+    rl_home_f5 = db.Column(db.String(50), default=0, nullable=False)
     juice_rl_away_f5 = db.Column(db.String(50), default=-110, nullable=False)
     juice_rl_home_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    moneyLineAway_f5 = db.Column(db.String(50),default=0, nullable=False)
-    moneyLineHome_f5 = db.Column(db.String(50),default=0, nullable=False)
-    total_f5 = db.Column(db.String(50),default=0, nullable=False)
-    juice_total_over_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    juice_total_under_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    tt_away_f5 = db.Column(db.String(50),default=0, nullable=False)
+    moneyLineAway_f5 = db.Column(db.String(50), default=0, nullable=False)
+    moneyLineHome_f5 = db.Column(db.String(50), default=0, nullable=False)
+    total_f5 = db.Column(db.String(50), default=0, nullable=False)
+    juice_total_over_f5 = db.Column(
+        db.String(50), default=-110, nullable=False)
+    juice_total_under_f5 = db.Column(
+        db.String(50), default=-110, nullable=False)
+    tt_away_f5 = db.Column(db.String(50), default=0, nullable=False)
     juice_over_away_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    juice_under_away_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    tt_home_f5 = db.Column(db.String(50),default=0, nullable=False)
+    juice_under_away_f5 = db.Column(
+        db.String(50), default=-110, nullable=False)
+    tt_home_f5 = db.Column(db.String(50), default=0, nullable=False)
     juice_over_home_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    juice_under_home_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    fs_away_f5 = db.Column(db.String(50),default=0, nullable=False)
-    fs_home_f5 = db.Column(db.String(50),default=0, nullable=False)
+    juice_under_home_f5 = db.Column(
+        db.String(50), default=-110, nullable=False)
+    fs_away_f5 = db.Column(db.String(50), default=0, nullable=False)
+    fs_home_f5 = db.Column(db.String(50), default=0, nullable=False)
     # ----------------------------------------------------------------------
     sa_1inning = db.Column(db.String(50), default=0, nullable=False)
     sh_1inning = db.Column(db.String(50), default=0, nullable=False)
@@ -117,8 +122,8 @@ class Mlb(db.Model):
     sh_23inning = db.Column(db.String(50), default=0, nullable=False)
     sa_24inning = db.Column(db.String(50), default=0, nullable=False)
     sh_24inning = db.Column(db.String(50), default=0, nullable=False)
-    sa_1inning = db.Column(db.String(50), default=0, nullable=False)
-    sh_1inning = db.Column(db.String(50), default=0, nullable=False)
+    sa_25inning = db.Column(db.String(50), default=0, nullable=False)
+    sh_25inning = db.Column(db.String(50), default=0, nullable=False)
 
     def serialize(self):
         return {
@@ -212,10 +217,14 @@ class Mlb(db.Model):
             "sh_23inning": self.sh_23inning,
             "sa_24inning": self.sa_24inning,
             "sh_24inning": self.sh_24inning,
+            "sa_25inning": self.sa_24inning,
+            "sh_25inning": self.sh_25inning,
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Ncaa_Baseball(db.Model):
     __tablename__ = "ncaa_baseball"
     id = db.Column(db.Integer, primary_key=True)
@@ -241,26 +250,30 @@ class Ncaa_Baseball(db.Model):
     tt_home = db.Column(db.String(10), nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
     # ------------------------------------------------------------------------
-    rl_away_f5 = db.Column(db.String(50),default=0, nullable=False)
-    rl_home_f5 = db.Column(db.String(50),default=0, nullable=False)
+    rl_away_f5 = db.Column(db.String(50), default=0, nullable=False)
+    rl_home_f5 = db.Column(db.String(50), default=0, nullable=False)
     juice_rl_away_f5 = db.Column(db.String(50), default=-110, nullable=False)
     juice_rl_home_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    moneyLineAway_f5 = db.Column(db.String(50),default=0, nullable=False)
-    moneyLineHome_f5 = db.Column(db.String(50),default=0, nullable=False)
-    total_f5 = db.Column(db.String(50),default=0, nullable=False)
-    juice_total_over_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    juice_total_under_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    tt_away_f5 = db.Column(db.String(50),default=0, nullable=False)
+    moneyLineAway_f5 = db.Column(db.String(50), default=0, nullable=False)
+    moneyLineHome_f5 = db.Column(db.String(50), default=0, nullable=False)
+    total_f5 = db.Column(db.String(50), default=0, nullable=False)
+    juice_total_over_f5 = db.Column(
+        db.String(50), default=-110, nullable=False)
+    juice_total_under_f5 = db.Column(
+        db.String(50), default=-110, nullable=False)
+    tt_away_f5 = db.Column(db.String(50), default=0, nullable=False)
     juice_over_away_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    juice_under_away_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    tt_home_f5 = db.Column(db.String(50),default=0, nullable=False)
+    juice_under_away_f5 = db.Column(
+        db.String(50), default=-110, nullable=False)
+    tt_home_f5 = db.Column(db.String(50), default=0, nullable=False)
     juice_over_home_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    juice_under_home_f5 = db.Column(db.String(50), default=-110, nullable=False)
-    fs_away_f5 = db.Column(db.String(50),default=0, nullable=False)
-    fs_home_f5 = db.Column(db.String(50),default=0, nullable=False)
+    juice_under_home_f5 = db.Column(
+        db.String(50), default=-110, nullable=False)
+    fs_away_f5 = db.Column(db.String(50), default=0, nullable=False)
+    fs_home_f5 = db.Column(db.String(50), default=0, nullable=False)
     # ----------------------------------------------------------------------
     sa_1inning = db.Column(db.String(50), default=0, nullable=False)
     sh_1inning = db.Column(db.String(50), default=0, nullable=False)
@@ -310,9 +323,8 @@ class Ncaa_Baseball(db.Model):
     sh_23inning = db.Column(db.String(50), default=0, nullable=False)
     sa_24inning = db.Column(db.String(50), default=0, nullable=False)
     sh_24inning = db.Column(db.String(50), default=0, nullable=False)
-    sa_1inning = db.Column(db.String(50), default=0, nullable=False)
-    sh_1inning = db.Column(db.String(50), default=0, nullable=False)
-
+    sa_25inning = db.Column(db.String(50), default=0, nullable=False)
+    sh_25inning = db.Column(db.String(50), default=0, nullable=False)
 
     def serialize(self):
         return {
@@ -406,10 +418,14 @@ class Ncaa_Baseball(db.Model):
             "sh_23inning": self.sh_23inning,
             "sa_24inning": self.sa_24inning,
             "sh_24inning": self.sh_24inning,
+            "sa_25inning": self.sa_24inning,
+            "sh_25inning": self.sh_24inning,
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Nfl(db.Model):
     __tablename__ = "nfl"
     id = db.Column(db.Integer, primary_key=True)
@@ -434,63 +450,100 @@ class Nfl(db.Model):
     tt_home = db.Column(db.String(10), nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 # ----------
-    first_half_spread_away = db.Column(db.String(10),default=0, nullable=False)
-    first_half_spread_home = db.Column(db.String(10),default=0, nullable=False)
-    first_half_juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_moneyLineAway = db.Column(db.String(10),default=0, nullable=False)
-    first_half_moneyLineHome = db.Column(db.String(10),default=0, nullable=False)
-    first_half_total = db.Column(db.String(10),default=0, nullable=False)
-    fh_juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
-    fh_juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_tt_away = db.Column(db.String(10),default=0, nullable=False)
-    first_half_juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_tt_home = db.Column(db.String(10),default=0, nullable=False)
-    first_half_juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    first_half_final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    first_half_spread_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_spread_home = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_moneyLineAway = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_moneyLineHome = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_total = db.Column(db.String(10), default=0, nullable=False)
+    fh_juice_total_over = db.Column(
+        db.String(10), default=-110, nullable=False)
+    fh_juice_total_under = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    first_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    first_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
 # ------------------------------------------------------------------------------
-    second_half_spread_away = db.Column(db.String(10),default=0, nullable=False)
-    second_half_spread_home = db.Column(db.String(10),default=0, nullable=False)
-    second_half_juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_moneyLineAway = db.Column(db.String(10),default=0, nullable=False)
-    second_half_moneyLineHome = db.Column(db.String(10),default=0, nullable=False)
-    second_half_total = db.Column(db.String(10),default=0, nullable=False)
-    sh_juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
-    sh_juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_tt_away = db.Column(db.String(10),default=0, nullable=False)
-    second_half_juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_tt_home = db.Column(db.String(10),default=0, nullable=False)
-    second_half_juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    second_half_final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    second_half_spread_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_spread_home = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_moneyLineAway = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_moneyLineHome = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_total = db.Column(db.String(10), default=0, nullable=False)
+    sh_juice_total_over = db.Column(
+        db.String(10), default=-110, nullable=False)
+    sh_juice_total_under = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    second_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    second_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
 # ------------------------------------------------------------------------------
-    q1_half_spread_away = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_spread_home = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_moneyLineAway = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_moneyLineHome = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_total = db.Column(db.String(10),default=0, nullable=False)
+    q1_half_spread_away = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_spread_home = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_moneyLineAway = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_moneyLineHome = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_total = db.Column(db.String(10), default=0, nullable=False)
     q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_tt_away = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_tt_home = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    q1_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    q1_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
     # -----------------------------------------------------------------------
+
     def serialize(self):
         return {
             "id": self.id,
@@ -575,6 +628,8 @@ class Nfl(db.Model):
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Ncaa_Football(db.Model):
     __tablename__ = "ncaa_football"
     id = db.Column(db.Integer, primary_key=True)
@@ -599,63 +654,100 @@ class Ncaa_Football(db.Model):
     tt_home = db.Column(db.String(10), nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 # ----------
-    first_half_spread_away = db.Column(db.String(10),default=0, nullable=False)
-    first_half_spread_home = db.Column(db.String(10),default=0, nullable=False)
-    first_half_juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_moneyLineAway = db.Column(db.String(10),default=0, nullable=False)
-    first_half_moneyLineHome = db.Column(db.String(10),default=0, nullable=False)
-    first_half_total = db.Column(db.String(10),default=0, nullable=False)
-    fh_juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
-    fh_juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_tt_away = db.Column(db.String(10),default=0, nullable=False)
-    first_half_juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_tt_home = db.Column(db.String(10),default=0, nullable=False)
-    first_half_juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    first_half_final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    first_half_spread_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_spread_home = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_moneyLineAway = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_moneyLineHome = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_total = db.Column(db.String(10), default=0, nullable=False)
+    fh_juice_total_over = db.Column(
+        db.String(10), default=-110, nullable=False)
+    fh_juice_total_under = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    first_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    first_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
 # ------------------------------------------------------------------------------
-    second_half_spread_away = db.Column(db.String(10),default=0, nullable=False)
-    second_half_spread_home = db.Column(db.String(10),default=0, nullable=False)
-    second_half_juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_moneyLineAway = db.Column(db.String(10),default=0, nullable=False)
-    second_half_moneyLineHome = db.Column(db.String(10),default=0, nullable=False)
-    second_half_total = db.Column(db.String(10),default=0, nullable=False)
-    sh_juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
-    sh_juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_tt_away = db.Column(db.String(10),default=0, nullable=False)
-    second_half_juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_tt_home = db.Column(db.String(10),default=0, nullable=False)
-    second_half_juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    second_half_final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    second_half_spread_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_spread_home = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_moneyLineAway = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_moneyLineHome = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_total = db.Column(db.String(10), default=0, nullable=False)
+    sh_juice_total_over = db.Column(
+        db.String(10), default=-110, nullable=False)
+    sh_juice_total_under = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    second_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    second_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
 # ------------------------------------------------------------------------------
-    q1_half_spread_away = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_spread_home = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_moneyLineAway = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_moneyLineHome = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_total = db.Column(db.String(10),default=0, nullable=False)
+    q1_half_spread_away = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_spread_home = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_moneyLineAway = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_moneyLineHome = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_total = db.Column(db.String(10), default=0, nullable=False)
     q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_tt_away = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_tt_home = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    q1_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    q1_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
     # -----------------------------------------------------------------------
+
     def serialize(self):
         return {
             "id": self.id,
@@ -741,6 +833,7 @@ class Ncaa_Football(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Nba(db.Model):
     __tablename__ = "nba"
     id = db.Column(db.Integer, primary_key=True)
@@ -755,71 +848,103 @@ class Nba(db.Model):
     juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 # ----------
-    first_half_spread_away = db.Column(db.String(10),default=0, nullable=False)
-    first_half_spread_home = db.Column(db.String(10),default=0, nullable=False)
-    first_half_juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_moneyLineAway = db.Column(db.String(10),default=0, nullable=False)
-    first_half_moneyLineHome = db.Column(db.String(10),default=0, nullable=False)
-    first_half_total = db.Column(db.String(10),default=0, nullable=False)
+    first_half_spread_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_spread_home = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_moneyLineAway = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_moneyLineHome = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_total = db.Column(db.String(10), default=0, nullable=False)
     fh_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     fh_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_tt_away = db.Column(db.String(10),default=0, nullable=False)
-    first_half_juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_tt_home = db.Column(db.String(10),default=0, nullable=False)
-    first_half_juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    first_half_final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    first_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    first_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    first_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
 # ------------------------------------------------------------------------------
-    second_half_spread_away = db.Column(db.String(10),default=0, nullable=False)
-    second_half_spread_home = db.Column(db.String(10),default=0, nullable=False)
-    second_half_juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_moneyLineAway = db.Column(db.String(10),default=0, nullable=False)
-    second_half_moneyLineHome = db.Column(db.String(10),default=0, nullable=False)
-    second_half_total = db.Column(db.String(10),default=0, nullable=False)
+    second_half_spread_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_spread_home = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_moneyLineAway = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_moneyLineHome = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_total = db.Column(db.String(10), default=0, nullable=False)
     sh_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     sh_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_tt_away = db.Column(db.String(10),default=0, nullable=False)
-    second_half_juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_tt_home = db.Column(db.String(10),default=0, nullable=False)
-    second_half_juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    second_half_final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    second_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    second_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    second_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
 # ------------------------------------------------------------------------------
-    q1_half_spread_away = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_spread_home = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_moneyLineAway = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_moneyLineHome = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_total = db.Column(db.String(10),default=0, nullable=False)
+    q1_half_spread_away = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_spread_home = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_moneyLineAway = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_moneyLineHome = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_total = db.Column(db.String(10), default=0, nullable=False)
     q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_tt_away = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_tt_home = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    q1_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    q1_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
 
     # -----------------------------------------------------------------------
     def serialize(self):
@@ -906,6 +1031,8 @@ class Nba(db.Model):
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Ncaa_Basketball(db.Model):
     __tablename__ = "ncaa_basketball"
     id = db.Column(db.Integer, primary_key=True)
@@ -920,71 +1047,103 @@ class Ncaa_Basketball(db.Model):
     juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 # ----------
-    first_half_spread_away = db.Column(db.String(10),default=0, nullable=False)
-    first_half_spread_home = db.Column(db.String(10),default=0, nullable=False)
-    first_half_juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_moneyLineAway = db.Column(db.String(10),default=0, nullable=False)
-    first_half_moneyLineHome = db.Column(db.String(10),default=0, nullable=False)
-    first_half_total = db.Column(db.String(10),default=0, nullable=False)
+    first_half_spread_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_spread_home = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_moneyLineAway = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_moneyLineHome = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_total = db.Column(db.String(10), default=0, nullable=False)
     fh_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     fh_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_tt_away = db.Column(db.String(10),default=0, nullable=False)
-    first_half_juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_tt_home = db.Column(db.String(10),default=0, nullable=False)
-    first_half_juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    first_half_final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    first_half_final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    first_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    first_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    first_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    first_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    first_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
 # ------------------------------------------------------------------------------
-    second_half_spread_away = db.Column(db.String(10),default=0, nullable=False)
-    second_half_spread_home = db.Column(db.String(10),default=0, nullable=False)
-    second_half_juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_moneyLineAway = db.Column(db.String(10),default=0, nullable=False)
-    second_half_moneyLineHome = db.Column(db.String(10),default=0, nullable=False)
-    second_half_total = db.Column(db.String(10),default=0, nullable=False)
+    second_half_spread_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_spread_home = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_moneyLineAway = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_moneyLineHome = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_total = db.Column(db.String(10), default=0, nullable=False)
     sh_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     sh_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_tt_away = db.Column(db.String(10),default=0, nullable=False)
-    second_half_juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_tt_home = db.Column(db.String(10),default=0, nullable=False)
-    second_half_juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    second_half_final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    second_half_final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    second_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    second_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    second_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    second_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    second_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
 # ------------------------------------------------------------------------------
-    q1_half_spread_away = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_spread_home = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_juice_spread_home = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_moneyLineAway = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_moneyLineHome = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_total = db.Column(db.String(10),default=0, nullable=False)
+    q1_half_spread_away = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_spread_home = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_moneyLineAway = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_moneyLineHome = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_total = db.Column(db.String(10), default=0, nullable=False)
     q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_tt_away = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_tt_home = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    q1_half_final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    q1_half_final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    q1_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    q1_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q1_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    q1_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
 
     # -----------------------------------------------------------------------
     def serialize(self):
@@ -1071,6 +1230,7 @@ class Ncaa_Basketball(db.Model):
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
 
 class Nhl(db.Model):
     __tablename__ = "nhl"
@@ -1086,44 +1246,44 @@ class Nhl(db.Model):
     juice_puck_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
-
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    puck_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    puck_home_1Q = db.Column(db.String(10),default=0, nullable=False)
+# -----------------------------------------------------------------------
+    puck_away_1Q = db.Column(db.String(10), default=0, nullable=False)
+    puck_home_1Q = db.Column(db.String(10), default=0, nullable=False)
     juice_puck_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
     juice_puck_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
+    moneyLineAway_1Q = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1Q = db.Column(db.String(10), default=0, nullable=False)
+    total_1Q = db.Column(db.String(10), default=0, nullable=False)
     Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
+    tt_away_1Q = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
+    juice_under_away_1Q = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1Q = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1Q = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
-    sa_1Q= db.Column(db.String(10), default=0, nullable=False)
-    sh_1Q= db.Column(db.String(10), default=0, nullable=False)
-    sa_2Q= db.Column(db.String(10), default=0, nullable=False)
-    sh_2Q= db.Column(db.String(10), default=0, nullable=False)
-    sa_3Q= db.Column(db.String(10), default=0, nullable=False)
-    sh_3Q= db.Column(db.String(10), default=0, nullable=False)
+# ----------------------------------------------------------------------
+    sa_1Q = db.Column(db.String(10), default=0, nullable=False)
+    sh_1Q = db.Column(db.String(10), default=0, nullable=False)
+    sa_2Q = db.Column(db.String(10), default=0, nullable=False)
+    sh_2Q = db.Column(db.String(10), default=0, nullable=False)
+    sa_3Q = db.Column(db.String(10), default=0, nullable=False)
+    sh_3Q = db.Column(db.String(10), default=0, nullable=False)
 
     def serialize(self):
         return {
@@ -1210,7 +1370,7 @@ class Boxeo(db.Model):
     money_Line_Two = db.Column(db.String(10), nullable=False)
     winner = db.Column(db.String(50), nullable=False)
     finish_by = db.Column(db.String(50), nullable=False)
-    
+
     r1_result = db.Column(db.String(50), nullable=False)
     r2_result = db.Column(db.String(50), nullable=False)
     r3_result = db.Column(db.String(50), nullable=False)
@@ -1226,7 +1386,6 @@ class Boxeo(db.Model):
     r13_result = db.Column(db.String(50), nullable=False)
     r14_result = db.Column(db.String(50), nullable=False)
     r15_result = db.Column(db.String(50), nullable=False)
-
 
     def serialize(self):
         return {
@@ -1280,7 +1439,7 @@ class Mma(db.Model):
     money_Line_Two = db.Column(db.String(50), nullable=False)
     winner = db.Column(db.String(50), nullable=False)
     finish_by = db.Column(db.String(50), nullable=False)
-    
+
     r1_result = db.Column(db.String(50), nullable=False)
     r2_result = db.Column(db.String(50), nullable=False)
     r3_result = db.Column(db.String(50), nullable=False)
@@ -1296,7 +1455,6 @@ class Mma(db.Model):
     r13_result = db.Column(db.String(50), nullable=False)
     r14_result = db.Column(db.String(50), nullable=False)
     r15_result = db.Column(db.String(50), nullable=False)
-
 
     def serialize(self):
         return {
@@ -1367,26 +1525,6 @@ class Nascar(db.Model):
         }
 
 
-class Nascar_drivers(db.Model):
-    __tablename__ = "nascar_drivers"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    country = db.Column(db.String(50), nullable=False)
-    sponsor = db.Column(db.String(100), nullable=False)
-    engine = db.Column(db.String(50), nullable=False)
-    number_car = db.Column(db.String(50), nullable=False)
-    odds = db.Column(db.String(50), nullable=False)
-
-    def serialize(self):
-        return {
-            "name": self.name,
-            "country": self.country,
-            "sponsor": self.sponsor,
-            "engine": self.engine,
-            "number_car": self.number_car,
-            "odds": self.odds,
-            # do not serialize the password, its a security breach
-        }
 class Match_Ups_Nacar(db.Model):
     __tablename__ = "match_ups_nascar"
     id = db.Column(db.Integer, primary_key=True)
@@ -1403,6 +1541,7 @@ class Match_Ups_Nacar(db.Model):
             "mu2": self.mu2,
             # do not serialize the password, its a security breach
         }
+
 
 class Golf(db.Model):
     __tablename__ = "golf"
@@ -1428,22 +1567,6 @@ class Golf(db.Model):
             "date": self.date,
             "hour": self.hour,
             "week": self.week,
-            # do not serialize the password, its a security breach
-        }
-
-
-class Golfer(db.Model):
-    __tablename__ = "golfer"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    country = db.Column(db.String(50), nullable=False)
-    odds = db.Column(db.String(10), nullable=False)
-
-    def serialize(self):
-        return {
-            "name": self.name,
-            "country": self.country,
-            "odds": self.money_line
             # do not serialize the password, its a security breach
         }
 
@@ -1484,38 +1607,40 @@ class Champions_League(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1Q = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1Q = db.Column(db.String(10), default=0, nullable=False)
     juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
     juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
+    moneyLineAway_1Q = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1Q = db.Column(db.String(10), default=0, nullable=False)
+    total_1Q = db.Column(db.String(10), default=0, nullable=False)
     Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
+    tt_away_1Q = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
+    juice_under_away_1Q = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1Q = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1Q = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -1578,6 +1703,8 @@ class Champions_League(db.Model):
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Confederations_Cup(db.Model):
     __tablename__ = "confederations_cup"
     id = db.Column(db.Integer, primary_key=True)
@@ -1592,38 +1719,35 @@ class Confederations_Cup(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
-
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -1658,34 +1782,36 @@ class Confederations_Cup(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
             "Q1_juice_over": self.Q1_juice_over,
             "Q1_juice_under": self.Q1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class W_C_Qualifying(db.Model):
     __tablename__ = "w_c_qualifying"
     id = db.Column(db.Integer, primary_key=True)
@@ -1700,38 +1826,40 @@ class W_C_Qualifying(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -1766,34 +1894,36 @@ class W_C_Qualifying(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class CONCACAF(db.Model):
     __tablename__ = "CONCACAF"
     id = db.Column(db.Integer, primary_key=True)
@@ -1808,38 +1938,40 @@ class CONCACAF(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -1874,34 +2006,36 @@ class CONCACAF(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class England_Premier_League(db.Model):
     __tablename__ = "england_premier_league"
     id = db.Column(db.Integer, primary_key=True)
@@ -1916,38 +2050,40 @@ class England_Premier_League(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -1982,34 +2118,36 @@ class England_Premier_League(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Europa_League(db.Model):
     __tablename__ = "europa_league"
     id = db.Column(db.Integer, primary_key=True)
@@ -2024,38 +2162,40 @@ class Europa_League(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -2090,34 +2230,36 @@ class Europa_League(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class International_Friendlies(db.Model):
     __tablename__ = "international_friendlies"
     id = db.Column(db.Integer, primary_key=True)
@@ -2132,38 +2274,40 @@ class International_Friendlies(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -2198,34 +2342,36 @@ class International_Friendlies(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class France_League(db.Model):
     __tablename__ = "france_league"
     id = db.Column(db.Integer, primary_key=True)
@@ -2240,38 +2386,40 @@ class France_League(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -2306,34 +2454,36 @@ class France_League(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Bundesliga(db.Model):
     __tablename__ = "bundesliga"
     id = db.Column(db.Integer, primary_key=True)
@@ -2348,38 +2498,40 @@ class Bundesliga(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -2414,34 +2566,36 @@ class Bundesliga(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class International_Matches(db.Model):
     __tablename__ = "international_matches"
     id = db.Column(db.Integer, primary_key=True)
@@ -2456,38 +2610,40 @@ class International_Matches(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -2522,34 +2678,36 @@ class International_Matches(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Italia_Serie_A(db.Model):
     __tablename__ = "italia_serie_A"
     id = db.Column(db.Integer, primary_key=True)
@@ -2564,38 +2722,40 @@ class Italia_Serie_A(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -2630,34 +2790,36 @@ class Italia_Serie_A(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Mx_Expansion(db.Model):
     __tablename__ = "mx_expansion"
     id = db.Column(db.Integer, primary_key=True)
@@ -2672,38 +2834,40 @@ class Mx_Expansion(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -2738,34 +2902,36 @@ class Mx_Expansion(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Mx_Apertura(db.Model):
     __tablename__ = "mx_apertura"
     id = db.Column(db.Integer, primary_key=True)
@@ -2780,38 +2946,40 @@ class Mx_Apertura(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -2846,34 +3014,36 @@ class Mx_Apertura(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Spain_Primera_Liga(db.Model):
     __tablename__ = "spain_primera_liga"
     id = db.Column(db.Integer, primary_key=True)
@@ -2888,38 +3058,40 @@ class Spain_Primera_Liga(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -2954,34 +3126,36 @@ class Spain_Primera_Liga(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class USA_MLS(db.Model):
     __tablename__ = "USA_MLS"
     id = db.Column(db.Integer, primary_key=True)
@@ -2996,36 +3170,39 @@ class USA_MLS(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-#----------------------------------------------------------------------
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+# ----------------------------------------------------------------------
+
     def serialize(self):
         return {
             "id": self.id,
@@ -3059,34 +3236,36 @@ class USA_MLS(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Brazil_Serie_A(db.Model):
     __tablename__ = "brazil_serie_A"
     id = db.Column(db.Integer, primary_key=True)
@@ -3101,36 +3280,39 @@ class Brazil_Serie_A(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-#----------------------------------------------------------------------
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+# ----------------------------------------------------------------------
+
     def serialize(self):
         return {
             "id": self.id,
@@ -3164,34 +3346,36 @@ class Brazil_Serie_A(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
             # do not serialize the password, its a security breach
         }
+
+
 class Colombia_Primera_A(db.Model):
     __tablename__ = "colombia_primera_A"
     id = db.Column(db.Integer, primary_key=True)
@@ -3206,94 +3390,968 @@ class Colombia_Primera_A(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
-    total = db.Column(db.String(10),default=0, nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_away = db.Column(db.String(10),default=0, nullable=False)
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
 
-    tt_home = db.Column(db.String(10),default=0, nullable=False)
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
-    final_score_away = db.Column(db.String(10),default=0, nullable=False)
-    final_score_home = db.Column(db.String(10),default=0, nullable=False)
-#-----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10),default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10),default=0, nullable=False)
-    total_1Q = db.Column(db.String(10),default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10),default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-#----------------------------------------------------------------------
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+# ----------------------------------------------------------------------
+
     def serialize(self):
         return {
             "id": self.id,
             "status": self.status,
             "away": self.away,
             "home": self.home,
-
             "goal_line_away": self.goal_line_away,
             "goal_line_home": self.goal_line_home,
-
             "juice_goal_away": self.juice_goal_away,
             "juice_goal_home": self.juice_goal_home,
-
             "moneyLineHome": self.moneyLineHome,
             "moneyLineAway": self.moneyLineAway,
-
             "total": self.total,
-
             "tt_away": self.tt_away,
             "tt_home": self.tt_home,
-
             "juice_over_away": self.juice_over_away,
             "juice_over_home": self.juice_over_home,
-
             "juice_under_away": self.juice_under_away,
             "juice_under_home": self.juice_under_home,
-
             "juice_total_over": self.juice_total_over,
             "juice_total_under": self.juice_total_under,
-
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
-
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
-
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
-
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
-
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
-
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
-
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
-
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
-
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
-
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
             "date": self.date,
             "hour": self.hour
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_nba_player(db.Model):
+    __tablename__ = "stats_nba_player"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    college = db.Column(db.String(15), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(15), nullable=False)
+    dorsal = db.Column(db.String(20), nullable=False)
+    minutes = db.Column(db.String(10), default=0, nullable=False)
+    position = db.Column(db.String(10), default=0, nullable=False)
+    gp = db.Column(db.String(10), default=0, nullable=False)
+    gs = db.Column(db.String(10), default=0, nullable=False)
+    fg = db.Column(db.String(10), default=0, nullable=False)
+    fg_AVG = db.Column(db.String(10), default=0, nullable=False)
+    three_pt = db.Column(db.String(10), default=0, nullable=False)
+    three_pt_AVG = db.Column(db.String(10), default=0, nullable=False)
+    ft = db.Column(db.String(10), default=0, nullable=False)
+    ft_AVG = db.Column(db.String(10), default=0, nullable=False)
+    Or = db.Column(db.String(10), default=0, nullable=False)
+    dr = db.Column(db.String(10), default=0, nullable=False)
+    reb = db.Column(db.String(10), default=0, nullable=False)
+    ast = db.Column(db.String(10), default=0, nullable=False)
+    stl = db.Column(db.String(10), default=0, nullable=False)
+    blk = db.Column(db.String(10), default=0, nullable=False)
+    to = db.Column(db.String(10), default=0, nullable=False)
+    pf = db.Column(db.String(10), default=0, nullable=False)
+    pts = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "college": self.college,
+            "season": self.season,
+            "team": self.team,
+            "dorsal": self.dorsal,
+            "minutes": self.minutes,
+            "position": self.position,
+            "gp": self.gp,
+            "gs": self.gs,
+            "fg": self.fg,
+            "fg_AVG": self.fg_AVG,
+            "three_pt": self.three_pt,
+            "three_pt_AVG": self.three_pt_AVG,
+            "ft": self.ft,
+            "Or": self.Or,
+            "dr": self.dr,
+            "ft_AVG": self.ft_AVG,
+            "reb": self.reb,
+            "ast": self.ast,
+            "stl": self.stl,
+            "blk": self.blk,
+            "to": self.to,
+            "pf": self.pf,
+            "pts": self.pts
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_nba_team(db.Model):
+    __tablename__ = "stats_nba_team"
+    id = db.Column(db.Integer, primary_key=True)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(20), nullable=False)
+    pts = db.Column(db.String(10), default=0, nullable=False)
+    fmg = db.Column(db.String(10), default=0, nullable=False)
+    fga = db.Column(db.String(10), default=0, nullable=False)
+    fg = db.Column(db.String(10), default=0, nullable=False)
+    fg_AVG = db.Column(db.String(10), default=0, nullable=False)
+    three_pm = db.Column(db.String(10), default=0, nullable=False)
+    three_pa = db.Column(db.String(10), default=0, nullable=False)
+    three_p_AVG = db.Column(db.String(10), default=0, nullable=False)
+    ftm = db.Column(db.String(10), default=0, nullable=False)
+    fta = db.Column(db.String(10), default=0, nullable=False)
+    ft_AVG = db.Column(db.String(10), default=-0, nullable=False)
+    Or = db.Column(db.String(10), default=0, nullable=False)
+    dr = db.Column(db.String(10), default=0, nullable=False)
+    reb = db.Column(db.String(10), default=0, nullable=False)
+    ast = db.Column(db.String(10), default=0, nullable=False)
+    stl = db.Column(db.String(10), default=0, nullable=False)
+    blk = db.Column(db.String(10), default=0, nullable=False)
+    to = db.Column(db.String(10), default=0, nullable=False)
+    pf = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "season": self.season,
+            "team": self.team,
+            "pts": self.pts,
+            "fmg": self.fmg,
+            "fga": self.fga,
+            "fg": self.fg,
+            "fg_AVG": self.fg_AVG,
+            "three_pm": self.three_pm,
+            "three_pa": self.three_pa,
+            "three_p_AVG": self.three_p_AVG,
+            "ftm": self.ftm,
+            "fta": self.fta,
+            "ft_AVG": self.ft_AVG,
+            "Or": self.Or,
+            "dr": self.dr,
+            "reb": self.reb,
+            "ast": self.ast,
+            "stl": self.stl,
+            "blk": self.blk,
+            "to": self.to,
+            "pf": self.pf,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_mlb_team(db.Model):
+    __tablename__ = "stats_mlb_team"
+    id = db.Column(db.Integer, primary_key=True)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(20), nullable=False)
+    league = db.Column(db.String(20), nullable=False)
+    division = db.Column(db.String(20), nullable=False)
+    w = db.Column(db.String(10), default=0, nullable=False)
+    l = db.Column(db.String(10), default=0, nullable=False)
+    pct = db.Column(db.String(10), default=0, nullable=False)
+    gb = db.Column(db.String(10), default=0, nullable=False)
+    home = db.Column(db.String(10), default=0, nullable=False)
+    away = db.Column(db.String(10), default=0, nullable=False)
+    rs = db.Column(db.String(10), default=0, nullable=False)
+    ra = db.Column(db.String(10), default=0, nullable=False)
+    diff = db.Column(db.String(10), default=0, nullable=False)
+    strk = db.Column(db.String(10), default=0, nullable=False)
+    L10 = db.Column(db.String(10), default=-0, nullable=False)
+    poff = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "season": self.season,
+            "team": self.team,
+            "league": self.league,
+            "division": self.division,
+            "w": self.w,
+            "l": self.l,
+            "pct": self.pct,
+            "gb": self.gb,
+            "home": self.home,
+            "away": self.away,
+            "rs": self.rs,
+            "ra": self.ra,
+            "diff": self.diff,
+            "strk": self.strk,
+            "L10": self.L10,
+            "poff": self.poff,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_mlb_player(db.Model):
+    __tablename__ = "stats_mlb_player"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(20), nullable=False)
+    dorsal = db.Column(db.String(20), nullable=False)
+    position = db.Column(db.String(20), nullable=False)
+    gp = db.Column(db.String(20), nullable=False)
+
+    ab = db.Column(db.String(10), default=0, nullable=False)
+    r = db.Column(db.String(10), default=0, nullable=False)
+    h = db.Column(db.String(10), default=0, nullable=False)
+    two_b = db.Column(db.String(10), default=0, nullable=False)
+    three_b = db.Column(db.String(10), default=0, nullable=False)
+    hb = db.Column(db.String(10), default=0, nullable=False)
+    rbi = db.Column(db.String(10), default=0, nullable=False)
+    tb = db.Column(db.String(10), default=0, nullable=False)
+    bb = db.Column(db.String(10), default=0, nullable=False)
+    so = db.Column(db.String(10), default=0, nullable=False)
+    sb = db.Column(db.String(10), default=-0, nullable=False)
+    avg = db.Column(db.String(10), default=0, nullable=False)
+    obp = db.Column(db.String(10), default=0, nullable=False)
+    slg = db.Column(db.String(10), default=0, nullable=False)
+    ops = db.Column(db.String(10), default=0, nullable=False)
+    war = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "season": self.season,
+            "team": self.team,
+            "dorsal": self.dorsal,
+            "position": self.position,
+            "gp": self.gp,
+            "ab": self.ab,
+            "r": self.r,
+            "h": self.h,
+            "two_b": self.two_b,
+            "three_b": self.three_b,
+            "hb": self.hb,
+            "rbi": self.rbi,
+            "tb": self.tb,
+            "bb": self.bb,
+            "so": self.so,
+            "sb": self.sb,
+            "avg": self.avg,
+            "obp": self.obp,
+            "slg": self.slg,
+            "ops": self.ops,
+            "war": self.war,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_nhl_team(db.Model):
+    __tablename__ = "stats_nhl_team"
+    id = db.Column(db.Integer, primary_key=True)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(20), nullable=False)
+    conference = db.Column(db.String(20), nullable=False)
+    division = db.Column(db.String(20), nullable=False)
+    w = db.Column(db.String(10), default=0, nullable=False)
+    l = db.Column(db.String(10), default=0, nullable=False)
+    Ga_a = db.Column(db.String(10), default=0, nullable=False)
+    otl = db.Column(db.String(10), default=0, nullable=False)
+    sa = db.Column(db.String(10), default=0, nullable=False)
+    ga = db.Column(db.String(10), default=0, nullable=False)
+    s = db.Column(db.String(10), default=0, nullable=False)
+    sv_AVG = db.Column(db.String(10), default=0, nullable=False)
+    so = db.Column(db.String(10), default=0, nullable=False)
+    so_sa = db.Column(db.String(10), default=0, nullable=False)
+    sos = db.Column(db.String(10), default=-0, nullable=False)
+    sos_AVG = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "season": self.season,
+            "team": self.team,
+            "conference": self.conference,
+            "division": self.division,
+            "w": self.w,
+            "l": self.l,
+            "Ga_a": self.Ga_a,
+            "otl": self.otl,
+            "sa": self.sa,
+            "ga": self.ga,
+            "s": self.rs,
+            "sv_AVG": self.sv_AVG,
+            "so": self.so,
+            "so_sa": self.so_sa,
+            "sos": self.sos,
+            "sos_AVG": self.sos_AVG,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_nhl_player(db.Model):
+    __tablename__ = "stats_nhl_player"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(20), nullable=False)
+    dorsal = db.Column(db.String(20), nullable=False)
+    position = db.Column(db.String(20), nullable=False)
+    gp = db.Column(db.String(20), nullable=False)
+    g = db.Column(db.String(10), default=0, nullable=False)
+    a = db.Column(db.String(10), default=0, nullable=False)
+    pts = db.Column(db.String(10), default=0, nullable=False)
+    p_m_rating = db.Column(db.String(10), default=0, nullable=False)
+    pim = db.Column(db.String(10), default=0, nullable=False)
+    sog = db.Column(db.String(10), default=0, nullable=False)
+    spct = db.Column(db.String(10), default=0, nullable=False)
+    ppg = db.Column(db.String(10), default=0, nullable=False)
+    ppa = db.Column(db.String(10), default=0, nullable=False)
+    shg = db.Column(db.String(10), default=0, nullable=False)
+    sha = db.Column(db.String(10), default=0, nullable=False)
+    gwg = db.Column(db.String(10), default=0, nullable=False)
+    gtg = db.Column(db.String(10), default=0, nullable=False)
+    toi_g = db.Column(db.String(10), default=0, nullable=False)
+    prod = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "season": self.season,
+            "team": self.team,
+            "dorsal": self.dorsal,
+            "position": self.position,
+            "gp": self.gp,
+            "g": self.g,
+            "a": self.a,
+            "pts": self.pts,
+            "p_m_rating": self.p_m_rating,
+            "pim": self.pim,
+            "sog": self.sog,
+            "spct": self.spct,
+            "ppg": self.ppg,
+            "ppa": self.ppa,
+            "shg": self.shg,
+            "sha": self.sha,
+            "gwg": self.gwg,
+            "gtg": self.gtg,
+            "toi_g": self.toi_g,
+            "prod": self.prod,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_box_fighter(db.Model):
+    __tablename__ = "stats_box_fighter"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    nickname = db.Column(db.String(10), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    country = db.Column(db.String(20), nullable=False)
+    association = db.Column(db.String(20), nullable=False)
+    category = db.Column(db.String(20), nullable=False)
+    w = db.Column(db.String(10), default=0, nullable=False)
+    w_by = db.Column(db.String(10), default=0, nullable=False)
+    L = db.Column(db.String(10), default=0, nullable=False)
+    L_by = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "nickname": self.nickname,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "country": self.country,
+            "association": self.association,
+            "category": self.category,
+            "w": self.w,
+            "w_by": self.w_by,
+            "L": self.L,
+            "L_by": self.L_by,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_mma_fighter(db.Model):
+    __tablename__ = "stats_mma_fighter"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    nickname = db.Column(db.String(10), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    country = db.Column(db.String(20), nullable=False)
+    association = db.Column(db.String(20), nullable=False)
+    category = db.Column(db.String(20), nullable=False)
+    w = db.Column(db.String(10), default=0, nullable=False)
+    w_by = db.Column(db.String(10), default=0, nullable=False)
+    L = db.Column(db.String(10), default=0, nullable=False)
+    L_by = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "nickname": self.nickname,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "country": self.country,
+            "association": self.association,
+            "category": self.category,
+            "w": self.w,
+            "w_by": self.w_by,
+            "L": self.L,
+            "L_by": self.L_by,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Nascar_drivers(db.Model):
+    __tablename__ = "nascar_drivers"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    country = db.Column(db.String(50), nullable=False)
+    birth = db.Column(db.String(50), nullable=False)
+    sponsor = db.Column(db.String(100), nullable=False)
+    engine = db.Column(db.String(50), nullable=False)
+    number_car = db.Column(db.String(50), nullable=False)
+    rank = db.Column(db.String(50), nullable=False)
+    starts = db.Column(db.String(50), nullable=False)
+    poles = db.Column(db.String(50), nullable=False)
+    top5 = db.Column(db.String(50), nullable=False)
+    top10 = db.Column(db.String(50), nullable=False)
+    laps_lead = db.Column(db.String(50), nullable=False)
+    pts = db.Column(db.String(50), nullable=False)
+    AVG_laps = db.Column(db.String(50), nullable=False)
+    AVG_finish = db.Column(db.String(50), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "country": self.country,
+            "birth": self.birth,
+            "sponsor": self.sponsor,
+            "engine": self.engine,
+            "number_car": self.number_car,
+            "rank": self.rank,
+            "starts": self.starts,
+            "poles": self.poles,
+            "top5": self.top5,
+            "top10": self.top10,
+            "laps_lead": self.laps_lead,
+            "pts": self.pts,
+            "AVG_laps": self.AVG_laps,
+            "AVG_finish": self.AVG_finish,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Golfer(db.Model):
+    __tablename__ = "golfer"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    country = db.Column(db.String(50), nullable=False)
+    swing = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    cuts = db.Column(db.String(10), nullable=False)
+    top10 = db.Column(db.String(10), nullable=False)
+    w = db.Column(db.String(10), nullable=False)
+    rnds = db.Column(db.String(10), nullable=False)
+    holes = db.Column(db.String(10), nullable=False)
+    avg = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "country": self.country,
+            "swing": self.swing,
+            "birth": self.birth,
+            "cuts": self.cuts,
+            "top10": self.top10,
+            "w": self.w,
+            "rnds": self.rnds,
+            "holes": self.holes,
+            "avg": self.avg,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_nfl_team(db.Model):
+    __tablename__ = "stats_nfl_team"
+    id = db.Column(db.Integer, primary_key=True)
+    season = db.Column(db.String(20), nullable=False)
+    team = db.Column(db.String(10), nullable=False)
+    conference = db.Column(db.String(10), nullable=False)
+    division = db.Column(db.String(10), nullable=False)
+    TP = db.Column(db.String(10), nullable=False)
+    ttpg = db.Column(db.String(10), nullable=False)
+    t_td = db.Column(db.String(10), nullable=False)
+    t_1_down = db.Column(db.String(10), nullable=False)
+    Russ_1_d = db.Column(db.String(10), nullable=False)
+    pass_1_d = db.Column(db.String(10), nullable=False)
+    down_1_penal = db.Column(db.String(10), nullable=False)
+    down_3_eff = db.Column(db.String(10), nullable=False)
+    down_3_AVG = db.Column(db.String(10), nullable=False)
+    down_4_eff = db.Column(db.String(10), nullable=False)
+    down_4_AVG = db.Column(db.String(10), nullable=False)
+    comp_att = db.Column(db.String(10), nullable=False)
+    net_pass_y = db.Column(db.String(10), nullable=False)
+    y_p_pas_attps = db.Column(db.String(10), nullable=False)
+    net_pass_y_pg = db.Column(db.String(10), nullable=False)
+    pass_td = db.Column(db.String(10), nullable=False)
+    interceptions = db.Column(db.String(10), nullable=False)
+    sacks_y_lost = db.Column(db.String(10), nullable=False)
+    russ_attps = db.Column(db.String(10), nullable=False)
+    russ_y = db.Column(db.String(10), nullable=False)
+    y_p_russ_attp = db.Column(db.String(10), nullable=False)
+    russ_y_pg = db.Column(db.String(10), nullable=False)
+    russ_td = db.Column(db.String(10), nullable=False)
+    total_of_plays = db.Column(db.String(10), nullable=False)
+    total_y = db.Column(db.String(10), nullable=False)
+    y_pg = db.Column(db.String(10), nullable=False)
+    kickoffs_t = db.Column(db.String(10), nullable=False)
+    AVG_kickoff_return_y = db.Column(db.String(10), nullable=False)
+    punt_t = db.Column(db.String(10), nullable=False)
+    AVG_punt_ruturn_y = db.Column(db.String(10), nullable=False)
+    int_t = db.Column(db.String(10), nullable=False)
+    AVG_intercept_y = db.Column(db.String(10), nullable=False)
+    net_AVG_punt_y = db.Column(db.String(10), nullable=False)
+    punt_ty = db.Column(db.String(10), nullable=False)
+    fg_goog_attps = db.Column(db.String(10), nullable=False)
+    touchback_percent = db.Column(db.String(10), nullable=False)
+    penal_ty = db.Column(db.String(10), nullable=False)
+    penal_y_AVG_pg = db.Column(db.String(10), nullable=False)
+    possesion_time = db.Column(db.String(10), nullable=False)
+    fumbles_lost = db.Column(db.String(10), nullable=False)
+    turnover_ratio = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "season": self.season,
+            "team": self.team,
+            "conference": self.conference,
+            "division": self.division,
+            "TP": self.TP,
+            "ttpg": self.ttpg,
+            "t_td": self.t_td,
+            "t_1_down": self.t_1_down,
+            "Russ_1_d": self.Russ_1_d,
+            "pass_1_d": self.pass_1_d,
+            "down_1_penal": self.down_1_penal,
+            "down_3_eff": self.down_3_eff,
+            "down_3_AVG": self.down_3_AVG,
+            "down_4_eff": self.down_4_eff,
+            "down_4_AVG": self.down_4_AVG,
+            "comp_att": self.comp_att,
+            "net_pass_y": self.net_pass_y,
+            "y_p_pas_attps": self.y_p_pas_attps,
+            "net_pass_y_pg": self.net_pass_y_pg,
+            "net_pass_y_pg": self.net_pass_y_pg,
+            "interceptions": self.interceptions,
+            "sacks_y_lost": self.sacks_y_lost,
+            "russ_attps": self.russ_attps,
+            "russ_y": self.russ_y,
+            "y_p_russ_attp": self.y_p_russ_attp,
+            "russ_y_pg": self.russ_y_pg,
+            "russ_td": self.russ_td,
+            "total_of_plays": self.total_of_plays,
+            "total_y": self.total_y,
+            "y_pg": self.y_pg,
+            "kickoffs_t": self.kickoffs_t,
+            "AVG_kickoff_return_y": self.AVG_kickoff_return_y,
+            "punt_t": self.punt_t,
+            "AVG_punt_ruturn_y": self.AVG_punt_ruturn_y,
+            "int_t": self.int_t,
+            "AVG_intercept_y": self.AVG_intercept_y,
+            "net_AVG_punt_y": self.net_AVG_punt_y,
+            "punt_ty": self.punt_ty,
+            "fg_goog_attps": self.fg_goog_attps,
+            "touchback_percent": self.touchback_percent,
+            "penal_ty": self.penal_ty,
+            "penal_y_AVG_pg": self.penal_y_AVG_pg,
+            "possesion_time": self.possesion_time,
+            "turnover_ratio": self.turnover_ratio,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_defensive_player_nfl(db.Model):
+    __tablename__ = "stats_defensive_player_nfl"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    position = db.Column(db.String(20), nullable=False)
+    dorsal = db.Column(db.String(20), nullable=False)
+    season = db.Column(db.String(20), nullable=False)
+    team = db.Column(db.String(10), nullable=False)
+    games = db.Column(db.String(10), nullable=False)
+    tack_solo = db.Column(db.String(10), nullable=False)
+    tack_ast = db.Column(db.String(10), nullable=False)
+    tack_total = db.Column(db.String(10), nullable=False)
+    sacks = db.Column(db.String(10), nullable=False)
+    sacks_yards = db.Column(db.String(10), nullable=False)
+    tfl = db.Column(db.String(10), nullable=False)
+    pd = db.Column(db.String(10), nullable=False)
+    Int = db.Column(db.String(10), nullable=False)
+    yds = db.Column(db.String(10), nullable=False)
+    ing = db.Column(db.String(10), nullable=False)
+    td = db.Column(db.String(10), nullable=False)
+    ff = db.Column(db.String(10), nullable=False)
+    fr = db.Column(db.String(10), nullable=False)
+    ftd = db.Column(db.String(10), nullable=False)
+    kb = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "position": self.position,
+            "dorsal": self.dorsal,
+            "season": self.season,
+            "team": self.team,
+            "games": self.games,
+            "tack_solo": self.tack_solo,
+            "tack_ast": self.tack_ast,
+            "tack_total": self.tack_total,
+            "sacks": self.sacks,
+            "sacks_yards": self.sacks_yards,
+            "tfl": self.tfl,
+            "pd": self.pd,
+            "Int": self.Int,
+            "yds": self.yds,
+            "ing": self.ing,
+            "td": self.td,
+            "ff": self.ff,
+            "fr": self.fr,
+            "ftd": self.ftd,
+            "kb": self.kb,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_offensive_player_nfl(db.Model):
+    __tablename__ = "stats_offensive_player_nfl"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    position = db.Column(db.String(20), nullable=False)
+    dorsal = db.Column(db.String(20), nullable=False)
+    season = db.Column(db.String(20), nullable=False)
+    team = db.Column(db.String(10), nullable=False)
+    games = db.Column(db.String(10), nullable=False)
+    
+    Cmp = db.Column(db.String(10), nullable=False)
+    pass_att = db.Column(db.String(10), nullable=False)
+    cmp_AVG = db.Column(db.String(10), nullable=False)
+    yards = db.Column(db.String(10), nullable=False)
+    yards_AVG = db.Column(db.String(10), nullable=False)
+    yards_pg = db.Column(db.String(10), nullable=False)
+    pass_td = db.Column(db.String(10), nullable=False)
+    Int = db.Column(db.String(10), nullable=False)
+    asck = db.Column(db.String(10), nullable=False)
+    syl = db.Column(db.String(10), nullable=False)
+    rtg = db.Column(db.String(10), nullable=False)
+    russ_att = db.Column(db.String(10), nullable=False)
+    russ_yards = db.Column(db.String(10), nullable=False)
+    yards_p_russ = db.Column(db.String(10), nullable=False)
+    big = db.Column(db.String(10), nullable=False)
+    rush_tt = db.Column(db.String(10), nullable=False)
+    rush_yard_pg = db.Column(db.String(10), nullable=False)
+    fum = db.Column(db.String(10), nullable=False)
+    lst = db.Column(db.String(10), nullable=False)
+    fd = db.Column(db.String(10), nullable=False)
+    rec = db.Column(db.String(10), nullable=False)
+    r_tgts = db.Column(db.String(10), nullable=False)
+    r_yards = db.Column(db.String(10), nullable=False)
+    yards_p_r = db.Column(db.String(10), nullable=False)
+    r_td = db.Column(db.String(10), nullable=False)
+    lr = db.Column(db.String(10), nullable=False)
+    r_big = db.Column(db.String(10), nullable=False)
+    r_ypg = db.Column(db.String(10), nullable=False)
+    r_fl = db.Column(db.String(10), nullable=False)
+    r_yac = db.Column(db.String(10), nullable=False)
+    r_fd = db.Column(db.String(10), nullable=False)
+    pts = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "position": self.position,
+            "dorsal": self.dorsal,
+            "season": self.season,
+            "team": self.team,
+            "games": self.games,
+            "Cmp": self.Cmp,
+            "pass_att": self.pass_att,
+            "cmp_AVG": self.cmp_AVG,
+            "yards": self.yards,
+            "yards_AVG": self.yards_AVG,
+            "yards_pg": self.yards_pg,
+            "pass_td": self.pass_td,
+            "Int": self.Int,
+            "asck": self.asck,
+            "syl": self.syl,
+            "rtg": self.rtg,
+            "russ_att": self.russ_att,
+            "russ_yards": self.russ_yards,
+            "yards_p_russ": self.yards_p_russ,
+            "big": self.big,
+            "rush_tt": self.rush_tt,
+            "rush_yard_pg": self.rush_yard_pg,
+            "fum": self.fum,
+            "lst": self.lst,
+            "fd": self.fd,
+            "rec": self.rec,
+            "r_tgts": self.r_tgts,
+            "r_yards": self.r_yards,
+            "yards_p_r": self.yards_p_r,
+            "r_td": self.r_td,
+            "lr": self.lr,
+            "r_big": self.r_big,
+            "r_big": self.r_big,
+            "r_ypg": self.r_ypg,
+            "r_fl": self.r_fl,
+            "r_yac": self.r_yac,
+            "r_fd": self.r_fd,
+            "pts": self.pts,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_returning_player_nfl(db.Model):
+    __tablename__ = "stats_returning_player_nfl"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    position = db.Column(db.String(20), nullable=False)
+    dorsal = db.Column(db.String(20), nullable=False)
+    season = db.Column(db.String(20), nullable=False)
+    team = db.Column(db.String(10), nullable=False)
+    games = db.Column(db.String(10), nullable=False)
+
+    kick_returns = db.Column(db.String(10), nullable=False)
+    kick_returns_yards = db.Column(db.String(10), nullable=False)
+    yards_p_k_p = db.Column(db.String(10), nullable=False)
+    l_k_r = db.Column(db.String(10), nullable=False)
+    k_r_td = db.Column(db.String(10), nullable=False)
+    punt_r = db.Column(db.String(10), nullable=False)
+    punt_r_y = db.Column(db.String(10), nullable=False)
+    y_ppr = db.Column(db.String(10), nullable=False)
+    lpr = db.Column(db.String(10), nullable=False)
+    pr_td = db.Column(db.String(10), nullable=False)
+    punt_r_fair_carches = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "position": self.position,
+            "dorsal": self.dorsal,
+            "season": self.season,
+            "team": self.team,
+            "games": self.games,
+            "kick_returns": self.kick_returns,
+            "kick_returns_yards": self.kick_returns_yards,
+            "yards_p_k_p": self.yards_p_k_p,
+            "l_k_r": self.l_k_r,
+            "k_r_td": self.k_r_td,
+            "punt_r": self.punt_r,
+            "punt_r_y": self.punt_r_y,
+            "y_ppr": self.y_ppr,
+            "lpr": self.lpr,
+            "pr_td": self.pr_td,
+            "punt_r_fair_carches": self.punt_r_fair_carches,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_kiking_player_nfl(db.Model):
+    __tablename__ = "stats_kiking_player_nfl"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    position = db.Column(db.String(20), nullable=False)
+    dorsal = db.Column(db.String(20), nullable=False)
+    season = db.Column(db.String(20), nullable=False)
+    team = db.Column(db.String(10), nullable=False)
+    games = db.Column(db.String(10), nullable=False)
+    
+    fgm = db.Column(db.String(10), nullable=False)
+    fga = db.Column(db.String(10), nullable=False)
+    fg_AVG = db.Column(db.String(10), nullable=False)
+    lng = db.Column(db.String(10), nullable=False)
+    yars_f_goals_1_19 = db.Column(db.String(10), nullable=False)
+    yars_f_goals_20_29 = db.Column(db.String(10), nullable=False)
+    yars_f_goals_30_49 = db.Column(db.String(10), nullable=False)
+    yars_f_goals_40_49 = db.Column(db.String(10), nullable=False)
+    more_50 = db.Column(db.String(10), nullable=False)
+    xpm = db.Column(db.String(10), nullable=False)
+    xpa = db.Column(db.String(10), nullable=False)
+    xp_AVG = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "position": self.position,
+            "dorsal": self.dorsal,
+            "season": self.season,
+            "team": self.team,
+            "games": self.games,
+            "fgm": self.fgm,
+            "fga": self.fga,
+            "fg_AVG": self.fg_AVG,
+            "lng": self.lng,
+            "yars_f_goals_1_19": self.yars_f_goals_1_19,
+            "yars_f_goals_20_29": self.yars_f_goals_20_29,
+            "yars_f_goals_30_49": self.yars_f_goals_30_49,
+            "yars_f_goals_40_49": self.yars_f_goals_40_49,
+            "more_50": self.more_50,
+            "xpm": self.xpm,
+            "xpa": self.xpa,
+            "xp_AVG": self.xp_AVG,
+            # do not serialize the password, its a security breach
+        }
+
+
+class Stats_punting_player_nfl(db.Model):
+    __tablename__ = "stats_punting_player_nfl"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    position = db.Column(db.String(20), nullable=False)
+    dorsal = db.Column(db.String(20), nullable=False)
+    season = db.Column(db.String(20), nullable=False)
+    team = db.Column(db.String(10), nullable=False)
+    games = db.Column(db.String(10), nullable=False)
+
+    punts = db.Column(db.String(10), nullable=False)
+    yards = db.Column(db.String(10), nullable=False)
+    lng = db.Column(db.String(10), nullable=False)
+    AVG = db.Column(db.String(10), nullable=False)
+    net = db.Column(db.String(10), nullable=False)
+    p_blk = db.Column(db.String(10), nullable=False)
+    IN_20 = db.Column(db.String(10), nullable=False)
+    tb = db.Column(db.String(10), nullable=False)
+    fc = db.Column(db.String(10), nullable=False)
+    att = db.Column(db.String(10), nullable=False)
+    punt_return_yds = db.Column(db.String(10), nullable=False)
+    AVG_punt_retun_yards = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "position": self.position,
+            "dorsal": self.dorsal,
+            "season": self.season,
+            "team": self.team,
+            "games": self.games,
+            "punts": self.punts,
+            "yards": self.yards,
+            "AVG": self.AVG,
+            "lng": self.lng,
+            "net": self.net,
+            "p_blk": self.p_blk,
+            "IN_20": self.IN_20,
+            "tb": self.tb,
+            "fc": self.fc,
+            "att": self.att,
+            "punt_return_yds": self.punt_return_yds,
+            "AVG_punt_retun_yards": self.AVG_punt_retun_yards,
             # do not serialize the password, its a security breach
         }
