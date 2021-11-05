@@ -7424,4 +7424,4 @@ def createnewsEdit(id):
         db.session.commit()
         return jsonify({"msg": "News created successfully"}), 200
     else:
-        return jsonify({"msg": "news already exists", "title": new s.title}), 401
+        return jsonify({"msg": "news already exists", "title": news.title}), 401
