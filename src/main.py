@@ -7397,11 +7397,19 @@ def createnews():
 @app.route('/news/<id>', methods=['PUT'])
 def createnewsEdit(id):
     news = News.query.get(id)
+    date = request.json['date']
     title = request.json['title']
+    url_image = request.json['url_image']
     short_description = request.json['short_description']
+    news_post = request.json['news_post']
+    written = request.json['written']
 
+    news.date = date
     news.title = title
+    news.url_image = url_image
     news.short_description = short_description
+    news.news_post = news_post
+    news.written = written
 
     db.session.commit()
     return jsonify({"msg": "News created successfully"}), 200
