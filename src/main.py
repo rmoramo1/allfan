@@ -7396,32 +7396,12 @@ def createnews():
 
 @app.route('/news/<id>', methods=['PUT'])
 def createnewsEdit(id):
-    news = News.query.filter_by(id=id).first()
-    date = request.json.get("date", None)
-    title = request.json.get("title", None)
-    url_image = request.json.get("url_image", None)
-    short_description = request.json.get("short_description", None)
-    news_post = request.json.get("news_post", None)
-    written = request.json.get("written", None)
+    news = News.query.get(id)
+    title = request.json['title']
+    short_description = request.json['short_description']
 
-    if date is None:
-        return jsonify({"msg": "No date was provided"}), 400
+    news.title = title
+    news.short_description = short_description
 
-    # busca team en BBDD
-    # the team was not found on the database
-    if id in news:
-        # crea encuentro nuevo
-        # crea registro nuevo en BBDD de
-        news = News(
-            date=date,
-            title=title,
-            url_image=url_image,
-            short_description=short_description,
-            news_post=news_post,
-            written=written
-        )
-        db.session.add(news)
-        db.session.commit()
-        return jsonify({"msg": "News created successfully"}), 200
-    else:
-        return jsonify({"msg": "news already exists", "title": news.title}), 401
+    db.session.commit()
+    return jsonify({"msg": "News created successfully"}), 200
