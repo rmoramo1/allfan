@@ -510,7 +510,6 @@ def news():
 
 
 @app.route('/mlb', methods=['POST'])
-@jwt_required()
 def createGameMlb():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -793,7 +792,6 @@ def createGameMlb():
 
 
 @app.route('/nba', methods=['POST'])
-@jwt_required()
 def createGameNba():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -1129,7 +1127,6 @@ def createGameNba():
 
 
 @app.route('/nhl', methods=['POST'])
-@jwt_required()
 def createGameNhl():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -1322,7 +1319,6 @@ def createGameNhl():
 
 
 @app.route('/nfl', methods=['POST'])
-@jwt_required()
 def createGameNfl():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -1662,7 +1658,6 @@ def createGameNfl():
 
 
 @app.route('/boxeo', methods=['POST'])
-@jwt_required()
 def createBoxFight():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -1798,7 +1793,6 @@ def createBoxFight():
 
 
 @app.route('/mma', methods=['POST'])
-@jwt_required()
 def createMmaFight():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -1934,7 +1928,6 @@ def createMmaFight():
 
 
 @app.route('/nascar', methods=['POST'])
-@jwt_required()
 def createNacarRun():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -2001,7 +1994,6 @@ def createNacarRun():
 
 
 @app.route('/nascar_drivers', methods=['POST'])
-@jwt_required()
 def createNacarDrivers():
     name = request.json.get("name", None)
     country = request.json.get("country", None)
@@ -2080,7 +2072,6 @@ def createNacarDrivers():
 
 
 @app.route('/match_ups_nascar', methods=['POST'])
-@jwt_required()
 def createNacarMatch():
     name1 = request.json.get("name1", None)
     mu1 = request.json.get("mu1", None)
@@ -2116,7 +2107,6 @@ def createNacarMatch():
 
 
 @app.route('/golf', methods=['POST'])
-@jwt_required()
 def createGolfMatch():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -2172,7 +2162,6 @@ def createGolfMatch():
 
 
 @app.route('/golfer', methods=['POST'])
-@jwt_required()
 def createGoler():
     name = request.json.get("name", None)
     country = request.json.get("country", None)
@@ -2231,7 +2220,6 @@ def createGoler():
 
 
 @app.route('/ncaa_basketball', methods=['POST'])
-@jwt_required()
 def createGameNcaaBasket():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -2568,7 +2556,6 @@ def createGameNcaaBasket():
 
 
 @app.route('/ncaa_baseball', methods=['POST'])
-@jwt_required()
 def createGameNcaaBaseBall():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -2852,7 +2839,6 @@ def createGameNcaaBaseBall():
 
 
 @app.route('/ncaa_football', methods=['POST'])
-@jwt_required()
 def createGameNcaa_football():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -3193,7 +3179,6 @@ def createGameNcaa_football():
 
 
 @app.route('/confederations_cup', methods=['POST'])
-@jwt_required()
 def createConfederations_cup():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -3366,7 +3351,6 @@ def createConfederations_cup():
 
 
 @app.route('/champions_league', methods=['POST'])
-@jwt_required()
 def createChampions_league():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -3537,7 +3521,6 @@ def createChampions_league():
 
 
 @app.route('/w_c_qualifying', methods=['POST'])
-@jwt_required()
 def createW_C_qualifying():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -3710,7 +3693,6 @@ def createW_C_qualifying():
 
 
 @app.route('/CONCACAF', methods=['POST'])
-@jwt_required()
 def createCONCACAF():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -3883,7 +3865,6 @@ def createCONCACAF():
 
 
 @app.route('/england_premier_league', methods=['POST'])
-@jwt_required()
 def createEngland_premier_league():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -4056,7 +4037,6 @@ def createEngland_premier_league():
 
 
 @app.route('/europa_league', methods=['POST'])
-@jwt_required()
 def createEuropa_league():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -4229,7 +4209,6 @@ def createEuropa_league():
 
 
 @app.route('/international_friendlies', methods=['POST'])
-@jwt_required()
 def createInternational_friendlies():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -4402,7 +4381,6 @@ def createInternational_friendlies():
 
 
 @app.route('/france_league', methods=['POST'])
-@jwt_required()
 def createFrance_league():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -4575,7 +4553,6 @@ def createFrance_league():
 
 
 @app.route('/bundesliga', methods=['POST'])
-@jwt_required()
 def createBundesliga():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -4748,7 +4725,6 @@ def createBundesliga():
 
 
 @app.route('/international_matches', methods=['POST'])
-@jwt_required()
 def createInternational_Matches():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -4921,7 +4897,6 @@ def createInternational_Matches():
 
 
 @app.route('/italia_serie_A', methods=['POST'])
-@jwt_required()
 def createItalia_Serie_A():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -5094,7 +5069,6 @@ def createItalia_Serie_A():
 
 
 @app.route('/mx_expansion', methods=['POST'])
-@jwt_required()
 def createMx_expansion():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -5267,7 +5241,6 @@ def createMx_expansion():
 
 
 @app.route('/mx_apertura', methods=['POST'])
-@jwt_required()
 def createMx_Apertura():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -5440,7 +5413,6 @@ def createMx_Apertura():
 
 
 @app.route('/spain_primera_liga', methods=['POST'])
-@jwt_required()
 def createSpain_Primera_Liga():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -5613,7 +5585,6 @@ def createSpain_Primera_Liga():
 
 
 @app.route('/USA_MLS', methods=['POST'])
-@jwt_required()
 def createUSA_MLS():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -5784,7 +5755,6 @@ def createUSA_MLS():
 
 
 @app.route('/brazil_serie_A', methods=['POST'])
-@jwt_required()
 def createBrazil_Serie_A():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -5956,7 +5926,6 @@ def createBrazil_Serie_A():
 
 
 @app.route('/colombia_primera_A', methods=['POST'])
-@jwt_required()
 def createColombia_Primera_A():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
@@ -6129,7 +6098,6 @@ def createColombia_Primera_A():
 
 
 @app.route('/stats_nba_team', methods=['POST'])
-@jwt_required()
 def createStats_nba_team():
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -6235,7 +6203,6 @@ def createStats_nba_team():
 
 
 @app.route('/stats_nba_player', methods=['POST'])
-@jwt_required()
 def createStats_nba_player():
     name = request.json.get("name", None)
     height = request.json.get("height", None)
@@ -6366,7 +6333,6 @@ def createStats_nba_player():
 
 
 @app.route('/stats_nhl_team', methods=['POST'])
-@jwt_required()
 def createStats_nhl_team():
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -6451,7 +6417,6 @@ def createStats_nhl_team():
 
 
 @app.route('/stats_nhl_player', methods=['POST'])
-@jwt_required()
 def createStats_nhl_player():
     name = request.json.get("name", None)
     height = request.json.get("height", None)
@@ -6568,7 +6533,6 @@ def createStats_nhl_player():
 
 
 @app.route('/stats_mlb_team', methods=['POST'])
-@jwt_required()
 def createStats_mlb_team():
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -6654,7 +6618,6 @@ def createStats_mlb_team():
 
 
 @app.route('/stats_mlb_player', methods=['POST'])
-@jwt_required()
 def createStats_mlb_player():
     name = request.json.get("name", None)
     height = request.json.get("height", None)
@@ -6775,7 +6738,6 @@ def createStats_mlb_player():
 
 
 @app.route('/stats_box_fighter', methods=['POST'])
-@jwt_required()
 def createStats_box_fighter():
     name = request.json.get("name", None)
     nickname = request.json.get("nickname", None)
@@ -6845,7 +6807,6 @@ def createStats_box_fighter():
 
 
 @app.route('/stats_mma_fighter', methods=['POST'])
-@jwt_required()
 def createStats_mma_fighter():
     name = request.json.get("name", None)
     nickname = request.json.get("nickname", None)
@@ -6915,7 +6876,6 @@ def createStats_mma_fighter():
 
 
 @app.route('/stats_nfl_team', methods=['POST'])
-@jwt_required()
 def createStats_nfl_team():
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -7029,7 +6989,6 @@ def createStats_nfl_team():
 
 
 @app.route('/stats_defensive_player_nfl', methods=['POST'])
-@jwt_required()
 def createStats_defensive_player_nfl():
     name = request.json.get("name", None)
     height = request.json.get("height", None)
@@ -7101,7 +7060,6 @@ def createStats_defensive_player_nfl():
 
 
 @app.route('/stats_offensive_player_nfl', methods=['POST'])
-@jwt_required()
 def createStats_offensive_player_nfl():
     name = request.json.get("name", None)
     height = request.json.get("height", None)
@@ -7207,7 +7165,6 @@ def createStats_offensive_player_nfl():
 
 
 @app.route('/stats_returning_player_nfl', methods=['POST'])
-@jwt_required()
 def createStats_returning_player_nfl():
     name = request.json.get("name", None)
     height = request.json.get("height", None)
@@ -7271,7 +7228,6 @@ def createStats_returning_player_nfl():
 
 
 @app.route('/stats_kiking_player_nfl', methods=['POST'])
-@jwt_required()
 def createStats_kiking_player_nfl():
     name = request.json.get("name", None)
     height = request.json.get("height", None)
@@ -7337,7 +7293,6 @@ def createStats_kiking_player_nfl():
 
 
 @app.route('/stats_punting_player_nfl', methods=['POST'])
-@jwt_required()
 def createStats_punting_player_nfl():
     name = request.json.get("name", None)
     height = request.json.get("height", None)
@@ -7404,7 +7359,6 @@ def createStats_punting_player_nfl():
 
 
 @app.route('/news', methods=['POST'])
-@jwt_required()
 def createnews():
     date = request.json.get("date", None)
     title = request.json.get("title", None)
