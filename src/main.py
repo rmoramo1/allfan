@@ -7367,6 +7367,42 @@ def createnews():
     news_post = request.json.get("news_post", None)
     written = request.json.get("written", None)
 
+    if date is None:
+        return jsonify({"msg": "No date was provided"}), 400
+
+    # valida si estan vacios los ingresos
+    # missing_params = [key for key, value in body.items() if value is None]
+    # error = f'No {", ".join(missing_params)} was provided'
+
+    # busca team en BBDD
+    news = News.query.filter_by(date=date, title=title).first()
+    # the team was not found on the database
+    if news:
+        return jsonify({"msg": "news already exists", "title": news.title}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        news = News(
+            date=date,
+            title=title,
+            url_image=url_image,
+            short_description=short_description,
+            news_post=news_post,
+            written=written
+        )
+        db.session.add(news)
+        db.session.commit()
+        return jsonify({"msg": "News created successfully"}), 200
+
+@app.route('/news/<id>', methods=['PUT'])
+def createnewsEdit(id):
+    date = request.json.get("date", None)
+    title = request.json.get("title", None)
+    url_image = request.json.get("url_image", None)
+    short_description = request.json.get("short_description", None)
+    news_post = request.json.get("news_post", None)
+    written = request.json.get("written", None)
+
     # valida si estan vacios los ingresos
     missing_params = [key for key, value in body.items() if value is None]
     error = f'No {", ".join(missing_params)} was provided'
