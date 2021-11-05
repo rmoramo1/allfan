@@ -7409,16 +7409,16 @@ def createnewsEdit(id):
     # busca team en BBDD
     news = News.query.filter_by(date=date, title=title).first()
     # the team was not found on the database
-    if news:
+    if id in news:
         # crea encuentro nuevo
         # crea registro nuevo en BBDD de
         news = News(
-            date=date,
-            title=title,
-            url_image=url_image,
-            short_description=short_description,
-            news_post=news_post,
-            written=written
+            date[id]=date,
+            title[id]=title,
+            url_image[id]=url_image,
+            short_description[id]=short_description,
+            news_post[id]=news_post,
+            written[id]=written
         )
         db.session.add(news)
         db.session.commit()
