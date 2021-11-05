@@ -7396,6 +7396,7 @@ def createnews():
 
 @app.route('/news/<id>', methods=['PUT'])
 def createnewsEdit(id):
+    news = News.query.filter_by(id=id).first()
     date = request.json.get("date", None)
     title = request.json.get("title", None)
     url_image = request.json.get("url_image", None)
@@ -7407,18 +7408,17 @@ def createnewsEdit(id):
         return jsonify({"msg": "No date was provided"}), 400
 
     # busca team en BBDD
-    news = News.query.filter_by(date=date, title=title).first()
     # the team was not found on the database
     if id in news:
         # crea encuentro nuevo
         # crea registro nuevo en BBDD de
         news = News(
-            date[id]=date,
-            title[id]=title,
-            url_image[id]=url_image,
-            short_description[id]=short_description,
-            news_post[id]=news_post,
-            written[id]=written
+            date=date,
+            title=title,
+            url_image=url_image,
+            short_description=short_description,
+            news_post=news_post,
+            written=written
         )
         db.session.add(news)
         db.session.commit()
