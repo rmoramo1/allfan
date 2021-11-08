@@ -7413,3 +7413,12 @@ def createnewsEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "News created successfully"}), 200
+    
+# Endpoint for deleting a record
+@app.route("/news/<id>", methods=["DELETE"])
+def news_delete(id):
+    news = News.query.get(id)
+    db.session.delete(news)
+    db.session.commit()
+
+    return "Guide was successfully deleted"

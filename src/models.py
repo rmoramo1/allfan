@@ -29,6 +29,8 @@ class Mlb(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     pitcher_a = db.Column(db.String(50), nullable=False)
@@ -129,6 +131,8 @@ class Mlb(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "pitcher_a": self.pitcher_a,
             "home": self.home,
@@ -230,6 +234,8 @@ class Ncaa_Baseball(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     pitcher_a = db.Column(db.String(50), nullable=False)
@@ -330,6 +336,8 @@ class Ncaa_Baseball(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "pitcher_a": self.pitcher_a,
             "home": self.home,
@@ -433,6 +441,8 @@ class Nfl(db.Model):
     hour = db.Column(db.String(20), nullable=False)
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     spread_away = db.Column(db.String(10), nullable=False)
@@ -548,6 +558,8 @@ class Nfl(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "home": self.home,
             "away": self.away,
             "week": self.week,
@@ -637,6 +649,8 @@ class Ncaa_Football(db.Model):
     hour = db.Column(db.String(20), nullable=False)
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     spread_away = db.Column(db.String(10), nullable=False)
@@ -752,6 +766,8 @@ class Ncaa_Football(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "home": self.home,
             "away": self.away,
             "week": self.week,
@@ -842,6 +858,8 @@ class Nba(db.Model):
     status = db.Column(db.String(15), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     spread_away = db.Column(db.String(10), nullable=False)
     spread_home = db.Column(db.String(10), nullable=False)
     juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
@@ -951,6 +969,8 @@ class Nba(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "home": self.home,
             "away": self.away,
             "spread_away": self.spread_away,
@@ -1039,6 +1059,8 @@ class Ncaa_Basketball(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     spread_away = db.Column(db.String(10), nullable=False)
@@ -1150,6 +1172,8 @@ class Ncaa_Basketball(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "home": self.home,
             "away": self.away,
             "spread_away": self.spread_away,
@@ -1238,6 +1262,8 @@ class Nhl(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     puck_line_away = db.Column(db.String(10), nullable=False)
@@ -1289,6 +1315,8 @@ class Nhl(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -1360,6 +1388,8 @@ class Boxeo(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     week = db.Column(db.String(10), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
@@ -1391,6 +1421,8 @@ class Boxeo(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "event": self.event,
             "rounds": self.rounds,
             "location_Fight": self.location_Fight,
@@ -1430,6 +1462,8 @@ class Mma(db.Model):
     hour = db.Column(db.String(20), nullable=False)
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
@@ -1460,6 +1494,8 @@ class Mma(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "event": self.event,
             "rounds": self.rounds,
             "location_Fight": self.location_Fight,
@@ -1500,6 +1536,8 @@ class Nascar(db.Model):
     hour = db.Column(db.String(20), nullable=False)
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     race = db.Column(db.String(50), nullable=False)
     track = db.Column(db.String(50), nullable=False)
     country = db.Column(db.String(50), nullable=False)
@@ -1511,6 +1549,8 @@ class Nascar(db.Model):
     def serialize(self):
         return {
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "race": self.race,
             "track": self.track,
             "country": self.country,
@@ -1549,6 +1589,8 @@ class Golf(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     week = db.Column(db.String(10), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
@@ -1559,6 +1601,8 @@ class Golf(db.Model):
     def serialize(self):
         return {
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "event": self.event,
             "location": self.location,
             "place1": self.place1,
@@ -1599,6 +1643,8 @@ class Champions_League(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -1646,6 +1692,8 @@ class Champions_League(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -1711,6 +1759,8 @@ class Confederations_Cup(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -1753,6 +1803,8 @@ class Confederations_Cup(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -1818,6 +1870,8 @@ class W_C_Qualifying(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -1865,6 +1919,8 @@ class W_C_Qualifying(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -1930,6 +1986,8 @@ class CONCACAF(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -1977,6 +2035,8 @@ class CONCACAF(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -2042,6 +2102,8 @@ class England_Premier_League(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -2089,6 +2151,8 @@ class England_Premier_League(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -2154,6 +2218,8 @@ class Europa_League(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -2201,6 +2267,8 @@ class Europa_League(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -2266,6 +2334,8 @@ class International_Friendlies(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -2313,6 +2383,8 @@ class International_Friendlies(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -2378,6 +2450,8 @@ class France_League(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -2425,6 +2499,8 @@ class France_League(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -2490,6 +2566,8 @@ class Bundesliga(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -2537,6 +2615,8 @@ class Bundesliga(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -2602,6 +2682,8 @@ class International_Matches(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -2649,6 +2731,8 @@ class International_Matches(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -2714,6 +2798,8 @@ class Italia_Serie_A(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -2761,6 +2847,8 @@ class Italia_Serie_A(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -2826,6 +2914,8 @@ class Mx_Expansion(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -2873,6 +2963,8 @@ class Mx_Expansion(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -2938,6 +3030,8 @@ class Mx_Apertura(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -2985,6 +3079,8 @@ class Mx_Apertura(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -3050,6 +3146,8 @@ class Spain_Primera_Liga(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -3097,6 +3195,8 @@ class Spain_Primera_Liga(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -3162,6 +3262,8 @@ class USA_MLS(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -3207,6 +3309,8 @@ class USA_MLS(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -3272,6 +3376,8 @@ class Brazil_Serie_A(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -3317,6 +3423,8 @@ class Brazil_Serie_A(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
 
@@ -3382,6 +3490,8 @@ class Colombia_Primera_A(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
@@ -3427,6 +3537,103 @@ class Colombia_Primera_A(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
+            "away": self.away,
+            "home": self.home,
+            "goal_line_away": self.goal_line_away,
+            "goal_line_home": self.goal_line_home,
+            "juice_goal_away": self.juice_goal_away,
+            "juice_goal_home": self.juice_goal_home,
+            "moneyLineHome": self.moneyLineHome,
+            "moneyLineAway": self.moneyLineAway,
+            "total": self.total,
+            "tt_away": self.tt_away,
+            "tt_home": self.tt_home,
+            "juice_over_away": self.juice_over_away,
+            "juice_over_home": self.juice_over_home,
+            "juice_under_away": self.juice_under_away,
+            "juice_under_home": self.juice_under_home,
+            "juice_total_over": self.juice_total_over,
+            "juice_total_under": self.juice_total_under,
+            "final_score_away": self.final_score_away,
+            "final_score_home": self.final_score_home,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
+            "date": self.date,
+            "hour": self.hour
+            # do not serialize the password, its a security breach
+        }
+
+class Costa_Rica_PD(db.Model):
+    __tablename__ = "costa_rica_PD"
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(12), nullable=False)
+    hour = db.Column(db.String(20), nullable=False)
+    status = db.Column(db.String(15), nullable=False)
+    preview = db.Column(db.String(20), nullable=False)
+    img_preview = db.Column(db.String(20), nullable=False)
+    away = db.Column(db.String(50), nullable=False)
+    home = db.Column(db.String(50), nullable=False)
+    goal_line_away = db.Column(db.String(10), nullable=False)
+    goal_line_home = db.Column(db.String(10), nullable=False)
+    juice_goal_away = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway = db.Column(db.String(10), nullable=False)
+    moneyLineHome = db.Column(db.String(10), nullable=False)
+    total = db.Column(db.String(10), default=0, nullable=False)
+    juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
+    juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
+
+    tt_away = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
+
+    tt_home = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
+    final_score_away = db.Column(db.String(10), default=0, nullable=False)
+    final_score_home = db.Column(db.String(10), default=0, nullable=False)
+# -----------------------------------------------------------------------
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
+# ----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "status": self.status,
+            "preview": self.preview,
+            "img_preview":self.img_preview,
             "away": self.away,
             "home": self.home,
             "goal_line_away": self.goal_line_away,
@@ -4114,7 +4321,6 @@ class Stats_offensive_player_nfl(db.Model):
     season = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(10), nullable=False)
     games = db.Column(db.String(10), nullable=False)
-    
     Cmp = db.Column(db.String(10), nullable=False)
     pass_att = db.Column(db.String(10), nullable=False)
     cmp_AVG = db.Column(db.String(10), nullable=False)
@@ -4209,7 +4415,6 @@ class Stats_returning_player_nfl(db.Model):
     season = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(10), nullable=False)
     games = db.Column(db.String(10), nullable=False)
-
     kick_returns = db.Column(db.String(10), nullable=False)
     kick_returns_yards = db.Column(db.String(10), nullable=False)
     yards_p_k_p = db.Column(db.String(10), nullable=False)
@@ -4261,7 +4466,6 @@ class Stats_kiking_player_nfl(db.Model):
     season = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(10), nullable=False)
     games = db.Column(db.String(10), nullable=False)
-    
     fgm = db.Column(db.String(10), nullable=False)
     fga = db.Column(db.String(10), nullable=False)
     fg_AVG = db.Column(db.String(10), nullable=False)
