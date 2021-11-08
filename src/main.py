@@ -11273,13 +11273,6 @@ def europa_league_delete(id):
     db.session.commit()
     return "europa_league was successfully deleted"
 
-@app.route("/europa_league/<id>", methods=["DELETE"])
-def europa_league_delete(id):
-    europa_league = Europa_League.query.get(id)
-    db.session.delete(europa_league)
-    db.session.commit()
-    return "europa_league was successfully deleted"
-
 @app.route("/international_friendlies/<id>", methods=["DELETE"])
 def international_friendlies_delete(id):
     international_friendlies = International_Friendlies.query.get(id)
