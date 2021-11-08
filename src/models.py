@@ -856,10 +856,10 @@ class Nba(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
-    away = db.Column(db.String(50), nullable=False)
-    home = db.Column(db.String(50), nullable=False)
     preview = db.Column(db.String(20), nullable=False)
     img_preview = db.Column(db.String(20), nullable=False)
+    away = db.Column(db.String(50), nullable=False)
+    home = db.Column(db.String(50), nullable=False)
     spread_away = db.Column(db.String(10), nullable=False)
     spread_home = db.Column(db.String(10), nullable=False)
     juice_spread_away = db.Column(db.String(10), default=-110, nullable=False)
@@ -1388,9 +1388,9 @@ class Boxeo(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     week = db.Column(db.String(10), nullable=False)
+    status = db.Column(db.String(15), nullable=False)
     preview = db.Column(db.String(20), nullable=False)
     img_preview = db.Column(db.String(20), nullable=False)
-    status = db.Column(db.String(15), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
@@ -1540,7 +1540,6 @@ class Nascar(db.Model):
     img_preview = db.Column(db.String(20), nullable=False)
     race = db.Column(db.String(50), nullable=False)
     track = db.Column(db.String(50), nullable=False)
-    country = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(100), nullable=False)
     place1 = db.Column(db.String(50), nullable=False)
     place2 = db.Column(db.String(50), nullable=False)
@@ -1553,7 +1552,6 @@ class Nascar(db.Model):
             "img_preview":self.img_preview,
             "race": self.race,
             "track": self.track,
-            "country": self.country,
             "location": self.location,
             "place1": self.place1,
             "place2": self.place2,
@@ -1780,6 +1778,7 @@ class Confederations_Cup(db.Model):
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
     final_score_away = db.Column(db.String(10), default=0, nullable=False)
     final_score_home = db.Column(db.String(10), default=0, nullable=False)
+
     goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
     goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
     juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
@@ -3060,8 +3059,8 @@ class Mx_Apertura(db.Model):
     juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
     juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
-    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
-    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String6(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), de6fault=0, nullable=False)
     H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
     tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
@@ -3803,7 +3802,7 @@ class Stats_mlb_team(db.Model):
     league = db.Column(db.String(20), nullable=False)
     division = db.Column(db.String(20), nullable=False)
     w = db.Column(db.String(10), default=0, nullable=False)
-    l = db.Column(db.String(10), default=0, nullable=False)
+    L = db.Column(db.String(10), default=0, nullable=False)
     pct = db.Column(db.String(10), default=0, nullable=False)
     gb = db.Column(db.String(10), default=0, nullable=False)
     home = db.Column(db.String(10), default=0, nullable=False)
@@ -3824,7 +3823,7 @@ class Stats_mlb_team(db.Model):
             "league": self.league,
             "division": self.division,
             "w": self.w,
-            "l": self.l,
+            "L": self.L,
             "pct": self.pct,
             "gb": self.gb,
             "home": self.home,
@@ -3910,7 +3909,7 @@ class Stats_nhl_team(db.Model):
     conference = db.Column(db.String(20), nullable=False)
     division = db.Column(db.String(20), nullable=False)
     w = db.Column(db.String(10), default=0, nullable=False)
-    l = db.Column(db.String(10), default=0, nullable=False)
+    L = db.Column(db.String(10), default=0, nullable=False)
     Ga_a = db.Column(db.String(10), default=0, nullable=False)
     otl = db.Column(db.String(10), default=0, nullable=False)
     sa = db.Column(db.String(10), default=0, nullable=False)
@@ -3931,7 +3930,7 @@ class Stats_nhl_team(db.Model):
             "conference": self.conference,
             "division": self.division,
             "w": self.w,
-            "l": self.l,
+            "L": self.L,
             "Ga_a": self.Ga_a,
             "otl": self.otl,
             "sa": self.sa,
@@ -3958,6 +3957,7 @@ class Stats_nhl_player(db.Model):
     dorsal = db.Column(db.String(20), nullable=False)
     position = db.Column(db.String(20), nullable=False)
     gp = db.Column(db.String(20), nullable=False)
+    
     g = db.Column(db.String(10), default=0, nullable=False)
     a = db.Column(db.String(10), default=0, nullable=False)
     pts = db.Column(db.String(10), default=0, nullable=False)
@@ -4264,6 +4264,7 @@ class Stats_defensive_player_nfl(db.Model):
     games = db.Column(db.String(10), nullable=False)
     tack_solo = db.Column(db.String(10), nullable=False)
     tack_ast = db.Column(db.String(10), nullable=False)
+
     tack_total = db.Column(db.String(10), nullable=False)
     sacks = db.Column(db.String(10), nullable=False)
     sacks_yards = db.Column(db.String(10), nullable=False)
@@ -4321,6 +4322,7 @@ class Stats_offensive_player_nfl(db.Model):
     season = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(10), nullable=False)
     games = db.Column(db.String(10), nullable=False)
+
     Cmp = db.Column(db.String(10), nullable=False)
     pass_att = db.Column(db.String(10), nullable=False)
     cmp_AVG = db.Column(db.String(10), nullable=False)
@@ -4336,6 +4338,7 @@ class Stats_offensive_player_nfl(db.Model):
     russ_yards = db.Column(db.String(10), nullable=False)
     yards_p_russ = db.Column(db.String(10), nullable=False)
     big = db.Column(db.String(10), nullable=False)
+
     rush_tt = db.Column(db.String(10), nullable=False)
     rush_yard_pg = db.Column(db.String(10), nullable=False)
     fum = db.Column(db.String(10), nullable=False)
@@ -4415,6 +4418,7 @@ class Stats_returning_player_nfl(db.Model):
     season = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(10), nullable=False)
     games = db.Column(db.String(10), nullable=False)
+
     kick_returns = db.Column(db.String(10), nullable=False)
     kick_returns_yards = db.Column(db.String(10), nullable=False)
     yards_p_k_p = db.Column(db.String(10), nullable=False)
@@ -4466,6 +4470,7 @@ class Stats_kiking_player_nfl(db.Model):
     season = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(10), nullable=False)
     games = db.Column(db.String(10), nullable=False)
+    
     fgm = db.Column(db.String(10), nullable=False)
     fga = db.Column(db.String(10), nullable=False)
     fg_AVG = db.Column(db.String(10), nullable=False)
