@@ -6924,8 +6924,7 @@ def createStats_nfl_team():
     turnover_ratio = request.json.get("turnover_ratio", None)
 
     # valida si estan vacios los ingresos
-    missing_params = [key for key, value in body.items() if value is None]
-    error = f'No {", ".join(missing_params)} was provided'
+
 
     # busca team en BBDD
     stats_nfl_team = Stats_nfl_team.query.filter_by(
@@ -7020,8 +7019,7 @@ def createStats_defensive_player_nfl():
     error = f'No {", ".join(missing_params)} was provided'
 
     # busca team en BBDD
-    stats_defensive_player_nfl = Stats_defensive_player_nfl.query.filter_by(
-        name=name, dorsal=dorsal, birth=birth).first()
+
     # the team was not found on the database
     if stats_defensive_player_nfl:
         return jsonify({"msg": "stats_defensive_player_nfl already exists", "name": stats_defensive_player_nfl.name}), 401
@@ -7104,8 +7102,7 @@ def createStats_offensive_player_nfl():
     pts = request.json.get("pts", None)
 
     # valida si estan vacios los ingresos
-    missing_params = [key for key, value in body.items() if value is None]
-    error = f'No {", ".join(missing_params)} was provided'
+
 
     # busca team en BBDD
     stats_offensive_player_nfl = Stats_offensive_player_nfl.query.filter_by(
@@ -7188,8 +7185,8 @@ def createStats_returning_player_nfl():
     punt_r_fair_carches = request.json.get("punt_r_fair_carches", None)
 
     # valida si estan vacios los ingresos
-    missing_params = [key for key, value in body.items() if value is None]
-    error = f'No {", ".join(missing_params)} was provided'
+    # missing_params = [key for key, value in body.items() if value is None]
+    # error = f'No {", ".join(missing_params)} was provided'
 
     # busca team en BBDD
     stats_returning_player_nfl = Stats_returning_player_nfl.query.filter_by(
@@ -7252,8 +7249,6 @@ def createStats_kiking_player_nfl():
     xp_AVG = request.json.get("xp_AVG", None)
 
     # valida si estan vacios los ingresos
-    missing_params = [key for key, value in body.items() if value is None]
-    error = f'No {", ".join(missing_params)} was provided'
 
     # busca team en BBDD
     stats_kiking_player_nfl = Stats_kiking_player_nfl.query.filter_by(
@@ -7318,8 +7313,6 @@ def createStats_punting_player_nfl():
     AVG_punt_retun_yards = request.json.get("AVG_punt_retun_yards", None)
 
     # valida si estan vacios los ingresos
-    missing_params = [key for key, value in body.items() if value is None]
-    error = f'No {", ".join(missing_params)} was provided'
 
     # busca team en BBDD
     stats_punting_player_nfl = Stats_punting_player_nfl.query.filter_by(
