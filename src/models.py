@@ -3059,7 +3059,7 @@ class Mx_Apertura(db.Model):
     juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
     juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
-    moneyLineHome_1H = db.Column(db.String6(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
     total_1H = db.Column(db.String(10), de6fault=0, nullable=False)
     H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
