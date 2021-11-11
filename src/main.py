@@ -966,6 +966,7 @@ def createGameNfl():
         "first_half_final_score_away", None)
     first_half_final_score_home = request.json.get(
         "first_half_final_score_home", None)
+    # --------------
     second_half_spread_away = request.json.get("second_half_spread_away", None)
     second_half_spread_home = request.json.get("second_half_spread_home", None)
     second_half_juice_spread_away = request.json.get(
@@ -976,9 +977,9 @@ def createGameNfl():
         "second_half_moneyLineAway", None)
     second_half_moneyLineHome = request.json.get(
         "second_half_moneyLineHome", None)
-    second_half_total = request.json.get("sa_4inning", None)
-    sh_juice_over = request.json.get("sh_juice_over", None)
-    sh_juice_under = request.json.get("sh_juice_under", None)
+    second_half_total = request.json.get("second_half_total", None)
+    sh_juice_total_over = request.json.get("sh_juice_total_over", None)
+    sh_juice_total_under = request.json.get("sh_juice_total_under", None)
     second_half_tt_away = request.json.get("second_half_tt_away", None)
     second_half_juice_over_away = request.json.get(
         "second_half_juice_over_away", None)
@@ -993,6 +994,7 @@ def createGameNfl():
         "second_half_final_score_away", None)
     second_half_final_score_home = request.json.get(
         "second_half_final_score_home", None)
+    # ------
     q1_half_spread_away = request.json.get("q1_half_spread_away", None)
     q1_half_spread_home = request.json.get("q1_half_spread_home", None)
     q1_half_juice_spread_away = request.json.get(
@@ -1049,6 +1051,7 @@ def createGameNfl():
             juice_under_home=juice_under_home,
             final_score_away=final_score_away,
             final_score_home=final_score_home,
+            # --
             first_half_spread_away=first_half_spread_away,
             first_half_spread_home=first_half_spread_home,
             first_half_juice_spread_away=first_half_juice_spread_away,
@@ -1056,8 +1059,8 @@ def createGameNfl():
             first_half_moneyLineAway=first_half_moneyLineAway,
             first_half_moneyLineHome=first_half_moneyLineHome,
             first_half_total=first_half_total,
-            fh_juice_over=fh_juice_over,
-            fh_juice_under=fh_juice_under,
+            fh_juice_total_over=fh_juice_total_over,
+            fh_juice_total_under=fh_juice_total_under,
             first_half_tt_away=first_half_tt_away,
             first_half_juice_over_away=first_half_juice_over_away,
             first_half_juice_under_away=first_half_juice_under_away,
@@ -1066,6 +1069,7 @@ def createGameNfl():
             first_half_juice_under_home=first_half_juice_under_home,
             first_half_final_score_away=first_half_final_score_away,
             first_half_final_score_home=first_half_final_score_home,
+            # --
             second_half_spread_away=second_half_spread_away,
             second_half_spread_home=second_half_spread_home,
             second_half_juice_spread_away=second_half_juice_spread_away,
@@ -1083,6 +1087,7 @@ def createGameNfl():
             second_half_juice_under_home=second_half_juice_under_home,
             second_half_final_score_away=second_half_final_score_away,
             second_half_final_score_home=second_half_final_score_home,
+            # --
             q1_half_spread_away=q1_half_spread_away,
             q1_half_spread_home=q1_half_spread_home,
             q1_half_juice_spread_away=q1_half_juice_spread_away,
@@ -1800,6 +1805,7 @@ def createGameNcaa_football():
         "first_half_final_score_away", None)
     first_half_final_score_home = request.json.get(
         "first_half_final_score_home", None)
+    # --------------
     second_half_spread_away = request.json.get("second_half_spread_away", None)
     second_half_spread_home = request.json.get("second_half_spread_home", None)
     second_half_juice_spread_away = request.json.get(
@@ -1810,9 +1816,9 @@ def createGameNcaa_football():
         "second_half_moneyLineAway", None)
     second_half_moneyLineHome = request.json.get(
         "second_half_moneyLineHome", None)
-    second_half_total = request.json.get("sa_4inning", None)
-    sh_juice_over = request.json.get("sh_juice_over", None)
-    sh_juice_under = request.json.get("sh_juice_under", None)
+    second_half_total = request.json.get("second_half_total", None)
+    sh_juice_total_over = request.json.get("sh_juice_total_over", None)
+    sh_juice_total_under = request.json.get("sh_juice_total_under", None)
     second_half_tt_away = request.json.get("second_half_tt_away", None)
     second_half_juice_over_away = request.json.get(
         "second_half_juice_over_away", None)
@@ -1827,6 +1833,7 @@ def createGameNcaa_football():
         "second_half_final_score_away", None)
     second_half_final_score_home = request.json.get(
         "second_half_final_score_home", None)
+    # ------
     q1_half_spread_away = request.json.get("q1_half_spread_away", None)
     q1_half_spread_home = request.json.get("q1_half_spread_home", None)
     q1_half_juice_spread_away = request.json.get(
@@ -1852,15 +1859,14 @@ def createGameNcaa_football():
         "q1_half_final_score_home", None)
 
     # busca mlb en BBDD
-    ncaa_football = Ncaa_football.query.filter_by(
-        home=home, away=away, date=date).first()
+    nfl = Nfl.query.filter_by(home=home, away=away, date=date).first()
     # the mlb was not found on the database
-    if ncaa_football:
-        return jsonify({"msg": "Mlb already exists", "status": ncaa_football.status}), 401
+    if nfl:
+        return jsonify({"msg": "Nfl game already exists", "status": nfl.status}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
-        ncaa_football = Ncaa_football(
+        nfl = Nfl(
             date=date,
             hour=hour,
             status=status,
@@ -1884,6 +1890,7 @@ def createGameNcaa_football():
             juice_under_home=juice_under_home,
             final_score_away=final_score_away,
             final_score_home=final_score_home,
+            # --
             first_half_spread_away=first_half_spread_away,
             first_half_spread_home=first_half_spread_home,
             first_half_juice_spread_away=first_half_juice_spread_away,
@@ -1891,13 +1898,18 @@ def createGameNcaa_football():
             first_half_moneyLineAway=first_half_moneyLineAway,
             first_half_moneyLineHome=first_half_moneyLineHome,
             first_half_total=first_half_total,
-            fh_juice_over=fh_juice_over,
-            fh_juice_under=fh_juice_under,
+            fh_juice_total_over=fh_juice_total_over,
+            fh_juice_total_under=fh_juice_total_under,
             first_half_tt_away=first_half_tt_away,
-            first_half_juice_over_away=first_half_juice_over_away, first_half_juice_under_away=first_half_juice_under_away, first_half_tt_home=first_half_tt_home, first_half_juice_over_home=first_half_juice_over_home,
+            first_half_juice_over_away=first_half_juice_over_away,
+            first_half_juice_under_away=first_half_juice_under_away,
+            first_half_tt_home=first_half_tt_home,
+            first_half_juice_over_home=first_half_juice_over_home,
             first_half_juice_under_home=first_half_juice_under_home,
             first_half_final_score_away=first_half_final_score_away,
-            first_half_final_score_home=first_half_final_score_home, second_half_spread_away=second_half_spread_away,
+            first_half_final_score_home=first_half_final_score_home,
+            # --
+            second_half_spread_away=second_half_spread_away,
             second_half_spread_home=second_half_spread_home,
             second_half_juice_spread_away=second_half_juice_spread_away,
             second_half_juice_spread_home=second_half_juice_spread_home,
@@ -1914,6 +1926,7 @@ def createGameNcaa_football():
             second_half_juice_under_home=second_half_juice_under_home,
             second_half_final_score_away=second_half_final_score_away,
             second_half_final_score_home=second_half_final_score_home,
+            # --
             q1_half_spread_away=q1_half_spread_away,
             q1_half_spread_home=q1_half_spread_home,
             q1_half_juice_spread_away=q1_half_juice_spread_away,
@@ -1932,7 +1945,7 @@ def createGameNcaa_football():
             q1_half_final_score_away=q1_half_final_score_away,
             q1_half_final_score_home=q1_half_final_score_home
         )
-        db.session.add(ncaa_football)
+        db.session.add(nfl)
         db.session.commit()
         return jsonify({"msg": "Game created successfully"}), 200
 
