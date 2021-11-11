@@ -1101,7 +1101,7 @@ def createGameNfl():
             q1_half_juice_over_away=q1_half_juice_over_away,
             q1_half_juice_under_away=q1_half_juice_under_away,
             q1_half_tt_home=q1_half_tt_home,
-            q1_half_juice_over_away=q1_half_juice_over_home,
+            q1_half_juice_over_home=q1_half_juice_over_home,
             q1_half_juice_under_home=q1_half_juice_under_home,
             q1_half_final_score_away=q1_half_final_score_away,
             q1_half_final_score_home=q1_half_final_score_home
@@ -1940,7 +1940,7 @@ def createGameNcaa_football():
             q1_half_juice_over_away=q1_half_juice_over_away,
             q1_half_juice_under_away=q1_half_juice_under_away,
             q1_half_tt_home=q1_half_tt_home,
-            q1_half_juice_over_away=q1_half_juice_over_home,
+            q1_half_juice_over_home=q1_half_juice_over_home,
             q1_half_juice_under_home=q1_half_juice_under_home,
             q1_half_final_score_away=q1_half_final_score_away,
             q1_half_final_score_home=q1_half_final_score_home
