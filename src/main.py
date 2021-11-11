@@ -1754,7 +1754,7 @@ def createGameNcaaBaseBall():
 
 @app.route('/ncaa_football', methods=['POST'])
 def createGameNcaa_football():
-       date = request.json.get("date", None)
+    date = request.json.get("date", None)
     hour = request.json.get("hour", None)
     week = request.json.get("week", None)
     status = request.json.get("status", None)
