@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, News, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Champions_League, Confederations_Cup, W_C_Qualifying, CONCACAF, Europa_League, International_Friendlies, France_League, Bundesliga, International_Matches, Italia_Serie_A, Mx_Expansion, Mx_Apertura, Spain_Primera_Liga, USA_MLS, Brazil_Serie_A, Colombia_Primera_A, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl,Costa_Rica_PD
+from models import db, User, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, News, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Champions_League, Confederations_Cup, W_C_Qualifying, CONCACAF, Europa_League, International_Friendlies, France_League, Bundesliga, International_Matches, Italia_Serie_A, Mx_Expansion, Mx_Apertura, Spain_Primera_Liga, USA_MLS, Brazil_Serie_A, Colombia_Primera_A, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Costa_Rica_PD
 
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 from flask_jwt_extended import JWTManager
@@ -603,7 +603,7 @@ def createGameMlb():
     sa_25inning = request.json.get("sa_25inning", None)
     sh_25inning = request.json.get("sh_25inning", None)
     # valida si estan vacios los ingresos
-   
+
     # busca mlb en BBDD
     mlb = Mlb.query.filter_by(home=home, away=away, date=date).first()
     # the mlb was not found on the database
@@ -867,6 +867,8 @@ def createGameNhl():
             hour=hour,
             status=status,
             away=away,
+            preview=preview,
+            img_preview=img_preview,
             home=home,
             puck_line_away=puck_line_away,
             puck_line_home=puck_line_home,
@@ -919,6 +921,8 @@ def createGameNfl():
     status = request.json.get("status", None)
     away = request.json.get("away", None)
     home = request.json.get("home", None)
+    preview = request.json.get("preview", None)
+    img_preview = request.json.get("img_preview", None)
     spread_away = request.json.get("spread_away", None)
     spread_home = request.json.get("spread_home", None)
     juice_spread_away = request.json.get("juice_spread_away", None)
@@ -1015,14 +1019,11 @@ def createGameNfl():
     q1_half_final_score_home = request.json.get(
         "q1_half_final_score_home", None)
 
-    if home is None:
-        return jsonify({"msg": "No home was provided"}), 400
-
     # busca mlb en BBDD
     nfl = Nfl.query.filter_by(home=home, away=away, date=date).first()
     # the mlb was not found on the database
     if nfl:
-        return jsonify({"msg": "Mlb already exists", "status": nfl.status}), 401
+        return jsonify({"msg": "Nfl game already exists", "status": nfl.status}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
@@ -1033,6 +1034,8 @@ def createGameNfl():
             away=away,
             home=home,
             week=week,
+            preview=preview,
+            img_preview=img_preview,
             spread_away=spread_away,
             spread_home=spread_home,
             juice_spread_away=juice_spread_away,
@@ -1061,12 +1064,12 @@ def createGameNfl():
             fh_juice_under=fh_juice_under,
             first_half_tt_away=first_half_tt_away,
             first_half_juice_over_away=first_half_juice_over_away,
-            first_half_juice_under_away=first_half_juice_under_away, 
-            first_half_tt_home=first_half_tt_home, 
+            first_half_juice_under_away=first_half_juice_under_away,
+            first_half_tt_home=first_half_tt_home,
             first_half_juice_over_home=first_half_juice_over_home,
             first_half_juice_under_home=first_half_juice_under_home,
             first_half_final_score_away=first_half_final_score_away,
-            first_half_final_score_home=first_half_final_score_home, 
+            first_half_final_score_home=first_half_final_score_home,
             second_half_spread_away=second_half_spread_away,
             second_half_spread_home=second_half_spread_home,
             second_half_juice_spread_away=second_half_juice_spread_away,
@@ -1385,7 +1388,7 @@ def createGolfMatch():
     place1 = request.json.get("place1", None)
     place2 = request.json.get("place2", None)
     place3 = request.json.get("place3", None)
-    
+
     # busca mlb en BBDD
     golf = Golf.query.filter_by(
         date=date, event=event).first()
@@ -1423,7 +1426,7 @@ def createGoler():
     rnds = request.json.get("rnds", None)
     holes = request.json.get("holes", None)
     avg = request.json.get("avg", None)
-    
+
     # busca mlb en BBDD
     golfer = Golfer.query.filter_by(name=name, birth=birth).first()
     # the mlb was not found on the database
@@ -3716,7 +3719,8 @@ def createStats_nhl_team():
     sos_AVG = request.json.get("sos_AVG", None)
 
     # busca team en BBDD
-    stats_nhl_team = Stats_nhl_team.query.filter_by(team=team, conference=conference, division=division).first()
+    stats_nhl_team = Stats_nhl_team.query.filter_by(
+        team=team, conference=conference, division=division).first()
     # the team was not found on the database
     if stats_nhl_team:
         return jsonify({"msg": "stats_nhl_team already exists", "team": stats_nhl_team.team}), 401
@@ -3947,7 +3951,7 @@ def createStats_box_fighter():
     L = request.json.get("L", None)
     L_by = request.json.get("L_by", None)
 
-        # busca team en BBDD
+    # busca team en BBDD
     stats_box_fighter = Stats_box_fighter.query.filter_by(
         name=name, nickname=nickname, birth=birthn).first()
     # the team was not found on the database
@@ -3991,7 +3995,7 @@ def createStats_mma_fighter():
     L = request.json.get("L", None)
     L_by = request.json.get("L_by", None)
 
-        # busca team en BBDD
+    # busca team en BBDD
     stats_mma_fighter = Stats_mma_fighter.query.filter_by(
         name=name, nickname=nickname, birth=birth).first()
     # the team was not found on the database
@@ -4069,7 +4073,6 @@ def createStats_nfl_team():
     turnover_ratio = request.json.get("turnover_ratio", None)
 
     # valida si estan vacios los ingresos
-
 
     # busca team en BBDD
     stats_nfl_team = Stats_nfl_team.query.filter_by(
@@ -4247,7 +4250,6 @@ def createStats_offensive_player_nfl():
     pts = request.json.get("pts", None)
 
     # valida si estan vacios los ingresos
-
 
     # busca team en BBDD
     stats_offensive_player_nfl = Stats_offensive_player_nfl.query.filter_by(
@@ -4517,6 +4519,8 @@ def createnews():
         db.session.commit()
         return jsonify({"msg": "News created successfully"}), 200
 # Endpoint for edith records
+
+
 @app.route('/news/<id>', methods=['PUT'])
 def newsEdit(id):
     news = News.query.get(id)
@@ -4534,6 +4538,7 @@ def newsEdit(id):
     news.written = written
     db.session.commit()
     return jsonify({"msg": "News edith successfully"}), 200
+
 
 @app.route('/mlb/<id>', methods=['PUT'])
 def mlbEdit(id):
@@ -4727,7 +4732,8 @@ def mlbEdit(id):
     mlb.sh_25inning = sh_25inning
     db.session.commit()
     return jsonify({"msg": "Mlb match edith successfully"}), 200
-    
+
+
 @app.route('/ncaa_baseball/<id>', methods=['PUT'])
 def ncaa_baseballEdit(id):
     ncaa_baseball = Ncaa_Baseball.query.get(id)
@@ -4921,6 +4927,7 @@ def ncaa_baseballEdit(id):
     db.session.commit()
     return jsonify({"msg": "ncaa_baseball edith successfully"}), 200
 
+
 @app.route('/nfl/<id>', methods=['PUT'])
 def nflEdit(id):
     nfl = Nfl.query.get(id)
@@ -5080,6 +5087,7 @@ def nflEdit(id):
     nfl.q1_half_final_score_home = q1_half_final_score_home
     db.session.commit()
     return jsonify({"msg": "nfl edith successfully"}), 200
+
 
 @app.route('/ncaa_football/<id>', methods=['PUT'])
 def ncaa_footballEdit(id):
@@ -5242,6 +5250,7 @@ def ncaa_footballEdit(id):
     db.session.commit()
     return jsonify({"msg": "ncaa_football edith successfully"}), 200
 
+
 @app.route('/nba/<id>', methods=['PUT'])
 def nbaEdit(id):
     nba = Nba.query.get(id)
@@ -5401,6 +5410,7 @@ def nbaEdit(id):
     nba.q1_half_final_score_home = q1_half_final_score_home
     db.session.commit()
     return jsonify({"msg": "nba edith successfully"}), 200
+
 
 @app.route('/ncaa_basketball/<id>', methods=['PUT'])
 def ncaa_basketballEdit(id):
@@ -5562,6 +5572,7 @@ def ncaa_basketballEdit(id):
     db.session.commit()
     return jsonify({"msg": "ncaa_basketball edith successfully"}), 200
 
+
 @app.route('/nhl/<id>', methods=['PUT'])
 def nhlEdit(id):
     nhl = Nhl.query.get(id)
@@ -5657,6 +5668,7 @@ def nhlEdit(id):
     db.session.commit()
     return jsonify({"msg": "nhl edith successfully"}), 200
 
+
 @app.route('/boxeo/<id>', methods=['PUT'])
 def boxeoEdit(id):
     boxeo = Boxeo.query.get(id)
@@ -5724,6 +5736,7 @@ def boxeoEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "boxeo edith successfully"}), 200
+
 
 @app.route('/mma/<id>', methods=['PUT'])
 def mmaEdit(id):
@@ -5793,6 +5806,7 @@ def mmaEdit(id):
     db.session.commit()
     return jsonify({"msg": "mma edith successfully"}), 200
 
+
 @app.route('/nascar/<id>', methods=['PUT'])
 def nascarEdit(id):
     nascar = Nascar.query.get(id)
@@ -5824,6 +5838,7 @@ def nascarEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "nascar edith successfully"}), 200
+
 
 @app.route('/nascar_drivers/<id>', methods=['PUT'])
 def nascar_driversEdit(id):
@@ -5863,6 +5878,7 @@ def nascar_driversEdit(id):
     db.session.commit()
     return jsonify({"msg": "nascar_drivers edith successfully"}), 200
 
+
 @app.route('/match_ups_nascar/<id>', methods=['PUT'])
 def match_ups_nascarEdit(id):
     match_ups_nascar = Match_Ups_Nacar.query.get(id)
@@ -5877,6 +5893,7 @@ def match_ups_nascarEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "match_ups_nascar edith successfully"}), 200
+
 
 @app.route('/golf/<id>', methods=['PUT'])
 def golfEdit(id):
@@ -5908,6 +5925,7 @@ def golfEdit(id):
     db.session.commit()
     return jsonify({"msg": "golf edith successfully"}), 200
 
+
 @app.route('/golfer/<id>', methods=['PUT'])
 def golferEdit(id):
     golfer = Golfer.query.get(id)
@@ -5933,6 +5951,7 @@ def golferEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "golfer edith successfully"}), 200
+
 
 @app.route('/confederations_cup/<id>', methods=['PUT'])
 def confederations_cupEdit(id):
@@ -6021,6 +6040,7 @@ def confederations_cupEdit(id):
     db.session.commit()
     return jsonify({"msg": "confederations_cup edith successfully"}), 200
 
+
 @app.route('/champions_league/<id>', methods=['PUT'])
 def champions_leagueEdit(id):
     champions_league = Champions_League.query.get(id)
@@ -6107,6 +6127,7 @@ def champions_leagueEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "champions_league edith successfully"}), 200
+
 
 @app.route('/w_c_qualifying/<id>', methods=['PUT'])
 def w_c_qualifyingEdit(id):
@@ -6195,6 +6216,7 @@ def w_c_qualifyingEdit(id):
     db.session.commit()
     return jsonify({"msg": "w_c_qualifying edith successfully"}), 200
 
+
 @app.route('/CONCACAF/<id>', methods=['PUT'])
 def CONCACAFEdit(id):
     CONCACAF = CONCACAF.query.get(id)
@@ -6281,6 +6303,7 @@ def CONCACAFEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "CONCACAF edith successfully"}), 200
+
 
 @app.route('/england_premier_league/<id>', methods=['PUT'])
 def england_premier_leagueEdit(id):
@@ -6369,6 +6392,7 @@ def england_premier_leagueEdit(id):
     db.session.commit()
     return jsonify({"msg": "england_premier_league edith successfully"}), 200
 
+
 @app.route('/europa_league/<id>', methods=['PUT'])
 def europa_leagueEdit(id):
     europa_league = Europa_League.query.get(id)
@@ -6455,6 +6479,7 @@ def europa_leagueEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "europa_league edith successfully"}), 200
+
 
 @app.route('/international_friendlies/<id>', methods=['PUT'])
 def international_friendliesEdit(id):
@@ -6543,6 +6568,7 @@ def international_friendliesEdit(id):
     db.session.commit()
     return jsonify({"msg": "international_friendlies edith successfully"}), 200
 
+
 @app.route('/france_league/<id>', methods=['PUT'])
 def france_leagueEdit(id):
     france_league = France_League.query.get(id)
@@ -6629,6 +6655,7 @@ def france_leagueEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "france_league edith successfully"}), 200
+
 
 @app.route('/bundesliga/<id>', methods=['PUT'])
 def bundesligaEdit(id):
@@ -6717,6 +6744,7 @@ def bundesligaEdit(id):
     db.session.commit()
     return jsonify({"msg": "bundesliga edith successfully"}), 200
 
+
 @app.route('/international_matches/<id>', methods=['PUT'])
 def international_matchesEdit(id):
     international_matches = International_Matches.query.get(id)
@@ -6803,6 +6831,7 @@ def international_matchesEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "international_matches edith successfully"}), 200
+
 
 @app.route('/italia_serie_A/<id>', methods=['PUT'])
 def italia_serie_AEdit(id):
@@ -6891,6 +6920,7 @@ def italia_serie_AEdit(id):
     db.session.commit()
     return jsonify({"msg": "italia_serie_A edith successfully"}), 200
 
+
 @app.route('/mx_expansion/<id>', methods=['PUT'])
 def mx_expansionEdit(id):
     mx_expansion = Mx_Expansion.query.get(id)
@@ -6977,6 +7007,7 @@ def mx_expansionEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "mx_expansion edith successfully"}), 200
+
 
 @app.route('/mx_apertura/<id>', methods=['PUT'])
 def mx_aperturaEdit(id):
@@ -7065,6 +7096,7 @@ def mx_aperturaEdit(id):
     db.session.commit()
     return jsonify({"msg": "mx_apertura edith successfully"}), 200
 
+
 @app.route('/spain_primera_liga/<id>', methods=['PUT'])
 def spain_primera_ligaEdit(id):
     spain_primera_liga = Spain_Primera_Liga.query.get(id)
@@ -7151,6 +7183,7 @@ def spain_primera_ligaEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "spain_primera_liga edith successfully"}), 200
+
 
 @app.route('/USA_MLS/<id>', methods=['PUT'])
 def USA_MLSEdit(id):
@@ -7239,6 +7272,7 @@ def USA_MLSEdit(id):
     db.session.commit()
     return jsonify({"msg": "USA_MLS edith successfully"}), 200
 
+
 @app.route('/brazil_serie_A/<id>', methods=['PUT'])
 def brazil_serie_AEdit(id):
     brazil_serie_A = Brazil_Serie_A.query.get(id)
@@ -7325,6 +7359,7 @@ def brazil_serie_AEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "brazil_serie_A edith successfully"}), 200
+
 
 @app.route('/colombia_primera_A/<id>', methods=['PUT'])
 def colombia_primera_AEdit(id):
@@ -7413,6 +7448,7 @@ def colombia_primera_AEdit(id):
     db.session.commit()
     return jsonify({"msg": "colombia_primera_A edith successfully"}), 200
 
+
 @app.route('/costa_rica_PD/<id>', methods=['PUT'])
 def costa_rica_PDEdit(id):
     costa_rica_PD = Costa_Rica_PD.query.get(id)
@@ -7500,6 +7536,7 @@ def costa_rica_PDEdit(id):
     db.session.commit()
     return jsonify({"msg": "costa_rica_PD edith successfully"}), 200
 
+
 @app.route('/stats_nba_team/<id>', methods=['PUT'])
 def stats_nba_teamEdit(id):
     stats_nba_team = Stats_nba_team.query.get(id)
@@ -7549,6 +7586,7 @@ def stats_nba_teamEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "stats_nba_team edith successfully"}), 200
+
 
 @app.route('/stats_nba_player/<id>', methods=['PUT'])
 def stats_nba_playerEdit(id):
@@ -7612,6 +7650,7 @@ def stats_nba_playerEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_nba_player edith successfully"}), 200
 
+
 @app.route('/stats_mlb_team/<id>', methods=['PUT'])
 def stats_mlb_teamEdit(id):
     stats_mlb_team = Stats_mlb_team.query.get(id)
@@ -7651,6 +7690,7 @@ def stats_mlb_teamEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "stats_mlb_team edith successfully"}), 200
+
 
 @app.route('/stats_mlb_player/<id>', methods=['PUT'])
 def stats_mlb_playerEdit(id):
@@ -7710,6 +7750,7 @@ def stats_mlb_playerEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_mlb_player edith successfully"}), 200
 
+
 @app.route('/stats_nhl_team/<id>', methods=['PUT'])
 def stats_nhl_teamEdit(id):
     stats_nhl_team = Stats_nhl_team.query.get(id)
@@ -7750,6 +7791,7 @@ def stats_nhl_teamEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "stats_nhl_team edith successfully"}), 200
+
 
 @app.route('/stats_nhl_player/<id>', methods=['PUT'])
 def stats_nhl_playerEdit(id):
@@ -7807,6 +7849,7 @@ def stats_nhl_playerEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_nhl_player edith successfully"}), 200
 
+
 @app.route('/stats_box_fighter/<id>', methods=['PUT'])
 def stats_box_fighterEdit(id):
     stats_box_fighter = Stats_box_fighter.query.get(id)
@@ -7838,6 +7881,7 @@ def stats_box_fighterEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_box_fighter edith successfully"}), 200
 
+
 @app.route('/stats_mma_fighter/<id>', methods=['PUT'])
 def stats_mma_fighterEdit(id):
     stats_mma_fighter = Stats_mma_fighter.query.get(id)
@@ -7868,6 +7912,7 @@ def stats_mma_fighterEdit(id):
     stats_mma_fighter.L_by = L_by
     db.session.commit()
     return jsonify({"msg": "stats_mma_fighter edith successfully"}), 200
+
 
 @app.route('/stats_nfl_team/<id>', methods=['PUT'])
 def stats_nfl_teamEdit(id):
@@ -7970,6 +8015,7 @@ def stats_nfl_teamEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_nfl_team edith successfully"}), 200
 
+
 @app.route('/stats_defensive_player_nfl/<id>', methods=['PUT'])
 def stats_defensive_player_nflEdit(id):
     stats_defensive_player_nfl = Stats_defensive_player_nfl.query.get(id)
@@ -8025,6 +8071,7 @@ def stats_defensive_player_nflEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_defensive_player_nfl edith successfully"}), 200
 
+
 @app.route('/stats_offensive_player_nfl/<id>', methods=['PUT'])
 def stats_offensive_player_nflEdit(id):
     stats_offensive_player_nfl = Stats_offensive_player_nfl.query.get(id)
@@ -8037,7 +8084,7 @@ def stats_offensive_player_nflEdit(id):
     season = request.json['season']
     team = request.json['team']
     games = request.json['games']
-    
+
     Cmp = request.json['Cmp']
     pass_att = request.json['pass_att']
     cmp_AVG = request.json['cmp_AVG']
@@ -8115,6 +8162,7 @@ def stats_offensive_player_nflEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_offensive_player_nfl edith successfully"}), 200
 
+
 @app.route('/stats_returning_player_nfl/<id>', methods=['PUT'])
 def stats_returning_player_nflEdit(id):
     stats_returning_player_nfl = Stats_returning_player_nfl.query.get(id)
@@ -8161,6 +8209,7 @@ def stats_returning_player_nflEdit(id):
     stats_returning_player_nfl.punt_r_fair_carches = punt_r_fair_carches
     db.session.commit()
     return jsonify({"msg": "stats_returning_player_nfl edith successfully"}), 200
+
 
 @app.route('/stats_kiking_player_nfl/<id>', methods=['PUT'])
 def stats_kiking_player_nflEdit(id):
@@ -8210,6 +8259,7 @@ def stats_kiking_player_nflEdit(id):
     stats_kiking_player_nfl.xp_AVG = xp_AVG
     db.session.commit()
     return jsonify({"msg": "stats_kiking_player_nfl edith successfully"}), 200
+
 
 @app.route('/stats_punting_player_nfl/<id>', methods=['PUT'])
 def stats_punting_player_nflEdit(id):
@@ -8263,12 +8313,15 @@ def stats_punting_player_nflEdit(id):
     return jsonify({"msg": "stats_punting_player_nfl edith successfully"}), 200
 
 # Endpoint for deleting a record
+
+
 @app.route("/news/<id>", methods=["DELETE"])
 def news_delete(id):
     news = News.query.get(id)
     db.session.delete(news)
     db.session.commit()
     return "News was successfully deleted"
+
 
 @app.route("/mlb/<id>", methods=["DELETE"])
 def mlb_delete(id):
@@ -8277,12 +8330,14 @@ def mlb_delete(id):
     db.session.commit()
     return "mlb was successfully deleted"
 
+
 @app.route("/ncaa_baseball/<id>", methods=["DELETE"])
 def ncaa_baseball_delete(id):
     ncaa_baseball = Ncaa_Baseball.query.get(id)
     db.session.delete(ncaa_baseball)
     db.session.commit()
     return "ncaa_baseball was successfully deleted"
+
 
 @app.route("/nfl/<id>", methods=["DELETE"])
 def nfl_delete(id):
@@ -8291,12 +8346,14 @@ def nfl_delete(id):
     db.session.commit()
     return "nfl was successfully deleted"
 
+
 @app.route("/ncaa_football/<id>", methods=["DELETE"])
 def ncaa_football_delete(id):
     ncaa_football = Ncaa_Football.query.get(id)
     db.session.delete(ncaa_football)
     db.session.commit()
     return "ncaa_football was successfully deleted"
+
 
 @app.route("/nba/<id>", methods=["DELETE"])
 def nba_delete(id):
@@ -8305,12 +8362,14 @@ def nba_delete(id):
     db.session.commit()
     return "nba was successfully deleted"
 
+
 @app.route("/ncaa_basketball/<id>", methods=["DELETE"])
 def ncaa_basketball_delete(id):
     ncaa_basketball = Ncaa_Basketball.query.get(id)
     db.session.delete(ncaa_basketball)
     db.session.commit()
     return "ncaa_basketball was successfully deleted"
+
 
 @app.route("/nhl/<id>", methods=["DELETE"])
 def nhl_delete(id):
@@ -8319,12 +8378,14 @@ def nhl_delete(id):
     db.session.commit()
     return "nhl was successfully deleted"
 
+
 @app.route("/boxeo/<id>", methods=["DELETE"])
 def boxeo_delete(id):
     boxeo = Boxeo.query.get(id)
     db.session.delete(boxeo)
     db.session.commit()
     return "boxeo was successfully deleted"
+
 
 @app.route("/mma/<id>", methods=["DELETE"])
 def mma_delete(id):
@@ -8333,12 +8394,14 @@ def mma_delete(id):
     db.session.commit()
     return "mma was successfully deleted"
 
+
 @app.route("/nascar/<id>", methods=["DELETE"])
 def nascar_delete(id):
     nascar = Nascar.query.get(id)
     db.session.delete(nascar)
     db.session.commit()
     return "nascar was successfully deleted"
+
 
 @app.route("/match_ups_nascar/<id>", methods=["DELETE"])
 def match_ups_nascar_delete(id):
@@ -8347,12 +8410,14 @@ def match_ups_nascar_delete(id):
     db.session.commit()
     return "match_ups_nascar was successfully deleted"
 
+
 @app.route("/golf/<id>", methods=["DELETE"])
 def golf_delete(id):
     golf = Golf.query.get(id)
     db.session.delete(golf)
     db.session.commit()
     return "golf was successfully deleted"
+
 
 @app.route("/champions_league/<id>", methods=["DELETE"])
 def champions_league_delete(id):
@@ -8361,12 +8426,14 @@ def champions_league_delete(id):
     db.session.commit()
     return "champions_league was successfully deleted"
 
+
 @app.route("/confederations_cup/<id>", methods=["DELETE"])
 def confederations_cup_delete(id):
     confederations_cup = Confederations_Cup.query.get(id)
     db.session.delete(confederations_cup)
     db.session.commit()
     return "confederations_cup was successfully deleted"
+
 
 @app.route("/w_c_qualifying/<id>", methods=["DELETE"])
 def w_c_qualifying_delete(id):
@@ -8375,12 +8442,14 @@ def w_c_qualifying_delete(id):
     db.session.commit()
     return "w_c_qualifying was successfully deleted"
 
+
 @app.route("/CONCACAF/<id>", methods=["DELETE"])
 def CONCACAF_delete(id):
     CONCACAF = CONCACAF.query.get(id)
     db.session.delete(CONCACAF)
     db.session.commit()
     return "CONCACAF was successfully deleted"
+
 
 @app.route("/england_premier_league/<id>", methods=["DELETE"])
 def england_premier_league_delete(id):
@@ -8389,12 +8458,14 @@ def england_premier_league_delete(id):
     db.session.commit()
     return "england_premier_league was successfully deleted"
 
+
 @app.route("/europa_league/<id>", methods=["DELETE"])
 def europa_league_delete(id):
     europa_league = Europa_League.query.get(id)
     db.session.delete(europa_league)
     db.session.commit()
     return "europa_league was successfully deleted"
+
 
 @app.route("/international_friendlies/<id>", methods=["DELETE"])
 def international_friendlies_delete(id):
@@ -8403,12 +8474,14 @@ def international_friendlies_delete(id):
     db.session.commit()
     return "international_friendlies was successfully deleted"
 
+
 @app.route("/france_league/<id>", methods=["DELETE"])
 def france_league_delete(id):
     france_league = France_League.query.get(id)
     db.session.delete(france_league)
     db.session.commit()
     return "france_league was successfully deleted"
+
 
 @app.route("/bundesliga/<id>", methods=["DELETE"])
 def bundesliga_delete(id):
@@ -8417,12 +8490,14 @@ def bundesliga_delete(id):
     db.session.commit()
     return "bundesliga was successfully deleted"
 
+
 @app.route("/international_matches/<id>", methods=["DELETE"])
 def international_matches_delete(id):
     international_matches = International_Matches.query.get(id)
     db.session.delete(international_matches)
     db.session.commit()
     return "international_matches was successfully deleted"
+
 
 @app.route("/italia_serie_A/<id>", methods=["DELETE"])
 def italia_serie_A_delete(id):
@@ -8431,12 +8506,14 @@ def italia_serie_A_delete(id):
     db.session.commit()
     return "italia_serie_A was successfully deleted"
 
+
 @app.route("/mx_expansion/<id>", methods=["DELETE"])
 def mx_expansion_delete(id):
     mx_expansion = Mx_Expansion.query.get(id)
     db.session.delete(mx_expansion)
     db.session.commit()
     return "mx_expansion was successfully deleted"
+
 
 @app.route("/mx_apertura/<id>", methods=["DELETE"])
 def mx_apertura_delete(id):
@@ -8445,12 +8522,14 @@ def mx_apertura_delete(id):
     db.session.commit()
     return "mx_apertura was successfully deleted"
 
+
 @app.route("/spain_primera_liga/<id>", methods=["DELETE"])
 def spain_primera_liga_delete(id):
     spain_primera_liga = Spain_Primera_Liga.query.get(id)
     db.session.delete(spain_primera_liga)
     db.session.commit()
     return "spain_primera_liga was successfully deleted"
+
 
 @app.route("/USA_MLS/<id>", methods=["DELETE"])
 def USA_MLS_delete(id):
@@ -8459,12 +8538,14 @@ def USA_MLS_delete(id):
     db.session.commit()
     return "USA_MLS was successfully deleted"
 
+
 @app.route("/brazil_serie_A/<id>", methods=["DELETE"])
 def brazil_serie_A_delete(id):
     brazil_serie_A = Brazil_Serie_A.query.get(id)
     db.session.delete(brazil_serie_A)
     db.session.commit()
     return "brazil_serie_A was successfully deleted"
+
 
 @app.route("/colombia_primera_A/<id>", methods=["DELETE"])
 def colombia_primera_A_delete(id):
@@ -8473,12 +8554,14 @@ def colombia_primera_A_delete(id):
     db.session.commit()
     return "colombia_primera_A was successfully deleted"
 
+
 @app.route("/costa_rica_PD/<id>", methods=["DELETE"])
 def costa_rica_PD_delete(id):
     costa_rica_PD = Costa_Rica_PD.query.get(id)
     db.session.delete(costa_rica_PD)
     db.session.commit()
     return "costa_rica_PD was successfully deleted"
+
 
 @app.route("/stats_nba_player/<id>", methods=["DELETE"])
 def stats_nba_player_delete(id):
@@ -8487,12 +8570,14 @@ def stats_nba_player_delete(id):
     db.session.commit()
     return "stats_nba_player was successfully deleted"
 
+
 @app.route("/stats_nba_team/<id>", methods=["DELETE"])
 def stats_nba_team_delete(id):
     stats_nba_team = Stats_nba_team.query.get(id)
     db.session.delete(stats_nba_team)
     db.session.commit()
     return "stats_nba_team was successfully deleted"
+
 
 @app.route("/stats_mlb_team/<id>", methods=["DELETE"])
 def stats_mlb_team_delete(id):
@@ -8501,12 +8586,14 @@ def stats_mlb_team_delete(id):
     db.session.commit()
     return "stats_mlb_team was successfully deleted"
 
+
 @app.route("/stats_mlb_player/<id>", methods=["DELETE"])
 def stats_mlb_player_delete(id):
     stats_mlb_player = Stats_mlb_player.query.get(id)
     db.session.delete(stats_mlb_player)
     db.session.commit()
     return "stats_mlb_player was successfully deleted"
+
 
 @app.route("/stats_nhl_team/<id>", methods=["DELETE"])
 def stats_nhl_team_delete(id):
@@ -8515,12 +8602,14 @@ def stats_nhl_team_delete(id):
     db.session.commit()
     return "stats_nhl_team was successfully deleted"
 
+
 @app.route("/stats_nhl_player/<id>", methods=["DELETE"])
 def stats_nhl_player_delete(id):
     stats_nhl_player = Stats_nhl_player.query.get(id)
     db.session.delete(stats_nhl_player)
     db.session.commit()
     return "stats_nhl_player was successfully deleted"
+
 
 @app.route("/stats_box_fighter/<id>", methods=["DELETE"])
 def stats_box_fighter_delete(id):
@@ -8529,12 +8618,14 @@ def stats_box_fighter_delete(id):
     db.session.commit()
     return "stats_box_fighter was successfully deleted"
 
+
 @app.route("/stats_mma_fighter/<id>", methods=["DELETE"])
 def stats_mma_fighter_delete(id):
     stats_mma_fighter = Stats_mma_fighter.query.get(id)
     db.session.delete(stats_mma_fighter)
     db.session.commit()
     return "stats_mma_fighter was successfully deleted"
+
 
 @app.route("/nascar_drivers/<id>", methods=["DELETE"])
 def nascar_drivers_delete(id):
@@ -8543,12 +8634,14 @@ def nascar_drivers_delete(id):
     db.session.commit()
     return "nascar_drivers was successfully deleted"
 
+
 @app.route("/golfer/<id>", methods=["DELETE"])
 def golfer_delete(id):
     golfer = Golfer.query.get(id)
     db.session.delete(golfer)
     db.session.commit()
     return "golfer was successfully deleted"
+
 
 @app.route("/stats_nfl_team/<id>", methods=["DELETE"])
 def stats_nfl_team_delete(id):
@@ -8557,12 +8650,14 @@ def stats_nfl_team_delete(id):
     db.session.commit()
     return "stats_nfl_team was successfully deleted"
 
+
 @app.route("/stats_defensive_player_nfl/<id>", methods=["DELETE"])
 def stats_defensive_player_nfl_delete(id):
     stats_defensive_player_nfl = Stats_defensive_player_nfl.query.get(id)
     db.session.delete(stats_defensive_player_nfl)
     db.session.commit()
     return "stats_defensive_player_nfl was successfully deleted"
+
 
 @app.route("/stats_offensive_player_nfl/<id>", methods=["DELETE"])
 def stats_offensive_player_nfl_delete(id):
@@ -8571,6 +8666,7 @@ def stats_offensive_player_nfl_delete(id):
     db.session.commit()
     return "stats_offensive_player_nfl was successfully deleted"
 
+
 @app.route("/stats_returning_player_nfl/<id>", methods=["DELETE"])
 def stats_returning_player_nfl_delete(id):
     stats_returning_player_nfl = Stats_returning_player_nfl.query.get(id)
@@ -8578,12 +8674,14 @@ def stats_returning_player_nfl_delete(id):
     db.session.commit()
     return "stats_returning_player_nfl was successfully deleted"
 
+
 @app.route("/stats_kiking_player_nfl/<id>", methods=["DELETE"])
 def stats_kiking_player_nfl_delete(id):
     stats_kiking_player_nfl = Stats_kiking_player_nfl.query.get(id)
     db.session.delete(stats_kiking_player_nfl)
     db.session.commit()
     return "stats_kiking_player_nfl was successfully deleted"
+
 
 @app.route("/stats_punting_player_nfl/<id>", methods=["DELETE"])
 def stats_punting_player_nfl_delete(id):
