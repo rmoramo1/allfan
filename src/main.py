@@ -1030,10 +1030,10 @@ def createGameNfl():
         nfl = Nfl(
             date=date,
             hour=hour,
+            week=week,
             status=status,
             away=away,
             home=home,
-            week=week,
             spread_away=spread_away,
             spread_home=spread_home,
             juice_spread_away=juice_spread_away,
@@ -1101,7 +1101,7 @@ def createGameNfl():
             q1_half_juice_over_away=q1_half_juice_over_away,
             q1_half_juice_under_away=q1_half_juice_under_away,
             q1_half_tt_home=q1_half_tt_home,
-            q1_half_juice_over_home=q1_half_juice_over_home,
+            q1_half_juice_over_away=q1_half_juice_over_home,
             q1_half_juice_under_home=q1_half_juice_under_home,
             q1_half_final_score_away=q1_half_final_score_away,
             q1_half_final_score_home=q1_half_final_score_home
@@ -1862,17 +1862,17 @@ def createGameNcaa_football():
     ncaa_football = Ncaa_Football.query.filter_by(home=home, away=away, date=date).first()
     # the mlb was not found on the database
     if ncaa_football:
-        return jsonify({"msg": "Nfl game already exists", "status": ncaa_football.status}), 401
+        return jsonify({"msg": "Ncaa_Football game already exists", "status": ncaa_football.status}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
-        ncaa_football = Ncaa_Football6(
+        ncaa_football = Ncaa_Football(
             date=date,
             hour=hour,
+            week=week,
             status=status,
             away=away,
             home=home,
-            week=week,
             spread_away=spread_away,
             spread_home=spread_home,
             juice_spread_away=juice_spread_away,
@@ -1940,7 +1940,7 @@ def createGameNcaa_football():
             q1_half_juice_over_away=q1_half_juice_over_away,
             q1_half_juice_under_away=q1_half_juice_under_away,
             q1_half_tt_home=q1_half_tt_home,
-            q1_half_juice_over_home=q1_half_juice_over_home,
+            q1_half_juice_over_away=q1_half_juice_over_home,
             q1_half_juice_under_home=q1_half_juice_under_home,
             q1_half_final_score_away=q1_half_final_score_away,
             q1_half_final_score_home=q1_half_final_score_home
