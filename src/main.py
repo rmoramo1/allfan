@@ -1077,8 +1077,8 @@ def createGameNfl():
             second_half_moneyLineAway=second_half_moneyLineAway,
             second_half_moneyLineHome=second_half_moneyLineHome,
             second_half_total=second_half_total,
-            sh_juice_over=sh_juice_over,
-            sh_juice_under=sh_juice_under,
+            sh_juice_total_over=sh_juice_total_over,
+            sh_juice_total_under=sh_juice_total_under,
             second_half_tt_away=second_half_tt_away,
             second_half_juice_over_away=second_half_juice_over_away,
             second_half_juice_under_away=second_half_juice_under_away,
@@ -1754,7 +1754,7 @@ def createGameNcaaBaseBall():
 
 @app.route('/ncaa_football', methods=['POST'])
 def createGameNcaa_football():
-    date = request.json.get("date", None)
+       date = request.json.get("date", None)
     hour = request.json.get("hour", None)
     week = request.json.get("week", None)
     status = request.json.get("status", None)
@@ -1859,14 +1859,14 @@ def createGameNcaa_football():
         "q1_half_final_score_home", None)
 
     # busca mlb en BBDD
-    nfl = Nfl.query.filter_by(home=home, away=away, date=date).first()
+    ncaa_football = Ncaa_Football.query.filter_by(home=home, away=away, date=date).first()
     # the mlb was not found on the database
-    if nfl:
-        return jsonify({"msg": "Nfl game already exists", "status": nfl.status}), 401
+    if ncaa_football:
+        return jsonify({"msg": "Nfl game already exists", "status": ncaa_football.status}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
-        nfl = Nfl(
+        ncaa_football = Ncaa_Football6(
             date=date,
             hour=hour,
             status=status,
@@ -1916,8 +1916,8 @@ def createGameNcaa_football():
             second_half_moneyLineAway=second_half_moneyLineAway,
             second_half_moneyLineHome=second_half_moneyLineHome,
             second_half_total=second_half_total,
-            sh_juice_over=sh_juice_over,
-            sh_juice_under=sh_juice_under,
+            sh_juice_total_over=sh_juice_total_over,
+            sh_juice_total_under=sh_juice_total_under,
             second_half_tt_away=second_half_tt_away,
             second_half_juice_over_away=second_half_juice_over_away,
             second_half_juice_under_away=second_half_juice_under_away,
@@ -1945,7 +1945,8 @@ def createGameNcaa_football():
             q1_half_final_score_away=q1_half_final_score_away,
             q1_half_final_score_home=q1_half_final_score_home
         )
-        db.session.add(nfl)
+
+        db.session.add(ncaa_football)
         db.session.commit()
         return jsonify({"msg": "Game created successfully"}), 200
 
