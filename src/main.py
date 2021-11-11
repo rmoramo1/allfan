@@ -921,8 +921,6 @@ def createGameNfl():
     status = request.json.get("status", None)
     away = request.json.get("away", None)
     home = request.json.get("home", None)
-    preview = request.json.get("preview", None)
-    img_preview = request.json.get("img_preview", None)
     spread_away = request.json.get("spread_away", None)
     spread_home = request.json.get("spread_home", None)
     juice_spread_away = request.json.get("juice_spread_away", None)
@@ -1034,8 +1032,6 @@ def createGameNfl():
             away=away,
             home=home,
             week=week,
-            preview=preview,
-            img_preview=img_preview,
             spread_away=spread_away,
             spread_home=spread_home,
             juice_spread_away=juice_spread_away,
