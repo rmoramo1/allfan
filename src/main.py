@@ -1015,6 +1015,9 @@ def createGameNfl():
     q1_half_final_score_home = request.json.get(
         "q1_half_final_score_home", None)
 
+    if home is None:
+        return jsonify({"msg": "No home was provided"}), 400
+
     # busca mlb en BBDD
     nfl = Nfl.query.filter_by(home=home, away=away, date=date).first()
     # the mlb was not found on the database
@@ -1057,10 +1060,14 @@ def createGameNfl():
             fh_juice_over=fh_juice_over,
             fh_juice_under=fh_juice_under,
             first_half_tt_away=first_half_tt_away,
-            first_half_juice_over_away=first_half_juice_over_away, first_half_juice_under_away=first_half_juice_under_away, first_half_tt_home=first_half_tt_home, first_half_juice_over_home=first_half_juice_over_home,
+            first_half_juice_over_away=first_half_juice_over_away,
+            first_half_juice_under_away=first_half_juice_under_away, 
+            first_half_tt_home=first_half_tt_home, 
+            first_half_juice_over_home=first_half_juice_over_home,
             first_half_juice_under_home=first_half_juice_under_home,
             first_half_final_score_away=first_half_final_score_away,
-            first_half_final_score_home=first_half_final_score_home, second_half_spread_away=second_half_spread_away,
+            first_half_final_score_home=first_half_final_score_home, 
+            second_half_spread_away=second_half_spread_away,
             second_half_spread_home=second_half_spread_home,
             second_half_juice_spread_away=second_half_juice_spread_away,
             second_half_juice_spread_home=second_half_juice_spread_home,
