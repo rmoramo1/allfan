@@ -5009,7 +5009,6 @@ def nflEdit(id):
     q1_half_moneyLineHome = request.json['q1_half_moneyLineHome']
     q1_half_total = request.json['q1_half_total']
     q1_juice_over = request.json['q1_juice_over']
-    q1_half_tt_away = request.json['q1_half_tt_away']
     q1_juice_under = request.json['q1_juice_under']
     q1_half_tt_away = request.json['q1_half_tt_away']
     q1_half_juice_over_away = request.json['q1_half_juice_over_away']
