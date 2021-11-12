@@ -546,6 +546,7 @@ class Nfl(db.Model):
 
     def serialize(self):
         return {
+            "id": self.id,
             "status": self.status,
             "home": self.home,
             "away": self.away,
@@ -1508,6 +1509,7 @@ class Nascar(db.Model):
 
     def serialize(self):
         return {
+            "id": self.id,
             "status": self.status,
             "race": self.race,
             "track": self.track,
@@ -1532,6 +1534,7 @@ class Match_Ups_Nacar(db.Model):
 
     def serialize(self):
         return {
+            "id": self.id,
             "name1": self.name1,
             "name2": self.name2,
             "mu1": self.mu1,
@@ -1555,6 +1558,7 @@ class Golf(db.Model):
 
     def serialize(self):
         return {
+            "id": self.id,
             "status": self.status,
             "event": self.event,
             "location": self.location,
@@ -1580,6 +1584,7 @@ class News(db.Model):
 
     def serialize(self):
         return {
+            "id": self.id,
             "title": self.title,
             "short_description": self.short_description,
             "url_image": self.url_image,
