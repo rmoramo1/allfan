@@ -5143,6 +5143,60 @@ def nflEdit(id):
     q1_half_juice_under_home = request.json['q1_half_juice_under_home']
     q1_half_final_score_away = request.json['q1_half_final_score_away']
     q1_half_final_score_home = request.json['q1_half_final_score_home']
+    #--
+    q2_half_spread_away = request.json['q2_half_spread_away']
+    q2_half_spread_home = request.json['q2_half_spread_home']
+    q2_half_juice_spread_away = request.json['q2_half_juice_spread_away']
+    q2_half_juice_spread_home = request.json['q2_half_juice_spread_home']
+    q2_half_moneyLineAway = request.json['q2_half_moneyLineAway']
+    q2_half_moneyLineHome = request.json['q2_half_moneyLineHome']
+    q2_half_total = request.json['q2_half_total']
+    q2_juice_over = request.json['q2_juice_over']
+    q2_juice_under = request.json['q2_juice_under']
+    q2_half_tt_away = request.json['q2_half_tt_away']
+    q2_half_juice_over_away = request.json['q2_half_juice_over_away']
+    q2_half_juice_under_away = request.json['q2_half_juice_under_away']
+    q2_half_tt_home = request.json['q2_half_tt_home']
+    q2_half_juice_over_home = request.json['q2_half_juice_over_home']
+    q2_half_juice_under_home = request.json['q2_half_juice_under_home']
+    q2_half_final_score_away = request.json['q2_half_final_score_away']
+    q2_half_final_score_home = request.json['q2_half_final_score_home']
+    #--
+    q3_half_spread_away = request.json['q3_half_spread_away']
+    q3_half_spread_home = request.json['q3_half_spread_home']
+    q3_half_juice_spread_away = request.json['q3_half_juice_spread_away']
+    q3_half_juice_spread_home = request.json['q3_half_juice_spread_home']
+    q3_half_moneyLineAway = request.json['q3_half_moneyLineAway']
+    q3_half_moneyLineHome = request.json['q3_half_moneyLineHome']
+    q3_half_total = request.json['q3_half_total']
+    q3_juice_over = request.json['q3_juice_over']
+    q3_juice_under = request.json['q3_juice_under']
+    q3_half_tt_away = request.json['q3_half_tt_away']
+    q3_half_juice_over_away = request.json['q3_half_juice_over_away']
+    q3_half_juice_under_away = request.json['q3_half_juice_under_away']
+    q3_half_tt_home = request.json['q3_half_tt_home']
+    q3_half_juice_over_home = request.json['q3_half_juice_over_home']
+    q3_half_juice_under_home = request.json['q3_half_juice_under_home']
+    q3_half_final_score_away = request.json['q3_half_final_score_away']
+    q3_half_final_score_home = request.json['q3_half_final_score_home']
+    #--
+    q4_half_spread_away = request.json['q4_half_spread_away']
+    q4_half_spread_home = request.json['q4_half_spread_home']
+    q4_half_juice_spread_away = request.json['q4_half_juice_spread_away']
+    q4_half_juice_spread_home = request.json['q4_half_juice_spread_home']
+    q4_half_moneyLineAway = request.json['q4_half_moneyLineAway']
+    q4_half_moneyLineHome = request.json['q4_half_moneyLineHome']
+    q4_half_total = request.json['q4_half_total']
+    q4_juice_over = request.json['q4_juice_over']
+    q4_juice_under = request.json['q4_juice_under']
+    q4_half_tt_away = request.json['q4_half_tt_away']
+    q4_half_juice_over_away = request.json['q4_half_juice_over_away']
+    q4_half_juice_under_away = request.json['q4_half_juice_under_away']
+    q4_half_tt_home = request.json['q4_half_tt_home']
+    q4_half_juice_over_home = request.json['q4_half_juice_over_home']
+    q4_half_juice_under_home = request.json['q4_half_juice_under_home']
+    q4_half_final_score_away = request.json['q4_half_final_score_away']
+    q4_half_final_score_home = request.json['q4_half_final_score_home']
 
     nfl.date = date
     nfl.hour = hour
@@ -5221,6 +5275,60 @@ def nflEdit(id):
     nfl.q1_half_juice_under_home = q1_half_juice_under_home
     nfl.q1_half_final_score_away = q1_half_final_score_away
     nfl.q1_half_final_score_home = q1_half_final_score_home
+    #--
+    nfl.q2_half_spread_away = q2_half_spread_away
+    nfl.q2_half_spread_home = q2_half_spread_home
+    nfl.q2_half_juice_spread_away = q2_half_juice_spread_away
+    nfl.q2_half_juice_spread_home = q2_half_juice_spread_home
+    nfl.q2_half_moneyLineAway = q2_half_moneyLineAway
+    nfl.q2_half_moneyLineHome = q2_half_moneyLineHome
+    nfl.q2_half_total = q2_half_total
+    nfl.q2_juice_over = q2_juice_over
+    nfl.q2_juice_under = q2_juice_under
+    nfl.q2_half_tt_away = q2_half_tt_away
+    nfl.q2_half_juice_over_away = q2_half_juice_over_away
+    nfl.q2_half_juice_under_away = q2_half_juice_under_away
+    nfl.q2_half_tt_home = q2_half_tt_home
+    nfl.q2_half_juice_over_home = q2_half_juice_over_home
+    nfl.q2_half_juice_under_home = q2_half_juice_under_home
+    nfl.q2_half_final_score_away = q2_half_final_score_away
+    nfl.q2_half_final_score_home = q2_half_final_score_home
+    #--
+    nfl.q3_half_spread_away = q3_half_spread_away
+    nfl.q3_half_spread_home = q3_half_spread_home
+    nfl.q3_half_juice_spread_away = q3_half_juice_spread_away
+    nfl.q3_half_juice_spread_home = q3_half_juice_spread_home
+    nfl.q3_half_moneyLineAway = q3_half_moneyLineAway
+    nfl.q3_half_moneyLineHome = q3_half_moneyLineHome
+    nfl.q3_half_total = q3_half_total
+    nfl.q3_juice_over = q3_juice_over
+    nfl.q3_juice_under = q3_juice_under
+    nfl.q3_half_tt_away = q3_half_tt_away
+    nfl.q3_half_juice_over_away = q3_half_juice_over_away
+    nfl.q3_half_juice_under_away = q3_half_juice_under_away
+    nfl.q3_half_tt_home = q3_half_tt_home
+    nfl.q3_half_juice_over_home = q3_half_juice_over_home
+    nfl.q3_half_juice_under_home = q3_half_juice_under_home
+    nfl.q3_half_final_score_away = q3_half_final_score_away
+    nfl.q3_half_final_score_home = q3_half_final_score_home
+    #--
+    nfl.q4_half_spread_away = q4_half_spread_away
+    nfl.q4_half_spread_home = q4_half_spread_home
+    nfl.q4_half_juice_spread_away = q4_half_juice_spread_away
+    nfl.q4_half_juice_spread_home = q4_half_juice_spread_home
+    nfl.q4_half_moneyLineAway = q4_half_moneyLineAway
+    nfl.q4_half_moneyLineHome = q4_half_moneyLineHome
+    nfl.q4_half_total = q4_half_total
+    nfl.q4_juice_over = q4_juice_over
+    nfl.q4_juice_under = q4_juice_under
+    nfl.q4_half_tt_away = q4_half_tt_away
+    nfl.q4_half_juice_over_away = q4_half_juice_over_away
+    nfl.q4_half_juice_under_away = q4_half_juice_under_away
+    nfl.q4_half_tt_home = q4_half_tt_home
+    nfl.q4_half_juice_over_home = q4_half_juice_over_home
+    nfl.q4_half_juice_under_home = q4_half_juice_under_home
+    nfl.q4_half_final_score_away = q4_half_final_score_away
+    nfl.q4_half_final_score_home = q4_half_final_score_home
     db.session.commit()
     return jsonify({"msg": "nfl edith successfully"}), 200
 
