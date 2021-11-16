@@ -543,6 +543,84 @@ class Nfl(db.Model):
     q1_half_final_score_home = db.Column(
         db.String(10), default=0, nullable=False)
     # -----------------------------------------------------------------------
+    q2_half_spread_away = db.Column(db.String(10), default=0, nullable=False)
+    q2_half_spread_home = db.Column(db.String(10), default=0, nullable=False)
+    q2_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q2_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q2_half_moneyLineAway = db.Column(db.String(10), default=0, nullable=False)
+    q2_half_moneyLineHome = db.Column(db.String(10), default=0, nullable=False)
+    q2_half_total = db.Column(db.String(10), default=0, nullable=False)
+    q2_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    q2_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    q2_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    q2_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q2_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q2_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    q2_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q2_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q2_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    q2_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+    q3_half_spread_away = db.Column(db.String(10), default=0, nullable=False)
+    q3_half_spread_home = db.Column(db.String(10), default=0, nullable=False)
+    q3_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q3_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q3_half_moneyLineAway = db.Column(db.String(10), default=0, nullable=False)
+    q3_half_moneyLineHome = db.Column(db.String(10), default=0, nullable=False)
+    q3_half_total = db.Column(db.String(10), default=0, nullable=False)
+    q3_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    q3_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    q3_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    q3_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q3_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q3_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    q3_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q3_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q3_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    q3_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+    q4_half_spread_away = db.Column(db.String(10), default=0, nullable=False)
+    q4_half_spread_home = db.Column(db.String(10), default=0, nullable=False)
+    q4_half_juice_spread_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q4_half_juice_spread_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q4_half_moneyLineAway = db.Column(db.String(10), default=0, nullable=False)
+    q4_half_moneyLineHome = db.Column(db.String(10), default=0, nullable=False)
+    q4_half_total = db.Column(db.String(10), default=0, nullable=False)
+    q4_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    q4_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    q4_half_tt_away = db.Column(db.String(10), default=0, nullable=False)
+    q4_half_juice_over_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q4_half_juice_under_away = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q4_half_tt_home = db.Column(db.String(10), default=0, nullable=False)
+    q4_half_juice_over_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q4_half_juice_under_home = db.Column(
+        db.String(10), default=-110, nullable=False)
+    q4_half_final_score_away = db.Column(
+        db.String(10), default=0, nullable=False)
+    q4_half_final_score_home = db.Column(
+        db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
 
     def serialize(self):
         return {
@@ -623,7 +701,61 @@ class Nfl(db.Model):
             "q1_half_juice_over_home": self.q1_half_juice_over_home,
             "q1_half_juice_under_home": self.q1_half_juice_under_home,
             "q1_half_final_score_away": self.q1_half_final_score_away,
-            "q1_half_final_score_home": self.q1_half_final_score_home
+            "q1_half_final_score_home": self.q1_half_final_score_home,
+
+            "q2_half_spread_away": self.q2_half_spread_away,
+            "q2_half_spread_home": self.q2_half_spread_home,
+            "q2_half_juice_spread_away": self.q2_half_juice_spread_away,
+            "q2_half_juice_spread_home": self.q2_half_juice_spread_home,
+            "q2_half_moneyLineAway": self.q2_half_moneyLineAway,
+            "q2_half_moneyLineHome": self.q2_half_moneyLineHome,
+            "q2_half_total": self.q2_half_total,
+            "q2_juice_over": self.q2_juice_over,
+            "q2_juice_under": self.q2_juice_under,
+            "q2_half_tt_away": self.q2_half_tt_away,
+            "q2_half_juice_over_away": self.q2_half_juice_over_away,
+            "q2_half_juice_under_away": self.q2_half_juice_under_away,
+            "q2_half_tt_home": self.q2_half_tt_home,
+            "q2_half_juice_over_home": self.q2_half_juice_over_home,
+            "q2_half_juice_under_home": self.q2_half_juice_under_home,
+            "q2_half_final_score_away": self.q2_half_final_score_away,
+            "q2_half_final_score_home": self.q2_half_final_score_home,
+
+            "q3_half_spread_away": self.q3_half_spread_away,
+            "q3_half_spread_home": self.q3_half_spread_home,
+            "q3_half_juice_spread_away": self.q3_half_juice_spread_away,
+            "q3_half_juice_spread_home": self.q3_half_juice_spread_home,
+            "q3_half_moneyLineAway": self.q3_half_moneyLineAway,
+            "q3_half_moneyLineHome": self.q3_half_moneyLineHome,
+            "q3_half_total": self.q3_half_total,
+            "q3_juice_over": self.q3_juice_over,
+            "q3_juice_under": self.q3_juice_under,
+            "q3_half_tt_away": self.q3_half_tt_away,
+            "q3_half_juice_over_away": self.q3_half_juice_over_away,
+            "q3_half_juice_under_away": self.q3_half_juice_under_away,
+            "q3_half_tt_home": self.q3_half_tt_home,
+            "q3_half_juice_over_home": self.q3_half_juice_over_home,
+            "q3_half_juice_under_home": self.q3_half_juice_under_home,
+            "q3_half_final_score_away": self.q3_half_final_score_away,
+            "q3_half_final_score_home": self.q3_half_final_score_home,
+
+            "q4_half_spread_away": self.q4_half_spread_away,
+            "q4_half_spread_home": self.q4_half_spread_home,
+            "q4_half_juice_spread_away": self.q4_half_juice_spread_away,
+            "q4_half_juice_spread_home": self.q4_half_juice_spread_home,
+            "q4_half_moneyLineAway": self.q4_half_moneyLineAway,
+            "q4_half_moneyLineHome": self.q4_half_moneyLineHome,
+            "q4_half_total": self.q4_half_total,
+            "q4_juice_over": self.q4_juice_over,
+            "q4_juice_under": self.q4_juice_under,
+            "q4_half_tt_away": self.q4_half_tt_away,
+            "q4_half_juice_over_away": self.q4_half_juice_over_away,
+            "q4_half_juice_under_away": self.q4_half_juice_under_away,
+            "q4_half_tt_home": self.q4_half_tt_home,
+            "q4_half_juice_over_home": self.q4_half_juice_over_home,
+            "q4_half_juice_under_home": self.q4_half_juice_under_home,
+            "q4_half_final_score_away": self.q4_half_final_score_away,
+            "q4_half_final_score_home": self.q4_half_final_score_home,
             # do not serialize the password, its a security breach
         }
 
