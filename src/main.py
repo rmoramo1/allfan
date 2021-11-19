@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, News, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Champions_League, Confederations_Cup, W_C_Qualifying, CONCACAF, Europa_League, International_Friendlies, France_League, Bundesliga, International_Matches, Italia_Serie_A, Mx_Expansion, Mx_Apertura, Spain_Primera_Liga, USA_MLS, Brazil_Serie_A, Colombia_Primera_A, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Costa_Rica_PD
+from models import db, User,Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, News, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Champions_League, Confederations_Cup, W_C_Qualifying, CONCACAF, Europa_League, International_Friendlies, France_League, Bundesliga, International_Matches, Italia_Serie_A, Mx_Expansion, Mx_Apertura, Spain_Primera_Liga, USA_MLS, Brazil_Serie_A, Colombia_Primera_A, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Costa_Rica_PD
 
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 from flask_jwt_extended import JWTManager
@@ -54,6 +54,14 @@ def login():
     return jsonify({"token": access_token, "username": user.name})
 # ----------------------------------------------------------------------------
 
+@app.route("/casinos", methods=["GET"])
+def casinos():
+    if request.method == "GET":
+        records = Casinos.query.all()
+        return jsonify([Casinos.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ----------------------------------------------------------------------------
 
 @app.route("/mlb", methods=["GET"])
 def mlb():
@@ -64,7 +72,6 @@ def mlb():
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
 
-
 @app.route("/ncaa_football", methods=["GET"])
 #   @limiter.limit("12 per hour")
 def ncaa_football():
@@ -74,7 +81,6 @@ def ncaa_football():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
-
 
 @app.route("/nfl", methods=["GET"])
 def nfl():
@@ -507,6 +513,25 @@ def news():
         return jsonify({"msg": "no autorizado"})
 
 # --------------------------post methot--------------------------------------------
+
+@app.route('/casinos', methods=['POST'])
+def createCasino():
+    name = request.json.get("date", None)
+
+    # busca team en BBDD
+    casinos = Casinos.query.filter_by(name=name).first()
+    # the team was not found on the database
+    if casinos:
+        return jsonify({"msg": "Casino already exists", "Casino": casinos.name}), 401
+    else:
+        # crea casino nuevo
+        # crea registro nuevo en BBDD de
+        casinos = News(
+            name=name,
+        )
+        db.session.add(casinos)
+        db.session.commit()
+        return jsonify({"msg": "casino created successfully"}), 200
 
 
 @app.route('/mlb', methods=['POST'])
@@ -4655,7 +4680,7 @@ def createnews():
         return jsonify({"msg": "News created successfully"}), 200
 # Endpoint for edith records
 
-
+#------------put
 @app.route('/news/<id>', methods=['PUT'])
 def newsEdit(id):
     news = News.query.get(id)
@@ -4673,6 +4698,15 @@ def newsEdit(id):
     news.written = written
     db.session.commit()
     return jsonify({"msg": "News edith successfully"}), 200
+
+@app.route('/casinos/<id>', methods=['PUT'])
+def newsCasinos(id):
+    casinos = Casinos.query.get(id)
+    name = request.json['name']
+    casinos.name = name
+
+    db.session.commit()
+    return jsonify({"msg": "casino edith successfully"}), 200
 
 
 @app.route('/mlb/<id>', methods=['PUT'])
@@ -8564,6 +8598,13 @@ def news_delete(id):
     db.session.delete(news)
     db.session.commit()
     return "News was successfully deleted"
+
+@app.route("/casinos/<id>", methods=["DELETE"])
+def casinos_delete(id):
+    casinos = Casinos.query.get(id)
+    db.session.delete(casinos)
+    db.session.commit()
+    return "casinos was successfully deleted"
 
 
 @app.route("/mlb/<id>", methods=["DELETE"])

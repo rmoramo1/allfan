@@ -1,6 +1,6 @@
 import os
 from flask_admin import Admin
-from models import db,User, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,News,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Champions_League,Confederations_Cup,W_C_Qualifying,CONCACAF,England_Premier_League,Europa_League,International_Friendlies,France_League,Bundesliga,International_Matches,Italia_Serie_A,Mx_Expansion,Mx_Apertura,Spain_Primera_Liga,USA_MLS,Brazil_Serie_A,Colombia_Primera_A,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl
+from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,News,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Champions_League,Confederations_Cup,W_C_Qualifying,CONCACAF,England_Premier_League,Europa_League,International_Friendlies,France_League,Bundesliga,International_Matches,Italia_Serie_A,Mx_Expansion,Mx_Apertura,Spain_Primera_Liga,USA_MLS,Brazil_Serie_A,Colombia_Primera_A,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl
 from flask_admin.contrib.sqla import ModelView
 
 def setup_admin(app):
@@ -56,7 +56,7 @@ def setup_admin(app):
     admin.add_view(ModelView(Stats_kiking_player_nfl, db.session))
     admin.add_view(ModelView(Stats_returning_player_nfl, db.session))
     admin.add_view(ModelView(Stats_punting_player_nfl, db.session))
-
+    admin.add_view(ModelView(Casinos, db.session))
 
     # You can duplicate that line to add mew models
     # admin.add_view(ModelView(YourModelName, db.session))
