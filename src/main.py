@@ -944,6 +944,7 @@ def createGameNfl():
     hour = request.json.get("hour", None)
     week = request.json.get("week", None)
     status = request.json.get("status", None)
+    casino = request.json.get("casino", None)
     away = request.json.get("away", None)
     home = request.json.get("home", None)
     spread_away = request.json.get("spread_away", None)
@@ -1128,6 +1129,7 @@ def createGameNfl():
             hour=hour,
             week=week,
             status=status,
+            casino=casino,
             away=away,
             home=home,
             spread_away=spread_away,
@@ -5104,6 +5106,7 @@ def nflEdit(id):
     hour = request.json['hour']
     week = request.json['week']
     status = request.json['status']
+    casino = request.json['casino']
     away = request.json['away']
     home = request.json['home']
     spread_away = request.json['spread_away']
@@ -5236,6 +5239,7 @@ def nflEdit(id):
     nfl.hour = hour
     nfl.week = week
     nfl.status = status
+    nfl.casino = casino
     nfl.away = away
     nfl.home = home
     nfl.spread_away = spread_away
