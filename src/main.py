@@ -516,7 +516,7 @@ def news():
 
 @app.route('/casinos', methods=['POST'])
 def createCasino():
-    name = request.json.get("date", None)
+    name = request.json.get("name", None)
 
     # busca team en BBDD
     casinos = Casinos.query.filter_by(name=name).first()
@@ -526,7 +526,7 @@ def createCasino():
     else:
         # crea casino nuevo
         # crea registro nuevo en BBDD de
-        casinos = News(
+        casinos = Casinos(
             name=name,
         )
         db.session.add(casinos)
