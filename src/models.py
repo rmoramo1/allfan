@@ -448,6 +448,8 @@ class Nfl(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(20), nullable=False)
+    rotation_home = db.Column(db.String(10), nullable=False)
+    rotation_away = db.Column(db.String(10), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     spread_away = db.Column(db.String(10), nullable=False)
@@ -644,6 +646,8 @@ class Nfl(db.Model):
             "hour": self.hour,
             "week": self.week,
             "status": self.status,
+            "rotation_away": self.rotation_away,
+            "rotation_home": self.rotation_home,
             "casino": self.casino,
             "away": self.away,
             "home": self.home,
