@@ -945,7 +945,7 @@ def createGameNfl():
     week = request.json.get("week", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
-    rotation_away = request.json.get("rotation_away", None)
+    rotation_home = request.json.get("rotation_home", None)
     rotation_away = request.json.get("rotation_away", None)
     away = request.json.get("away", None)
     home = request.json.get("home", None)
