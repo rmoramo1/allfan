@@ -4242,7 +4242,7 @@ def createStats_nfl_team():
 
     # busca team en BBDD
     stats_nfl_team = Stats_nfl_team.query.filter_by(
-        home=home, away=away, date=date).first()
+        team=team, conference=conference, division=division).first()
     # the team was not found on the database
     if stats_nfl_team:
         return jsonify({"msg": "stats_nfl_team already exists", "team": stats_nfl_team.team}), 401
