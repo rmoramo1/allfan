@@ -4257,7 +4257,6 @@ class Stats_nfl_team(db.Model):
             "net_pass_y": self.net_pass_y,
             "y_p_pas_attps": self.y_p_pas_attps,
             "net_pass_y_pg": self.net_pass_y_pg,
-            "net_pass_y_pg": self.net_pass_y_pg,
             "interceptions": self.interceptions,
             "sacks_y_lost": self.sacks_y_lost,
             "russ_attps": self.russ_attps,

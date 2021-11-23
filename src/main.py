@@ -4239,7 +4239,6 @@ def createStats_nfl_team():
     turnover_ratio = request.json.get("turnover_ratio", None)
 
     # valida si estan vacios los ingresos
-
     # busca team en BBDD
     stats_nfl_team = Stats_nfl_team.query.filter_by(
         team=team, conference=conference, division=division).first()
