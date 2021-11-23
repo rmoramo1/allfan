@@ -4280,7 +4280,7 @@ def createStats_nfl_team():
             total_of_plays=total_of_plays,
             total_y=total_y,
             y_pg=y_pg,
-            kickoffs_t=H1_juice_under,
+            kickoffs_t=kickoffs_t,
             AVG_kickoff_return_y=AVG_kickoff_return_y,
             punt_t=punt_t,
             AVG_punt_ruturn_y=AVG_punt_ruturn_y,
@@ -8247,9 +8247,6 @@ def stats_nfl_teamEdit(id):
     fg_goog_attps = request.json['fg_goog_attps']
     touchback_percent = request.json['touchback_percent']
     penal_ty = request.json['penal_ty']
-    penal_y_AVG_pg = request.json['penal_y_AVG_pg']
-    penal_y_AVG_pg = request.json['penal_y_AVG_pg']
-    possesion_time = request.json['possesion_time']
     penal_y_AVG_pg = request.json['penal_y_AVG_pg']
     possesion_time = request.json['possesion_time']
     fumbles_lost = request.json['fumbles_lost']
