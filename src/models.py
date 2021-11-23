@@ -4257,6 +4257,7 @@ class Stats_nfl_team(db.Model):
             "net_pass_y": self.net_pass_y,
             "y_p_pas_attps": self.y_p_pas_attps,
             "net_pass_y_pg": self.net_pass_y_pg,
+            "pass_td": self.pass_td,
             "interceptions": self.interceptions,
             "sacks_y_lost": self.sacks_y_lost,
             "russ_attps": self.russ_attps,
@@ -4280,7 +4281,8 @@ class Stats_nfl_team(db.Model):
             "penal_ty": self.penal_ty,
             "penal_y_AVG_pg": self.penal_y_AVG_pg,
             "possesion_time": self.possesion_time,
-            "turnover_ratio": self.turnover_ratio,
+            "fumbles_lost": self.fumbles_lost,
+            "turnover_ratio": self.turnover_ratio
             # do not serialize the password, its a security breach
         }
 
