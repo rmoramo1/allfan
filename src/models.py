@@ -4190,9 +4190,9 @@ class Stats_nfl_team(db.Model):
     __tablename__ = "stats_nfl_team"
     id = db.Column(db.Integer, primary_key=True)
     season = db.Column(db.String(20), nullable=False)
-    team = db.Column(db.String(10), nullable=False)
-    conference = db.Column(db.String(10), nullable=False)
-    division = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    conference = db.Column(db.String(30), nullable=False)
+    division = db.Column(db.String(30), nullable=False)
     TP = db.Column(db.String(10), nullable=False)
     ttpg = db.Column(db.String(10), nullable=False)
     t_td = db.Column(db.String(10), nullable=False)

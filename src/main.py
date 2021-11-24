@@ -4241,7 +4241,7 @@ def createStats_nfl_team():
     # valida si estan vacios los ingresos
     # busca team en BBDD
     stats_nfl_team = Stats_nfl_team.query.filter_by(
-        team=team, conference=conference, division=division).first()
+        team=team,season=season, conference=conference, division=division).first()
     # the team was not found on the database
     if stats_nfl_team:
         return jsonify({"msg": "stats_nfl_team already exists", "team": stats_nfl_team.team}), 401
