@@ -4327,12 +4327,9 @@ def createStats_defensive_player_nfl():
     ftd = request.json.get("ftd", None)
     kb = request.json.get("kb", None)
 
-    # valida si estan vacios los ingresos
-    missing_params = [key for key, value in body.items() if value is None]
-    error = f'No {", ".join(missing_params)} was provided'
-
     # busca team en BBDD
-
+   stats_defensive_player_nfl = Stats_defensive_player_nfl.query.filter_by(
+        name=name,height=height, birth=birth, season=season).first()
     # the team was not found on the database
     if stats_defensive_player_nfl:
         return jsonify({"msg": "stats_defensive_player_nfl already exists", "name": stats_defensive_player_nfl.name}), 401
