@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User,Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, News, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Champions_League, Confederations_Cup, W_C_Qualifying, CONCACAF, Europa_League, International_Friendlies, France_League, Bundesliga, International_Matches, Italia_Serie_A, Mx_Expansion, Mx_Apertura, Spain_Primera_Liga, USA_MLS, Brazil_Serie_A, Colombia_Primera_A, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Costa_Rica_PD
+from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, News, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Champions_League, Confederations_Cup, W_C_Qualifying, CONCACAF, Europa_League, International_Friendlies, France_League, Bundesliga, International_Matches, Italia_Serie_A, Mx_Expansion, Mx_Apertura, Spain_Primera_Liga, USA_MLS, Brazil_Serie_A, Colombia_Primera_A, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Costa_Rica_PD
 
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 from flask_jwt_extended import JWTManager
@@ -54,6 +54,7 @@ def login():
     return jsonify({"token": access_token, "username": user.name})
 # ----------------------------------------------------------------------------
 
+
 @app.route("/casinos", methods=["GET"])
 def casinos():
     if request.method == "GET":
@@ -62,6 +63,7 @@ def casinos():
     else:
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
+
 
 @app.route("/mlb", methods=["GET"])
 def mlb():
@@ -72,6 +74,7 @@ def mlb():
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
 
+
 @app.route("/ncaa_football", methods=["GET"])
 #   @limiter.limit("12 per hour")
 def ncaa_football():
@@ -81,6 +84,7 @@ def ncaa_football():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
+
 
 @app.route("/nfl", methods=["GET"])
 def nfl():
@@ -513,6 +517,7 @@ def news():
         return jsonify({"msg": "no autorizado"})
 
 # --------------------------post methot--------------------------------------------
+
 
 @app.route('/casinos', methods=['POST'])
 def createCasino():
@@ -1046,7 +1051,7 @@ def createGameNfl():
         "q1_half_final_score_away", None)
     q1_half_final_score_home = request.json.get(
         "q1_half_final_score_home", None)
-    #--------
+    # --------
     q2_half_spread_away = request.json.get("q2_half_spread_away", None)
     q2_half_spread_home = request.json.get("q2_half_spread_home", None)
     q2_half_juice_spread_away = request.json.get(
@@ -1070,7 +1075,7 @@ def createGameNfl():
         "q2_half_final_score_away", None)
     q2_half_final_score_home = request.json.get(
         "q2_half_final_score_home", None)
-    #--------------
+    # --------------
     q3_half_spread_away = request.json.get("q3_half_spread_away", None)
     q3_half_spread_home = request.json.get("q3_half_spread_home", None)
     q3_half_juice_spread_away = request.json.get(
@@ -1094,7 +1099,7 @@ def createGameNfl():
         "q3_half_final_score_away", None)
     q3_half_final_score_home = request.json.get(
         "q3_half_final_score_home", None)
-    #--------------
+    # --------------
     q4_half_spread_away = request.json.get("q4_half_spread_away", None)
     q4_half_spread_home = request.json.get("q4_half_spread_home", None)
     q4_half_juice_spread_away = request.json.get(
@@ -1207,7 +1212,7 @@ def createGameNfl():
             q1_half_juice_under_home=q1_half_juice_under_home,
             q1_half_final_score_away=q1_half_final_score_away,
             q1_half_final_score_home=q1_half_final_score_home,
-            #---
+            # ---
             q2_half_spread_away=q2_half_spread_away,
             q2_half_spread_home=q2_half_spread_home,
             q2_half_juice_spread_away=q2_half_juice_spread_away,
@@ -1225,7 +1230,7 @@ def createGameNfl():
             q2_half_juice_under_home=q2_half_juice_under_home,
             q2_half_final_score_away=q2_half_final_score_away,
             q2_half_final_score_home=q2_half_final_score_home,
-            #---
+            # ---
             q3_half_spread_away=q3_half_spread_away,
             q3_half_spread_home=q3_half_spread_home,
             q3_half_juice_spread_away=q3_half_juice_spread_away,
@@ -1243,7 +1248,7 @@ def createGameNfl():
             q3_half_juice_under_home=q3_half_juice_under_home,
             q3_half_final_score_away=q3_half_final_score_away,
             q3_half_final_score_home=q3_half_final_score_home,
-            #---
+            # ---
             q4_half_spread_away=q4_half_spread_away,
             q4_half_spread_home=q4_half_spread_home,
             q4_half_juice_spread_away=q4_half_juice_spread_away,
@@ -2015,7 +2020,8 @@ def createGameNcaa_football():
         "q1_half_final_score_home", None)
 
     # busca mlb en BBDD
-    ncaa_football = Ncaa_Football.query.filter_by(home=home, away=away, date=date).first()
+    ncaa_football = Ncaa_Football.query.filter_by(
+        home=home, away=away, date=date).first()
     # the mlb was not found on the database
     if ncaa_football:
         return jsonify({"msg": "Ncaa_Football game already exists", "status": ncaa_football.status}), 401
@@ -4241,7 +4247,7 @@ def createStats_nfl_team():
     # valida si estan vacios los ingresos
     # busca team en BBDD
     stats_nfl_team = Stats_nfl_team.query.filter_by(
-        team=team,season=season, conference=conference, division=division).first()
+        team=team, season=season, conference=conference, division=division).first()
     # the team was not found on the database
     if stats_nfl_team:
         return jsonify({"msg": "stats_nfl_team already exists", "team": stats_nfl_team.team}), 401
@@ -4328,8 +4334,7 @@ def createStats_defensive_player_nfl():
     kb = request.json.get("kb", None)
 
     # busca team en BBDD
-   stats_defensive_player_nfl = Stats_defensive_player_nfl.query.filter_by(
-        name=name,height=height, birth=birth, season=season).first()
+    stats_defensive_player_nfl = Stats_defensive_player_nfl.query.filter_by(name=name, height=height, birth=birth, season=season).first()
     # the team was not found on the database
     if stats_defensive_player_nfl:
         return jsonify({"msg": "stats_defensive_player_nfl already exists", "name": stats_defensive_player_nfl.name}), 401
@@ -4682,7 +4687,9 @@ def createnews():
         return jsonify({"msg": "News created successfully"}), 200
 # Endpoint for edith records
 
-#------------put
+# ------------put
+
+
 @app.route('/news/<id>', methods=['PUT'])
 def newsEdit(id):
     news = News.query.get(id)
@@ -4700,6 +4707,7 @@ def newsEdit(id):
     news.written = written
     db.session.commit()
     return jsonify({"msg": "News edith successfully"}), 200
+
 
 @app.route('/casinos/<id>', methods=['PUT'])
 def newsCasinos(id):
@@ -5128,7 +5136,7 @@ def nflEdit(id):
     juice_under_home = request.json['juice_under_home']
     final_score_away = request.json['final_score_away']
     final_score_home = request.json['final_score_home']
-    #--
+    # --
     first_half_spread_away = request.json['first_half_spread_away']
     first_half_spread_home = request.json['first_half_spread_home']
     first_half_juice_spread_away = request.json['first_half_juice_spread_away']
@@ -5146,7 +5154,7 @@ def nflEdit(id):
     first_half_juice_under_home = request.json['first_half_juice_under_home']
     first_half_final_score_away = request.json['first_half_final_score_away']
     first_half_final_score_home = request.json['first_half_final_score_home']
-    #--
+    # --
     second_half_spread_away = request.json['second_half_spread_away']
     second_half_spread_home = request.json['second_half_spread_home']
     second_half_juice_spread_away = request.json['second_half_juice_spread_away']
@@ -5164,7 +5172,7 @@ def nflEdit(id):
     second_half_juice_under_home = request.json['second_half_juice_under_home']
     second_half_final_score_away = request.json['second_half_final_score_away']
     second_half_final_score_home = request.json['second_half_final_score_home']
-    #--
+    # --
     q1_half_spread_away = request.json['q1_half_spread_away']
     q1_half_spread_home = request.json['q1_half_spread_home']
     q1_half_juice_spread_away = request.json['q1_half_juice_spread_away']
@@ -5182,7 +5190,7 @@ def nflEdit(id):
     q1_half_juice_under_home = request.json['q1_half_juice_under_home']
     q1_half_final_score_away = request.json['q1_half_final_score_away']
     q1_half_final_score_home = request.json['q1_half_final_score_home']
-    #--
+    # --
     q2_half_spread_away = request.json['q2_half_spread_away']
     q2_half_spread_home = request.json['q2_half_spread_home']
     q2_half_juice_spread_away = request.json['q2_half_juice_spread_away']
@@ -5200,7 +5208,7 @@ def nflEdit(id):
     q2_half_juice_under_home = request.json['q2_half_juice_under_home']
     q2_half_final_score_away = request.json['q2_half_final_score_away']
     q2_half_final_score_home = request.json['q2_half_final_score_home']
-    #--
+    # --
     q3_half_spread_away = request.json['q3_half_spread_away']
     q3_half_spread_home = request.json['q3_half_spread_home']
     q3_half_juice_spread_away = request.json['q3_half_juice_spread_away']
@@ -5218,7 +5226,7 @@ def nflEdit(id):
     q3_half_juice_under_home = request.json['q3_half_juice_under_home']
     q3_half_final_score_away = request.json['q3_half_final_score_away']
     q3_half_final_score_home = request.json['q3_half_final_score_home']
-    #--
+    # --
     q4_half_spread_away = request.json['q4_half_spread_away']
     q4_half_spread_home = request.json['q4_half_spread_home']
     q4_half_juice_spread_away = request.json['q4_half_juice_spread_away']
@@ -5281,7 +5289,7 @@ def nflEdit(id):
     nfl.first_half_juice_under_home = first_half_juice_under_home
     nfl.first_half_final_score_away = first_half_final_score_away
     nfl.first_half_final_score_home = first_half_final_score_home
-    #--
+    # --
     nfl.second_half_spread_away = second_half_spread_away
     nfl.second_half_spread_home = second_half_spread_home
     nfl.second_half_juice_spread_away = second_half_juice_spread_away
@@ -5299,7 +5307,7 @@ def nflEdit(id):
     nfl.second_half_juice_under_home = second_half_juice_under_home
     nfl.second_half_final_score_away = second_half_final_score_away
     nfl.second_half_final_score_home = second_half_final_score_home
-    #--
+    # --
     nfl.q1_half_spread_away = q1_half_spread_away
     nfl.q1_half_spread_home = q1_half_spread_home
     nfl.q1_half_juice_spread_away = q1_half_juice_spread_away
@@ -5317,7 +5325,7 @@ def nflEdit(id):
     nfl.q1_half_juice_under_home = q1_half_juice_under_home
     nfl.q1_half_final_score_away = q1_half_final_score_away
     nfl.q1_half_final_score_home = q1_half_final_score_home
-    #--
+    # --
     nfl.q2_half_spread_away = q2_half_spread_away
     nfl.q2_half_spread_home = q2_half_spread_home
     nfl.q2_half_juice_spread_away = q2_half_juice_spread_away
@@ -5335,7 +5343,7 @@ def nflEdit(id):
     nfl.q2_half_juice_under_home = q2_half_juice_under_home
     nfl.q2_half_final_score_away = q2_half_final_score_away
     nfl.q2_half_final_score_home = q2_half_final_score_home
-    #--
+    # --
     nfl.q3_half_spread_away = q3_half_spread_away
     nfl.q3_half_spread_home = q3_half_spread_home
     nfl.q3_half_juice_spread_away = q3_half_juice_spread_away
@@ -5353,7 +5361,7 @@ def nflEdit(id):
     nfl.q3_half_juice_under_home = q3_half_juice_under_home
     nfl.q3_half_final_score_away = q3_half_final_score_away
     nfl.q3_half_final_score_home = q3_half_final_score_home
-    #--
+    # --
     nfl.q4_half_spread_away = q4_half_spread_away
     nfl.q4_half_spread_home = q4_half_spread_home
     nfl.q4_half_juice_spread_away = q4_half_juice_spread_away
@@ -5401,7 +5409,7 @@ def ncaa_footballEdit(id):
     juice_under_home = request.json['juice_under_home']
     final_score_away = request.json['final_score_away']
     final_score_home = request.json['final_score_home']
-    #--
+    # --
     first_half_spread_away = request.json['first_half_spread_away']
     first_half_spread_home = request.json['first_half_spread_home']
     first_half_juice_spread_away = request.json['first_half_juice_spread_away']
@@ -5419,7 +5427,7 @@ def ncaa_footballEdit(id):
     first_half_juice_under_home = request.json['first_half_juice_under_home']
     first_half_final_score_away = request.json['first_half_final_score_away']
     first_half_final_score_home = request.json['first_half_final_score_home']
-    #--
+    # --
     second_half_spread_away = request.json['second_half_spread_away']
     second_half_spread_home = request.json['second_half_spread_home']
     second_half_juice_spread_away = request.json['second_half_juice_spread_away']
@@ -5437,7 +5445,7 @@ def ncaa_footballEdit(id):
     second_half_juice_under_home = request.json['second_half_juice_under_home']
     second_half_final_score_away = request.json['second_half_final_score_away']
     second_half_final_score_home = request.json['second_half_final_score_home']
-    #--
+    # --
     q1_half_spread_away = request.json['q1_half_spread_away']
     q1_half_spread_home = request.json['q1_half_spread_home']
     q1_half_juice_spread_away = request.json['q1_half_juice_spread_away']
@@ -5497,7 +5505,7 @@ def ncaa_footballEdit(id):
     ncaa_football.first_half_juice_under_home = first_half_juice_under_home
     ncaa_football.first_half_final_score_away = first_half_final_score_away
     ncaa_football.first_half_final_score_home = first_half_final_score_home
-    #--
+    # --
     ncaa_football.second_half_spread_away = second_half_spread_away
     ncaa_football.second_half_spread_home = second_half_spread_home
     ncaa_football.second_half_juice_spread_away = second_half_juice_spread_away
@@ -5515,7 +5523,7 @@ def ncaa_footballEdit(id):
     ncaa_football.second_half_juice_under_home = second_half_juice_under_home
     ncaa_football.second_half_final_score_away = second_half_final_score_away
     ncaa_football.second_half_final_score_home = second_half_final_score_home
-    #--
+    # --
     ncaa_football.q1_half_spread_away = q1_half_spread_away
     ncaa_football.q1_half_spread_home = q1_half_spread_home
     ncaa_football.q1_half_juice_spread_away = q1_half_juice_spread_away
@@ -5535,6 +5543,7 @@ def ncaa_footballEdit(id):
     ncaa_football.q1_half_final_score_home = q1_half_final_score_home
     db.session.commit()
     return jsonify({"msg": "nfl edith successfully"}), 200
+
 
 @app.route('/nba/<id>', methods=['PUT'])
 def nbaEdit(id):
@@ -8603,6 +8612,7 @@ def news_delete(id):
     db.session.delete(news)
     db.session.commit()
     return "News was successfully deleted"
+
 
 @app.route("/casinos/<id>", methods=["DELETE"])
 def casinos_delete(id):
