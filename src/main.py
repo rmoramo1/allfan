@@ -831,7 +831,7 @@ def createGameNba():
     nba = Nba.query.filter_by(home=home, away=away, date=date).first()
     # the mlb was not found on the database
     if nba:
-        return jsonify({"msg": "nba game already exists", "status": nba.home "vrs" nba.away}), 401
+        return jsonify({"msg": "nba game already exists", "status": nba.home, "vrs": nba.away}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
