@@ -828,14 +828,14 @@ def createGameNba():
     q4_half_final_score_home = request.json.get(
         "q4_half_final_score_home", None)
     # busca mlb en BBDD
-    nfl = Nfl.query.filter_by(home=home, away=away, date=date).first()
+    nba = Nba.query.filter_by(home=home, away=away, date=date).first()
     # the mlb was not found on the database
-    if nfl:
-        return jsonify({"msg": "Nfl game already exists", "status": nfl.status}), 401
+    if nba:
+        return jsonify({"msg": "nba game already exists", "status": nba.home "vrs" nba.away}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
-        nfl = Nfl(
+        nba = Nba(
             date=date,
             hour=hour,
             week=week,
