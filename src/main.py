@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, News, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Champions_League, Confederations_Cup, W_C_Qualifying, CONCACAF, Europa_League, International_Friendlies, France_League, Bundesliga, International_Matches, Italia_Serie_A, Mx_Expansion, Mx_Apertura, Spain_Primera_Liga, USA_MLS, Brazil_Serie_A, Colombia_Primera_A, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Costa_Rica_PD
+from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Champions_League, Confederations_Cup, W_C_Qualifying, CONCACAF, Europa_League, International_Friendlies, France_League, Bundesliga, International_Matches, Italia_Serie_A, Mx_Expansion, Mx_Apertura, Spain_Primera_Liga, USA_MLS, Brazil_Serie_A, Colombia_Primera_A, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Costa_Rica_PD
 
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 from flask_jwt_extended import JWTManager
@@ -503,16 +503,6 @@ def stats_punting_player_nfl():
     if request.method == "GET":
         records = Stats_punting_player_nfl().query.all()
         return jsonify([Stats_punting_player_nfl.serialize(record) for record in records])
-    else:
-        return jsonify({"msg": "no autorizado"})
- # --------------------------------------------------------------------
-
-
-@app.route("/news", methods=["GET"])
-def news():
-    if request.method == "GET":
-        records = News().query.all()
-        return jsonify([News.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
 
@@ -4663,57 +4653,7 @@ def createStats_punting_player_nfl():
         return jsonify({"msg": "Game stats_punting_player_nfl created successfully"}), 200
 
 
-@app.route('/news', methods=['POST'])
-def createnews():
-    date = request.json.get("date", None)
-    title = request.json.get("title", None)
-    url_image = request.json.get("url_image", None)
-    short_description = request.json.get("short_description", None)
-    news_post = request.json.get("news_post", None)
-    written = request.json.get("written", None)
-
-    # busca team en BBDD
-    news = News.query.filter_by(date=date, title=title).first()
-    # the team was not found on the database
-    if news:
-        return jsonify({"msg": "news already exists", "title": news.title}), 401
-    else:
-        # crea encuentro nuevo
-        # crea registro nuevo en BBDD de
-        news = News(
-            date=date,
-            title=title,
-            url_image=url_image,
-            short_description=short_description,
-            news_post=news_post,
-            written=written
-        )
-        db.session.add(news)
-        db.session.commit()
-        return jsonify({"msg": "News created successfully"}), 200
-# Endpoint for edith records
-
 # ------------put
-
-
-@app.route('/news/<id>', methods=['PUT'])
-def newsEdit(id):
-    news = News.query.get(id)
-    date = request.json['date']
-    title = request.json['title']
-    url_image = request.json['url_image']
-    short_description = request.json['short_description']
-    news_post = request.json['news_post']
-    written = request.json['written']
-    news.date = date
-    news.title = title
-    news.url_image = url_image
-    news.short_description = short_description
-    news.news_post = news_post
-    news.written = written
-    db.session.commit()
-    return jsonify({"msg": "News edith successfully"}), 200
-
 
 @app.route('/casinos/<id>', methods=['PUT'])
 def newsCasinos(id):
@@ -8615,13 +8555,6 @@ def stats_punting_player_nflEdit(id):
 
 # Endpoint for deleting a record
 
-
-@app.route("/news/<id>", methods=["DELETE"])
-def news_delete(id):
-    news = News.query.get(id)
-    db.session.delete(news)
-    db.session.commit()
-    return "News was successfully deleted"
 
 
 @app.route("/casinos/<id>", methods=["DELETE"])
