@@ -5510,6 +5510,9 @@ def nbaEdit(id):
     date = request.json['date']
     hour = request.json['hour']
     status = request.json['status']
+    casino = request.json['casino']
+    rotation_home = request.json['rotation_home']
+    rotation_away = request.json['rotation_away']
     preview = request.json['preview']
     img_preview = request.json['img_preview']
     away = request.json['away']
@@ -5589,6 +5592,9 @@ def nbaEdit(id):
     nba.preview = preview
     nba.img_preview = img_preview
     nba.status = status
+    nba.casino = casino
+    nba.rotation_home = rotation_home
+    nba.rotation_away = rotation_away
     nba.away = away
     nba.home = home
     nba.spread_away = spread_away
