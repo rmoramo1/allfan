@@ -3893,14 +3893,14 @@ def createStats_nba_team():
     ftm = request.json.get("ftm", None)
     fta = request.json.get("fta", None)
     ft_AVG = request.json.get("ft_AVG", None)
-    tt_away = request.json.get("tt_away", None)
     Or = request.json.get("Or", None)
     dr = request.json.get("dr", None)
     reb = request.json.get("reb", None)
     ast = request.json.get("ast", None)
     stl = request.json.get("stl", None)
     blk = request.json.get("blk", None)
-    pf = request.json.get("final_score_home", None)
+    to = request.json.get("to", None)
+    pf = request.json.get("pf", None)
     # busca team en BBDD
     stats_nba_team = Stats_nba_team.query.filter_by(team=team).first()
     # the team was not found on the database
@@ -3921,7 +3921,6 @@ def createStats_nba_team():
             fg_AVG=fg_AVG,
             three_pm=three_pm,
             three_pa=three_pa,
-            moneyLineAway=moneyLineAway,
             three_p_AVG=three_p_AVG,
             ftm=ftm,
             fta=fta,
