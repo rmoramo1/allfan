@@ -652,6 +652,9 @@ def createGameNba():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
     status = request.json.get("status", None)
+    casino = request.json.get("casino", None)
+    rotation_home = request.json.get("rotation_home", None)
+    rotation_away = request.json.get("rotation_away", None)
     away = request.json.get("away", None)
     home = request.json.get("home", None)
     spread_away = request.json.get("spread_away", None)
@@ -764,6 +767,9 @@ def createGameNba():
             date=date,
             hour=hour,
             status=status,
+            casino=casino,
+            rotation_home=rotation_home,
+            rotation_away=rotation_away,
             away=away,
             home=home,
             spread_away=spread_away,
