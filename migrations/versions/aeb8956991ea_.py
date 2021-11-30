@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 12af5aa0162d
+Revision ID: aeb8956991ea
 Revises: 
-Create Date: 2021-11-16 10:37:55.484918
+Create Date: 2021-11-30 11:38:25.445410
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '12af5aa0162d'
+revision = 'aeb8956991ea'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -212,6 +212,11 @@ def upgrade():
     sa.Column('tt_home_1H', sa.String(length=10), nullable=False),
     sa.Column('juice_over_home_1H', sa.String(length=10), nullable=False),
     sa.Column('juice_under_home_1H', sa.String(length=10), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('casinos',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=20), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('champions_league',
@@ -906,6 +911,9 @@ def upgrade():
     sa.Column('date', sa.String(length=12), nullable=False),
     sa.Column('hour', sa.String(length=20), nullable=False),
     sa.Column('status', sa.String(length=15), nullable=False),
+    sa.Column('casino', sa.String(length=20), nullable=False),
+    sa.Column('rotation_home', sa.String(length=10), nullable=False),
+    sa.Column('rotation_away', sa.String(length=10), nullable=False),
     sa.Column('away', sa.String(length=50), nullable=False),
     sa.Column('home', sa.String(length=50), nullable=False),
     sa.Column('spread_away', sa.String(length=10), nullable=False),
@@ -1228,22 +1236,15 @@ def upgrade():
     sa.Column('q1_half_final_score_home', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('news',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('date', sa.String(length=12), nullable=False),
-    sa.Column('title', sa.String(length=50), nullable=False),
-    sa.Column('url_image', sa.String(length=50), nullable=False),
-    sa.Column('short_description', sa.String(length=1000), nullable=False),
-    sa.Column('news_post', sa.Text(), nullable=False),
-    sa.Column('written', sa.String(length=50), nullable=False),
-    sa.PrimaryKeyConstraint('id')
-    )
     op.create_table('nfl',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('date', sa.String(length=12), nullable=False),
     sa.Column('hour', sa.String(length=20), nullable=False),
     sa.Column('week', sa.String(length=10), nullable=False),
     sa.Column('status', sa.String(length=15), nullable=False),
+    sa.Column('casino', sa.String(length=20), nullable=False),
+    sa.Column('rotation_home', sa.String(length=10), nullable=False),
+    sa.Column('rotation_away', sa.String(length=10), nullable=False),
     sa.Column('away', sa.String(length=50), nullable=False),
     sa.Column('home', sa.String(length=50), nullable=False),
     sa.Column('spread_away', sa.String(length=10), nullable=False),
@@ -1477,10 +1478,10 @@ def upgrade():
     sa.Column('height', sa.String(length=10), nullable=False),
     sa.Column('weight', sa.String(length=10), nullable=False),
     sa.Column('birth', sa.String(length=10), nullable=False),
-    sa.Column('position', sa.String(length=20), nullable=False),
-    sa.Column('dorsal', sa.String(length=20), nullable=False),
-    sa.Column('season', sa.String(length=20), nullable=False),
-    sa.Column('team', sa.String(length=10), nullable=False),
+    sa.Column('position', sa.String(length=5), nullable=False),
+    sa.Column('dorsal', sa.String(length=10), nullable=False),
+    sa.Column('season', sa.String(length=10), nullable=False),
+    sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
     sa.Column('tack_solo', sa.String(length=10), nullable=False),
     sa.Column('tack_ast', sa.String(length=10), nullable=False),
@@ -1505,10 +1506,10 @@ def upgrade():
     sa.Column('height', sa.String(length=10), nullable=False),
     sa.Column('weight', sa.String(length=10), nullable=False),
     sa.Column('birth', sa.String(length=10), nullable=False),
-    sa.Column('position', sa.String(length=20), nullable=False),
-    sa.Column('dorsal', sa.String(length=20), nullable=False),
-    sa.Column('season', sa.String(length=20), nullable=False),
-    sa.Column('team', sa.String(length=10), nullable=False),
+    sa.Column('position', sa.String(length=5), nullable=False),
+    sa.Column('dorsal', sa.String(length=10), nullable=False),
+    sa.Column('season', sa.String(length=10), nullable=False),
+    sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
     sa.Column('fgm', sa.String(length=10), nullable=False),
     sa.Column('fga', sa.String(length=10), nullable=False),
@@ -1623,7 +1624,9 @@ def upgrade():
     op.create_table('stats_nba_team',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('season', sa.String(length=10), nullable=False),
-    sa.Column('team', sa.String(length=20), nullable=False),
+    sa.Column('team', sa.String(length=30), nullable=False),
+    sa.Column('conference', sa.String(length=30), nullable=False),
+    sa.Column('division', sa.String(length=30), nullable=False),
     sa.Column('pts', sa.String(length=10), nullable=False),
     sa.Column('fmg', sa.String(length=10), nullable=False),
     sa.Column('fga', sa.String(length=10), nullable=False),
@@ -1648,9 +1651,9 @@ def upgrade():
     op.create_table('stats_nfl_team',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('season', sa.String(length=20), nullable=False),
-    sa.Column('team', sa.String(length=10), nullable=False),
-    sa.Column('conference', sa.String(length=10), nullable=False),
-    sa.Column('division', sa.String(length=10), nullable=False),
+    sa.Column('team', sa.String(length=30), nullable=False),
+    sa.Column('conference', sa.String(length=30), nullable=False),
+    sa.Column('division', sa.String(length=30), nullable=False),
     sa.Column('TP', sa.String(length=10), nullable=False),
     sa.Column('ttpg', sa.String(length=10), nullable=False),
     sa.Column('t_td', sa.String(length=10), nullable=False),
@@ -1748,10 +1751,10 @@ def upgrade():
     sa.Column('height', sa.String(length=10), nullable=False),
     sa.Column('weight', sa.String(length=10), nullable=False),
     sa.Column('birth', sa.String(length=10), nullable=False),
-    sa.Column('position', sa.String(length=20), nullable=False),
-    sa.Column('dorsal', sa.String(length=20), nullable=False),
-    sa.Column('season', sa.String(length=20), nullable=False),
-    sa.Column('team', sa.String(length=10), nullable=False),
+    sa.Column('position', sa.String(length=5), nullable=False),
+    sa.Column('dorsal', sa.String(length=10), nullable=False),
+    sa.Column('season', sa.String(length=10), nullable=False),
+    sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
     sa.Column('Cmp', sa.String(length=10), nullable=False),
     sa.Column('pass_att', sa.String(length=10), nullable=False),
@@ -1793,10 +1796,10 @@ def upgrade():
     sa.Column('height', sa.String(length=10), nullable=False),
     sa.Column('weight', sa.String(length=10), nullable=False),
     sa.Column('birth', sa.String(length=10), nullable=False),
-    sa.Column('position', sa.String(length=20), nullable=False),
-    sa.Column('dorsal', sa.String(length=20), nullable=False),
-    sa.Column('season', sa.String(length=20), nullable=False),
-    sa.Column('team', sa.String(length=10), nullable=False),
+    sa.Column('position', sa.String(length=5), nullable=False),
+    sa.Column('dorsal', sa.String(length=10), nullable=False),
+    sa.Column('season', sa.String(length=10), nullable=False),
+    sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
     sa.Column('punts', sa.String(length=10), nullable=False),
     sa.Column('yards', sa.String(length=10), nullable=False),
@@ -1818,10 +1821,10 @@ def upgrade():
     sa.Column('height', sa.String(length=10), nullable=False),
     sa.Column('weight', sa.String(length=10), nullable=False),
     sa.Column('birth', sa.String(length=10), nullable=False),
-    sa.Column('position', sa.String(length=20), nullable=False),
-    sa.Column('dorsal', sa.String(length=20), nullable=False),
-    sa.Column('season', sa.String(length=20), nullable=False),
-    sa.Column('team', sa.String(length=10), nullable=False),
+    sa.Column('position', sa.String(length=5), nullable=False),
+    sa.Column('dorsal', sa.String(length=10), nullable=False),
+    sa.Column('season', sa.String(length=10), nullable=False),
+    sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
     sa.Column('kick_returns', sa.String(length=10), nullable=False),
     sa.Column('kick_returns_yards', sa.String(length=10), nullable=False),
@@ -1908,7 +1911,6 @@ def downgrade():
     op.drop_table('spain_primera_liga')
     op.drop_table('nhl')
     op.drop_table('nfl')
-    op.drop_table('news')
     op.drop_table('ncaa_football')
     op.drop_table('ncaa_basketball')
     op.drop_table('ncaa_baseball')
@@ -1932,6 +1934,7 @@ def downgrade():
     op.drop_table('confederations_cup')
     op.drop_table('colombia_primera_A')
     op.drop_table('champions_league')
+    op.drop_table('casinos')
     op.drop_table('bundesliga')
     op.drop_table('brazil_serie_A')
     op.drop_table('boxeo')
