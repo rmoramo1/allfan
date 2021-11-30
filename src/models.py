@@ -3803,7 +3803,6 @@ class Stats_nba_team(db.Model):
     to = db.Column(db.String(10), default=0, nullable=False)
     pf = db.Column(db.String(10), default=0, nullable=False)
     # -----------------------------------------------------------------------
-
     def serialize(self):
         return {
             "id": self.id,
@@ -3829,7 +3828,7 @@ class Stats_nba_team(db.Model):
             "stl": self.stl,
             "blk": self.blk,
             "to": self.to,
-            "pf": self.pf,
+            "pf": self.pf
             # do not serialize the password, its a security breach
         }
 
@@ -3873,7 +3872,7 @@ class Stats_mlb_team(db.Model):
             "diff": self.diff,
             "strk": self.strk,
             "L10": self.L10,
-            "poff": self.poff,
+            "poff": self.poff
             # do not serialize the password, its a security breach
         }
 
