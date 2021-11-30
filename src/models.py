@@ -3780,7 +3780,9 @@ class Stats_nba_team(db.Model):
     __tablename__ = "stats_nba_team"
     id = db.Column(db.Integer, primary_key=True)
     season = db.Column(db.String(10), nullable=False)
-    team = db.Column(db.String(20), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    conference = db.Column(db.String(30), nullable=False)
+    division = db.Column(db.String(30), nullable=False)
     pts = db.Column(db.String(10), default=0, nullable=False)
     fmg = db.Column(db.String(10), default=0, nullable=False)
     fga = db.Column(db.String(10), default=0, nullable=False)
@@ -3807,6 +3809,8 @@ class Stats_nba_team(db.Model):
             "id": self.id,
             "season": self.season,
             "team": self.team,
+            "conference": self.conference,
+            "division": self.division,
             "pts": self.pts,
             "fmg": self.fmg,
             "fga": self.fga,

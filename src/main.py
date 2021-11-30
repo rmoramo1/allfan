@@ -3741,6 +3741,8 @@ def createColombia_Primera_A():
 def createStats_nba_team():
     season = request.json.get("season", None)
     team = request.json.get("team", None)
+    conference = request.json.get("conference", None)
+    division = request.json.get("division", None)
     pts = request.json.get("pts", None)
     fmg = request.json.get("fmg", None)
     fga = request.json.get("fga", None)
@@ -3771,6 +3773,8 @@ def createStats_nba_team():
         stats_nba_team = Stats_nba_team(
             season=season,
             team=team,
+            conference=conference,
+            division=division,
             pts=pts,
             fmg=fmg,
             fga=fga,
@@ -7836,6 +7840,8 @@ def stats_nba_teamEdit(id):
     stats_nba_team = Stats_nba_team.query.get(id)
     season = request.json['season']
     team = request.json['team']
+    conference = request.json['conference']
+    division = request.json['division']
     pts = request.json['pts']
     fmg = request.json['fmg']
     fga = request.json['fga']
@@ -7858,6 +7864,8 @@ def stats_nba_teamEdit(id):
 
     stats_nba_team.season = season
     stats_nba_team.team = team
+    stats_nba_team.conference = conference
+    stats_nba_team.division = division
     stats_nba_team.pts = pts
     stats_nba_team.fmg = fmg
     stats_nba_team.fga = fga
