@@ -22,6 +22,7 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Casinos(db.Model):
     __tablename__ = 'casinos'
     # Here we define columns for the table person
@@ -37,6 +38,7 @@ class Casinos(db.Model):
             "name": self.name,
             # do not serialize the password, its a security breach
         }
+
 
 class Mlb(db.Model):
     __tablename__ = "mlb"
@@ -1720,9 +1722,6 @@ class Golf(db.Model):
         }
 
 
-
-
-
 class Champions_League(db.Model):
     __tablename__ = "champions_league"
     id = db.Column(db.Integer, primary_key=True)
@@ -1872,7 +1871,8 @@ class Confederations_Cup(db.Model):
     H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
     tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
+        db.String(10), default=-110, nullable=False)
     tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home_1H = db.Column(
@@ -3598,6 +3598,7 @@ class Colombia_Primera_A(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Costa_Rica_PD(db.Model):
     __tablename__ = "costa_rica_PD"
     id = db.Column(db.Integer, primary_key=True)
@@ -3783,6 +3784,7 @@ class Stats_nba_team(db.Model):
     to = db.Column(db.String(10), default=0, nullable=False)
     pf = db.Column(db.String(10), default=0, nullable=False)
     # -----------------------------------------------------------------------
+
     def serialize(self):
         return {
             "id": self.id,
@@ -3976,7 +3978,7 @@ class Stats_nhl_player(db.Model):
     dorsal = db.Column(db.String(20), nullable=False)
     position = db.Column(db.String(20), nullable=False)
     gp = db.Column(db.String(20), nullable=False)
-    
+
     g = db.Column(db.String(10), default=0, nullable=False)
     a = db.Column(db.String(10), default=0, nullable=False)
     pts = db.Column(db.String(10), default=0, nullable=False)
@@ -4490,7 +4492,7 @@ class Stats_kiking_player_nfl(db.Model):
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     games = db.Column(db.String(10), nullable=False)
-    
+
     fgm = db.Column(db.String(10), nullable=False)
     fga = db.Column(db.String(10), nullable=False)
     fg_AVG = db.Column(db.String(10), nullable=False)

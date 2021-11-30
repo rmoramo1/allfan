@@ -386,7 +386,14 @@ def stats_nba_player():
     else:
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
-
+@app.route("/stats_nba_team", methods=["GET"])
+def stats_nba_team():
+    if request.method == "GET":
+        records = Stats_nba_team().query.all()
+        return jsonify([Stats_nba_team.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+ # --------------------------------------------------------------------
 
 @app.route("/stats_mlb_team", methods=["GET"])
 def stats_mlb_team():
