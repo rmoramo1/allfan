@@ -8875,7 +8875,7 @@ def casinos_delete(id):
 
 @app.route("/mlb/<id>", methods=["DELETE"])
 def mlb_delete(id):
-    mlb = Nlb.query.get(id)
+    mlb = Mlb.query.get(id)
     db.session.delete(mlb)
     db.session.commit()
     return "mlb was successfully deleted"
