@@ -4861,12 +4861,10 @@ def mlbEdit(id):
     mlb = Mlb.query.get(id)
     date = request.json['date']
     hour = request.json['hour']
-    preview = request.json['preview']
-    img_preview = request.json['img_preview']
     status = request.json['status']
+    casino = request.json['casino']
     rotation_away = request.json['rotation_away']
     rotation_home = request.json['rotation_home']
-    casino = request.json['casino']
     away = request.json['away']
     pitcher_a = request.json['pitcher_a']
     home = request.json['home']
@@ -4958,8 +4956,6 @@ def mlbEdit(id):
     sh_25inning = request.json['sh_25inning']
     mlb.date = date
     mlb.hour = hour
-    mlb.preview = preview
-    mlb.img_preview = img_preview
     mlb.status = status
     mlb.rotation_away = rotation_away
     mlb.rotation_home = rotation_home
