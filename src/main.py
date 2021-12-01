@@ -541,7 +541,10 @@ def createGameMlb():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
     status = request.json.get("status", None)
-    away = request.json.get("away", None)
+    rotation_away = request.json.get("rotation_away", None)
+    rotation_home = request.json.get("rotation_home", None)
+    status = request.json.get("status", None)
+    casino = request.json.get("casino", None)
     pitcher_a = request.json.get("pitcher_a", None)
     home = request.json.get("home", None)
     pitcher_h = request.json.get("pitcher_h", None)
@@ -640,8 +643,50 @@ def createGameMlb():
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
         mlb = Mlb(
-            date=date, hour=hour, status=status, away=away, pitcher_a=pitcher_a, home=home, pitcher_h=pitcher_h,
-            rl_away=rl_away, rl_home=rl_home, juice_rl_away=juice_rl_away, juice_rl_home=juice_rl_home,         moneyLineAway=moneyLineAway, moneyLineHome=moneyLineHome, total=total, juice_total_over=juice_total_over, juice_total_under=juice_total_under, tt_away=tt_away, juice_over_away=juice_over_away, juice_under_away=juice_under_away, tt_home=tt_home, juice_over_home=juice_over_home, juice_under_home=juice_under_home, final_score_away=final_score_away, final_score_home=final_score_home, rl_away_f5=rl_away_f5, rl_home_f5=rl_home_f5, juice_rl_away_f5=juice_rl_away_f5, juice_rl_home_f5=juice_rl_home_f5, moneyLineAway_f5=moneyLineAway_f5, moneyLineHome_f5=moneyLineHome_f5, total_f5=total_f5, juice_total_over_f5=juice_total_over_f5, juice_total_under_f5=juice_total_under_f5, tt_away_f5=tt_away_f5, juice_over_away_f5=juice_over_away_f5, juice_under_away_f5=juice_under_away_f5, juice_over_home_f5=juice_over_home_f5, juice_under_home_f5=juice_under_home_f5, fs_away_f5=fs_away_f5, fs_home_f5=fs_home_f5, sa_1inning=sa_1inning, sh_1inning=sh_1inning, sa_2inning=sa_2inning, sh_2inning=sh_2inning, sa_3inning=sa_3inning, sh_3inning=sh_3inning, sa_4inning=sa_4inning, sh_4inning=sh_4inning, sa_5inning=sa_5inning, sh_5inning=sh_5inning, sa_6inning=sa_6inning, sh_6inning=sh_6inning, sa_7inning=sa_7inning, sh_7inning=sh_7inning, sa_8inning=sa_8inning, sh_8inning=sh_8inning, sa_9inning=sa_9inning, sh_9inning=sh_9inning, sa_10inning=sa_10inning, sh_10inning=sh_10inning, sa_11inning=sa_11inning, sh_11inning=sh_11inning, sa_12inning=sa_12inning, sh_12inning=sh_12inning, sa_13inning=sa_13inning, sh_13inning=sh_13inning, sa_14inning=sa_14inning, sh_14inning=sh_14inning, sa_15inning=sa_15inning, sh_15inning=sh_15inning, sa_16inning=sa_16inning, sh_16inning=sh_16inning, sa_17inning=sa_17inning, sa_18inning=sa_18inning, sa_19inning=sa_19inning, sa_20inning=sa_20inning, sa_21inning=sa_21inning, sa_22inning=sa_22inning, sa_23inning=sa_23inning, sa_24inning=sa_24inning, sa_25inning=sa_25inning)
+            date=date, 
+            hour=hour, 
+            status=status, 
+            rotation_away=rotation_away, 
+            rotation_home=rotation_home, 
+            casino=casino, 
+            away=away, 
+            pitcher_a=pitcher_a, 
+            home=home, 
+            pitcher_h=pitcher_h,
+            rl_away=rl_away, 
+            rl_home=rl_home, 
+            juice_rl_away=juice_rl_away, 
+            juice_rl_home=juice_rl_home,         
+            moneyLineAway=moneyLineAway, 
+            moneyLineHome=moneyLineHome, 
+            total=total, 
+            juice_total_over=juice_total_over, 
+            juice_total_under=juice_total_under, 
+            tt_away=tt_away, 
+            juice_over_away=juice_over_away, 
+            juice_under_away=juice_under_away, 
+            tt_home=tt_home, 
+            juice_over_home=juice_over_home, 
+            juice_under_home=juice_under_home, 
+            final_score_away=final_score_away, 
+            final_score_home=final_score_home, 
+            rl_away_f5=rl_away_f5, 
+            rl_home_f5=rl_home_f5, 
+            juice_rl_away_f5=juice_rl_away_f5, 
+            juice_rl_home_f5=juice_rl_home_f5, 
+            moneyLineAway_f5=moneyLineAway_f5, 
+            moneyLineHome_f5=moneyLineHome_f5, 
+            total_f5=total_f5, 
+            juice_total_over_f5=juice_total_over_f5, 
+            juice_total_under_f5=juice_total_under_f5, 
+            tt_away_f5=tt_away_f5, 
+            juice_over_away_f5=juice_over_away_f5, 
+            juice_under_away_f5=juice_under_away_f5, 
+            juice_over_home_f5=juice_over_home_f5, 
+            juice_under_home_f5=juice_under_home_f5, 
+            fs_away_f5=fs_away_f5,
+            fs_home_f5=fs_home_f5, 
+            sa_1inning=sa_1inning, sh_1inning=sh_1inning, sa_2inning=sa_2inning, sh_2inning=sh_2inning, sa_3inning=sa_3inning, sh_3inning=sh_3inning, sa_4inning=sa_4inning, sh_4inning=sh_4inning, sa_5inning=sa_5inning, sh_5inning=sh_5inning, sa_6inning=sa_6inning, sh_6inning=sh_6inning, sa_7inning=sa_7inning, sh_7inning=sh_7inning, sa_8inning=sa_8inning, sh_8inning=sh_8inning, sa_9inning=sa_9inning, sh_9inning=sh_9inning, sa_10inning=sa_10inning, sh_10inning=sh_10inning, sa_11inning=sa_11inning, sh_11inning=sh_11inning, sa_12inning=sa_12inning, sh_12inning=sh_12inning, sa_13inning=sa_13inning, sh_13inning=sh_13inning, sa_14inning=sa_14inning, sh_14inning=sh_14inning, sa_15inning=sa_15inning, sh_15inning=sh_15inning, sa_16inning=sa_16inning, sh_16inning=sh_16inning, sa_17inning=sa_17inning, sa_18inning=sa_18inning, sa_19inning=sa_19inning, sa_20inning=sa_20inning, sa_21inning=sa_21inning, sa_22inning=sa_22inning, sa_23inning=sa_23inning, sa_24inning=sa_24inning, sa_25inning=sa_25inning)
         db.session.add(mlb)
         db.session.commit()
         return jsonify({"msg": "User created successfully"}), 200
@@ -4819,6 +4864,9 @@ def mlbEdit(id):
     preview = request.json['preview']
     img_preview = request.json['img_preview']
     status = request.json['status']
+    rotation_away = request.json['rotation_away']
+    rotation_home = request.json['rotation_home']
+    casino = request.json['casino']
     away = request.json['away']
     pitcher_a = request.json['pitcher_a']
     home = request.json['home']
@@ -4913,6 +4961,9 @@ def mlbEdit(id):
     mlb.preview = preview
     mlb.img_preview = img_preview
     mlb.status = status
+    mlb.rotation_away = rotation_away
+    mlb.rotation_home = rotation_home
+    mlb.casino = casino
     mlb.away = away
     mlb.pitcher_a = pitcher_a
     mlb.home = home
