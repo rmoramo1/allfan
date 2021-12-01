@@ -3986,6 +3986,7 @@ def createStats_nba_player():
             college=college,
             season=season,
             team=team,
+
             dorsal=dorsal,
             minutes=minutes,
             position=position,
@@ -3996,7 +3997,6 @@ def createStats_nba_player():
             three_pt=three_pt,
             three_pt_AVG=three_pt_AVG,
             ft=ft,
-            fta=fta,
             ft_AVG=ft_AVG,
             Or=Or,
             dr=dr,

@@ -4121,6 +4121,7 @@ class Stats_nba_player(db.Model):
     college = db.Column(db.String(15), nullable=False)
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(15), nullable=False)
+    
     dorsal = db.Column(db.String(20), nullable=False)
     minutes = db.Column(db.String(10), default=0, nullable=False)
     position = db.Column(db.String(10), default=0, nullable=False)
