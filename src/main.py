@@ -4182,7 +4182,7 @@ def createStats_mlb_team():
     league = request.json.get("league", None)
     division = request.json.get("division", None)
     w = request.json.get("w", None)
-    l = request.json.get("l", None)
+    L = request.json.get("L", None)
     pct = request.json.get("pct", None)
     gb = request.json.get("gb", None)
     home = request.json.get("home", None)
@@ -4209,7 +4209,7 @@ def createStats_mlb_team():
             league=league,
             division=division,
             w=w,
-            l=l,
+            L=L,
             pct=pct,
             gb=gb,
             home=home,
