@@ -4297,8 +4297,8 @@ class Stats_mlb_player(db.Model):
     team = db.Column(db.String(20), nullable=False)
     dorsal = db.Column(db.String(20), nullable=False)
     position = db.Column(db.String(20), nullable=False)
-    gp = db.Column(db.String(20), nullable=False)
 
+    gp = db.Column(db.String(20), nullable=False)
     ab = db.Column(db.String(10), default=0, nullable=False)
     r = db.Column(db.String(10), default=0, nullable=False)
     h = db.Column(db.String(10), default=0, nullable=False)

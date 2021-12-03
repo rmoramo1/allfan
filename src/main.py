@@ -4236,6 +4236,7 @@ def createStats_mlb_player():
     team = request.json.get("team", None)
     dorsal = request.json.get("dorsal", None)
     position = request.json.get("position", None)
+
     gp = request.json.get("gp", None)
     ab = request.json.get("ab", None)
     r = request.json.get("r", None)
@@ -4273,7 +4274,7 @@ def createStats_mlb_player():
             dorsal=dorsal,
             position=position,
             gp=gp,
-            adb=adb,
+            ab=ab,
             r=r,
             h=h,
             two_b=two_b,
