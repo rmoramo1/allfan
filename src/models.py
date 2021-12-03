@@ -1814,6 +1814,7 @@ class Nhl(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    casino = db.Column(db.String(15), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     puck_line_away = db.Column(db.String(10), nullable=False)
@@ -1865,6 +1866,7 @@ class Nhl(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "casino": self.casino,
             "away": self.away,
             "home": self.home,
 
