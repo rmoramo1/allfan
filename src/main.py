@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Champions_League, Confederations_Cup, W_C_Qualifying, CONCACAF, Europa_League, International_Friendlies, France_League, Bundesliga, International_Matches, Italia_Serie_A, Mx_Expansion, Mx_Apertura, Spain_Primera_Liga, USA_MLS, Brazil_Serie_A, Colombia_Primera_A, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Costa_Rica_PD
+from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Champions_League, Confederations_Cup, W_C_Qualifying, CONCACAF, Europa_League, International_Friendlies, France_League, Bundesliga, International_Matches, Italia_Serie_A, Mx_Expansion, Mx_Apertura, Spain_Primera_Liga, USA_MLS, Brazil_Serie_A, Colombia_Primera_A, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team,Stats_mlb_player, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Costa_Rica_PD
 
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 from flask_jwt_extended import JWTManager
