@@ -4344,7 +4344,7 @@ class Stats_mlb_player(db.Model):
             "obp": self.obp,
             "slg": self.slg,
             "ops": self.ops,
-            "war": self.war,
+            "war": self.war
             # do not serialize the password, its a security breach
         }
 
