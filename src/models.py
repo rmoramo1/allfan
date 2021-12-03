@@ -1814,6 +1814,8 @@ class Nhl(db.Model):
     date = db.Column(db.String(12), nullable=False)
     hour = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    rotation_away = db.Column(db.String(15), nullable=False)
+    rotation_home = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
@@ -1867,6 +1869,8 @@ class Nhl(db.Model):
             "id": self.id,
             "status": self.status,
             "casino": self.casino,
+            "rotation_away": self.rotation_away,
+            "rotation_home": self.rotation_home,
             "away": self.away,
             "home": self.home,
 

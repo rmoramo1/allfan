@@ -1026,6 +1026,8 @@ def createGameNhl():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
     status = request.json.get("status", None)
+    rotation_away = request.json.get("rotation_away", None)
+    rotation_home = request.json.get("rotation_home", None)
     casino = request.json.get("casino", None)
     away = request.json.get("away", None)
     home = request.json.get("home", None)
@@ -1081,6 +1083,8 @@ def createGameNhl():
             date=date,
             hour=hour,
             status=status,
+            rotation_away=rotation_away,
+            rotation_home=rotation_home,
             casino=casino,
             away=away,
             preview=preview,
@@ -6130,6 +6134,8 @@ def nhlEdit(id):
     date = request.json['date']
     hour = request.json['hour']
     status = request.json['status']
+    rotation_away = request.json['rotation_away']
+    rotation_home = request.json['rotation_home']
     casino = request.json['casino']
     preview = request.json['preview']
     img_preview = request.json['img_preview']
@@ -6178,6 +6184,8 @@ def nhlEdit(id):
     nhl.preview = preview
     nhl.img_preview = img_preview
     nhl.status = status
+    nhl.rotation_away = rotation_away
+    nhl.rotation_home = rotation_home
     nhl.casino = casino
     nhl.away = away
     nhl.home = home
