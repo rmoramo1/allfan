@@ -4070,7 +4070,7 @@ def createStats_nhl_team():
     conference = request.json.get("conference", None)
     division = request.json.get("division", None)
     w = request.json.get("w", None)
-    l = request.json.get("l", None)
+    L = request.json.get("l", None)
     Ga_a = request.json.get("Ga_a", None)
     otl = request.json.get("otl", None)
     sa = request.json.get("sa", None)
@@ -4097,7 +4097,7 @@ def createStats_nhl_team():
             conference=conference,
             division=division,
             w=w,
-            l=l,
+            L=L,
             Ga_a=Ga_a,
             otl=otl,
             sa=sa,
