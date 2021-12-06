@@ -6140,6 +6140,8 @@ def nhlEdit(id):
     home = request.json['home']
     puck_line_away = request.json['puck_line_away']
     puck_line_home = request.json['puck_line_home']
+    juice_puck_away = request.json['juice_puck_away']
+    juice_puck_home = request.json['juice_puck_home']
     moneyLineAway = request.json['moneyLineAway']
     moneyLineHome = request.json['moneyLineHome']
     total = request.json['total']
