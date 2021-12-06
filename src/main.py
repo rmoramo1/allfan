@@ -6239,9 +6239,6 @@ def boxeoEdit(id):
     week = request.json['week']
     status = request.json['status']
     casino = request.json['casino']
-    preview = request.json['preview']
-    img_preview = request.json['img_preview']
-
     event = request.json['event']
     rounds = request.json['rounds']
     location_Fight = request.json['location_Fight']
@@ -6271,8 +6268,6 @@ def boxeoEdit(id):
     boxeo.week = week
     boxeo.status = status
     boxeo.casino = casino
-    boxeo.preview = preview
-    boxeo.img_preview = img_preview
     boxeo.event = event
     boxeo.rounds = rounds
     boxeo.location_Fight = location_Fight
