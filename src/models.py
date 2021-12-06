@@ -1943,6 +1943,7 @@ class Boxeo(db.Model):
     hour = db.Column(db.String(20), nullable=False)
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    casino = db.Column(db.String(15), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
@@ -1973,6 +1974,7 @@ class Boxeo(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "casino": self.casino,
             "event": self.event,
             "rounds": self.rounds,
             "location_Fight": self.location_Fight,

@@ -1467,6 +1467,7 @@ def createBoxFight():
     hour = request.json.get("hour", None)
     week = request.json.get("week", None)
     status = request.json.get("status", None)
+    casino = request.json.get("casino", None)
     event = request.json.get("event", None)
     rounds = request.json.get("rounds", None)
     location_Fight = request.json.get("location_Fight", None)
@@ -1506,6 +1507,7 @@ def createBoxFight():
             hour=hour,
             week=week,
             status=status,
+            casino=casino,
             event=event,
             rounds=rounds,
             location_Fight=location_Fight,
@@ -6235,6 +6237,7 @@ def boxeoEdit(id):
     hour = request.json['hour']
     week = request.json['week']
     status = request.json['status']
+    casino = request.json['casino']
     preview = request.json['preview']
     img_preview = request.json['img_preview']
 
@@ -6266,6 +6269,7 @@ def boxeoEdit(id):
     boxeo.hour = hour
     boxeo.week = week
     boxeo.status = status
+    boxeo.casino = casino
     boxeo.preview = preview
     boxeo.img_preview = img_preview
     boxeo.event = event
