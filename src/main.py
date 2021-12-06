@@ -6136,8 +6136,6 @@ def nhlEdit(id):
     rotation_away = request.json['rotation_away']
     rotation_home = request.json['rotation_home']
     casino = request.json['casino']
-    preview = request.json['preview']
-    img_preview = request.json['img_preview']
     away = request.json['away']
     home = request.json['home']
     puck_line_away = request.json['puck_line_away']
@@ -6180,8 +6178,6 @@ def nhlEdit(id):
     nhl.date = date
     nhl.hour = hour
     nhl.week = week
-    nhl.preview = preview
-    nhl.img_preview = img_preview
     nhl.status = status
     nhl.rotation_away = rotation_away
     nhl.rotation_home = rotation_home
