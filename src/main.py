@@ -1477,6 +1477,7 @@ def createBoxFight():
     money_Line_Two = request.json.get("money_Line_Two", None)
     winner = request.json.get("winner", None)
     finish_by = request.json.get("finish_by", None)
+
     r1_result = request.json.get("r1_result", None)
     r2_result = request.json.get("r2_result", None)
     r3_result = request.json.get("r3_result", None)
@@ -1491,7 +1492,7 @@ def createBoxFight():
     r12_result = request.json.get("r12_result", None)
     r13_result = request.json.get("r13_result", None)
     r14_result = request.json.get("r14_result", None)
-    r15_result = request.json.get("moneyLineHome_1Q", None)
+    r15_result = request.json.get("r15_result", None)
 
     # busca mlb en BBDD
     boxeo = Boxeo.query.filter_by(
