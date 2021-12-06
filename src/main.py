@@ -6205,7 +6205,7 @@ def nhlEdit(id):
     nhl.puck_away_1Q = puck_away_1Q
     nhl.puck_home_1Q = puck_home_1Q
     nhl.moneyLineAway_1Q = moneyLineAway_1Q
-    nhl.moneyLineHome_1Q = first_half_juice_spread_home
+    nhl.moneyLineHome_1Q = moneyLineHome_1Q
     nhl.total_1Q = total_1Q
     nhl.Q1_juice_over = Q1_juice_over
     nhl.Q1_juice_under = Q1_juice_under
