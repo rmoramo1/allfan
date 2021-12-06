@@ -4389,7 +4389,7 @@ class Stats_nhl_team(db.Model):
             "otl": self.otl,
             "sa": self.sa,
             "ga": self.ga,
-            "s": self.rs,
+            "s": self.s,
             "sv_AVG": self.sv_AVG,
             "so": self.so,
             "so_sa": self.so_sa,
