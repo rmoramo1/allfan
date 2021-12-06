@@ -6246,6 +6246,7 @@ def boxeoEdit(id):
     money_Line_One = request.json['money_Line_One']
     fighter_Two = request.json['fighter_Two']
     money_Line_Two = request.json['money_Line_Two']
+    winner = request.json['winner']
     finish_by = request.json['finish_by']
     r1_result = request.json['r1_result']
     r2_result = request.json['r2_result']
