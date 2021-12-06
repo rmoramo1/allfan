@@ -6155,6 +6155,7 @@ def nhlEdit(id):
     juice_under_home = request.json['juice_under_home']
     final_score_away = request.json['final_score_away']
     final_score_home = request.json['final_score_home']
+
     puck_away_1Q = request.json['puck_away_1Q']
     puck_home_1Q = request.json['puck_home_1Q']
     juice_puck_away_1Q = request.json['juice_puck_away_1Q']
@@ -6179,13 +6180,13 @@ def nhlEdit(id):
 
     nhl.date = date
     nhl.hour = hour
-    nhl.week = week
     nhl.status = status
     nhl.rotation_away = rotation_away
     nhl.rotation_home = rotation_home
     nhl.casino = casino
     nhl.away = away
     nhl.home = home
+
     nhl.puck_line_away = puck_line_away
     nhl.puck_line_home = puck_line_home
     nhl.juice_puck_away = juice_puck_away
