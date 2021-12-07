@@ -4331,7 +4331,6 @@ def createStats_box_fighter():
         stats_box_fighter = Stats_box_fighter(
             name=name,
             nickname=nickname,
-            league=league,
             height=height,
             weight=weight,
             birth=birth,
