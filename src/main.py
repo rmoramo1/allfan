@@ -1623,6 +1623,7 @@ def createNacarRun():
     hour = request.json.get("hour", None)
     week = request.json.get("week", None)
     status = request.json.get("status", None)
+    casino = request.json.get("casino", None)
     race = request.json.get("race", None)
     track = request.json.get("track", None)
     rounds = request.json.get("rounds", None)
@@ -1646,6 +1647,7 @@ def createNacarRun():
             hour=hour,
             week=week,
             status=status,
+            casino=casino,
             race=race,
             track=track,
             country=country,
@@ -1752,7 +1754,7 @@ def createGolfMatch():
         date=date, event=event).first()
     # the mlb was not found on the database
     if golf:
-        return jsonify({"msg": "Nascar Driver already exists", "name1": golf.event}), 401
+        return jsonify({"msg": "Golf already exists", "name1": golf.event}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
@@ -1770,7 +1772,7 @@ def createGolfMatch():
         )
         db.session.add(golf)
         db.session.commit()
-        return jsonify({"msg": "Nascar Driver created successfully"}), 200
+        return jsonify({"msg": "Golf created successfully"}), 200
 
 
 @app.route('/golfer', methods=['POST'])
@@ -1790,7 +1792,7 @@ def createGoler():
     golfer = Golfer.query.filter_by(name=name, birth=birth).first()
     # the mlb was not found on the database
     if golfer:
-        return jsonify({"msg": "Nascar Driver already exists", "name1": golfer.cuts}), 401
+        return jsonify({"msg": "Golfer already exists", "name1": golfer.cuts}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
@@ -1808,7 +1810,7 @@ def createGoler():
         )
         db.session.add(golfer)
         db.session.commit()
-        return jsonify({"msg": "Nascar Driver created successfully"}), 200
+        return jsonify({"msg": "Golfer created successfully"}), 200
 
 
 @app.route('/ncaa_basketball', methods=['POST'])
@@ -6375,8 +6377,7 @@ def nascarEdit(id):
     hour = request.json['hour']
     week = request.json['week']
     status = request.json['status']
-    preview = request.json['preview']
-    img_preview = request.json['img_preview']
+    casino = request.json['casino']
     race = request.json['race']
     track = request.json['track']
     location = request.json['location']
@@ -6388,8 +6389,7 @@ def nascarEdit(id):
     nascar.hour = hour
     nascar.week = week
     nascar.status = status
-    nascar.preview = preview
-    nascar.img_preview = img_preview
+    nascar.casino = casino
     nascar.race = race
     nascar.track = track
     nascar.location = location

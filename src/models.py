@@ -2086,6 +2086,7 @@ class Nascar(db.Model):
     hour = db.Column(db.String(20), nullable=False)
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    casino = db.Column(db.String(15), nullable=False)
     race = db.Column(db.String(50), nullable=False)
     track = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(100), nullable=False)
@@ -2097,6 +2098,7 @@ class Nascar(db.Model):
         return {
             "id": self.id,
             "status": self.status,
+            "casino": self.casino,
             "race": self.race,
             "track": self.track,
             "location": self.location,
