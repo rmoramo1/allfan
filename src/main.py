@@ -1694,6 +1694,7 @@ def createNacarDrivers():
             engine=engine,
             number_car=number_car,
             rank=rank,
+            starts=starts,
             poles=poles,
             top5=top5,
             top10=top10,
