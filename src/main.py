@@ -1637,7 +1637,7 @@ def createNacarRun():
         race=race, place1=place1, date=date).first()
     # the mlb was not found on the database
     if nascar:
-        return jsonify({"msg": "Pelea de Box already exists", "status": nascar.event}), 401
+        return jsonify({"msg": "Pelea de Box already exists", "status": nascar.race}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de

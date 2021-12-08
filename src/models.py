@@ -2097,6 +2097,8 @@ class Nascar(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "hour": self.hour,
+            "week": self.week,
             "status": self.status,
             "casino": self.casino,
             "race": self.race,
@@ -2106,8 +2108,6 @@ class Nascar(db.Model):
             "place2": self.place2,
             "place3": self.place3,
             "date": self.date,
-            "hour": self.hour,
-            "week": self.week,
             # do not serialize the password, its a security breach
         }
 
