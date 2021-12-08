@@ -6307,9 +6307,7 @@ def mmaEdit(id):
     hour = request.json['hour']
     week = request.json['week']
     status = request.json['status']
-    preview = request.json['preview']
-    img_preview = request.json['img_preview']
-
+    casino = request.json['casino']
     event = request.json['event']
     rounds = request.json['rounds']
     location_Fight = request.json['location_Fight']
@@ -6338,8 +6336,7 @@ def mmaEdit(id):
     mma.hour = hour
     mma.week = week
     mma.status = status
-    mma.preview = preview
-    mma.img_preview = img_preview
+    mma.casino = casino
     mma.event = event
     mma.rounds = rounds
     mma.location_Fight = location_Fight
