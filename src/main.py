@@ -4377,7 +4377,6 @@ def createStats_mma_fighter():
         stats_mma_fighter = Stats_mma_fighter(
             name=name,
             nickname=nickname,
-            league=league,
             height=height,
             weight=weight,
             birth=birth,
