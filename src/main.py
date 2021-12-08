@@ -4321,10 +4321,10 @@ def createStats_box_fighter():
 
     # busca team en BBDD
     stats_box_fighter = Stats_box_fighter.query.filter_by(
-        name=name, nickname=nickname, birth=birthn).first()
+        name=name, nickname=nickname, birth=birth).first()
     # the team was not found on the database
     if stats_box_fighter:
-        return jsonify({"msg": "stats_box_fighter already exists", "name": stats_box_fighter.name}), 401
+        return jsonify({"msg": "stats box fighter already exists", "name": stats_box_fighter.name}), 401
     else:
         # crea encuentro nuevo
         # crea registro nuevo en BBDD de
