@@ -1545,6 +1545,7 @@ def createMmaFight():
     hour = request.json.get("hour", None)
     week = request.json.get("week", None)
     status = request.json.get("status", None)
+    casino = request.json.get("casino", None)
     event = request.json.get("event", None)
     rounds = request.json.get("rounds", None)
     location_Fight = request.json.get("location_Fight", None)
@@ -1554,6 +1555,7 @@ def createMmaFight():
     money_Line_Two = request.json.get("money_Line_Two", None)
     winner = request.json.get("winner", None)
     finish_by = request.json.get("finish_by", None)
+
     r1_result = request.json.get("r1_result", None)
     r2_result = request.json.get("r2_result", None)
     r3_result = request.json.get("r3_result", None)
@@ -1568,7 +1570,7 @@ def createMmaFight():
     r12_result = request.json.get("r12_result", None)
     r13_result = request.json.get("r13_result", None)
     r14_result = request.json.get("r14_result", None)
-    r15_result = request.json.get("moneyLineHome_1Q", None)
+    r15_result = request.json.get("r15_result", None)
 
     # busca mlb en BBDD
     mma = Mma.query.filter_by(fighter_One=fighter_One,
@@ -1584,6 +1586,7 @@ def createMmaFight():
             hour=hour,
             week=week,
             status=status,
+            casino=casino,
             event=event,
             rounds=rounds,
             location_Fight=location_Fight,

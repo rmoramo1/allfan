@@ -2014,13 +2014,14 @@ class Mma(db.Model):
     hour = db.Column(db.String(20), nullable=False)
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
+    casino = db.Column(db.String(15), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
     fighter_One = db.Column(db.String(50), nullable=False)
-    money_Line_One = db.Column(db.String(50), nullable=False)
+    money_Line_One = db.Column(db.String(10), nullable=False)
     fighter_Two = db.Column(db.String(50), nullable=False)
-    money_Line_Two = db.Column(db.String(50), nullable=False)
+    money_Line_Two = db.Column(db.String(10), nullable=False)
     winner = db.Column(db.String(50), nullable=False)
     finish_by = db.Column(db.String(50), nullable=False)
 
@@ -2042,8 +2043,9 @@ class Mma(db.Model):
 
     def serialize(self):
         return {
-            "id": self.id,
+             "id": self.id,
             "status": self.status,
+            "casino": self.casino,
             "event": self.event,
             "rounds": self.rounds,
             "location_Fight": self.location_Fight,
