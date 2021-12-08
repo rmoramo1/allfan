@@ -4344,7 +4344,7 @@ def createStats_box_fighter():
         )
         db.session.add(stats_box_fighter)
         db.session.commit()
-        return jsonify({"msg": "Game stats_box_fighter created successfully"}), 200
+        return jsonify({"msg": "Game stats box fighter created successfully"}), 200
 
 
 @app.route('/stats_mma_fighter', methods=['POST'])
