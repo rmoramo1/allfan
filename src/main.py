@@ -1627,7 +1627,6 @@ def createNacarRun():
     race = request.json.get("race", None)
     track = request.json.get("track", None)
     rounds = request.json.get("rounds", None)
-    country = request.json.get("country", None)
     location = request.json.get("location", None)
     place1 = request.json.get("place1", None)
     place2 = request.json.get("place2", None)
@@ -1650,7 +1649,6 @@ def createNacarRun():
             casino=casino,
             race=race,
             track=track,
-            country=country,
             location=location,
             place1=place1,
             place2=place2,
