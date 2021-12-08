@@ -1740,6 +1740,7 @@ def createGolfMatch():
     hour = request.json.get("hour", None)
     week = request.json.get("week", None)
     status = request.json.get("status", None)
+    casino = request.json.get("casino", None)
     event = request.json.get("event", None)
     location = request.json.get("location", None)
     place1 = request.json.get("place1", None)
@@ -1760,6 +1761,7 @@ def createGolfMatch():
             hour=hour,
             week=week,
             status=status,
+            casino=casino,
             event=event,
             location=location,
             place1=place1,
@@ -6460,9 +6462,8 @@ def golfEdit(id):
     date = request.json['date']
     hour = request.json['hour']
     week = request.json['week']
-    preview = request.json['preview']
-    img_preview = request.json['img_preview']
     status = request.json['status']
+    casino = request.json['casino']
     event = request.json['event']
     location = request.json['location']
     place1 = request.json['place1']
@@ -6472,9 +6473,8 @@ def golfEdit(id):
     golf.date = date
     golf.hour = hour
     golf.week = week
-    golf.preview = preview
-    golf.img_preview = img_preview
     golf.status = status
+    golf.casino = status
     golf.event = event
     golf.location = location
     golf.place1 = place1
