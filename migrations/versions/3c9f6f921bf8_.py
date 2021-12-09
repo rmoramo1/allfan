@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: fe5b80b1b4d5
+Revision ID: 3c9f6f921bf8
 Revises: 
-Create Date: 2021-12-09 07:43:15.666338
+Create Date: 2021-12-09 15:43:28.654683
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'fe5b80b1b4d5'
+revision = '3c9f6f921bf8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -940,6 +940,8 @@ def upgrade():
     sa.Column('tournament', sa.String(length=15), nullable=False),
     sa.Column('away', sa.String(length=50), nullable=False),
     sa.Column('home', sa.String(length=50), nullable=False),
+    sa.Column('rotation_away', sa.String(length=15), nullable=False),
+    sa.Column('rotation_home', sa.String(length=15), nullable=False),
     sa.Column('goal_line_away', sa.String(length=10), nullable=False),
     sa.Column('goal_line_home', sa.String(length=10), nullable=False),
     sa.Column('juice_goal_away', sa.String(length=10), nullable=False),
@@ -957,26 +959,27 @@ def upgrade():
     sa.Column('juice_under_home', sa.String(length=10), nullable=False),
     sa.Column('final_score_away', sa.String(length=10), nullable=False),
     sa.Column('final_score_home', sa.String(length=10), nullable=False),
-    sa.Column('goal_away_1Q', sa.String(length=10), nullable=False),
-    sa.Column('goal_home_1Q', sa.String(length=10), nullable=False),
-    sa.Column('juice_goal_away_1Q', sa.String(length=10), nullable=False),
-    sa.Column('juice_goal_home_1Q', sa.String(length=10), nullable=False),
-    sa.Column('moneyLineAway_1Q', sa.String(length=10), nullable=False),
-    sa.Column('moneyLineHome_1Q', sa.String(length=10), nullable=False),
-    sa.Column('total_1Q', sa.String(length=10), nullable=False),
-    sa.Column('Q1_juice_over', sa.String(length=10), nullable=False),
-    sa.Column('Q1_juice_under', sa.String(length=10), nullable=False),
-    sa.Column('tt_away_1Q', sa.String(length=10), nullable=False),
-    sa.Column('juice_over_away_1Q', sa.String(length=10), nullable=False),
-    sa.Column('juice_under_away_1Q', sa.String(length=10), nullable=False),
-    sa.Column('tt_home_1Q', sa.String(length=10), nullable=False),
-    sa.Column('juice_over_home_1Q', sa.String(length=10), nullable=False),
-    sa.Column('juice_under_home_1Q', sa.String(length=10), nullable=False),
+    sa.Column('goal_away_1H', sa.String(length=10), nullable=False),
+    sa.Column('goal_home_1H', sa.String(length=10), nullable=False),
+    sa.Column('juice_goal_away_1H', sa.String(length=10), nullable=False),
+    sa.Column('juice_goal_home_1H', sa.String(length=10), nullable=False),
+    sa.Column('moneyLineAway_1H', sa.String(length=10), nullable=False),
+    sa.Column('moneyLineHome_1H', sa.String(length=10), nullable=False),
+    sa.Column('total_1H', sa.String(length=10), nullable=False),
+    sa.Column('H1_juice_over', sa.String(length=10), nullable=False),
+    sa.Column('H1_juice_under', sa.String(length=10), nullable=False),
+    sa.Column('tt_away_1H', sa.String(length=10), nullable=False),
+    sa.Column('juice_over_away_1H', sa.String(length=10), nullable=False),
+    sa.Column('juice_under_away_1H', sa.String(length=10), nullable=False),
+    sa.Column('tt_home_1H', sa.String(length=10), nullable=False),
+    sa.Column('juice_over_home_1H', sa.String(length=10), nullable=False),
+    sa.Column('juice_under_home_1H', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('soccer_tournament',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('tournament', sa.String(length=30), nullable=False),
+    sa.Column('country', sa.String(length=30), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('stats_box_fighter',
@@ -1362,6 +1365,25 @@ def upgrade():
     sa.Column('punt_r_fair_carches', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('stats_soccer_team',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('season', sa.String(length=20), nullable=False),
+    sa.Column('name', sa.String(length=20), nullable=False),
+    sa.Column('league', sa.String(length=20), nullable=False),
+    sa.Column('position', sa.String(length=20), nullable=False),
+    sa.Column('matches', sa.String(length=10), nullable=False),
+    sa.Column('win', sa.String(length=5), nullable=False),
+    sa.Column('loss', sa.String(length=10), nullable=False),
+    sa.Column('pts', sa.String(length=10), nullable=False),
+    sa.Column('goals_for', sa.String(length=30), nullable=False),
+    sa.Column('goals_against', sa.String(length=10), nullable=False),
+    sa.Column('more_2_5_goals', sa.String(length=10), nullable=False),
+    sa.Column('less_2_5_goals', sa.String(length=10), nullable=False),
+    sa.Column('zero_goal_against', sa.String(length=10), nullable=False),
+    sa.Column('zero_goals_for', sa.String(length=10), nullable=False),
+    sa.Column('ties', sa.String(length=10), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=20), nullable=False),
@@ -1375,6 +1397,7 @@ def upgrade():
 def downgrade():
     # ### commands auto generated by Alembic - please adjust! ###
     op.drop_table('user')
+    op.drop_table('stats_soccer_team')
     op.drop_table('stats_returning_player_nfl')
     op.drop_table('stats_punting_player_nfl')
     op.drop_table('stats_offensive_player_nfl')
