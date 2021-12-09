@@ -2197,11 +2197,9 @@ class Soccer(db.Model):
     total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
-
     tt_away = db.Column(db.String(10), default=0, nullable=False)
     juice_over_away = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_away = db.Column(db.String(10), default=-110, nullable=False)
-
     tt_home = db.Column(db.String(10), default=0, nullable=False)
     juice_over_home = db.Column(db.String(10), default=-110, nullable=False)
     juice_under_home = db.Column(db.String(10), default=-110, nullable=False)
@@ -2209,22 +2207,22 @@ class Soccer(db.Model):
     final_score_home = db.Column(db.String(10), default=0, nullable=False)
 
 # -----------------------------------------------------------------------
-    goal_away_1Q = db.Column(db.String(10), default=0, nullable=False)
-    goal_home_1Q = db.Column(db.String(10), default=0, nullable=False)
-    juice_goal_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_goal_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    moneyLineAway_1Q = db.Column(db.String(10), default=0, nullable=False)
-    moneyLineHome_1Q = db.Column(db.String(10), default=0, nullable=False)
-    total_1Q = db.Column(db.String(10), default=0, nullable=False)
-    Q1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
-    Q1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
-    tt_away_1Q = db.Column(db.String(10), default=0, nullable=False)
-    juice_over_away_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_away_1Q = db.Column(
+    goal_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    goal_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_goal_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
+    moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    total_1H = db.Column(db.String(10), default=0, nullable=False)
+    H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
+    H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
+    tt_away_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_away_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_away_1H = db.Column(
         db.String(10), default=-110, nullable=False)
-    tt_home_1Q = db.Column(db.String(10), default=0, nullable=False)
-    juice_over_home_1Q = db.Column(db.String(10), default=-110, nullable=False)
-    juice_under_home_1Q = db.Column(
+    tt_home_1H = db.Column(db.String(10), default=0, nullable=False)
+    juice_over_home_1H = db.Column(db.String(10), default=-110, nullable=False)
+    juice_under_home_1H = db.Column(
         db.String(10), default=-110, nullable=False)
 
 # ----------------------------------------------------------------------
@@ -2265,29 +2263,29 @@ class Soccer(db.Model):
             "final_score_away": self.final_score_away,
             "final_score_home": self.final_score_home,
 
-            "goal_away_1Q": self.goal_away_1Q,
-            "goal_home_1Q": self.goal_home_1Q,
+            "goal_away_1H": self.goal_away_1H,
+            "goal_home_1H": self.goal_home_1H,
 
-            "juice_goal_away_1Q": self.juice_goal_away_1Q,
-            "juice_goal_home_1Q": self.juice_goal_home_1Q,
+            "juice_goal_away_1H": self.juice_goal_away_1H,
+            "juice_goal_home_1H": self.juice_goal_home_1H,
 
-            "Q1_juice_over": self.Q1_juice_over,
-            "Q1_juice_under": self.Q1_juice_under,
+            "H1_juice_over": self.H1_juice_over,
+            "H1_juice_under": self.H1_juice_under,
 
-            "moneyLineHome_1Q": self.moneyLineHome_1Q,
-            "moneyLineAway_1Q": self.moneyLineAway_1Q,
+            "moneyLineHome_1H": self.moneyLineHome_1H,
+            "moneyLineAway_1H": self.moneyLineAway_1H,
 
-            "total_1Q": self.total_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "total_1H": self.total_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "tt_away_1Q": self.tt_away_1Q,
-            "tt_home_1Q": self.tt_home_1Q,
+            "tt_away_1H": self.tt_away_1H,
+            "tt_home_1H": self.tt_home_1H,
 
-            "juice_over_away_1Q": self.juice_over_away_1Q,
-            "juice_over_home_1Q": self.juice_over_home_1Q,
+            "juice_over_away_1H": self.juice_over_away_1H,
+            "juice_over_home_1H": self.juice_over_home_1H,
 
-            "juice_under_away_1Q": self.juice_under_away_1Q,
-            "juice_under_home_1Q": self.juice_under_home_1Q,
+            "juice_under_away_1H": self.juice_under_away_1H,
+            "juice_under_home_1H": self.juice_under_home_1H,
 
             "date": self.date,
             "hour": self.hour
