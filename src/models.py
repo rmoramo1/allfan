@@ -44,6 +44,7 @@ class Soccer_Tournament(db.Model):
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
     tournament = db.Column(db.String(30), nullable=False)
+    country = db.Column(db.String(30), nullable=False)
     # def __repr__(self):
     #     return '<User %r>' % self.name
 
@@ -51,6 +52,7 @@ class Soccer_Tournament(db.Model):
         return {
             "id": self.id,
             "tournament": self.tournament,
+            "country": self.country
             # do not serialize the password, its a security breach
         }
 
