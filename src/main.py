@@ -1180,8 +1180,8 @@ def createGameNfl():
             week=week,
             status=status,
             casino=casino,
-            rotation_away=rotation_away,
             rotation_home=rotation_home,
+            rotation_away=rotation_away,
             away=away,
             home=home,
             spread_away=spread_away,
@@ -1253,7 +1253,7 @@ def createGameNfl():
             q1_half_tt_home=q1_half_tt_home,
             q1_half_juice_over_home=q1_half_juice_over_home,
             q1_half_juice_under_home=q1_half_juice_under_home,
-            q1_half_final_score_away=q1_half_final_sc6ore_away,
+            q1_half_final_score_away=q1_half_final_score_away,
             q1_half_final_score_home=q1_half_final_score_home,
             # ---
             q2_half_spread_away=q2_half_spread_away,
