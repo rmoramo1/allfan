@@ -2210,7 +2210,7 @@ def createSoccer():
 
     # busca mlb en BBDD
     soccer = Soccer.query.filter_by(
-        home=home, away=away, date=date).first()
+        home=home, away=away, date=date,tournament=tournament).first()
     # the mlb was not found on the database
     if soccer:
         return jsonify({"msg": "soccer match already exists", "team away": soccer.away, "team home": soccer.home}), 401
@@ -2246,8 +2246,8 @@ def createSoccer():
 
             goal_away_1H=goal_away_1H,
             goal_home_1H=goal_home_1H,
-            juice_puck_away_1H=juice_puck_away_1H,
-            juice_puck_home_1H=juice_puck_home_1H,
+            juice_goal_away_1H=juice_goal_away_1H,
+            juice_goal_home_1H=juice_goal_home_1H,
             moneyLineAway_1H=moneyLineAway_1H,
             moneyLineHome_1H=moneyLineHome_1H,
             total_1H=total_1H,
