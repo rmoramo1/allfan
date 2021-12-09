@@ -71,6 +71,15 @@ def soccer_tournament():
     else:
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
+
+@app.route("/stats_soccer_team", methods=["GET"])
+def stats_soccer_team():
+    if request.method == "GET":
+        records = Stats_Soccer_Team.query.all()
+        return jsonify([Stats_Soccer_Team.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ----------------------------------------------------------------------------
 @app.route("/casinos", methods=["GET"])
 def casinos():
     if request.method == "GET":
@@ -2269,6 +2278,53 @@ def createSoccer():
         db.session.add(soccer)
         db.session.commit()
         return jsonify({"msg": "Game soccer created successfully"}), 200
+
+@app.route('/stats_soccer_team', methods=['POST'])
+def createStats_soccer_team():
+    season = request.json.get("season", None)
+    name = request.json.get("name", None)
+    league = request.json.get("league", None)
+    position = request.json.get("position", None)
+    matches = request.json.get("matches", None)
+    win = request.json.get("win", None)
+    loss = request.json.get("loss", None)
+    pts = request.json.get("pts", None)
+    goals_for = request.json.get("goals_for", None)
+    goals_against = request.json.get("goals_against", None)
+    more_2_5_goals = request.json.get("more_2_5_goals", None)
+    less_2_5_goals = request.json.get("less_2_5_goals", None)
+    zero_goal_against = request.json.get("zero_goal_against", None)
+    zero_goals_for = request.json.get("zero_goals_for", None)
+    ties = request.json.get("ties", None)
+    # busca team en BBDD
+    stats_soccer_team = Stats_Soccer_Team.query.filter_by(name=name,season=season).first()
+    # the team was not found on the database
+    if stats_soccer_team:
+        return jsonify({"msg": "stats_soccer_team already exists", "team": stats_soccer_team.name,"team": stats_soccer_team.season}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_soccer_team = Stats_Soccer_Team(
+            season=season,
+            name=name,
+            league=league,
+            position=position,
+            matches=matches,
+            win=win,
+            loss=loss,
+            pts=pts,
+            goals_for=goals_for,
+            goals_against=goals_against,
+            more_2_5_goals=more_2_5_goals,
+            less_2_5_goals=less_2_5_goals,
+            zero_goal_against=zero_goal_against,
+            zero_goals_for=zero_goals_for,
+            ft_AVG=ft_AVG,
+            ties=ties
+        )
+        db.session.add(stats_soccer_team)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_soccer_team created successfully"}), 200
 
 @app.route('/stats_nba_team', methods=['POST'])
 def createStats_nba_team():
@@ -4950,6 +5006,44 @@ def soccerEdit(id):
     db.session.commit()
     return jsonify({"msg": "soccer edith successfully"}), 200
 
+@app.route('/stats_soccer_team/<id>', methods=['PUT'])
+def stats_soccer_teamEdit(id):
+    stats_soccer_team = Stats_Soccer_Team.query.get(id)
+    season = request.json['season']
+    name = request.json['name']
+    league = request.json['league']
+    position = request.json['position']
+    matches = request.json['matches']
+    win = request.json['win']
+    loss = request.json['loss']
+    pts = request.json['pts']
+    goals_for = request.json['goals_for']
+    goals_against = request.json['goals_against']
+    more_2_5_goals = request.json['more_2_5_goals']
+    less_2_5_goals = request.json['less_2_5_goals']
+    zero_goal_against = request.json['zero_goal_against']
+    zero_goals_for = request.json['zero_goals_for']
+    ties = request.json['ties']
+
+    stats_soccer_team.season = season
+    stats_soccer_team.name = name
+    stats_soccer_team.league = league
+    stats_soccer_team.position = position
+    stats_soccer_team.matches = matches
+    stats_soccer_team.win = win
+    stats_soccer_team.loss = loss
+    stats_soccer_team.pts = pts
+    stats_soccer_team.goals_for = goals_for
+    stats_soccer_team.goals_against = goals_against
+    stats_soccer_team.w_by = w_by
+    stats_soccer_team.more_2_5_goals = more_2_5_goals
+    stats_soccer_team.less_2_5_goals = less_2_5_goals
+    stats_soccer_team.zero_goal_against = zero_goal_against
+    stats_soccer_team.zero_goals_for = zero_goals_for
+    stats_soccer_team.ties = ties
+    db.session.commit()
+    return jsonify({"msg": "stats_soccer_team edith successfully"}), 200
+
 @app.route('/stats_nba_team/<id>', methods=['PUT'])
 def stats_nba_teamEdit(id):
     stats_nba_team = Stats_nba_team.query.get(id)
@@ -5845,148 +5939,12 @@ def golf_delete(id):
     return "golf was successfully deleted"
 
 
-@app.route("/champions_league/<id>", methods=["DELETE"])
-def champions_league_delete(id):
-    champions_league = Champions_League.query.get(id)
-    db.session.delete(champions_league)
+@app.route("/stats_soccer_team/<id>", methods=["DELETE"])
+def stats_soccer_team_delete(id):
+    stats_soccer_team = Stats_Soccer_Team.query.get(id)
+    db.session.delete(stats_soccer_team)
     db.session.commit()
-    return "champions_league was successfully deleted"
-
-
-@app.route("/confederations_cup/<id>", methods=["DELETE"])
-def confederations_cup_delete(id):
-    confederations_cup = Confederations_Cup.query.get(id)
-    db.session.delete(confederations_cup)
-    db.session.commit()
-    return "confederations_cup was successfully deleted"
-
-
-@app.route("/w_c_qualifying/<id>", methods=["DELETE"])
-def w_c_qualifying_delete(id):
-    w_c_qualifying = W_C_Qualifying.query.get(id)
-    db.session.delete(w_c_qualifying)
-    db.session.commit()
-    return "w_c_qualifying was successfully deleted"
-
-
-@app.route("/CONCACAF/<id>", methods=["DELETE"])
-def CONCACAF_delete(id):
-    CONCACAF = CONCACAF.query.get(id)
-    db.session.delete(CONCACAF)
-    db.session.commit()
-    return "CONCACAF was successfully deleted"
-
-
-@app.route("/england_premier_league/<id>", methods=["DELETE"])
-def england_premier_league_delete(id):
-    england_premier_league = England_Premier_League.query.get(id)
-    db.session.delete(england_premier_league)
-    db.session.commit()
-    return "england_premier_league was successfully deleted"
-
-
-@app.route("/europa_league/<id>", methods=["DELETE"])
-def europa_league_delete(id):
-    europa_league = Europa_League.query.get(id)
-    db.session.delete(europa_league)
-    db.session.commit()
-    return "europa_league was successfully deleted"
-
-
-@app.route("/international_friendlies/<id>", methods=["DELETE"])
-def international_friendlies_delete(id):
-    international_friendlies = International_Friendlies.query.get(id)
-    db.session.delete(international_friendlies)
-    db.session.commit()
-    return "international_friendlies was successfully deleted"
-
-
-@app.route("/france_league/<id>", methods=["DELETE"])
-def france_league_delete(id):
-    france_league = France_League.query.get(id)
-    db.session.delete(france_league)
-    db.session.commit()
-    return "france_league was successfully deleted"
-
-
-@app.route("/bundesliga/<id>", methods=["DELETE"])
-def bundesliga_delete(id):
-    bundesliga = Bundesliga.query.get(id)
-    db.session.delete(bundesliga)
-    db.session.commit()
-    return "bundesliga was successfully deleted"
-
-
-@app.route("/international_matches/<id>", methods=["DELETE"])
-def international_matches_delete(id):
-    international_matches = International_Matches.query.get(id)
-    db.session.delete(international_matches)
-    db.session.commit()
-    return "international_matches was successfully deleted"
-
-
-@app.route("/italia_serie_A/<id>", methods=["DELETE"])
-def italia_serie_A_delete(id):
-    italia_serie_A = Italia_Serie_A.query.get(id)
-    db.session.delete(italia_serie_A)
-    db.session.commit()
-    return "italia_serie_A was successfully deleted"
-
-
-@app.route("/mx_expansion/<id>", methods=["DELETE"])
-def mx_expansion_delete(id):
-    mx_expansion = Mx_Expansion.query.get(id)
-    db.session.delete(mx_expansion)
-    db.session.commit()
-    return "mx_expansion was successfully deleted"
-
-
-@app.route("/mx_apertura/<id>", methods=["DELETE"])
-def mx_apertura_delete(id):
-    mx_apertura = Mx_Apertura.query.get(id)
-    db.session.delete(mx_apertura)
-    db.session.commit()
-    return "mx_apertura was successfully deleted"
-
-
-@app.route("/spain_primera_liga/<id>", methods=["DELETE"])
-def spain_primera_liga_delete(id):
-    spain_primera_liga = Spain_Primera_Liga.query.get(id)
-    db.session.delete(spain_primera_liga)
-    db.session.commit()
-    return "spain_primera_liga was successfully deleted"
-
-
-@app.route("/USA_MLS/<id>", methods=["DELETE"])
-def USA_MLS_delete(id):
-    USA_MLS = USA_MLS.query.get(id)
-    db.session.delete(USA_MLS)
-    db.session.commit()
-    return "USA_MLS was successfully deleted"
-
-
-@app.route("/brazil_serie_A/<id>", methods=["DELETE"])
-def brazil_serie_A_delete(id):
-    brazil_serie_A = Brazil_Serie_A.query.get(id)
-    db.session.delete(brazil_serie_A)
-    db.session.commit()
-    return "brazil_serie_A was successfully deleted"
-
-
-@app.route("/colombia_primera_A/<id>", methods=["DELETE"])
-def colombia_primera_A_delete(id):
-    colombia_primera_A = Colombia_Primera_A.query.get(id)
-    db.session.delete(colombia_primera_A)
-    db.session.commit()
-    return "colombia_primera_A was successfully deleted"
-
-
-@app.route("/costa_rica_PD/<id>", methods=["DELETE"])
-def costa_rica_PD_delete(id):
-    costa_rica_PD = Costa_Rica_PD.query.get(id)
-    db.session.delete(costa_rica_PD)
-    db.session.commit()
-    return "costa_rica_PD was successfully deleted"
+    return "stats_soccer_team was successfully deleted"
 
 
 @app.route("/stats_nba_player/<id>", methods=["DELETE"])

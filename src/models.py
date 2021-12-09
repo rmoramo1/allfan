@@ -3195,3 +3195,44 @@ class Stats_punting_player_nfl(db.Model):
             "AVG_punt_retun_yards": self.AVG_punt_retun_yards,
             # do not serialize the password, its a security breach
         }
+
+class Stats_Soccer_Team(db.Model):
+    __tablename__ = "stats_soccer_team"
+    id = db.Column(db.Integer, primary_key=True)
+    season = db.Column(db.String(20), nullable=False)
+    name = db.Column(db.String(20), nullable=False)
+    league = db.Column(db.String(20), nullable=False)
+    position = db.Column(db.String(20), nullable=False)
+    matches = db.Column(db.String(10), nullable=False)
+    win = db.Column(db.String(5), nullable=False)
+    loss = db.Column(db.String(10), nullable=False)
+    pts = db.Column(db.String(10), nullable=False)
+    goals_for = db.Column(db.String(30), nullable=False)
+    goals_against = db.Column(db.String(10), nullable=False)
+    more_2_5_goals = db.Column(db.String(10), nullable=False)
+    less_2_5_goals = db.Column(db.String(10), nullable=False)
+    zero_goal_against = db.Column(db.String(10), nullable=False)
+    zero_goals_for = db.Column(db.String(10), nullable=False)
+    ties = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "season": self.season,
+            "name": self.name,
+            "league": self.league,
+            "matches": self.matches,
+            "win": self.win,
+            "loss": self.loss,
+            "pts": self.pts,
+            "goals_for": self.goals_for,
+            "goals_against": self.goals_against,
+            "more_2_5_goals": self.more_2_5_goals,
+            "less_2_5_goals": self.less_2_5_goals,
+            "zero_goal_against": self.zero_goal_against,
+            "zero_goals_for": self.zero_goals_for,
+            "ties": self.ties
+
+            # do not serialize the password, its a security breach
+        }
+
