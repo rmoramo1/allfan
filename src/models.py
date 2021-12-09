@@ -2190,6 +2190,8 @@ class Soccer(db.Model):
     tournament = db.Column(db.String(15), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
+    rotation_away = db.Column(db.String(15), nullable=False)
+    rotation_home = db.Column(db.String(15), nullable=False)
     goal_line_away = db.Column(db.String(10), nullable=False)
     goal_line_home = db.Column(db.String(10), nullable=False)
     juice_goal_away = db.Column(db.String(10), default=-110, nullable=False)
@@ -2238,6 +2240,8 @@ class Soccer(db.Model):
             "tournament": self.tournament,
             "away": self.away,
             "home": self.home,
+            "rotation_away": self.rotation_away,
+            "rotation_home": self.rotation_home,
 
             "goal_line_away": self.goal_line_away,
             "goal_line_home": self.goal_line_home,

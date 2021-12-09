@@ -2175,6 +2175,8 @@ def createSoccer():
     tournament = request.json.get("tournament", None)
     away = request.json.get("away", None)
     home = request.json.get("home", None)
+    rotation_away = request.json.get("rotation_away", None)
+    rotation_home = request.json.get("rotation_home", None)
     goal_line_away = request.json.get("goal_line_away", None)
     goal_line_home = request.json.get("goal_line_home", None)
     juice_goal_away = request.json.get("juice_goal_away", None)
@@ -2228,6 +2230,8 @@ def createSoccer():
             tournament=tournament,
             away=away,
             home=home,
+            rotation_away=rotation_away,
+            rotation_home=rotation_home,
             goal_line_away=goal_line_away,
             goal_line_home=goal_line_home,
             juice_goal_away=juice_goal_away,
@@ -4864,6 +4868,8 @@ def soccerEdit(id):
     tournament = request.json['tournament']
     away = request.json['away']
     home = request.json['home']
+    rotation_away = request.json['rotation_away']
+    rotation_home = request.json['rotation_home']
     goal_line_away = request.json['goal_line_away']
     goal_line_home = request.json['goal_line_home']
     juice_goal_away = request.json['juice_goal_away']
@@ -4905,6 +4911,8 @@ def soccerEdit(id):
     soccer.tournament = tournament
     soccer.away = away
     soccer.home = home
+    soccer.rotation_away = rotation_away
+    soccer.rotation_home = rotation_home
     soccer.goal_line_away = goal_line_away
     soccer.goal_line_home = goal_line_home
     soccer.juice_goal_away = juice_goal_away
