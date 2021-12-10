@@ -2319,7 +2319,6 @@ def createStats_soccer_team():
             less_2_5_goals=less_2_5_goals,
             zero_goal_against=zero_goal_against,
             zero_goals_for=zero_goals_for,
-            ft_AVG=ft_AVG,
             ties=ties
         )
         db.session.add(stats_soccer_team)
