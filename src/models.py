@@ -3207,7 +3207,7 @@ class Stats_Soccer_Team(db.Model):
     win = db.Column(db.String(5), nullable=False)
     loss = db.Column(db.String(10), nullable=False)
     pts = db.Column(db.String(10), nullable=False)
-    goals_for = db.Column(db.String(30), nullable=False)
+    goals_for = db.Column(db.String(10), nullable=False)
     goals_against = db.Column(db.String(10), nullable=False)
     more_2_5_goals = db.Column(db.String(10), nullable=False)
     less_2_5_goals = db.Column(db.String(10), nullable=False)
@@ -3221,6 +3221,7 @@ class Stats_Soccer_Team(db.Model):
             "season": self.season,
             "name": self.name,
             "league": self.league,
+            "position": self.position,
             "matches": self.matches,
             "win": self.win,
             "loss": self.loss,
