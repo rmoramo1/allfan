@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team,Stats_mlb_player, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team
+from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team,Stats_mlb_player, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player
 
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 from flask_jwt_extended import JWTManager
@@ -68,6 +68,14 @@ def soccer_tournament():
     if request.method == "GET":
         records = Soccer_Tournament.query.all()
         return jsonify([Soccer_Tournament.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ----------------------------------------------------------------------------
+@app.route("/stats_soccer_player", methods=["GET"])
+def stats_soccer_player():
+    if request.method == "GET":
+        records = Stats_Soccer_Player.query.all()
+        return jsonify([Stats_Soccer_Player.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
@@ -2324,6 +2332,64 @@ def createStats_soccer_team():
         db.session.add(stats_soccer_team)
         db.session.commit()
         return jsonify({"msg": "Game stats_soccer_team created successfully"}), 200
+
+@app.route('/stats_soccer_player', methods=['POST'])
+def createStats_Soccer_Player():
+    name = request.json.get("name", None)
+    height = request.json.get("height", None)
+    weight = request.json.get("weight", None)
+    birth = request.json.get("birth", None)
+    position = request.json.get("position", None)
+    dorsal = request.json.get("dorsal", None)
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+    games = request.json.get("games", None)
+
+    strt = request.json.get("strt", None)
+    fc = request.json.get("fc", None)
+    fa = request.json.get("fa", None)
+    yc = request.json.get("yc", None)
+    rc = request.json.get("rc", None)
+    goals = request.json.get("goals", None)
+    ast = request.json.get("ast", None)
+    sh = request.json.get("sh", None)
+    st = request.json.get("st", None)
+    off = request.json.get("off", None)
+
+    # busca team en BBDD
+    stats_soccer_player = Stats_Soccer_Player.query.filter_by(
+        name=name, dorsal=dorsal, birth=birth, season=season).first()
+    # the team was not found on the database
+    if stats_soccer_player:
+        return jsonify({"msg": "stats_soccer_player already exists", "name": stats_soccer_player.name}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_soccer_player = Stats_Soccer_Player(
+            name=name,
+            height=height,
+            weight=weight,
+            birth=birth,
+            position=position,
+            dorsal=dorsal,
+            season=season,
+            team=team,
+            games=games,
+
+            strt=strt,
+            fc=fc,
+            fa=fa,
+            yc=yc,
+            rc=rc,
+            goals=goals,
+            ast=ast,
+            sh=sh,
+            st=st,
+            off=off,
+        )
+        db.session.add(stats_soccer_player)
+        db.session.commit()
+        return jsonify({"msg": "Stats_soccer_player created successfully"}), 200
 
 @app.route('/stats_nba_team', methods=['POST'])
 def createStats_nba_team():
@@ -5042,6 +5108,53 @@ def stats_soccer_teamEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_soccer_team edith successfully"}), 200
 
+@app.route('/stats_soccer_player/<id>', methods=['PUT'])
+def stats_soccer_playerEdit(id):
+    stats_soccer_player = Stats_Soccer_Player.query.get(id)
+    name = request.json['name']
+    height = request.json['height']
+    weight = request.json['weight']
+    birth = request.json['birth']
+    position = request.json['position']
+    season = request.json['season']
+    dorsal = request.json['dorsal']
+    team = request.json['team']
+
+    games = request.json['games']
+    strt = request.json['strt']
+    fc = request.json['fc']
+    fa = request.json['fa']
+    yc = request.json['yc']
+    rc = request.json['rc']
+    goals = request.json['goals']
+    ast = request.json['ast']
+    sh = request.json['sh']
+    st = request.json['st']
+    off = request.json['off']
+
+    stats_soccer_player.name = name
+    stats_soccer_player.height = height
+    stats_soccer_player.weight = weight
+    stats_soccer_player.birth = birth
+    stats_soccer_player.position = position
+    stats_soccer_player.season = season
+    stats_soccer_player.dorsal = dorsal
+    stats_soccer_player.team = team
+    stats_soccer_player.games = games
+    stats_soccer_player.strt = strt
+    stats_soccer_player.fc = fc
+    stats_soccer_player.fa = fa
+    stats_soccer_player.yc = yc
+    stats_soccer_player.rc = rc
+    stats_soccer_player.goals = goals
+    stats_soccer_player.ast = ast
+    stats_soccer_player.sh = sh
+    stats_soccer_player.st = st
+    stats_soccer_player.off = off
+
+    db.session.commit()
+    return jsonify({"msg": "Stats_Soccer_Player edith successfully"}), 200
+
 @app.route('/stats_nba_team/<id>', methods=['PUT'])
 def stats_nba_teamEdit(id):
     stats_nba_team = Stats_nba_team.query.get(id)
@@ -5943,6 +6056,13 @@ def stats_soccer_team_delete(id):
     db.session.delete(stats_soccer_team)
     db.session.commit()
     return "stats_soccer_team was successfully deleted"
+
+@app.route("/stats_soccer_player/<id>", methods=["DELETE"])
+def stats_soccer_player_delete(id):
+    stats_soccer_player = Stats_Soccer_Player.query.get(id)
+    db.session.delete(stats_soccer_player)
+    db.session.commit()
+    return "stats_soccer_player was successfully deleted"
 
 
 @app.route("/stats_nba_player/<id>", methods=["DELETE"])

@@ -3236,4 +3236,52 @@ class Stats_Soccer_Team(db.Model):
 
             # do not serialize the password, its a security breach
         }
+class Stats_Soccer_Player(db.Model):
+    __tablename__ = "stats_soccer_player"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    position = db.Column(db.String(5), nullable=False)
+    dorsal = db.Column(db.String(10), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    games = db.Column(db.String(10), nullable=False)
 
+    strt = db.Column(db.String(10), nullable=False)
+    fc = db.Column(db.String(10), nullable=False)
+    fa = db.Column(db.String(10), nullable=False)
+    yc = db.Column(db.String(10), nullable=False)
+    rc = db.Column(db.String(10), nullable=False)
+    goals = db.Column(db.String(10), nullable=False)
+    ast = db.Column(db.String(10), nullable=False)
+    sh = db.Column(db.String(10), nullable=False)
+    st = db.Column(db.String(10), nullable=False)
+    off = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "position": self.position,
+            "dorsal": self.dorsal,
+            "season": self.season,
+            "team": self.team,
+            "games": self.games,
+            "strt": self.strt,
+            "fc": self.fc,
+            "fa": self.fa,
+            "yc": self.yc,
+            "rc": self.rc,
+            "goals": self.goals,
+            "ast": self.ast,
+            "sh": self.sh,
+            "st": self.st,
+            "off": self.off
+
+            # do not serialize the password, its a security breach
+        }
