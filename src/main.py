@@ -5034,7 +5034,6 @@ def stats_soccer_teamEdit(id):
     stats_soccer_team.pts = pts
     stats_soccer_team.goals_for = goals_for
     stats_soccer_team.goals_against = goals_against
-    stats_soccer_team.w_by = w_by
     stats_soccer_team.more_2_5_goals = more_2_5_goals
     stats_soccer_team.less_2_5_goals = less_2_5_goals
     stats_soccer_team.zero_goal_against = zero_goal_against
