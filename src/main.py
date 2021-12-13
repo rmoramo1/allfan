@@ -387,10 +387,11 @@ def createCasino():
 
 @app.route('/soccer_tournament', methods=['POST'])
 def createSoccer_Tournament():
+    country = request.json.get("country", None)
     tournament = request.json.get("tournament", None)
 
     # busca team en BBDD
-    soccer_tournament = Soccer_Tournament.query.filter_by(tournament=tournament).first()
+    soccer_tournament = Soccer_Tournament.query.filter_by(tournament=tournament,country=country).first()
     # the team was not found on the database
     if soccer_tournament:
         return jsonify({"msg": "tournament already exists", "tournament": soccer_tournament.tournament}), 401
@@ -398,7 +399,8 @@ def createSoccer_Tournament():
         # crea casino nuevo
         # crea registro nuevo en BBDD de
         soccer_tournament = Soccer_Tournament(
-            tournament=tournament,
+            country=country,
+            tournament=tournament
         )
         db.session.add(soccer_tournament)
         db.session.commit()
@@ -3326,8 +3328,10 @@ def newsCasinos(id):
 def newTournament(id):
     soccer_tournament = Soccer_Tournament.query.get(id)
     tournament = request.json['tournament']
+    country = request.json['country']
 
     soccer_tournament.tournament = tournament
+    soccer_tournament.country = country
 
     db.session.commit()
     return jsonify({"msg": "soccer tournament edith successfully"}), 200

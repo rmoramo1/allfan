@@ -38,11 +38,12 @@ class Casinos(db.Model):
             "name": self.name,
             # do not serialize the password, its a security breach
         }
-class class Soccer_Tournament(db.Model):(db.Model):
-    __tablename__ = '    __tablename__ = 'Soccer_Tournament''
+class Soccer_Tournament(db.Model):
+    __tablename__ = 'soccer_tournament'
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
+    country = db.Column(db.String(30), nullable=False)
     tournament = db.Column(db.String(30), nullable=True)
     # def __repr__(self):
     #     return '<User %r>' % self.name
@@ -50,8 +51,8 @@ class class Soccer_Tournament(db.Model):(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "tournament": self.tournament,
-
+            "country": self.country,
+            "tournament": self.tournament
             # do not serialize the password, its a security breach
         }
 
