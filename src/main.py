@@ -387,93 +387,20 @@ def createCasino():
 
 @app.route('/soccer_tournament', methods=['POST'])
 def createSoccer_Tournament():
-    country = request.json.get("country", None)
-    tournament1 = request.json.get("tournament1", None)
-    tournament2 = request.json.get("tournament2", None)
-    tournament3 = request.json.get("tournament3", None)
-    tournament4 = request.json.get("tournament4", None)
-    tournament5 = request.json.get("tournament5", None)
-    tournament6 = request.json.get("tournament6", None)
-    tournament7 = request.json.get("tournament7", None)
-    tournament8 = request.json.get("tournament8", None)
-    tournament9 = request.json.get("tournament9", None)
-    tournament10 = request.json.get("tournament10", None)
-    tournament12 = request.json.get("tournament12", None)
-    tournament13 = request.json.get("tournament13", None)
-    tournament14 = request.json.get("tournament14", None)
-    tournament15 = request.json.get("tournament15", None)
-    tournament16 = request.json.get("tournament16", None)
-    tournament17 = request.json.get("tournament17", None)
-    tournament18 = request.json.get("tournament18", None)
-    tournament19 = request.json.get("tournament19", None)
-    tournament20 = request.json.get("tournament20", None)
-    tournament21 = request.json.get("tournament21", None)
-    tournament22 = request.json.get("tournament22", None)
-    tournament23 = request.json.get("tournament23", None)
-    tournament24 = request.json.get("tournament24", None)
-    tournament25 = request.json.get("tournament25", None)
+    tournament = request.json.get("tournament", None)
 
     # busca team en BBDD
     soccer_tournament = Soccer_Tournament.query.filter_by(
-        tournament1=tournament1,
-        tournament2=tournament2,
-        tournament3=tournament3,
-        tournament4=tournament4,
-        tournament5=tournament5,
-        tournament6=tournament6,
-        tournament7=tournament7,
-        tournament8=tournament8,
-        tournament9=tournament9,
-        tournament10=tournament10,
-        tournament11=tournament11,
-        tournament12=tournament12,
-        tournament13=tournament13,
-        tournament14=tournament14,
-        tournament15=tournament15,
-        tournament16=tournament16,
-        tournament17=tournament17,
-        tournament18=tournament18,
-        tournament19=tournament19,
-        tournament20=tournament20,
-        tournament21=tournament21,
-        tournament22=tournament22,
-        tournament23=tournament23,
-        tournament24=tournament24,
-        tournament25=tournament25,
-        country=country).first()
+        tournament=tournament,
+
     # the team was not found on the database
     if soccer_tournament:
-        return jsonify({"msg": "tournament already exists", "tournament": soccer_tournament.tournament1}), 401
+        return jsonify({"msg": "tournament already exists", "tournament": soccer_tournament.tournament}), 401
     else:
         # crea casino nuevo
         # crea registro nuevo en BBDD de
         soccer_tournament = Soccer_Tournament(
-            tournament1=tournament1,
-            tournament2=tournament2,
-            tournament3=tournament3,
-            tournament4=tournament4,
-            tournament5=tournament5,
-            tournament6=tournament6,
-            tournament7=tournament7,
-            tournament8=tournament8,
-            tournament9=tournament9,
-            tournament10=tournament10,
-            tournament11=tournament11,
-            tournament12=tournament12,
-            tournament13=tournament13,
-            tournament14=tournament14,
-            tournament15=tournament15,
-            tournament16=tournament16,
-            tournament17=tournament17,
-            tournament18=tournament18,
-            tournament19=tournament19,
-            tournament20=tournament20,
-            tournament21=tournament21,
-            tournament22=tournament22,
-            tournament23=tournament23,
-            tournament24=tournament24,
-            tournament25=tournament25,
-            country=country,
+            tournament=tournament,
         )
         db.session.add(soccer_tournament)
         db.session.commit()
@@ -3400,59 +3327,9 @@ def newsCasinos(id):
 @app.route('/soccer_tournament/<id>', methods=['PUT'])
 def newTournament(id):
     soccer_tournament = Soccer_Tournament.query.get(id)
-    country = request.json['country']
-    tournament1 = request.json['tournament1']
-    tournament2 = request.json['tournament2']
-    tournament3 = request.json['tournament3']
-    tournament4 = request.json['tournament4']
-    tournament5 = request.json['tournament5']
-    tournament6 = request.json['tournament6']
-    tournament7 = request.json['tournament7']
-    tournament8 = request.json['tournament8']
-    tournament9 = request.json['tournament9']
-    tournament10 = request.json['tournament10']
-    tournament11 = request.json['tournament11']
-    tournament12 = request.json['tournament12']
-    tournament13 = request.json['tournament13']
-    tournament14 = request.json['tournament14']
-    tournament15 = request.json['tournament15']
-    tournament16 = request.json['tournament16']
-    tournament17 = request.json['tournament17']
-    tournament18 = request.json['tournament18']
-    tournament19 = request.json['tournament19']
-    tournament20 = request.json['tournament20']
-    tournament21 = request.json['tournament21']
-    tournament22 = request.json['tournament22']
-    tournament23 = request.json['tournament23']
-    tournament24 = request.json['tournament24']
-    tournament25 = request.json['tournament25']
+    tournament = request.json['tournament']
 
-    soccer_tournament.tournament1 = tournament1
-    soccer_tournament.tournament2 = tournament2
-    soccer_tournament.tournament3 = tournament3
-    soccer_tournament.tournament4 = tournament4
-    soccer_tournament.tournament5 = tournament5
-    soccer_tournament.tournament6 = tournament6
-    soccer_tournament.tournament7 = tournament7
-    soccer_tournament.tournament8 = tournament8
-    soccer_tournament.tournament9 = tournament9
-    soccer_tournament.tournament10 = tournament10
-    soccer_tournament.tournament11 = tournament11
-    soccer_tournament.tournament12 = tournament12
-    soccer_tournament.tournament13 = tournament13
-    soccer_tournament.tournament14 = tournament14
-    soccer_tournament.tournament15 = tournament15
-    soccer_tournament.tournament16 = tournament16
-    soccer_tournament.tournament17 = tournament17
-    soccer_tournament.tournament18 = tournament18
-    soccer_tournament.tournament19 = tournament19
-    soccer_tournament.tournament20 = tournament20
-    soccer_tournament.tournament21 = tournament21
-    soccer_tournament.tournament22 = tournament22
-    soccer_tournament.tournament23 = tournament23
-    soccer_tournament.tournament24 = tournament24
-    soccer_tournament.tournament25 = tournament24
-    soccer_tournament.country = country
+    soccer_tournament.tournament = tournament
 
     db.session.commit()
     return jsonify({"msg": "soccer tournament edith successfully"}), 200

@@ -38,69 +38,19 @@ class Casinos(db.Model):
             "name": self.name,
             # do not serialize the password, its a security breach
         }
-class Soccer_Tournament(db.Model):
-    __tablename__ = 'soccer_tournament'
+class class Soccer_Tournament(db.Model):(db.Model):
+    __tablename__ = '    __tablename__ = 'Soccer_Tournament''
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
-    country = db.Column(db.String(30), nullable=False)
-    tournament1 = db.Column(db.String(30), nullable=True)
-    tournament2 = db.Column(db.String(30), nullable=True)
-    tournament3 = db.Column(db.String(30), nullable=True)
-    tournament4 = db.Column(db.String(30), nullable=True)
-    tournament5 = db.Column(db.String(30), nullable=True)
-    tournament6 = db.Column(db.String(30), nullable=True)
-    tournament7= db.Column(db.String(30), nullable=True)
-    tournament8 = db.Column(db.String(30), nullable=True)
-    tournament9 = db.Column(db.String(30), nullable=True)
-    tournament10 = db.Column(db.String(30), nullable=True)
-    tournament11 = db.Column(db.String(30), nullable=True)
-    tournament12 = db.Column(db.String(30), nullable=True)
-    tournament13 = db.Column(db.String(30), nullable=True)
-    tournament14 = db.Column(db.String(30), nullable=True)
-    tournament15 = db.Column(db.String(30), nullable=True)
-    tournament16 = db.Column(db.String(30), nullable=True)
-    tournament17 = db.Column(db.String(30), nullable=True)
-    tournament18 = db.Column(db.String(30), nullable=True)
-    tournament19 = db.Column(db.String(30), nullable=True)
-    tournament20 = db.Column(db.String(30), nullable=True)
-    tournament21 = db.Column(db.String(30), nullable=True)
-    tournament22 = db.Column(db.String(30), nullable=True)
-    tournament23 = db.Column(db.String(30), nullable=True)
-    tournament24 = db.Column(db.String(30), nullable=True)
-    tournament25 = db.Column(db.String(30), nullable=True)
+    tournament = db.Column(db.String(30), nullable=True)
     # def __repr__(self):
     #     return '<User %r>' % self.name
 
     def serialize(self):
         return {
             "id": self.id,
-            "country": self.country,
-            "tournament1": self.tournament1,
-            "tournament2": self.tournament2,
-            "tournament3": self.tournament3,
-            "tournament4": self.tournament4,
-            "tournament5": self.tournament5,
-            "tournament6": self.tournament6,
-            "tournament7": self.tournament7,
-            "tournament8": self.tournament8,
-            "tournament9": self.tournament9,
-            "tournament10": self.tournament10,
-            "tournament11": self.tournament11,
-            "tournament12": self.tournament12,
-            "tournament13": self.tournament13,
-            "tournament14": self.tournament14,
-            "tournament15": self.tournament15,
-            "tournament16": self.tournament16,
-            "tournament17": self.tournament17,
-            "tournament18": self.tournament18,
-            "tournament19": self.tournament19,
-            "tournament20": self.tournament20,
-            "tournament21": self.tournament21,
-            "tournament22": self.tournament22,
-            "tournament23": self.tournament23,
-            "tournament24": self.tournament24,
-            "tournament25": self.tournament25
+            "tournament": self.tournament,
 
             # do not serialize the password, its a security breach
         }
