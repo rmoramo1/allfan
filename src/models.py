@@ -43,16 +43,65 @@ class Soccer_Tournament(db.Model):
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
-    tournament = db.Column(db.String(30), nullable=False)
     country = db.Column(db.String(30), nullable=False)
+    tournament1 = db.Column(db.String(30), nullable=False)
+    tournament2 = db.Column(db.String(30), nullable=False)
+    tournament3 = db.Column(db.String(30), nullable=False)
+    tournament4 = db.Column(db.String(30), nullable=False)
+    tournament5 = db.Column(db.String(30), nullable=False)
+    tournament6 = db.Column(db.String(30), nullable=False)
+    tournament7= db.Column(db.String(30), nullable=False)
+    tournament8 = db.Column(db.String(30), nullable=False)
+    tournament9 = db.Column(db.String(30), nullable=False)
+    tournament10 = db.Column(db.String(30), nullable=False)
+    tournament11 = db.Column(db.String(30), nullable=False)
+    tournament12 = db.Column(db.String(30), nullable=False)
+    tournament13 = db.Column(db.String(30), nullable=False)
+    tournament14 = db.Column(db.String(30), nullable=False)
+    tournament15 = db.Column(db.String(30), nullable=False)
+    tournament16 = db.Column(db.String(30), nullable=False)
+    tournament17 = db.Column(db.String(30), nullable=False)
+    tournament18 = db.Column(db.String(30), nullable=False)
+    tournament19 = db.Column(db.String(30), nullable=False)
+    tournament20 = db.Column(db.String(30), nullable=False)
+    tournament21 = db.Column(db.String(30), nullable=False)
+    tournament22 = db.Column(db.String(30), nullable=False)
+    tournament23 = db.Column(db.String(30), nullable=False)
+    tournament24 = db.Column(db.String(30), nullable=False)
+    tournament25 = db.Column(db.String(30), nullable=False)
     # def __repr__(self):
     #     return '<User %r>' % self.name
 
     def serialize(self):
         return {
             "id": self.id,
-            "tournament": self.tournament,
-            "country": self.country
+            "country": self.country,
+            "tournament1": self.tournament1,
+            "tournament2": self.tournament2,
+            "tournament3": self.tournament3,
+            "tournament4": self.tournament4,
+            "tournament5": self.tournament5,
+            "tournament6": self.tournament6,
+            "tournament7": self.tournament7,
+            "tournament8": self.tournament8,
+            "tournament9": self.tournament9,
+            "tournament10": self.tournament10,
+            "tournament11": self.tournament11,
+            "tournament12": self.tournament12,
+            "tournament13": self.tournament13,
+            "tournament14": self.tournament14,
+            "tournament15": self.tournament15,
+            "tournament16": self.tournament16,
+            "tournament17": self.tournament17,
+            "tournament18": self.tournament18,
+            "tournament19": self.tournament19,
+            "tournament20": self.tournament20,
+            "tournament21": self.tournament21,
+            "tournament22": self.tournament22,
+            "tournament23": self.tournament23,
+            "tournament24": self.tournament24,
+            "tournament25": self.tournament25
+
             # do not serialize the password, its a security breach
         }
 
