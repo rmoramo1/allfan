@@ -390,9 +390,7 @@ def createSoccer_Tournament():
     tournament = request.json.get("tournament", None)
 
     # busca team en BBDD
-    soccer_tournament = Soccer_Tournament.query.filter_by(
-        tournament=tournament,
-
+    soccer_tournament = Soccer_Tournament.query.filter_by(tournament=tournament).first()
     # the team was not found on the database
     if soccer_tournament:
         return jsonify({"msg": "tournament already exists", "tournament": soccer_tournament.tournament}), 401
