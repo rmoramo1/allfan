@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: e1359af5373e
+Revision ID: e4ce2a171a22
 Revises: 
-Create Date: 2021-12-13 08:43:51.625595
+Create Date: 2021-12-13 11:29:01.630214
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e1359af5373e'
+revision = 'e4ce2a171a22'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -979,31 +979,7 @@ def upgrade():
     op.create_table('soccer_tournament',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('country', sa.String(length=30), nullable=False),
-    sa.Column('tournament1', sa.String(length=30), nullable=False),
-    sa.Column('tournament2', sa.String(length=30), nullable=False),
-    sa.Column('tournament3', sa.String(length=30), nullable=False),
-    sa.Column('tournament4', sa.String(length=30), nullable=False),
-    sa.Column('tournament5', sa.String(length=30), nullable=False),
-    sa.Column('tournament6', sa.String(length=30), nullable=False),
-    sa.Column('tournament7', sa.String(length=30), nullable=False),
-    sa.Column('tournament8', sa.String(length=30), nullable=False),
-    sa.Column('tournament9', sa.String(length=30), nullable=False),
-    sa.Column('tournament10', sa.String(length=30), nullable=False),
-    sa.Column('tournament11', sa.String(length=30), nullable=False),
-    sa.Column('tournament12', sa.String(length=30), nullable=False),
-    sa.Column('tournament13', sa.String(length=30), nullable=False),
-    sa.Column('tournament14', sa.String(length=30), nullable=False),
-    sa.Column('tournament15', sa.String(length=30), nullable=False),
-    sa.Column('tournament16', sa.String(length=30), nullable=False),
-    sa.Column('tournament17', sa.String(length=30), nullable=False),
-    sa.Column('tournament18', sa.String(length=30), nullable=False),
-    sa.Column('tournament19', sa.String(length=30), nullable=False),
-    sa.Column('tournament20', sa.String(length=30), nullable=False),
-    sa.Column('tournament21', sa.String(length=30), nullable=False),
-    sa.Column('tournament22', sa.String(length=30), nullable=False),
-    sa.Column('tournament23', sa.String(length=30), nullable=False),
-    sa.Column('tournament24', sa.String(length=30), nullable=False),
-    sa.Column('tournament25', sa.String(length=30), nullable=False),
+    sa.Column('tournament', sa.String(length=30), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('stats_box_fighter',
