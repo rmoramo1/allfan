@@ -56,6 +56,7 @@ def login():
     if user is None:
        return jsonify({"msg": "Bad mail or password"}), 401
     # crear token login
+
     access_token = create_access_token(identity=mail)
     return jsonify({"token": access_token, "username":user.name})
 
@@ -63,6 +64,7 @@ def login():
 
 @app.route("/user", methods=["GET"])
 def user():
+    
     if request.method == "GET":
         records = User.query.all()
         return jsonify([User.serialize(record) for record in records])
@@ -72,8 +74,9 @@ def user():
 #crea usuario----------------------------------------
 
 @app.route("/soccer", methods=["GET"])
-@jwt_required
+@jwt_required()
 def soccer():
+    current_user = get_jwt_identity()
     if request.method == "GET":
         records = Soccer.query.all()
         return jsonify([Soccer.serialize(record) for record in records])
