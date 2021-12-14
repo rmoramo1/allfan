@@ -74,7 +74,6 @@ def user():
 #crea usuario----------------------------------------
 
 @app.route("/soccer", methods=["GET"])
-@jwt_required()
 def soccer():
     current_user = get_jwt_identity()
     if request.method == "GET":
