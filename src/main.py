@@ -38,21 +38,33 @@ def sitemap():
 
 # obtener usuario de base de datos y crea token
 
-
+#obtener usuario de base de datos y crea token
 @app.route('/login', methods=['POST'])
 def login():
     name = request.json.get("name", None)
-    moneyLineAway = request.json.get("moneyLineAway", None)
-    print(name)
-    print(moneyLineAway)
-    user = User.query.filter_by(name=name, moneyLineAway=moneyLineAway).first()
+    mail = request.json.get("mail", None)
+    password = request.json.get("password", None)
+    print(mail)
+    print(password)
+    user = User.query.filter_by(mail=mail, password=password).first()
     # valida si estan vacios los ingresos
     if user is None:
-        return jsonify({"msg": "Bad mail or moneyLineAway"}), 401
+       return jsonify({"msg": "Bad mail or password"}), 401
     # crear token login
-    access_token = create_access_token(identity=name)
-    return jsonify({"token": access_token, "username": user.name})
+    access_token = create_access_token(identity=mail)
+    return jsonify({"token": access_token, "username":user.name})
+
+#obtiene usuario----------------------------------------
+
+@app.route("/user", methods=["GET"])
+def user():
+    if request.method == "GET":
+        records = User.query.all()
+        return jsonify([User.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
+#crea usuario----------------------------------------
 
 @app.route("/soccer", methods=["GET"])
 def soccer():
