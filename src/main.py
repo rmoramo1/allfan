@@ -72,7 +72,7 @@ def user():
 @app.route("/soccer", methods=["GET"])
 @jwt_required
 def soccer():
-    user =(get_jwt_identity)
+    user =get_jwt_identity()
     if request.method == "GET":
         records = Soccer.query.all()
         return jsonify([Soccer.serialize(record) for record in records])
