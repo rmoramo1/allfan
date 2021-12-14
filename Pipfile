@@ -22,6 +22,7 @@ flask-login = "*"
 flask-security = "*"
 email-validator = "*"
 flask-jwt-extended = "*"
+flask-jwt = "*"
 
 [requires]
 python_version = "3.9"
