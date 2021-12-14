@@ -75,7 +75,6 @@ def user():
 
 @app.route("/soccer", methods=["GET"])
 def soccer():
-    current_user = get_jwt_identity()
     if request.method == "GET":
         records = Soccer.query.all()
         return jsonify([Soccer.serialize(record) for record in records])
