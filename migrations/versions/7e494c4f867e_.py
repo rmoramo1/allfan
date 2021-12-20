@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 09e2816923cd
+Revision ID: 7e494c4f867e
 Revises: 
-Create Date: 2021-12-14 07:36:37.948447
+Create Date: 2021-12-20 13:58:34.868734
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '09e2816923cd'
+revision = '7e494c4f867e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -82,6 +82,36 @@ def upgrade():
     sa.Column('rnds', sa.String(length=10), nullable=False),
     sa.Column('holes', sa.String(length=10), nullable=False),
     sa.Column('avg', sa.String(length=10), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('logos_mlb',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('team', sa.String(length=20), nullable=False),
+    sa.Column('url', sa.String(length=20), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('logos_nba',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('team', sa.String(length=20), nullable=False),
+    sa.Column('url', sa.String(length=20), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('logos_nfl',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('team', sa.String(length=20), nullable=False),
+    sa.Column('url', sa.String(length=20), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('logos_nhl',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('team', sa.String(length=20), nullable=False),
+    sa.Column('url', sa.String(length=20), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('logos_soccer',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('team', sa.String(length=20), nullable=False),
+    sa.Column('url', sa.String(length=20), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('match_ups_nascar',
@@ -1153,25 +1183,18 @@ def upgrade():
     sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('conference', sa.String(length=30), nullable=False),
     sa.Column('division', sa.String(length=30), nullable=False),
-    sa.Column('pts', sa.String(length=10), nullable=False),
-    sa.Column('fmg', sa.String(length=10), nullable=False),
-    sa.Column('fga', sa.String(length=10), nullable=False),
-    sa.Column('fg', sa.String(length=10), nullable=False),
-    sa.Column('fg_AVG', sa.String(length=10), nullable=False),
-    sa.Column('three_pm', sa.String(length=10), nullable=False),
-    sa.Column('three_pa', sa.String(length=10), nullable=False),
-    sa.Column('three_p_AVG', sa.String(length=10), nullable=False),
-    sa.Column('ftm', sa.String(length=10), nullable=False),
-    sa.Column('fta', sa.String(length=10), nullable=False),
-    sa.Column('ft_AVG', sa.String(length=10), nullable=False),
-    sa.Column('Or', sa.String(length=10), nullable=False),
-    sa.Column('dr', sa.String(length=10), nullable=False),
-    sa.Column('reb', sa.String(length=10), nullable=False),
-    sa.Column('ast', sa.String(length=10), nullable=False),
-    sa.Column('stl', sa.String(length=10), nullable=False),
-    sa.Column('blk', sa.String(length=10), nullable=False),
-    sa.Column('to', sa.String(length=10), nullable=False),
-    sa.Column('pf', sa.String(length=10), nullable=False),
+    sa.Column('w', sa.String(length=10), nullable=False),
+    sa.Column('L', sa.String(length=10), nullable=False),
+    sa.Column('ptc', sa.String(length=10), nullable=False),
+    sa.Column('home', sa.String(length=10), nullable=False),
+    sa.Column('away', sa.String(length=10), nullable=False),
+    sa.Column('div', sa.String(length=10), nullable=False),
+    sa.Column('conf', sa.String(length=10), nullable=False),
+    sa.Column('ppg', sa.String(length=10), nullable=False),
+    sa.Column('opp_ppg', sa.String(length=10), nullable=False),
+    sa.Column('diff', sa.String(length=10), nullable=False),
+    sa.Column('strk', sa.String(length=10), nullable=False),
+    sa.Column('l10', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('stats_nfl_team',
@@ -1449,6 +1472,11 @@ def downgrade():
     op.drop_table('mma')
     op.drop_table('mlb')
     op.drop_table('match_ups_nascar')
+    op.drop_table('logos_soccer')
+    op.drop_table('logos_nhl')
+    op.drop_table('logos_nfl')
+    op.drop_table('logos_nba')
+    op.drop_table('logos_mlb')
     op.drop_table('golfer')
     op.drop_table('golf')
     op.drop_table('casinos')

@@ -6154,13 +6154,6 @@ def logos_mlb_delete(id):
     db.session.commit()
     return "logos_nba was successfully deleted"
 
-@app.route("/logos_mlb/<id>", methods=["DELETE"])
-def logos_mlb_delete(id):
-    logos_mlb = Logos_MLB.query.get(id)
-    db.session.delete(logos_mlb)
-    db.session.commit()
-    return "logos_mlb was successfully deleted"
-
 @app.route("/logos_nhl/<id>", methods=["DELETE"])
 def logos_nhl_delete(id):
     logos_nhl = Logos_NHL.query.get(id)
