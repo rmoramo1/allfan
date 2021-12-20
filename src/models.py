@@ -29,6 +29,7 @@ class Casinos(db.Model):
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
+    name = db.Column(db.String(20), nullable=False)
     # def __repr__(self):
     #     return '<User %r>' % self.name
 
@@ -38,6 +39,68 @@ class Casinos(db.Model):
             "name": self.name,
             # do not serialize the password, its a security breach
         }
+
+class Logos_NFL(db.Model):
+    __tablename__ = 'logos_nfl'
+    id = db.Column(db.Integer, primary_key=True)
+    team = db.Column(db.String(20), nullable=False)
+    url = db.Column(db.String(20), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "team": self.name,
+            "url": self.name,
+        }
+class Logos_NBA(db.Model):
+    __tablename__ = 'logos_nba'
+    id = db.Column(db.Integer, primary_key=True)
+    team = db.Column(db.String(20), nullable=False)
+    url = db.Column(db.String(20), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "team": self.name,
+            "url": self.name,
+        }
+class Logos_MLB(db.Model):
+    __tablename__ = 'logos_mlb'
+    id = db.Column(db.Integer, primary_key=True)
+    team = db.Column(db.String(20), nullable=False)
+    url = db.Column(db.String(20), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "team": self.name,
+            "url": self.name,
+        }
+class Logos_NHL(db.Model):
+    __tablename__ = 'logos_nhl'
+    id = db.Column(db.Integer, primary_key=True)
+    team = db.Column(db.String(20), nullable=False)
+    url = db.Column(db.String(20), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "team": self.name,
+            "url": self.name,
+        }
+class Logos_SOCCER(db.Model):
+    __tablename__ = 'logos_soccer'
+    id = db.Column(db.Integer, primary_key=True)
+    team = db.Column(db.String(20), nullable=False)
+    url = db.Column(db.String(20), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "team": self.name,
+            "url": self.name,
+        }
+
 class Soccer_Tournament(db.Model):
     __tablename__ = 'soccer_tournament'
     # Here we define columns for the table person

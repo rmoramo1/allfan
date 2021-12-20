@@ -71,7 +71,6 @@ def user():
     else:
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
-#crea usuario----------------------------------------
 
 @app.route("/soccer", methods=["GET"])
 def soccer():
@@ -262,7 +261,6 @@ def stats_nba_team():
     else:
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
-
 @app.route("/stats_mlb_team", methods=["GET"])
 def stats_mlb_team():
     if request.method == "GET":
@@ -271,7 +269,6 @@ def stats_mlb_team():
     else:
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
-
 
 @app.route("/stats_mlb_player", methods=["GET"])
 def stats_mlb_player():
@@ -282,7 +279,6 @@ def stats_mlb_player():
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
 
-
 @app.route("/stats_nhl_team", methods=["GET"])
 def stats_nhl_team():
     if request.method == "GET":
@@ -291,7 +287,6 @@ def stats_nhl_team():
     else:
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
-
 
 @app.route("/stats_nhl_player", methods=["GET"])
 def stats_nhl_player():
@@ -302,7 +297,6 @@ def stats_nhl_player():
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
 
-
 @app.route("/stats_box_fighter", methods=["GET"])
 def stats_box_fighter():
     if request.method == "GET":
@@ -311,7 +305,6 @@ def stats_box_fighter():
     else:
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
-
 
 @app.route("/stats_mma_fighter", methods=["GET"])
 def stats_mma_fighter():
@@ -322,7 +315,6 @@ def stats_mma_fighter():
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
 
-
 @app.route("/stats_nfl_team", methods=["GET"])
 def stats_nfl_team():
     if request.method == "GET":
@@ -331,7 +323,6 @@ def stats_nfl_team():
     else:
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
-
 
 @app.route("/stats_defensive_player_nfl", methods=["GET"])
 def stats_defensive_player_nfl():
@@ -342,7 +333,6 @@ def stats_defensive_player_nfl():
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
 
-
 @app.route("/stats_offensive_player_nfl", methods=["GET"])
 def stats_offensive_player_nfl():
     if request.method == "GET":
@@ -351,7 +341,6 @@ def stats_offensive_player_nfl():
     else:
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
-
 
 @app.route("/stats_returning_player_nfl", methods=["GET"])
 def stats_returning_player_nfl():
@@ -362,7 +351,6 @@ def stats_returning_player_nfl():
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
 
-
 @app.route("/stats_kiking_player_nfl", methods=["GET"])
 def stats_kiking_player_nfl():
     if request.method == "GET":
@@ -372,7 +360,6 @@ def stats_kiking_player_nfl():
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
 
-
 @app.route("/stats_punting_player_nfl", methods=["GET"])
 def stats_punting_player_nfl():
     if request.method == "GET":
@@ -381,8 +368,57 @@ def stats_punting_player_nfl():
     else:
         return jsonify({"msg": "no autorizado"})
 
-# --------------------------post methot--------------------------------------------
+ # --------------------------------------------------------------------
 
+@app.route("/logos_nfl", methods=["GET"])
+def logos_nfl():
+    if request.method == "GET":
+        records = Logos_NFL().query.all()
+        return jsonify([Logos_NFL.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+
+ # --------------------------------------------------------------------
+
+@app.route("/logos_nba", methods=["GET"])
+def logos_nba():
+    if request.method == "GET":
+        records = Logos_NBA().query.all()
+        return jsonify([Logos_NBA.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+
+ # --------------------------------------------------------------------
+
+@app.route("/logos_nhl", methods=["GET"])
+def logos_nhl():
+    if request.method == "GET":
+        records = Logos_NHL().query.all()
+        return jsonify([Logos_NHL.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+
+ # --------------------------------------------------------------------
+
+@app.route("/logos_soccer", methods=["GET"])
+def logos_soccer():
+    if request.method == "GET":
+        records = Logos_SOCCER().query.all()
+        return jsonify([Logos_SOCCER.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+
+ # --------------------------------------------------------------------
+
+@app.route("/logos_mlb", methods=["GET"])
+def logos_mlb():
+    if request.method == "GET":
+        records = Logos_MLB().query.all()
+        return jsonify([Logos_MLB.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+
+# --------------------------post methot--------------------------------------------
 
 @app.route('/casinos', methods=['POST'])
 def createCasino():
@@ -402,6 +438,111 @@ def createCasino():
         db.session.add(casinos)
         db.session.commit()
         return jsonify({"msg": "casino created successfully"}), 200
+
+@app.route('/logos_nfl', methods=['POST'])
+def createLogos_nfl():
+    team = request.json.get("team", None)
+    url = request.json.get("url", None)
+
+    # busca team en BBDD
+    logos_nfl = Logos_NFL.query.filter_by(team=team,url=url).first()
+    # the team was not found on the database
+    if logos_nfl:
+        return jsonify({"msg": "Logos_NFL already exists", "LOGO": logos_nfl.team}), 401
+    else:
+        # crea casino nuevo
+        # crea registro nuevo en BBDD de
+        logos_nfl = Logos_NFL(
+            team=team,
+            url=url,
+        )
+        db.session.add(logos_nfl)
+        db.session.commit()
+        return jsonify({"msg": "logos_nfl created successfully"}), 200
+
+@app.route('/logos_nba', methods=['POST'])
+def createLogos_nba():
+    team = request.json.get("team", None)
+    url = request.json.get("url", None)
+
+    # busca team en BBDD
+    logos_nba = Logos_NBA.query.filter_by(team=team,url=url).first()
+    # the team was not found on the database
+    if logos_nba:
+        return jsonify({"msg": "LOGO already exists", "LOGO": logos_nba.team}), 401
+    else:
+        # crea LOGO nuevo
+        # crea registro nuevo en BBDD de
+        logos_nba = Logos_NBA(
+            team=team,
+            url=url,
+        )
+        db.session.add(logos_nba)
+        db.session.commit()
+        return jsonify({"msg": "Logos_NBA created successfully"}), 200
+
+@app.route('/logos_mlb', methods=['POST'])
+def createLogos_MLB():
+    team = request.json.get("team", None)
+    url = request.json.get("url", None)
+
+    # busca team en BBDD
+    logos_mlb = Logos_MLB.query.filter_by(team=team,url=url).first()
+    # the team was not found on the database
+    if logos_mlb:
+        return jsonify({"msg": "LOGO already exists", "LOGO": logos_mlb.team}), 401
+    else:
+        # crea casino nuevo
+        # crea registro nuevo en BBDD de
+        logos_mlb = Logos_MLB(
+            team=team,
+            url=url,
+        )
+        db.session.add(logos_mlb)
+        db.session.commit()
+        return jsonify({"msg": "logos_mlb created successfully"}), 200
+
+@app.route('/logos_nhl', methods=['POST'])
+def createLogos_NHL():
+    team = request.json.get("team", None)
+    url = request.json.get("url", None)
+
+    # busca team en BBDD
+    logos_NHL = Logos_NHL.query.filter_by(team=team,url=url).first()
+    # the team was not found on the database
+    if logos_NHL:
+        return jsonify({"msg": "LOGO already exists", "LOGO": logos_NHL.team}), 401
+    else:
+        # crea casino nuevo
+        # crea registro nuevo en BBDD de
+        logos_NHL = Logos_NHL(
+            team=team,
+            url=url,
+        )
+        db.session.add(logos_NHL)
+        db.session.commit()
+        return jsonify({"msg": "Logos_NHL created successfully"}), 200
+
+@app.route('/logos_soccer', methods=['POST'])
+def createLogos_SOCCER():
+    team = request.json.get("team", None)
+    url = request.json.get("url", None)
+
+    # busca team en BBDD
+    logos_soccer = Logos_SOCCER.query.filter_by(team=team,url=url).first()
+    # the team was not found on the database
+    if logos_soccer:
+        return jsonify({"msg": "LOGO already exists", "LOGO": logos_soccer.team}), 401
+    else:
+        # crea casino nuevo
+        # crea registro nuevo en BBDD de
+        logos_soccer = Logos_SOCCER(
+            team=team,
+            url=url,
+        )
+        db.session.add(logos_soccer)
+        db.session.commit()
+        return jsonify({"msg": "logos_soccer created successfully"}), 200
 
 
 @app.route('/soccer_tournament', methods=['POST'])
@@ -3320,7 +3461,7 @@ def createStats_punting_player_nfl():
         return jsonify({"msg": "Game stats_punting_player_nfl created successfully"}), 200
 
 
-# ------------put
+# ------------put-------------------------------------------------------------------------------
 
 @app.route('/casinos/<id>', methods=['PUT'])
 def newsCasinos(id):
@@ -3330,6 +3471,61 @@ def newsCasinos(id):
 
     db.session.commit()
     return jsonify({"msg": "casino edith successfully"}), 200
+
+@app.route('/logos_nfl/<id>', methods=['PUT'])
+def newslogos_nfl(id):
+    logos_nfl = Logos_NFL.query.get(id)
+    team = request.json['team']
+    url = request.json['url']
+    logos_nfl.team = team
+    logos_nfl.url = url
+
+    db.session.commit()
+    return jsonify({"msg": "logos_nfl edith successfully"}), 200
+
+@app.route('/logos_nba/<id>', methods=['PUT'])
+def newslogos_nba(id):
+    logos_nba = Logos_NBA.query.get(id)
+    team = request.json['team']
+    url = request.json['url']
+    logos_nba.team = team
+    logos_nba.url = url
+
+    db.session.commit()
+    return jsonify({"msg": "logos_nba edith successfully"}), 200
+
+@app.route('/logos_mlb/<id>', methods=['PUT'])
+def newslogos_mlb(id):
+    logos_mlb = Logos_MLB.query.get(id)
+    team = request.json['team']
+    url = request.json['url']
+    logos_mlb.team = team
+    logos_mlb.url = url
+
+    db.session.commit()
+    return jsonify({"msg": "logos_mlb edith successfully"}), 200
+
+@app.route('/logos_nhl/<id>', methods=['PUT'])
+def newslogos_nhl(id):
+    logos_nhl = Logos_NHL.query.get(id)
+    team = request.json['team']
+    url = request.json['url']
+    logos_nhl.team = team
+    logos_nhl.url = url
+
+    db.session.commit()
+    return jsonify({"msg": "logos_nhl edith successfully"}), 200
+
+@app.route('/logos_soccer/<id>', methods=['PUT'])
+def newslogos_soccer(id):
+    logos_soccer = Logos_SOCCER.query.get(id)
+    team = request.json['team']
+    url = request.json['url']
+    logos_soccer.team = team
+    logos_soccer.url = url
+
+    db.session.commit()
+    return jsonify({"msg": "logos_soccer edith successfully"}), 200
 
 @app.route('/soccer_tournament/<id>', methods=['PUT'])
 def newTournament(id):
@@ -5928,12 +6124,56 @@ def stats_punting_player_nflEdit(id):
 
 # Endpoint for deleting a record
 
+#-----------------Delete-----------------------------------------------
+
 @app.route("/soccer_tournament/<id>", methods=["DELETE"])
 def soccer_tournament_delete(id):
     soccer_tournament = Soccer_Tournament.query.get(id)
     db.session.delete(soccer_tournament)
     db.session.commit()
     return "soccer_tournament was successfully deleted"
+
+@app.route("/logos_nfl/<id>", methods=["DELETE"])
+def logos_nfl_delete(id):
+    logos_nfl = Logos_NFL.query.get(id)
+    db.session.delete(logos_nfl)
+    db.session.commit()
+    return "logos_nfl was successfully deleted"
+
+@app.route("/logos_nba/<id>", methods=["DELETE"])
+def logos_nba_delete(id):
+    logos_nba = Logos_NBA.query.get(id)
+    db.session.delete(logos_nba)
+    db.session.commit()
+    return "logos_nba was successfully deleted"
+
+@app.route("/logos_mlb/<id>", methods=["DELETE"])
+def logos_mlb_delete(id):
+    logos_mlb = Logos_MLB.query.get(id)
+    db.session.delete(logos_mlb)
+    db.session.commit()
+    return "logos_nba was successfully deleted"
+
+@app.route("/logos_mlb/<id>", methods=["DELETE"])
+def logos_mlb_delete(id):
+    logos_mlb = Logos_MLB.query.get(id)
+    db.session.delete(logos_mlb)
+    db.session.commit()
+    return "logos_mlb was successfully deleted"
+
+@app.route("/logos_nhl/<id>", methods=["DELETE"])
+def logos_nhl_delete(id):
+    logos_nhl = Logos_NHL.query.get(id)
+    db.session.delete(logos_nhl)
+    db.session.commit()
+    return "logos_nhl was successfully deleted"
+
+@app.route("/logos_soccer/<id>", methods=["DELETE"])
+def logos_soccer_delete(id):
+    logos_soccer = Logos_SOCCER.query.get(id)
+    db.session.delete(logos_soccer)
+    db.session.commit()
+    return "logos_soccer was successfully deleted"
 
 @app.route("/soccer/<id>", methods=["DELETE"])
 def soccer_delete(id):
