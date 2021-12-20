@@ -5173,7 +5173,7 @@ def stats_nba_teamEdit(id):
 
     w = request.json['w']
     L = request.json['L']
-    fga = request.json['ptc']
+    ptc = request.json['ptc']
     home = request.json['home']
     away = request.json['away']
     div = request.json['div']
