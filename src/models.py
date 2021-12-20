@@ -2380,6 +2380,7 @@ class Stats_nba_team(db.Model):
     away = db.Column(db.String(10), default=0, nullable=False)
     div = db.Column(db.String(10), default=0, nullable=False)
     conf = db.Column(db.String(10), default=0, nullable=False)
+    ppg = db.Column(db.String(10), default=0, nullable=False)
     opp_ppg = db.Column(db.String(10), default=0, nullable=False)
     diff = db.Column(db.String(10), default=0, nullable=False)
     strk = db.Column(db.String(10), default=0, nullable=False)
@@ -2401,6 +2402,7 @@ class Stats_nba_team(db.Model):
             "away": self.away,
             "div": self.div,
             "conf": self.conf,
+            "ppg": self.ppg,
             "opp_ppg": self.opp_ppg,
             "diff": self.diff,
             "strk": self.strk,

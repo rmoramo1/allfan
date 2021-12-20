@@ -2424,6 +2424,7 @@ def createStats_nba_team():
     away = request.json.get("away", None)
     div = request.json.get("div", None)
     conf = request.json.get("conf", None)
+    ppg = request.json.get("ppg", None)
     opp_ppg = request.json.get("opp_ppg", None)
     diff = request.json.get("diff", None)
     strk = request.json.get("strk", None)
@@ -2449,6 +2450,7 @@ def createStats_nba_team():
             away=away,
             div=div,
             conf=conf,
+            ppg=ppg,
             opp_ppg=opp_ppg,
             diff=diff,
             strk=strk,
@@ -5176,6 +5178,7 @@ def stats_nba_teamEdit(id):
     away = request.json['away']
     div = request.json['div']
     conf = request.json['conf']
+    ppg = request.json['ppg']
     opp_ppg = request.json['opp_ppg']
     diff = request.json['diff']
     strk = request.json['strk']
@@ -5192,6 +5195,7 @@ def stats_nba_teamEdit(id):
     stats_nba_team.away = away
     stats_nba_team.div = div
     stats_nba_team.conf = conf
+    stats_nba_team.ppg = ppg
     stats_nba_team.opp_ppg = opp_ppg
     stats_nba_team.diff = diff
     stats_nba_team.strk = strk
