@@ -2416,25 +2416,19 @@ def createStats_nba_team():
     team = request.json.get("team", None)
     conference = request.json.get("conference", None)
     division = request.json.get("division", None)
-    pts = request.json.get("pts", None)
-    fmg = request.json.get("fmg", None)
-    fga = request.json.get("fga", None)
-    fg = request.json.get("fg", None)
-    fg_AVG = request.json.get("fg_AVG", None)
-    three_pm = request.json.get("three_pm", None)
-    three_pa = request.json.get("three_pa", None)
-    three_p_AVG = request.json.get("three_p_AVG", None)
-    ftm = request.json.get("ftm", None)
-    fta = request.json.get("fta", None)
-    ft_AVG = request.json.get("ft_AVG", None)
-    Or = request.json.get("Or", None)
-    dr = request.json.get("dr", None)
-    reb = request.json.get("reb", None)
-    ast = request.json.get("ast", None)
-    stl = request.json.get("stl", None)
-    blk = request.json.get("blk", None)
-    to = request.json.get("to", None)
-    pf = request.json.get("pf", None)
+
+    w = request.json.get("w", None)
+    L = request.json.get("L", None)
+    ptc = request.json.get("ptc", None)
+    home = request.json.get("home", None)
+    away = request.json.get("away", None)
+    div = request.json.get("div", None)
+    conf = request.json.get("conf", None)
+    opp_ppg = request.json.get("opp_ppg", None)
+    diff = request.json.get("diff", None)
+    strk = request.json.get("strk", None)
+    l10 = request.json.get("l10", None)
+
     # busca team en BBDD
     stats_nba_team = Stats_nba_team.query.filter_by(team=team).first()
     # the team was not found on the database
@@ -2448,25 +2442,17 @@ def createStats_nba_team():
             team=team,
             conference=conference,
             division=division,
-            pts=pts,
-            fmg=fmg,
-            fga=fga,
-            fg=fg,
-            fg_AVG=fg_AVG,
-            three_pm=three_pm,
-            three_pa=three_pa,
-            three_p_AVG=three_p_AVG,
-            ftm=ftm,
-            fta=fta,
-            ft_AVG=ft_AVG,
-            Or=Or,
-            dr=dr,
-            reb=reb,
-            ast=ast,
-            stl=stl,
-            blk=blk,
-            to=to,
-            pf=pf
+            w=w,
+            L=L,
+            ptc=ptc,
+            home=home,
+            away=away,
+            div=div,
+            conf=conf,
+            opp_ppg=opp_ppg,
+            diff=diff,
+            strk=strk,
+            l10=l10
         )
         db.session.add(stats_nba_team)
         db.session.commit()
@@ -5182,49 +5168,34 @@ def stats_nba_teamEdit(id):
     team = request.json['team']
     conference = request.json['conference']
     division = request.json['division']
-    pts = request.json['pts']
-    fmg = request.json['fmg']
-    fga = request.json['fga']
-    fg = request.json['fg']
-    fg_AVG = request.json['fg_AVG']
-    three_pm = request.json['three_pm']
-    three_pa = request.json['three_pa']
-    three_p_AVG = request.json['three_p_AVG']
-    ftm = request.json['ftm']
-    fta = request.json['fta']
-    ft_AVG = request.json['ft_AVG']
-    Or = request.json['Or']
-    dr = request.json['dr']
-    reb = request.json['reb']
-    ast = request.json['ast']
-    stl = request.json['stl']
-    blk = request.json['blk']
-    to = request.json['to']
-    pf = request.json['pf']
+
+    w = request.json['w']
+    L = request.json['L']
+    fga = request.json['ptc']
+    home = request.json['home']
+    away = request.json['away']
+    div = request.json['div']
+    conf = request.json['conf']
+    opp_ppg = request.json['opp_ppg']
+    diff = request.json['diff']
+    strk = request.json['strk']
+    l10 = request.json['l10']
 
     stats_nba_team.season = season
     stats_nba_team.team = team
     stats_nba_team.conference = conference
     stats_nba_team.division = division
-    stats_nba_team.pts = pts
-    stats_nba_team.fmg = fmg
-    stats_nba_team.fga = fga
-    stats_nba_team.fg = fg
-    stats_nba_team.fg_AVG = fg_AVG
-    stats_nba_team.three_pm = three_pm
-    stats_nba_team.three_pa = three_pa
-    stats_nba_team.three_p_AVG = three_p_AVG
-    stats_nba_team.ftm = ftm
-    stats_nba_team.fta = fta
-    stats_nba_team.ft_AVG = ft_AVG
-    stats_nba_team.Or = Or
-    stats_nba_team.dr = dr
-    stats_nba_team.reb = reb
-    stats_nba_team.ast = ast
-    stats_nba_team.stl = stl
-    stats_nba_team.blk = blk
-    stats_nba_team.to = to
-    stats_nba_team.pf = pf
+    stats_nba_team.w = w
+    stats_nba_team.L = L
+    stats_nba_team.ptc = ptc
+    stats_nba_team.home = home
+    stats_nba_team.away = away
+    stats_nba_team.div = div
+    stats_nba_team.conf = conf
+    stats_nba_team.opp_ppg = opp_ppg
+    stats_nba_team.diff = diff
+    stats_nba_team.strk = strk
+    stats_nba_team.l10 = l10
 
     db.session.commit()
     return jsonify({"msg": "stats_nba_team edith successfully"}), 200

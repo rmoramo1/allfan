@@ -2372,25 +2372,18 @@ class Stats_nba_team(db.Model):
     team = db.Column(db.String(30), nullable=False)
     conference = db.Column(db.String(30), nullable=False)
     division = db.Column(db.String(30), nullable=False)
-    pts = db.Column(db.String(10), default=0, nullable=False)
-    fmg = db.Column(db.String(10), default=0, nullable=False)
-    fga = db.Column(db.String(10), default=0, nullable=False)
-    fg = db.Column(db.String(10), default=0, nullable=False)
-    fg_AVG = db.Column(db.String(10), default=0, nullable=False)
-    three_pm = db.Column(db.String(10), default=0, nullable=False)
-    three_pa = db.Column(db.String(10), default=0, nullable=False)
-    three_p_AVG = db.Column(db.String(10), default=0, nullable=False)
-    ftm = db.Column(db.String(10), default=0, nullable=False)
-    fta = db.Column(db.String(10), default=0, nullable=False)
-    ft_AVG = db.Column(db.String(10), default=-0, nullable=False)
-    Or = db.Column(db.String(10), default=0, nullable=False)
-    dr = db.Column(db.String(10), default=0, nullable=False)
-    reb = db.Column(db.String(10), default=0, nullable=False)
-    ast = db.Column(db.String(10), default=0, nullable=False)
-    stl = db.Column(db.String(10), default=0, nullable=False)
-    blk = db.Column(db.String(10), default=0, nullable=False)
-    to = db.Column(db.String(10), default=0, nullable=False)
-    pf = db.Column(db.String(10), default=0, nullable=False)
+
+    w = db.Column(db.String(10), default=0, nullable=False)
+    L = db.Column(db.String(10), default=0, nullable=False)
+    ptc = db.Column(db.String(10), default=0, nullable=False)
+    home = db.Column(db.String(10), default=0, nullable=False)
+    away = db.Column(db.String(10), default=0, nullable=False)
+    div = db.Column(db.String(10), default=0, nullable=False)
+    conf = db.Column(db.String(10), default=0, nullable=False)
+    opp_ppg = db.Column(db.String(10), default=0, nullable=False)
+    diff = db.Column(db.String(10), default=0, nullable=False)
+    strk = db.Column(db.String(10), default=0, nullable=False)
+    l10 = db.Column(db.String(10), default=-0, nullable=False)
     # -----------------------------------------------------------------------
 
     def serialize(self):
@@ -2400,25 +2393,18 @@ class Stats_nba_team(db.Model):
             "team": self.team,
             "conference": self.conference,
             "division": self.division,
-            "pts": self.pts,
-            "fmg": self.fmg,
-            "fga": self.fga,
-            "fg": self.fg,
-            "fg_AVG": self.fg_AVG,
-            "three_pm": self.three_pm,
-            "three_pa": self.three_pa,
-            "three_p_AVG": self.three_p_AVG,
-            "ftm": self.ftm,
-            "fta": self.fta,
-            "ft_AVG": self.ft_AVG,
-            "Or": self.Or,
-            "dr": self.dr,
-            "reb": self.reb,
-            "ast": self.ast,
-            "stl": self.stl,
-            "blk": self.blk,
-            "to": self.to,
-            "pf": self.pf
+
+            "w": self.w,
+            "L": self.L,
+            "ptc": self.ptc,
+            "home": self.home,
+            "away": self.away,
+            "div": self.div,
+            "conf": self.conf,
+            "opp_ppg": self.opp_ppg,
+            "diff": self.diff,
+            "strk": self.strk,
+            "l10": self.l10
             # do not serialize the password, its a security breach
         }
 
