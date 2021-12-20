@@ -44,7 +44,7 @@ class Logos_NFL(db.Model):
     __tablename__ = 'logos_nfl'
     id = db.Column(db.Integer, primary_key=True)
     team = db.Column(db.String(20), nullable=False)
-    url = db.Column(db.String(20), nullable=False)
+    url = db.Column(db.String(70), nullable=False)
 
     def serialize(self):
         return {
@@ -56,7 +56,7 @@ class Logos_NBA(db.Model):
     __tablename__ = 'logos_nba'
     id = db.Column(db.Integer, primary_key=True)
     team = db.Column(db.String(20), nullable=False)
-    url = db.Column(db.String(20), nullable=False)
+    url = db.Column(db.String(70), nullable=False)
 
     def serialize(self):
         return {
@@ -68,7 +68,7 @@ class Logos_MLB(db.Model):
     __tablename__ = 'logos_mlb'
     id = db.Column(db.Integer, primary_key=True)
     team = db.Column(db.String(20), nullable=False)
-    url = db.Column(db.String(20), nullable=False)
+    url = db.Column(db.String(70), nullable=False)
 
     def serialize(self):
         return {
@@ -80,7 +80,7 @@ class Logos_NHL(db.Model):
     __tablename__ = 'logos_nhl'
     id = db.Column(db.Integer, primary_key=True)
     team = db.Column(db.String(20), nullable=False)
-    url = db.Column(db.String(20), nullable=False)
+    url = db.Column(db.String(70), nullable=False)
 
     def serialize(self):
         return {
@@ -92,7 +92,7 @@ class Logos_SOCCER(db.Model):
     __tablename__ = 'logos_soccer'
     id = db.Column(db.Integer, primary_key=True)
     team = db.Column(db.String(20), nullable=False)
-    url = db.Column(db.String(20), nullable=False)
+    url = db.Column(db.String(70), nullable=False)
 
     def serialize(self):
         return {

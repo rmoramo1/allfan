@@ -508,18 +508,18 @@ def createLogos_NHL():
     url = request.json.get("url", None)
 
     # busca team en BBDD
-    logos_NHL = Logos_NHL.query.filter_by(team=team,url=url).first()
+    logos_nhl = Logos_NHL.query.filter_by(team=team,url=url).first()
     # the team was not found on the database
-    if logos_NHL:
+    if logos_nhl:
         return jsonify({"msg": "LOGO already exists", "LOGO": logos_NHL.team}), 401
     else:
         # crea casino nuevo
         # crea registro nuevo en BBDD de
-        logos_NHL = Logos_NHL(
+        logos_nhl = Logos_NHL(
             team=team,
             url=url,
         )
-        db.session.add(logos_NHL)
+        db.session.add(logos_nhl)
         db.session.commit()
         return jsonify({"msg": "Logos_NHL created successfully"}), 200
 

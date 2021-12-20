@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 90ef6c3911ec
+Revision ID: 6f6f3055c17e
 Revises: 
-Create Date: 2021-12-20 14:48:32.173336
+Create Date: 2021-12-20 15:14:13.149916
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '90ef6c3911ec'
+revision = '6f6f3055c17e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -87,31 +87,31 @@ def upgrade():
     op.create_table('logos_mlb',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('team', sa.String(length=20), nullable=False),
-    sa.Column('url', sa.String(length=20), nullable=False),
+    sa.Column('url', sa.String(length=70), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('logos_nba',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('team', sa.String(length=20), nullable=False),
-    sa.Column('url', sa.String(length=20), nullable=False),
+    sa.Column('url', sa.String(length=70), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('logos_nfl',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('team', sa.String(length=20), nullable=False),
-    sa.Column('url', sa.String(length=20), nullable=False),
+    sa.Column('url', sa.String(length=70), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('logos_nhl',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('team', sa.String(length=20), nullable=False),
-    sa.Column('url', sa.String(length=20), nullable=False),
+    sa.Column('url', sa.String(length=70), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('logos_soccer',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('team', sa.String(length=20), nullable=False),
-    sa.Column('url', sa.String(length=20), nullable=False),
+    sa.Column('url', sa.String(length=70), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('match_ups_nascar',
