@@ -42,7 +42,6 @@ def setup_admin(app):
     admin.add_view(ModelView(Soccer, db.session))
     admin.add_view(ModelView(Stats_Soccer_Team, db.session))
     admin.add_view(ModelView(Stats_Soccer_Player, db.session))
-
     admin.add_view(ModelView(Logos_NFL, db.session))
     admin.add_view(ModelView(Logos_NBA, db.session))
     admin.add_view(ModelView(Logos_MLB, db.session))
