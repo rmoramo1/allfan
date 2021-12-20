@@ -49,8 +49,8 @@ class Logos_NFL(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "team": self.name,
-            "url": self.name,
+            "team": self.team,
+            "url": self.url,
         }
 class Logos_NBA(db.Model):
     __tablename__ = 'logos_nba'
@@ -61,8 +61,8 @@ class Logos_NBA(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "team": self.name,
-            "url": self.name,
+            "team": self.team,
+            "url": self.url,
         }
 class Logos_MLB(db.Model):
     __tablename__ = 'logos_mlb'
@@ -73,8 +73,8 @@ class Logos_MLB(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "team": self.name,
-            "url": self.name,
+            "team": self.team,
+            "url": self.url,
         }
 class Logos_NHL(db.Model):
     __tablename__ = 'logos_nhl'
@@ -85,8 +85,8 @@ class Logos_NHL(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "team": self.name,
-            "url": self.name,
+            "team": self.team,
+            "url": self.url,
         }
 class Logos_SOCCER(db.Model):
     __tablename__ = 'logos_soccer'
@@ -97,8 +97,8 @@ class Logos_SOCCER(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "team": self.name,
-            "url": self.name,
+            "team": self.team,
+            "url": self.url,
         }
 
 class Soccer_Tournament(db.Model):
