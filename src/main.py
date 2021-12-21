@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import  db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER
+from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
