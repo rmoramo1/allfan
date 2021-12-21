@@ -29,7 +29,6 @@ class Casinos(db.Model):
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
-    name = db.Column(db.String(20), nullable=False)
     # def __repr__(self):
     #     return '<User %r>' % self.name
 

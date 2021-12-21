@@ -454,7 +454,7 @@ def createLogos_nfl():
         # crea registro nuevo en BBDD de
         logos_nfl = Logos_NFL(
             team=team,
-            url=url,
+            url=url
         )
         db.session.add(logos_nfl)
         db.session.commit()
@@ -475,7 +475,7 @@ def createLogos_nba():
         # crea registro nuevo en BBDD de
         logos_nba = Logos_NBA(
             team=team,
-            url=url,
+            url=url
         )
         db.session.add(logos_nba)
         db.session.commit()
@@ -496,7 +496,7 @@ def createLogos_MLB():
         # crea registro nuevo en BBDD de
         logos_mlb = Logos_MLB(
             team=team,
-            url=url,
+            url=url
         )
         db.session.add(logos_mlb)
         db.session.commit()
@@ -517,7 +517,7 @@ def createLogos_NHL():
         # crea registro nuevo en BBDD de
         logos_nhl = Logos_NHL(
             team=team,
-            url=url,
+            url=url
         )
         db.session.add(logos_nhl)
         db.session.commit()
@@ -538,7 +538,7 @@ def createLogos_SOCCER():
         # crea registro nuevo en BBDD de
         logos_soccer = Logos_SOCCER(
             team=team,
-            url=url,
+            url=url
         )
         db.session.add(logos_soccer)
         db.session.commit()
