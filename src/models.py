@@ -51,6 +51,7 @@ class Logos_NFL(db.Model):
             "team": self.team,
             "url": self.url,
         }
+
 class Logos_NBA(db.Model):
     __tablename__ = 'logos_nba'
     id = db.Column(db.Integer, primary_key=True)
@@ -75,6 +76,7 @@ class Logos_MLB(db.Model):
             "team": self.team,
             "url": self.url,
         }
+
 class Logos_NHL(db.Model):
     __tablename__ = 'logos_nhl'
     id = db.Column(db.Integer, primary_key=True)
@@ -87,6 +89,7 @@ class Logos_NHL(db.Model):
             "team": self.team,
             "url": self.url,
         }
+        
 class Logos_SOCCER(db.Model):
     __tablename__ = 'logos_soccer'
     id = db.Column(db.Integer, primary_key=True)
