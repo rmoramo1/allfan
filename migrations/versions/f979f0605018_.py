@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: e2540bdd4949
+Revision ID: f979f0605018
 Revises: 
-Create Date: 2021-12-21 09:13:11.764716
+Create Date: 2021-12-23 08:20:41.648487
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e2540bdd4949'
+revision = 'f979f0605018'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -960,6 +960,15 @@ def upgrade():
     sa.Column('sh_3Q', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('props',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('title', sa.String(length=30), nullable=False),
+    sa.Column('type_prop', sa.String(length=30), nullable=False),
+    sa.Column('sport', sa.String(length=30), nullable=False),
+    sa.Column('feature', sa.String(length=30), nullable=False),
+    sa.Column('line', sa.String(length=10), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('soccer',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('date', sa.String(length=12), nullable=False),
@@ -1461,6 +1470,7 @@ def downgrade():
     op.drop_table('stats_box_fighter')
     op.drop_table('soccer_tournament')
     op.drop_table('soccer')
+    op.drop_table('props')
     op.drop_table('nhl')
     op.drop_table('nfl')
     op.drop_table('ncaa_football')

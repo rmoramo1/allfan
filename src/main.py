@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User , Casinos , Nfl , Mlb , Nba , Nhl , Boxeo , Mma , Nascar , Nascar_drivers , Match_Ups_Nacar , Golf , Golfer , Ncaa_Baseball , Ncaa_Football , Ncaa_Basketball , Stats_nba_player , Stats_nba_team , Stats_mlb_team , Stats_mlb_player , Stats_nhl_team , Stats_nhl_player , Stats_box_fighter , Stats_mma_fighter , Stats_nfl_team , Stats_defensive_player_nfl , Stats_offensive_player_nfl , Stats_returning_player_nfl , Stats_kiking_player_nfl , Stats_punting_player_nfl , Soccer , Soccer_Tournament , Stats_Soccer_Team , Stats_Soccer_Player , Logos_NFL , Logos_NBA , Logos_MLB , Logos_NHL , Logos_SOCCER
+from models import db, User , Casinos , Nfl , Mlb , Nba , Nhl , Boxeo , Mma , Nascar , Nascar_drivers , Match_Ups_Nacar , Golf , Golfer , Ncaa_Baseball , Ncaa_Football , Ncaa_Basketball , Stats_nba_player , Stats_nba_team , Stats_mlb_team , Stats_mlb_player , Stats_nhl_team , Stats_nhl_player , Stats_box_fighter , Stats_mma_fighter , Stats_nfl_team , Stats_defensive_player_nfl , Stats_offensive_player_nfl , Stats_returning_player_nfl , Stats_kiking_player_nfl , Stats_punting_player_nfl , Soccer , Soccer_Tournament , Stats_Soccer_Team , Stats_Soccer_Player , Logos_NFL , Logos_NBA , Logos_MLB , Logos_NHL , Logos_SOCCER , Props
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -70,6 +70,14 @@ def user():
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
 
+@app.route("/props", methods=["GET"])
+def props():
+    if request.method == "GET":
+        records = Props.query.all()
+        return jsonify([props.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ----------------------------------------------------------------------------
 @app.route("/soccer", methods=["GET"])
 def soccer():
     if request.method == "GET":
@@ -436,6 +444,33 @@ def createCasino():
         db.session.add(casinos)
         db.session.commit()
         return jsonify({"msg": "casino created successfully"}), 200
+
+@app.route('/props', methods=['POST'])
+def createProps():
+    title = request.json.get("title", None)
+    type_prop = request.json.get("type_prop", None)
+    sport = request.json.get("sport", None)
+    feature = request.json.get("feature", None)
+    line = request.json.get("line", None)
+
+    # busca team en BBDD
+    props = Props.query.filter_by(title=title,line=line,type_prop=type_prop,feature=feature).first()
+    # the team was not found on the database
+    if props:
+        return jsonify({"msg": "Casino already exists", "Casino": props.name}), 401
+    else:
+        # crea casino nuevo
+        # crea registro nuevo en BBDD de
+        props = Props(
+            title=title,
+            type_prop=type_prop,
+            sport=sport,
+            feature=feature,
+            line=line,
+        )
+        db.session.add(props)
+        db.session.commit()
+        return jsonify({"msg": "Props created successfully"}), 200
 
 @app.route('/logos_nfl', methods=['POST'])
 def createLogos_nfl():
@@ -1845,307 +1880,11 @@ def createGoler():
 def createGameNcaaBasket():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
-    status = request.json.get("status", None)
-    away = request.json.get("away", None)
-    home = request.json.get("home", None)
-    spread_away = request.json.get("spread_away", None)
-    spread_home = request.json.get("spread_home", None)
-    juice_spread_away = request.json.get("juice_spread_away", None)
-    juice_spread_home = request.json.get("juice_spread_home", None)
-    moneyLineAway = request.json.get("moneyLineAway", None)
-    moneyLineHome = request.json.get("moneyLineHome", None)
-    total = request.json.get("total", None)
-    juice_total_over = request.json.get("juice_total_over", None)
-    juice_total_under = request.json.get("juice_total_under", None)
-    tt_away = request.json.get("tt_away", None)
-    juice_over_away = request.json.get("juice_over_away", None)
-    juice_under_away = request.json.get("juice_under_away", None)
-    tt_home = request.json.get("tt_home", None)
-    juice_over_home = request.json.get("juice_over_home", None)
-    juice_under_home = request.json.get("juice_under_home", None)
-    final_score_away = request.json.get("final_score_away", None)
-    final_score_home = request.json.get("final_score_home", None)
-    # --------------------------------------------------------------
-    first_half_spread_away = request.json.get("first_half_spread_away", None)
-    first_half_spread_home = request.json.get("first_half_spread_home", None)
-    first_half_juice_spread_away = request.json.get(
-        "first_half_juice_spread_away", None)
-    first_half_juice_spread_home = request.json.get(
-        "first_half_juice_spread_home", None)
-    first_half_moneyLineAway = request.json.get(
-        "first_half_moneyLineAway", None)
-    first_half_moneyLineHome = request.json.get(
-        "first_half_moneyLineHome", None)
-    first_half_total = request.json.get("first_half_total", None)
-    fh_juice_over = request.json.get("fh_juice_over", None)
-    fh_juice_under = request.json.get("fh_juice_under", None)
-    first_half_tt_away = request.json.get("first_half_tt_away", None)
-    first_half_juice_over_away = request.json.get(
-        "first_half_juice_over_away", None)
-    first_half_juice_under_away = request.json.get(
-        "first_half_juice_under_away", None)
-    first_half_tt_home = request.json.get("first_half_tt_home", None)
-    first_half_juice_over_home = request.json.get(
-        "first_half_juice_over_home", None)
-    first_half_juice_under_home = request.json.get(
-        "first_half_juice_under_home", None)
-    first_half_final_score_away = request.json.get(
-        "first_half_final_score_away", None)
-    first_half_final_score_home = request.json.get(
-        "first_half_final_score_home", None)
-    second_half_spread_away = request.json.get("second_half_spread_away", None)
-    second_half_spread_home = request.json.get("second_half_spread_home", None)
-    second_half_juice_spread_away = request.json.get(
-        "second_half_juice_spread_away", None)
-    second_half_juice_spread_home = request.json.get(
-        "second_half_juice_spread_home", None)
-    second_half_moneyLineAway = request.json.get(
-        "second_half_moneyLineAway", None)
-    second_half_moneyLineHome = request.json.get(
-        "second_half_moneyLineHome", None)
-    second_half_total = request.json.get("sa_4inning", None)
-    sh_juice_over = request.json.get("sh_juice_over", None)
-    sh_juice_under = request.json.get("sh_juice_under", None)
-    second_half_tt_away = request.json.get("second_half_tt_away", None)
-    second_half_juice_over_away = request.json.get(
-        "second_half_juice_over_away", None)
-    second_half_juice_under_away = request.json.get(
-        "second_half_juice_under_away", None)
-    second_half_tt_home = request.json.get("second_half_tt_home", None)
-    second_half_juice_over_home = request.json.get(
-        "second_half_juice_over_home", None)
-    second_half_juice_under_home = request.json.get(
-        "second_half_juice_under_home", None)
-    second_half_final_score_away = request.json.get(
-        "second_half_final_score_away", None)
-    second_half_final_score_home = request.json.get(
-        "second_half_final_score_home", None)
-    q1_half_spread_away = request.json.get("q1_half_spread_away", None)
-    q1_half_spread_home = request.json.get("q1_half_spread_home", None)
-    q1_half_juice_spread_away = request.json.get(
-        "q1_half_juice_spread_away", None)
-    q1_half_juice_spread_home = request.json.get(
-        "q1_half_juice_spread_home", None)
-    q1_half_moneyLineAway = request.json.get("q1_half_moneyLineAway", None)
-    q1_half_moneyLineHome = request.json.get("q1_half_moneyLineHome", None)
-    q1_half_total = request.json.get("q1_half_total", None)
-    q1_juice_over = request.json.get("q1_juice_over", None)
-    q1_juice_under = request.json.get("q1_juice_under", None)
-    q1_half_tt_away = request.json.get("q1_half_tt_away", None)
-    q1_half_juice_over_away = request.json.get("q1_half_juice_over_away", None)
-    q1_half_juice_under_away = request.json.get(
-        "q1_half_juice_under_away", None)
-    q1_half_tt_home = request.json.get("q1_half_tt_home", None)
-    q1_half_juice_over_home = request.json.get("q1_half_juice_over_home", None)
-    q1_half_juice_under_home = request.json.get(
-        "q1_half_juice_under_home", None)
-    q1_half_final_score_away = request.json.get(
-        "q1_half_final_score_away", None)
-    q1_half_final_score_home = request.json.get(
-        "q1_half_final_score_home", None)
-
-    # busca mlb en BBDD
-    ncaa_basketball = Ncaa_basketball.query.filter_by(
-        home=home, away=away, date=date).first()
-    # the mlb was not found on the database
-    if ncaa_basketball:
-        return jsonify({"msg": "Mlb already exists", "status": ncaa_basketball.status}), 401
-    else:
-        # crea mlb nuevo
-        # crea registro nuevo en BBDD de
-        ncaa_basketball = Ncaa_basketball(
-            date=date,
-            hour=hour,
-            status=status,
-            away=away,
-            home=home,
-            spread_away=spread_away,
-            spread_home=spread_home,
-            juice_spread_away=juice_spread_away,
-            juice_spread_home=juice_spread_home,
-            moneyLineAway=moneyLineAway,
-            moneyLineHome=moneyLineHome,
-            total=total,
-            juice_total_over=juice_total_over,
-            juice_total_under=juice_total_under,
-            tt_away=tt_away,
-            juice_over_away=juice_over_away,
-            juice_under_away=juice_under_away,
-            tt_home=tt_home,
-            juice_over_home=juice_over_home,
-            juice_under_home=juice_under_home,
-            final_score_away=final_score_away,
-            final_score_home=final_score_home,
-            first_half_spread_away=first_half_spread_away,
-            first_half_spread_home=first_half_spread_home,
-            first_half_juice_spread_away=first_half_juice_spread_away,
-            first_half_juice_spread_home=first_half_juice_spread_home,
-            first_half_moneyLineAway=first_half_moneyLineAway,
-            first_half_moneyLineHome=first_half_moneyLineHome,
-            first_half_total=first_half_total,
-            fh_juice_over=fh_juice_over,
-            fh_juice_under=fh_juice_under,
-            first_half_tt_away=first_half_tt_away,
-            first_half_juice_over_away=first_half_juice_over_away, first_half_juice_under_away=first_half_juice_under_away, first_half_tt_home=first_half_tt_home, first_half_juice_over_home=first_half_juice_over_home,
-            first_half_juice_under_home=first_half_juice_under_home,
-            first_half_final_score_away=first_half_final_score_away,
-            first_half_final_score_home=first_half_final_score_home, second_half_spread_away=second_half_spread_away,
-            second_half_spread_home=second_half_spread_home,
-            second_half_juice_spread_away=second_half_juice_spread_away,
-            second_half_juice_spread_home=second_half_juice_spread_home,
-            second_half_moneyLineAway=second_half_moneyLineAway,
-            second_half_moneyLineHome=second_half_moneyLineHome,
-            second_half_total=second_half_total,
-            sh_juice_over=sh_juice_over,
-            sh_juice_under=sh_juice_under,
-            second_half_tt_away=second_half_tt_away,
-            second_half_juice_over_away=second_half_juice_over_away,
-            second_half_juice_under_away=second_half_juice_under_away,
-            second_half_tt_home=second_half_tt_home,
-            second_half_juice_over_home=second_half_juice_over_home,
-            second_half_juice_under_home=second_half_juice_under_home,
-            second_half_final_score_away=second_half_final_score_away,
-            second_half_final_score_home=second_half_final_score_home,
-            q1_half_spread_away=q1_half_spread_away,
-            q1_half_spread_home=q1_half_spread_home,
-            q1_half_juice_spread_away=q1_half_juice_spread_away,
-            q1_half_juice_spread_home=q1_half_juice_spread_home,
-            q1_half_moneyLineAway=q1_half_moneyLineAway,
-            q1_half_moneyLineHome=q1_half_moneyLineHome,
-            q1_half_total=q1_half_total,
-            q1_juice_over=q1_juice_over,
-            q1_juice_under=q1_juice_under,
-            q1_half_tt_away=q1_half_tt_away,
-            q1_half_juice_over_away=q1_half_juice_over_away,
-            q1_half_juice_under_away=q1_half_juice_under_away,
-            q1_half_tt_home=q1_half_tt_home,
-            q1_half_juice_over_home=q1_half_juice_over_home,
-            q1_half_juice_under_home=q1_half_juice_under_home,
-            q1_half_final_score_away=q1_half_final_score_away,
-            q1_half_final_score_home=q1_half_final_score_home
-        )
-        db.session.add(ncaa_basketball)
-        db.session.commit()
-        return jsonify({"msg": "Game created successfully"}), 200
-
-
-@app.route('/ncaa_baseball', methods=['POST'])
-def createGameNcaaBaseBall():
-    date = request.json.get("date", None)
-    hour = request.json.get("hour", None)
-    status = request.json.get("status", None)
-    away = request.json.get("away", None)
-    pitcher_a = request.json.get("pitcher_a", None)
-    home = request.json.get("home", None)
-    pitcher_h = request.json.get("pitcher_h", None)
-    rl_away = request.json.get("rl_away", None)
-    rl_home = request.json.get("rl_home", None)
-    juice_rl_away = request.json.get("juice_rl_away", None)
-    juice_rl_home = request.json.get("juice_rl_home", None)
-    moneyLineAway = request.json.get("moneyLineAway", None)
-    moneyLineHome = request.json.get("moneyLineHome", None)
-    total = request.json.get("total", None)
-    juice_total_over = request.json.get("juice_total_over", None)
-    juice_total_under = request.json.get("juice_total_under", None)
-    tt_away = request.json.get("tt_away", None)
-    juice_over_away = request.json.get("juice_over_away", None)
-    juice_under_away = request.json.get("juice_under_away", None)
-    tt_home = request.json.get("tt_home", None)
-    juice_over_home = request.json.get("juice_over_home", None)
-    juice_under_home = request.json.get("juice_under_home", None)
-    final_score_away = request.json.get("final_score_away", None)
-    final_score_home = request.json.get("final_score_home", None)
-    # --------------------------------------------------------------
-    rl_away_f5 = request.json.get("rl_away_f5", None)
-    rl_home_f5 = request.json.get("rl_home_f5", None)
-    juice_rl_away_f5 = request.json.get("juice_rl_away_f5", None)
-    juice_rl_home_f5 = request.json.get("juice_rl_home_f5", None)
-    moneyLineAway_f5 = request.json.get("moneyLineAway_f5", None)
-    moneyLineHome_f5 = request.json.get("moneyLineHome_f5", None)
-    total_f5 = request.json.get("total_f5", None)
-    juice_total_over_f5 = request.json.get("juice_total_over_f5", None)
-    juice_total_under_f5 = request.json.get("juice_total_under_f5", None)
-    tt_away_f5 = request.json.get("tt_away_f5", None)
-    juice_over_away_f5 = request.json.get("juice_over_away_f5", None)
-    juice_under_away_f5 = request.json.get("juice_under_away_f5", None)
-    juice_over_home_f5 = request.json.get("juice_over_home_f5", None)
-    juice_under_home_f5 = request.json.get("juice_under_home_f5", None)
-    fs_away_f5 = request.json.get("fs_away_f5", None)
-    fs_home_f5 = request.json.get("fs_home_f5", None)
-    sa_1inning = request.json.get("sa_1inning", None)
-    sh_1inning = request.json.get("sh_1inning", None)
-    sa_2inning = request.json.get("sa_2inning", None)
-    sh_2inning = request.json.get("sh_2inning", None)
-    sa_3inning = request.json.get("sa_3inning", None)
-    sh_3inning = request.json.get("sh_3inning", None)
-    sa_4inning = request.json.get("sa_4inning", None)
-    sh_4inning = request.json.get("sh_4inning", None)
-    sa_5inning = request.json.get("sa_5inning", None)
-    sh_5inning = request.json.get("sh_5inning", None)
-    sa_6inning = request.json.get("sa_6inning", None)
-    sh_6inning = request.json.get("sh_6inning", None)
-    sa_7inning = request.json.get("sa_7inning", None)
-    sh_7inning = request.json.get("sh_7inning", None)
-    sa_8inning = request.json.get("sa_8inning", None)
-    sh_8inning = request.json.get("sh_8inning", None)
-    sa_9inning = request.json.get("sa_9inning", None)
-    sh_9inning = request.json.get("sh_9inning", None)
-    sa_10inning = request.json.get("sa_10inning", None)
-    sh_10inning = request.json.get("sh_10inning", None)
-    sa_11inning = request.json.get("sa_11inning", None)
-    sh_11inning = request.json.get("sh_11inning", None)
-    sa_12inning = request.json.get("sa_12inning", None)
-    sh_12inning = request.json.get("sh_12inning", None)
-    sa_13inning = request.json.get("sa_13inning", None)
-    sh_13inning = request.json.get("sh_13inning", None)
-    sa_14inning = request.json.get("sa_14inning", None)
-    sh_14inning = request.json.get("sh_14inning", None)
-    sa_15inning = request.json.get("sa_15inning", None)
-    sh_15inning = request.json.get("sh_15inning", None)
-    sa_16inning = request.json.get("sa_16inning", None)
-    sh_16inning = request.json.get("sh_16inning", None)
-    sa_17inning = request.json.get("sa_17inning", None)
-    sh_17inning = request.json.get("sh_17inning", None)
-    sa_18inning = request.json.get("sa_18inning", None)
-    sh_18inning = request.json.get("sh_18inning", None)
-    sa_19inning = request.json.get("sa_19inning", None)
-    sh_19inning = request.json.get("sh_19inning", None)
-    sa_20inning = request.json.get("sa_20inning", None)
-    sh_20inning = request.json.get("sh_20inning", None)
-    sa_21inning = request.json.get("sa_21inning", None)
-    sh_21inning = request.json.get("sh_21inning", None)
-    sa_22inning = request.json.get("sa_22inning", None)
-    sh_22inning = request.json.get("sh_22inning", None)
-    sa_23inning = request.json.get("sa_23inning", None)
-    sh_23inning = request.json.get("sh_23inning", None)
-    sa_24inning = request.json.get("sa_24inning", None)
-    sh_24inning = request.json.get("sh_24inning", None)
-    sa_25inning = request.json.get("sa_25inning", None)
-    sh_25inning = request.json.get("sh_25inning", None)
-
-    # busca mlb en BBDD
-    ncaa_baseball = Ncaa_baseball.query.filter_by(
-        home=home, away=away, date=date).first()
-    # the ncaa_baseball was not found on the database
-    if ncaa_baseball:
-        return jsonify({"msg": "ncaa_baseball already exists", "status": ncaa_baseball.status}), 401
-    else:
-        # crea ncaa_baseball nuevo
-        # crea registro nuevo en BBDD de
-        ncaa_baseball = Ncaa_baseball(
-            date=date, hour=hour, status=status, away=away, pitcher_a=pitcher_a, home=home, pitcher_h=pitcher_h,
-            rl_away=rl_away, rl_home=rl_home, juice_rl_away=juice_rl_away, juice_rl_home=juice_rl_home, moneyLineAway=moneyLineAway, moneyLineHome=moneyLineHome, total=total, juice_total_over=juice_total_over, juice_total_under=juice_total_under, tt_away=tt_away, juice_over_away=juice_over_away, juice_under_away=juice_under_away, tt_home=tt_home, juice_over_home=juice_over_home, juice_under_home=juice_under_home, final_score_away=final_score_away, final_score_home=final_score_home, rl_away_f5=rl_away_f5, rl_home_f5=rl_home_f5, juice_rl_away_f5=juice_rl_away_f5, juice_rl_home_f5=juice_rl_home_f5, moneyLineAway_f5=moneyLineAway_f5, moneyLineHome_f5=moneyLineHome_f5, total_f5=total_f5, juice_total_over_f5=juice_total_over_f5, juice_total_under_f5=juice_total_under_f5, tt_away_f5=tt_away_f5, juice_over_away_f5=juice_over_away_f5, juice_under_away_f5=juice_under_away_f5, juice_over_home_f5=juice_over_home_f5, juice_under_home_f5=juice_under_home_f5, fs_away_f5=fs_away_f5, fs_home_f5=fs_home_f5, sa_1inning=sa_1inning, sh_1inning=sh_1inning, sa_2inning=sa_2inning, sh_2inning=sh_2inning, sa_3inning=sa_3inning, sh_3inning=sh_3inning, sa_4inning=sa_4inning, sh_4inning=sh_4inning, sa_5inning=sa_5inning, sh_5inning=sh_5inning, sa_6inning=sa_6inning, sh_6inning=sh_6inning, sa_7inning=sa_7inning, sh_7inning=sh_7inning, sa_8inning=sa_8inning, sh_8inning=sh_8inning, sa_9inning=sa_9inning, sh_9inning=sh_9inning, sa_10inning=sa_10inning, sh_10inning=sh_10inning, sa_11inning=sa_11inning, sh_11inning=sh_11inning, sa_12inning=sa_12inning, sh_12inning=sh_12inning, sa_13inning=sa_13inning, sh_13inning=sh_13inning, sa_14inning=sa_14inning, sh_14inning=sh_14inning, sa_15inning=sa_15inning, sh_15inning=sh_15inning, sa_16inning=sa_16inning, sh_16inning=sh_16inning, sa_17inning=sa_17inning, sa_18inning=sa_18inning, sa_19inning=sa_19inning, sa_20inning=sa_20inning, sa_21inning=sa_21inning, sa_22inning=sa_22inning, sa_23inning=sa_23inning, sa_24inning=sa_24inning, sa_25inning=sa_25inning)
-        db.session.add(ncaa_baseball)
-        db.session.commit()
-        return jsonify({"msg": "User created successfully"}), 200
-
-
-@app.route('/ncaa_football', methods=['POST'])
-def createGameNcaa_football():
-    date = request.json.get("date", None)
-    hour = request.json.get("hour", None)
     week = request.json.get("week", None)
     status = request.json.get("status", None)
+    casino = request.json.get("casino", None)
+    rotation_home = request.json.get("rotation_home", None)
+    rotation_away = request.json.get("rotation_away", None)
     away = request.json.get("away", None)
     home = request.json.get("home", None)
     spread_away = request.json.get("spread_away", None)
@@ -2245,21 +1984,96 @@ def createGameNcaa_football():
         "q1_half_final_score_away", None)
     q1_half_final_score_home = request.json.get(
         "q1_half_final_score_home", None)
+    # --------
+    q2_half_spread_away = request.json.get("q2_half_spread_away", None)
+    q2_half_spread_home = request.json.get("q2_half_spread_home", None)
+    q2_half_juice_spread_away = request.json.get(
+        "q2_half_juice_spread_away", None)
+    q2_half_juice_spread_home = request.json.get(
+        "q2_half_juice_spread_home", None)
+    q2_half_moneyLineAway = request.json.get("q2_half_moneyLineAway", None)
+    q2_half_moneyLineHome = request.json.get("q2_half_moneyLineHome", None)
+    q2_half_total = request.json.get("q2_half_total", None)
+    q2_juice_over = request.json.get("q2_juice_over", None)
+    q2_juice_under = request.json.get("q2_juice_under", None)
+    q2_half_tt_away = request.json.get("q2_half_tt_away", None)
+    q2_half_juice_over_away = request.json.get("q2_half_juice_over_away", None)
+    q2_half_juice_under_away = request.json.get(
+        "q2_half_juice_under_away", None)
+    q2_half_tt_home = request.json.get("q2_half_tt_home", None)
+    q2_half_juice_over_home = request.json.get("q2_half_juice_over_home", None)
+    q2_half_juice_under_home = request.json.get(
+        "q2_half_juice_under_home", None)
+    q2_half_final_score_away = request.json.get(
+        "q2_half_final_score_away", None)
+    q2_half_final_score_home = request.json.get(
+        "q2_half_final_score_home", None)
+    # --------------
+    q3_half_spread_away = request.json.get("q3_half_spread_away", None)
+    q3_half_spread_home = request.json.get("q3_half_spread_home", None)
+    q3_half_juice_spread_away = request.json.get(
+        "q3_half_juice_spread_away", None)
+    q3_half_juice_spread_home = request.json.get(
+        "q3_half_juice_spread_home", None)
+    q3_half_moneyLineAway = request.json.get("q3_half_moneyLineAway", None)
+    q3_half_moneyLineHome = request.json.get("q3_half_moneyLineHome", None)
+    q3_half_total = request.json.get("q3_half_total", None)
+    q3_juice_over = request.json.get("q3_juice_over", None)
+    q3_juice_under = request.json.get("q3_juice_under", None)
+    q3_half_tt_away = request.json.get("q3_half_tt_away", None)
+    q3_half_juice_over_away = request.json.get("q3_half_juice_over_away", None)
+    q3_half_juice_under_away = request.json.get(
+        "q3_half_juice_under_away", None)
+    q3_half_tt_home = request.json.get("q3_half_tt_home", None)
+    q3_half_juice_over_home = request.json.get("q3_half_juice_over_home", None)
+    q3_half_juice_under_home = request.json.get(
+        "q3_half_juice_under_home", None)
+    q3_half_final_score_away = request.json.get(
+        "q3_half_final_score_away", None)
+    q3_half_final_score_home = request.json.get(
+        "q3_half_final_score_home", None)
+    # --------------
+    q4_half_spread_away = request.json.get("q4_half_spread_away", None)
+    q4_half_spread_home = request.json.get("q4_half_spread_home", None)
+    q4_half_juice_spread_away = request.json.get(
+        "q4_half_juice_spread_away", None)
+    q4_half_juice_spread_home = request.json.get(
+        "q4_half_juice_spread_home", None)
+    q4_half_moneyLineAway = request.json.get("q4_half_moneyLineAway", None)
+    q4_half_moneyLineHome = request.json.get("q4_half_moneyLineHome", None)
+    q4_half_total = request.json.get("q4_half_total", None)
+    q4_juice_over = request.json.get("q4_juice_over", None)
+    q4_juice_under = request.json.get("q4_juice_under", None)
+    q4_half_tt_away = request.json.get("q4_half_tt_away", None)
+    q4_half_juice_over_away = request.json.get("q4_half_juice_over_away", None)
+    q4_half_juice_under_away = request.json.get(
+        "q4_half_juice_under_away", None)
+    q4_half_tt_home = request.json.get("q4_half_tt_home", None)
+    q4_half_juice_over_home = request.json.get("q4_half_juice_over_home", None)
+    q4_half_juice_under_home = request.json.get(
+        "q4_half_juice_under_home", None)
+    q4_half_final_score_away = request.json.get(
+        "q4_half_final_score_away", None)
+    q4_half_final_score_home = request.json.get(
+        "q4_half_final_score_home", None)
 
     # busca mlb en BBDD
-    ncaa_football = Ncaa_Football.query.filter_by(
+    ncaa_basketball = Ncaa_basketball.query.filter_by(
         home=home, away=away, date=date).first()
     # the mlb was not found on the database
-    if ncaa_football:
-        return jsonify({"msg": "Ncaa_Football game already exists", "status": ncaa_football.status}), 401
+    if ncaa_basketball:
+        return jsonify({"msg": "Mlb already exists", "status": ncaa_basketball.status}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
-        ncaa_football = Ncaa_Football(
+        ncaa_basketball = Ncaa_basketball(
             date=date,
             hour=hour,
             week=week,
             status=status,
+            casino=casino,
+            rotation_away=rotation_away,
+            rotation_home=rotation_home,
             away=away,
             home=home,
             spread_away=spread_away,
@@ -2332,7 +2146,548 @@ def createGameNcaa_football():
             q1_half_juice_over_home=q1_half_juice_over_home,
             q1_half_juice_under_home=q1_half_juice_under_home,
             q1_half_final_score_away=q1_half_final_score_away,
-            q1_half_final_score_home=q1_half_final_score_home
+            q1_half_final_score_home=q1_half_final_score_home,
+            # ---
+            q2_half_spread_away=q2_half_spread_away,
+            q2_half_spread_home=q2_half_spread_home,
+            q2_half_juice_spread_away=q2_half_juice_spread_away,
+            q2_half_juice_spread_home=q2_half_juice_spread_home,
+            q2_half_moneyLineAway=q2_half_moneyLineAway,
+            q2_half_moneyLineHome=q2_half_moneyLineHome,
+            q2_half_total=q2_half_total,
+            q2_juice_over=q2_juice_over,
+            q2_juice_under=q2_juice_under,
+            q2_half_tt_away=q2_half_tt_away,
+            q2_half_juice_over_away=q2_half_juice_over_away,
+            q2_half_juice_under_away=q2_half_juice_under_away,
+            q2_half_tt_home=q2_half_tt_home,
+            q2_half_juice_over_home=q2_half_juice_over_home,
+            q2_half_juice_under_home=q2_half_juice_under_home,
+            q2_half_final_score_away=q2_half_final_score_away,
+            q2_half_final_score_home=q2_half_final_score_home,
+            # ---
+            q3_half_spread_away=q3_half_spread_away,
+            q3_half_spread_home=q3_half_spread_home,
+            q3_half_juice_spread_away=q3_half_juice_spread_away,
+            q3_half_juice_spread_home=q3_half_juice_spread_home,
+            q3_half_moneyLineAway=q3_half_moneyLineAway,
+            q3_half_moneyLineHome=q3_half_moneyLineHome,
+            q3_half_total=q3_half_total,
+            q3_juice_over=q3_juice_over,
+            q3_juice_under=q3_juice_under,
+            q3_half_tt_away=q3_half_tt_away,
+            q3_half_juice_over_away=q3_half_juice_over_away,
+            q3_half_juice_under_away=q3_half_juice_under_away,
+            q3_half_tt_home=q3_half_tt_home,
+            q3_half_juice_over_home=q3_half_juice_over_home,
+            q3_half_juice_under_home=q3_half_juice_under_home,
+            q3_half_final_score_away=q3_half_final_score_away,
+            q3_half_final_score_home=q3_half_final_score_home,
+            # ---
+            q4_half_spread_away=q4_half_spread_away,
+            q4_half_spread_home=q4_half_spread_home,
+            q4_half_juice_spread_away=q4_half_juice_spread_away,
+            q4_half_juice_spread_home=q4_half_juice_spread_home,
+            q4_half_moneyLineAway=q4_half_moneyLineAway,
+            q4_half_moneyLineHome=q4_half_moneyLineHome,
+            q4_half_total=q4_half_total,
+            q4_juice_over=q4_juice_over,
+            q4_juice_under=q4_juice_under,
+            q4_half_tt_away=q4_half_tt_away,
+            q4_half_juice_over_away=q4_half_juice_over_away,
+            q4_half_juice_under_away=q4_half_juice_under_away,
+            q4_half_tt_home=q4_half_tt_home,
+            q4_half_juice_over_home=q4_half_juice_over_home,
+            q4_half_juice_under_home=q4_half_juice_under_home,
+            q4_half_final_score_away=q4_half_final_score_away,
+            q4_half_final_score_home=q4_half_final_score_home
+        )
+        db.session.add(ncaa_basketball)
+        db.session.commit()
+        return jsonify({"msg": "Game created successfully"}), 200
+
+
+@app.route('/ncaa_baseball', methods=['POST'])
+def createGameNcaaBaseBall():
+    date = request.json.get("date", None)
+    hour = request.json.get("hour", None)
+    status = request.json.get("status", None)
+    casino = request.json.get("casino", None)
+    rotation_home = request.json.get("rotation_home", None)
+    rotation_away = request.json.get("rotation_away", None)
+    away = request.json.get("away", None)
+    pitcher_a = request.json.get("pitcher_a", None)
+    home = request.json.get("home", None)
+    pitcher_h = request.json.get("pitcher_h", None)
+    rl_away = request.json.get("rl_away", None)
+    rl_home = request.json.get("rl_home", None)
+    juice_rl_away = request.json.get("juice_rl_away", None)
+    juice_rl_home = request.json.get("juice_rl_home", None)
+    moneyLineAway = request.json.get("moneyLineAway", None)
+    moneyLineHome = request.json.get("moneyLineHome", None)
+    total = request.json.get("total", None)
+    juice_total_over = request.json.get("juice_total_over", None)
+    juice_total_under = request.json.get("juice_total_under", None)
+    tt_away = request.json.get("tt_away", None)
+    juice_over_away = request.json.get("juice_over_away", None)
+    juice_under_away = request.json.get("juice_under_away", None)
+    tt_home = request.json.get("tt_home", None)
+    juice_over_home = request.json.get("juice_over_home", None)
+    juice_under_home = request.json.get("juice_under_home", None)
+    final_score_away = request.json.get("final_score_away", None)
+    final_score_home = request.json.get("final_score_home", None)
+    # --------------------------------------------------------------
+    rl_away_f5 = request.json.get("rl_away_f5", None)
+    rl_home_f5 = request.json.get("rl_home_f5", None)
+    juice_rl_away_f5 = request.json.get("juice_rl_away_f5", None)
+    juice_rl_home_f5 = request.json.get("juice_rl_home_f5", None)
+    moneyLineAway_f5 = request.json.get("moneyLineAway_f5", None)
+    moneyLineHome_f5 = request.json.get("moneyLineHome_f5", None)
+    total_f5 = request.json.get("total_f5", None)
+    juice_total_over_f5 = request.json.get("juice_total_over_f5", None)
+    juice_total_under_f5 = request.json.get("juice_total_under_f5", None)
+    tt_away_f5 = request.json.get("tt_away_f5", None)
+    juice_over_away_f5 = request.json.get("juice_over_away_f5", None)
+    juice_under_away_f5 = request.json.get("juice_under_away_f5", None)
+    juice_over_home_f5 = request.json.get("juice_over_home_f5", None)
+    juice_under_home_f5 = request.json.get("juice_under_home_f5", None)
+    fs_away_f5 = request.json.get("fs_away_f5", None)
+    fs_home_f5 = request.json.get("fs_home_f5", None)
+    sa_1inning = request.json.get("sa_1inning", None)
+    sh_1inning = request.json.get("sh_1inning", None)
+    sa_2inning = request.json.get("sa_2inning", None)
+    sh_2inning = request.json.get("sh_2inning", None)
+    sa_3inning = request.json.get("sa_3inning", None)
+    sh_3inning = request.json.get("sh_3inning", None)
+    sa_4inning = request.json.get("sa_4inning", None)
+    sh_4inning = request.json.get("sh_4inning", None)
+    sa_5inning = request.json.get("sa_5inning", None)
+    sh_5inning = request.json.get("sh_5inning", None)
+    sa_6inning = request.json.get("sa_6inning", None)
+    sh_6inning = request.json.get("sh_6inning", None)
+    sa_7inning = request.json.get("sa_7inning", None)
+    sh_7inning = request.json.get("sh_7inning", None)
+    sa_8inning = request.json.get("sa_8inning", None)
+    sh_8inning = request.json.get("sh_8inning", None)
+    sa_9inning = request.json.get("sa_9inning", None)
+    sh_9inning = request.json.get("sh_9inning", None)
+    sa_10inning = request.json.get("sa_10inning", None)
+    sh_10inning = request.json.get("sh_10inning", None)
+    sa_11inning = request.json.get("sa_11inning", None)
+    sh_11inning = request.json.get("sh_11inning", None)
+    sa_12inning = request.json.get("sa_12inning", None)
+    sh_12inning = request.json.get("sh_12inning", None)
+    sa_13inning = request.json.get("sa_13inning", None)
+    sh_13inning = request.json.get("sh_13inning", None)
+    sa_14inning = request.json.get("sa_14inning", None)
+    sh_14inning = request.json.get("sh_14inning", None)
+    sa_15inning = request.json.get("sa_15inning", None)
+    sh_15inning = request.json.get("sh_15inning", None)
+    sa_16inning = request.json.get("sa_16inning", None)
+    sh_16inning = request.json.get("sh_16inning", None)
+    sa_17inning = request.json.get("sa_17inning", None)
+    sh_17inning = request.json.get("sh_17inning", None)
+    sa_18inning = request.json.get("sa_18inning", None)
+    sh_18inning = request.json.get("sh_18inning", None)
+    sa_19inning = request.json.get("sa_19inning", None)
+    sh_19inning = request.json.get("sh_19inning", None)
+    sa_20inning = request.json.get("sa_20inning", None)
+    sh_20inning = request.json.get("sh_20inning", None)
+    sa_21inning = request.json.get("sa_21inning", None)
+    sh_21inning = request.json.get("sh_21inning", None)
+    sa_22inning = request.json.get("sa_22inning", None)
+    sh_22inning = request.json.get("sh_22inning", None)
+    sa_23inning = request.json.get("sa_23inning", None)
+    sh_23inning = request.json.get("sh_23inning", None)
+    sa_24inning = request.json.get("sa_24inning", None)
+    sh_24inning = request.json.get("sh_24inning", None)
+    sa_25inning = request.json.get("sa_25inning", None)
+    sh_25inning = request.json.get("sh_25inning", None)
+
+    # busca mlb en BBDD
+    ncaa_baseball = Ncaa_baseball.query.filter_by(
+        home=home, away=away, date=date).first()
+    # the ncaa_baseball was not found on the database
+    if ncaa_baseball:
+        return jsonify({"msg": "ncaa_baseball already exists", "status": ncaa_baseball.status}), 401
+    else:
+        # crea ncaa_baseball nuevo
+        # crea registro nuevo en BBDD de
+        ncaa_baseball = Ncaa_baseball(
+            date=date, 
+            hour=hour, 
+            status=status, 
+            rotation_away=rotation_away, 
+            rotation_home=rotation_home, 
+            casino=casino, 
+            away=away, 
+            pitcher_a=pitcher_a, 
+            home=home, 
+            pitcher_h=pitcher_h,
+            rl_away=rl_away, 
+            rl_home=rl_home, 
+            juice_rl_away=juice_rl_away, 
+            juice_rl_home=juice_rl_home,         
+            moneyLineAway=moneyLineAway, 
+            moneyLineHome=moneyLineHome, 
+            total=total, 
+            juice_total_over=juice_total_over, 
+            juice_total_under=juice_total_under, 
+            tt_away=tt_away, 
+            juice_over_away=juice_over_away, 
+            juice_under_away=juice_under_away, 
+            tt_home=tt_home, 
+            juice_over_home=juice_over_home, 
+            juice_under_home=juice_under_home, 
+            final_score_away=final_score_away, 
+            final_score_home=final_score_home, 
+            rl_away_f5=rl_away_f5, 
+            rl_home_f5=rl_home_f5, 
+            juice_rl_away_f5=juice_rl_away_f5, 
+            juice_rl_home_f5=juice_rl_home_f5, 
+            moneyLineAway_f5=moneyLineAway_f5, 
+            moneyLineHome_f5=moneyLineHome_f5, 
+            total_f5=total_f5, 
+            juice_total_over_f5=juice_total_over_f5, 
+            juice_total_under_f5=juice_total_under_f5, 
+            tt_away_f5=tt_away_f5, 
+            juice_over_away_f5=juice_over_away_f5, 
+            juice_under_away_f5=juice_under_away_f5, 
+            juice_over_home_f5=juice_over_home_f5, 
+            juice_under_home_f5=juice_under_home_f5, 
+            fs_away_f5=fs_away_f5,
+            fs_home_f5=fs_home_f5, 
+            sa_1inning=sa_1inning, sh_1inning=sh_1inning, sa_2inning=sa_2inning, sh_2inning=sh_2inning, sa_3inning=sa_3inning, sh_3inning=sh_3inning, sa_4inning=sa_4inning, sh_4inning=sh_4inning, sa_5inning=sa_5inning, sh_5inning=sh_5inning, sa_6inning=sa_6inning, sh_6inning=sh_6inning, sa_7inning=sa_7inning, sh_7inning=sh_7inning, sa_8inning=sa_8inning, sh_8inning=sh_8inning, sa_9inning=sa_9inning, sh_9inning=sh_9inning, sa_10inning=sa_10inning, sh_10inning=sh_10inning, sa_11inning=sa_11inning, sh_11inning=sh_11inning, sa_12inning=sa_12inning, sh_12inning=sh_12inning, sa_13inning=sa_13inning, sh_13inning=sh_13inning, sa_14inning=sa_14inning, sh_14inning=sh_14inning, sa_15inning=sa_15inning, sh_15inning=sh_15inning, sa_16inning=sa_16inning, sh_16inning=sh_16inning, sa_17inning=sa_17inning, sa_18inning=sa_18inning, sa_19inning=sa_19inning, sa_20inning=sa_20inning, sa_21inning=sa_21inning, sa_22inning=sa_22inning, sa_23inning=sa_23inning, sa_24inning=sa_24inning, sa_25inning=sa_25inning)
+        db.session.add(ncaa_baseball)
+        db.session.commit()
+        return jsonify({"msg": "User created successfully"}), 200
+
+
+@app.route('/ncaa_football', methods=['POST'])
+def createGameNcaa_football():
+    date = request.json.get("date", None)
+    hour = request.json.get("hour", None)
+    week = request.json.get("week", None)
+    status = request.json.get("status", None)
+    casino = request.json.get("casino", None)
+    rotation_home = request.json.get("rotation_home", None)
+    rotation_away = request.json.get("rotation_away", None)
+    away = request.json.get("away", None)
+    home = request.json.get("home", None)
+    spread_away = request.json.get("spread_away", None)
+    spread_home = request.json.get("spread_home", None)
+    juice_spread_away = request.json.get("juice_spread_away", None)
+    juice_spread_home = request.json.get("juice_spread_home", None)
+    moneyLineAway = request.json.get("moneyLineAway", None)
+    moneyLineHome = request.json.get("moneyLineHome", None)
+    total = request.json.get("total", None)
+    juice_total_over = request.json.get("juice_total_over", None)
+    juice_total_under = request.json.get("juice_total_under", None)
+    tt_away = request.json.get("tt_away", None)
+    juice_over_away = request.json.get("juice_over_away", None)
+    juice_under_away = request.json.get("juice_under_away", None)
+    tt_home = request.json.get("tt_home", None)
+    juice_over_home = request.json.get("juice_over_home", None)
+    juice_under_home = request.json.get("juice_under_home", None)
+    final_score_away = request.json.get("final_score_away", None)
+    final_score_home = request.json.get("final_score_home", None)
+    # --------------------------------------------------------------
+    first_half_spread_away = request.json.get("first_half_spread_away", None)
+    first_half_spread_home = request.json.get("first_half_spread_home", None)
+    first_half_juice_spread_away = request.json.get(
+        "first_half_juice_spread_away", None)
+    first_half_juice_spread_home = request.json.get(
+        "first_half_juice_spread_home", None)
+    first_half_moneyLineAway = request.json.get(
+        "first_half_moneyLineAway", None)
+    first_half_moneyLineHome = request.json.get(
+        "first_half_moneyLineHome", None)
+    first_half_total = request.json.get("first_half_total", None)
+    fh_juice_total_over = request.json.get("fh_juice_total_over", None)
+    fh_juice_total_under = request.json.get("fh_juice_total_under", None)
+    first_half_tt_away = request.json.get("first_half_tt_away", None)
+    first_half_juice_over_away = request.json.get(
+        "first_half_juice_over_away", None)
+    first_half_juice_under_away = request.json.get(
+        "first_half_juice_under_away", None)
+    first_half_tt_home = request.json.get("first_half_tt_home", None)
+    first_half_juice_over_home = request.json.get(
+        "first_half_juice_over_home", None)
+    first_half_juice_under_home = request.json.get(
+        "first_half_juice_under_home", None)
+    first_half_final_score_away = request.json.get(
+        "first_half_final_score_away", None)
+    first_half_final_score_home = request.json.get(
+        "first_half_final_score_home", None)
+    # --------------
+    second_half_spread_away = request.json.get("second_half_spread_away", None)
+    second_half_spread_home = request.json.get("second_half_spread_home", None)
+    second_half_juice_spread_away = request.json.get(
+        "second_half_juice_spread_away", None)
+    second_half_juice_spread_home = request.json.get(
+        "second_half_juice_spread_home", None)
+    second_half_moneyLineAway = request.json.get(
+        "second_half_moneyLineAway", None)
+    second_half_moneyLineHome = request.json.get(
+        "second_half_moneyLineHome", None)
+    second_half_total = request.json.get("second_half_total", None)
+    sh_juice_total_over = request.json.get("sh_juice_total_over", None)
+    sh_juice_total_under = request.json.get("sh_juice_total_under", None)
+    second_half_tt_away = request.json.get("second_half_tt_away", None)
+    second_half_juice_over_away = request.json.get(
+        "second_half_juice_over_away", None)
+    second_half_juice_under_away = request.json.get(
+        "second_half_juice_under_away", None)
+    second_half_tt_home = request.json.get("second_half_tt_home", None)
+    second_half_juice_over_home = request.json.get(
+        "second_half_juice_over_home", None)
+    second_half_juice_under_home = request.json.get(
+        "second_half_juice_under_home", None)
+    second_half_final_score_away = request.json.get(
+        "second_half_final_score_away", None)
+    second_half_final_score_home = request.json.get(
+        "second_half_final_score_home", None)
+    # ------
+    q1_half_spread_away = request.json.get("q1_half_spread_away", None)
+    q1_half_spread_home = request.json.get("q1_half_spread_home", None)
+    q1_half_juice_spread_away = request.json.get(
+        "q1_half_juice_spread_away", None)
+    q1_half_juice_spread_home = request.json.get(
+        "q1_half_juice_spread_home", None)
+    q1_half_moneyLineAway = request.json.get("q1_half_moneyLineAway", None)
+    q1_half_moneyLineHome = request.json.get("q1_half_moneyLineHome", None)
+    q1_half_total = request.json.get("q1_half_total", None)
+    q1_juice_over = request.json.get("q1_juice_over", None)
+    q1_juice_under = request.json.get("q1_juice_under", None)
+    q1_half_tt_away = request.json.get("q1_half_tt_away", None)
+    q1_half_juice_over_away = request.json.get("q1_half_juice_over_away", None)
+    q1_half_juice_under_away = request.json.get(
+        "q1_half_juice_under_away", None)
+    q1_half_tt_home = request.json.get("q1_half_tt_home", None)
+    q1_half_juice_over_home = request.json.get("q1_half_juice_over_home", None)
+    q1_half_juice_under_home = request.json.get(
+        "q1_half_juice_under_home", None)
+    q1_half_final_score_away = request.json.get(
+        "q1_half_final_score_away", None)
+    q1_half_final_score_home = request.json.get(
+        "q1_half_final_score_home", None)
+    # --------
+    q2_half_spread_away = request.json.get("q2_half_spread_away", None)
+    q2_half_spread_home = request.json.get("q2_half_spread_home", None)
+    q2_half_juice_spread_away = request.json.get(
+        "q2_half_juice_spread_away", None)
+    q2_half_juice_spread_home = request.json.get(
+        "q2_half_juice_spread_home", None)
+    q2_half_moneyLineAway = request.json.get("q2_half_moneyLineAway", None)
+    q2_half_moneyLineHome = request.json.get("q2_half_moneyLineHome", None)
+    q2_half_total = request.json.get("q2_half_total", None)
+    q2_juice_over = request.json.get("q2_juice_over", None)
+    q2_juice_under = request.json.get("q2_juice_under", None)
+    q2_half_tt_away = request.json.get("q2_half_tt_away", None)
+    q2_half_juice_over_away = request.json.get("q2_half_juice_over_away", None)
+    q2_half_juice_under_away = request.json.get(
+        "q2_half_juice_under_away", None)
+    q2_half_tt_home = request.json.get("q2_half_tt_home", None)
+    q2_half_juice_over_home = request.json.get("q2_half_juice_over_home", None)
+    q2_half_juice_under_home = request.json.get(
+        "q2_half_juice_under_home", None)
+    q2_half_final_score_away = request.json.get(
+        "q2_half_final_score_away", None)
+    q2_half_final_score_home = request.json.get(
+        "q2_half_final_score_home", None)
+    # --------------
+    q3_half_spread_away = request.json.get("q3_half_spread_away", None)
+    q3_half_spread_home = request.json.get("q3_half_spread_home", None)
+    q3_half_juice_spread_away = request.json.get(
+        "q3_half_juice_spread_away", None)
+    q3_half_juice_spread_home = request.json.get(
+        "q3_half_juice_spread_home", None)
+    q3_half_moneyLineAway = request.json.get("q3_half_moneyLineAway", None)
+    q3_half_moneyLineHome = request.json.get("q3_half_moneyLineHome", None)
+    q3_half_total = request.json.get("q3_half_total", None)
+    q3_juice_over = request.json.get("q3_juice_over", None)
+    q3_juice_under = request.json.get("q3_juice_under", None)
+    q3_half_tt_away = request.json.get("q3_half_tt_away", None)
+    q3_half_juice_over_away = request.json.get("q3_half_juice_over_away", None)
+    q3_half_juice_under_away = request.json.get(
+        "q3_half_juice_under_away", None)
+    q3_half_tt_home = request.json.get("q3_half_tt_home", None)
+    q3_half_juice_over_home = request.json.get("q3_half_juice_over_home", None)
+    q3_half_juice_under_home = request.json.get(
+        "q3_half_juice_under_home", None)
+    q3_half_final_score_away = request.json.get(
+        "q3_half_final_score_away", None)
+    q3_half_final_score_home = request.json.get(
+        "q3_half_final_score_home", None)
+    # --------------
+    q4_half_spread_away = request.json.get("q4_half_spread_away", None)
+    q4_half_spread_home = request.json.get("q4_half_spread_home", None)
+    q4_half_juice_spread_away = request.json.get(
+        "q4_half_juice_spread_away", None)
+    q4_half_juice_spread_home = request.json.get(
+        "q4_half_juice_spread_home", None)
+    q4_half_moneyLineAway = request.json.get("q4_half_moneyLineAway", None)
+    q4_half_moneyLineHome = request.json.get("q4_half_moneyLineHome", None)
+    q4_half_total = request.json.get("q4_half_total", None)
+    q4_juice_over = request.json.get("q4_juice_over", None)
+    q4_juice_under = request.json.get("q4_juice_under", None)
+    q4_half_tt_away = request.json.get("q4_half_tt_away", None)
+    q4_half_juice_over_away = request.json.get("q4_half_juice_over_away", None)
+    q4_half_juice_under_away = request.json.get(
+        "q4_half_juice_under_away", None)
+    q4_half_tt_home = request.json.get("q4_half_tt_home", None)
+    q4_half_juice_over_home = request.json.get("q4_half_juice_over_home", None)
+    q4_half_juice_under_home = request.json.get(
+        "q4_half_juice_under_home", None)
+    q4_half_final_score_away = request.json.get(
+        "q4_half_final_score_away", None)
+    q4_half_final_score_home = request.json.get(
+        "q4_half_final_score_home", None)
+
+    # busca mlb en BBDD
+    ncaa_football = Ncaa_Football.query.filter_by(
+        home=home, away=away, date=date).first()
+    # the mlb was not found on the database
+    if ncaa_football:
+        return jsonify({"msg": "Ncaa_Football game already exists", "status": ncaa_football.status}), 401
+    else:
+        # crea mlb nuevo
+        # crea registro nuevo en BBDD de
+        ncaa_football = Ncaa_Football(
+             date=date,
+            hour=hour,
+            week=week,
+            status=status,
+            casino=casino,
+            rotation_home=rotation_home,
+            rotation_away=rotation_away,
+            away=away,
+            home=home,
+            spread_away=spread_away,
+            spread_home=spread_home,
+            juice_spread_away=juice_spread_away,
+            juice_spread_home=juice_spread_home,
+            moneyLineAway=moneyLineAway,
+            moneyLineHome=moneyLineHome,
+            total=total,
+            juice_total_over=juice_total_over,
+            juice_total_under=juice_total_under,
+            tt_away=tt_away,
+            juice_over_away=juice_over_away,
+            juice_under_away=juice_under_away,
+            tt_home=tt_home,
+            juice_over_home=juice_over_home,
+            juice_under_home=juice_under_home,
+            final_score_away=final_score_away,
+            final_score_home=final_score_home,
+            # --
+            first_half_spread_away=first_half_spread_away,
+            first_half_spread_home=first_half_spread_home,
+            first_half_juice_spread_away=first_half_juice_spread_away,
+            first_half_juice_spread_home=first_half_juice_spread_home,
+            first_half_moneyLineAway=first_half_moneyLineAway,
+            first_half_moneyLineHome=first_half_moneyLineHome,
+            first_half_total=first_half_total,
+            fh_juice_total_over=fh_juice_total_over,
+            fh_juice_total_under=fh_juice_total_under,
+            first_half_tt_away=first_half_tt_away,
+            first_half_juice_over_away=first_half_juice_over_away,
+            first_half_juice_under_away=first_half_juice_under_away,
+            first_half_tt_home=first_half_tt_home,
+            first_half_juice_over_home=first_half_juice_over_home,
+            first_half_juice_under_home=first_half_juice_under_home,
+            first_half_final_score_away=first_half_final_score_away,
+            first_half_final_score_home=first_half_final_score_home,
+            # --
+            second_half_spread_away=second_half_spread_away,
+            second_half_spread_home=second_half_spread_home,
+            second_half_juice_spread_away=second_half_juice_spread_away,
+            second_half_juice_spread_home=second_half_juice_spread_home,
+            second_half_moneyLineAway=second_half_moneyLineAway,
+            second_half_moneyLineHome=second_half_moneyLineHome,
+            second_half_total=second_half_total,
+            sh_juice_total_over=sh_juice_total_over,
+            sh_juice_total_under=sh_juice_total_under,
+            second_half_tt_away=second_half_tt_away,
+            second_half_juice_over_away=second_half_juice_over_away,
+            second_half_juice_under_away=second_half_juice_under_away,
+            second_half_tt_home=second_half_tt_home,
+            second_half_juice_over_home=second_half_juice_over_home,
+            second_half_juice_under_home=second_half_juice_under_home,
+            second_half_final_score_away=second_half_final_score_away,
+            second_half_final_score_home=second_half_final_score_home,
+            # --
+            q1_half_spread_away=q1_half_spread_away,
+            q1_half_spread_home=q1_half_spread_home,
+            q1_half_juice_spread_away=q1_half_juice_spread_away,
+            q1_half_juice_spread_home=q1_half_juice_spread_home,
+            q1_half_moneyLineAway=q1_half_moneyLineAway,
+            q1_half_moneyLineHome=q1_half_moneyLineHome,
+            q1_half_total=q1_half_total,
+            q1_juice_over=q1_juice_over,
+            q1_juice_under=q1_juice_under,
+            q1_half_tt_away=q1_half_tt_away,
+            q1_half_juice_over_away=q1_half_juice_over_away,
+            q1_half_juice_under_away=q1_half_juice_under_away,
+            q1_half_tt_home=q1_half_tt_home,
+            q1_half_juice_over_home=q1_half_juice_over_home,
+            q1_half_juice_under_home=q1_half_juice_under_home,
+            q1_half_final_score_away=q1_half_final_score_away,
+            q1_half_final_score_home=q1_half_final_score_home,
+            # ---
+            q2_half_spread_away=q2_half_spread_away,
+            q2_half_spread_home=q2_half_spread_home,
+            q2_half_juice_spread_away=q2_half_juice_spread_away,
+            q2_half_juice_spread_home=q2_half_juice_spread_home,
+            q2_half_moneyLineAway=q2_half_moneyLineAway,
+            q2_half_moneyLineHome=q2_half_moneyLineHome,
+            q2_half_total=q2_half_total,
+            q2_juice_over=q2_juice_over,
+            q2_juice_under=q2_juice_under,
+            q2_half_tt_away=q2_half_tt_away,
+            q2_half_juice_over_away=q2_half_juice_over_away,
+            q2_half_juice_under_away=q2_half_juice_under_away,
+            q2_half_tt_home=q2_half_tt_home,
+            q2_half_juice_over_home=q2_half_juice_over_home,
+            q2_half_juice_under_home=q2_half_juice_under_home,
+            q2_half_final_score_away=q2_half_final_score_away,
+            q2_half_final_score_home=q2_half_final_score_home,
+            # ---
+            q3_half_spread_away=q3_half_spread_away,
+            q3_half_spread_home=q3_half_spread_home,
+            q3_half_juice_spread_away=q3_half_juice_spread_away,
+            q3_half_juice_spread_home=q3_half_juice_spread_home,
+            q3_half_moneyLineAway=q3_half_moneyLineAway,
+            q3_half_moneyLineHome=q3_half_moneyLineHome,
+            q3_half_total=q3_half_total,
+            q3_juice_over=q3_juice_over,
+            q3_juice_under=q3_juice_under,
+            q3_half_tt_away=q3_half_tt_away,
+            q3_half_juice_over_away=q3_half_juice_over_away,
+            q3_half_juice_under_away=q3_half_juice_under_away,
+            q3_half_tt_home=q3_half_tt_home,
+            q3_half_juice_over_home=q3_half_juice_over_home,
+            q3_half_juice_under_home=q3_half_juice_under_home,
+            q3_half_final_score_away=q3_half_final_score_away,
+            q3_half_final_score_home=q3_half_final_score_home,
+            # ---
+            q4_half_spread_away=q4_half_spread_away,
+            q4_half_spread_home=q4_half_spread_home,
+            q4_half_juice_spread_away=q4_half_juice_spread_away,
+            q4_half_juice_spread_home=q4_half_juice_spread_home,
+            q4_half_moneyLineAway=q4_half_moneyLineAway,
+            q4_half_moneyLineHome=q4_half_moneyLineHome,
+            q4_half_total=q4_half_total,
+            q4_juice_over=q4_juice_over,
+            q4_juice_under=q4_juice_under,
+            q4_half_tt_away=q4_half_tt_away,
+            q4_half_juice_over_away=q4_half_juice_over_away,
+            q4_half_juice_under_away=q4_half_juice_under_away,
+            q4_half_tt_home=q4_half_tt_home,
+            q4_half_juice_over_home=q4_half_juice_over_home,
+            q4_half_juice_under_home=q4_half_juice_under_home,
+            q4_half_final_score_away=q4_half_final_score_away,
+            q4_half_final_score_home=q4_half_final_score_home
         )
 
         db.session.add(ncaa_football)
@@ -3461,6 +3816,23 @@ def createStats_punting_player_nfl():
 
 # ------------put-------------------------------------------------------------------------------
 
+@app.route('/props/<id>', methods=['PUT'])
+def newsProps(id):
+    props = Props.query.get(id)
+    title = request.json['title']
+    type_prop = request.json['type_prop']
+    sport = request.json['sport']
+    feature = request.json['feature']
+    line = request.json['line']
+    props.title = title
+    props.type_prop = type_prop
+    props.sport = sport
+    props.feature = feature
+    props.line = line
+
+    db.session.commit()
+    return jsonify({"msg": "Props edith successfully"}), 200
+
 @app.route('/casinos/<id>', methods=['PUT'])
 def newsCasinos(id):
     casinos = Casinos.query.get(id)
@@ -4211,6 +4583,9 @@ def ncaa_footballEdit(id):
     hour = request.json['hour']
     week = request.json['week']
     status = request.json['status']
+    casino = request.json['casino']
+    rotation_away = request.json['rotation_away']
+    rotation_home = request.json['rotation_home']
     away = request.json['away']
     home = request.json['home']
     spread_away = request.json['spread_away']
@@ -4284,11 +4659,68 @@ def ncaa_footballEdit(id):
     q1_half_juice_under_home = request.json['q1_half_juice_under_home']
     q1_half_final_score_away = request.json['q1_half_final_score_away']
     q1_half_final_score_home = request.json['q1_half_final_score_home']
+    # --
+    q2_half_spread_away = request.json['q2_half_spread_away']
+    q2_half_spread_home = request.json['q2_half_spread_home']
+    q2_half_juice_spread_away = request.json['q2_half_juice_spread_away']
+    q2_half_juice_spread_home = request.json['q2_half_juice_spread_home']
+    q2_half_moneyLineAway = request.json['q2_half_moneyLineAway']
+    q2_half_moneyLineHome = request.json['q2_half_moneyLineHome']
+    q2_half_total = request.json['q2_half_total']
+    q2_juice_over = request.json['q2_juice_over']
+    q2_juice_under = request.json['q2_juice_under']
+    q2_half_tt_away = request.json['q2_half_tt_away']
+    q2_half_juice_over_away = request.json['q2_half_juice_over_away']
+    q2_half_juice_under_away = request.json['q2_half_juice_under_away']
+    q2_half_tt_home = request.json['q2_half_tt_home']
+    q2_half_juice_over_home = request.json['q2_half_juice_over_home']
+    q2_half_juice_under_home = request.json['q2_half_juice_under_home']
+    q2_half_final_score_away = request.json['q2_half_final_score_away']
+    q2_half_final_score_home = request.json['q2_half_final_score_home']
+    # --
+    q3_half_spread_away = request.json['q3_half_spread_away']
+    q3_half_spread_home = request.json['q3_half_spread_home']
+    q3_half_juice_spread_away = request.json['q3_half_juice_spread_away']
+    q3_half_juice_spread_home = request.json['q3_half_juice_spread_home']
+    q3_half_moneyLineAway = request.json['q3_half_moneyLineAway']
+    q3_half_moneyLineHome = request.json['q3_half_moneyLineHome']
+    q3_half_total = request.json['q3_half_total']
+    q3_juice_over = request.json['q3_juice_over']
+    q3_juice_under = request.json['q3_juice_under']
+    q3_half_tt_away = request.json['q3_half_tt_away']
+    q3_half_juice_over_away = request.json['q3_half_juice_over_away']
+    q3_half_juice_under_away = request.json['q3_half_juice_under_away']
+    q3_half_tt_home = request.json['q3_half_tt_home']
+    q3_half_juice_over_home = request.json['q3_half_juice_over_home']
+    q3_half_juice_under_home = request.json['q3_half_juice_under_home']
+    q3_half_final_score_away = request.json['q3_half_final_score_away']
+    q3_half_final_score_home = request.json['q3_half_final_score_home']
+    # --
+    q4_half_spread_away = request.json['q4_half_spread_away']
+    q4_half_spread_home = request.json['q4_half_spread_home']
+    q4_half_juice_spread_away = request.json['q4_half_juice_spread_away']
+    q4_half_juice_spread_home = request.json['q4_half_juice_spread_home']
+    q4_half_moneyLineAway = request.json['q4_half_moneyLineAway']
+    q4_half_moneyLineHome = request.json['q4_half_moneyLineHome']
+    q4_half_total = request.json['q4_half_total']
+    q4_juice_over = request.json['q4_juice_over']
+    q4_juice_under = request.json['q4_juice_under']
+    q4_half_tt_away = request.json['q4_half_tt_away']
+    q4_half_juice_over_away = request.json['q4_half_juice_over_away']
+    q4_half_juice_under_away = request.json['q4_half_juice_under_away']
+    q4_half_tt_home = request.json['q4_half_tt_home']
+    q4_half_juice_over_home = request.json['q4_half_juice_over_home']
+    q4_half_juice_under_home = request.json['q4_half_juice_under_home']
+    q4_half_final_score_away = request.json['q4_half_final_score_away']
+    q4_half_final_score_home = request.json['q4_half_final_score_home']
 
     ncaa_football.date = date
     ncaa_football.hour = hour
     ncaa_football.week = week
     ncaa_football.status = status
+    ncaa_football.casino = casino
+    ncaa_football.rotation_away = rotation_away
+    ncaa_football.rotation_home = rotation_home
     ncaa_football.away = away
     ncaa_football.home = home
     ncaa_football.spread_away = spread_away
@@ -4362,6 +4794,60 @@ def ncaa_footballEdit(id):
     ncaa_football.q1_half_juice_under_home = q1_half_juice_under_home
     ncaa_football.q1_half_final_score_away = q1_half_final_score_away
     ncaa_football.q1_half_final_score_home = q1_half_final_score_home
+    # --
+    ncaa_football.q2_half_spread_away = q2_half_spread_away
+    ncaa_football.q2_half_spread_home = q2_half_spread_home
+    ncaa_football.q2_half_juice_spread_away = q2_half_juice_spread_away
+    ncaa_football.q2_half_juice_spread_home = q2_half_juice_spread_home
+    ncaa_football.q2_half_moneyLineAway = q2_half_moneyLineAway
+    ncaa_football.q2_half_moneyLineHome = q2_half_moneyLineHome
+    ncaa_football.q2_half_total = q2_half_total
+    ncaa_football.q2_juice_over = q2_juice_over
+    ncaa_football.q2_juice_under = q2_juice_under
+    ncaa_football.q2_half_tt_away = q2_half_tt_away
+    ncaa_football.q2_half_juice_over_away = q2_half_juice_over_away
+    ncaa_football.q2_half_juice_under_away = q2_half_juice_under_away
+    ncaa_football.q2_half_tt_home = q2_half_tt_home
+    ncaa_football.q2_half_juice_over_home = q2_half_juice_over_home
+    ncaa_football.q2_half_juice_under_home = q2_half_juice_under_home
+    ncaa_football.q2_half_final_score_away = q2_half_final_score_away
+    ncaa_football.q2_half_final_score_home = q2_half_final_score_home
+    # --
+    ncaa_football.q3_half_spread_away = q3_half_spread_away
+    ncaa_football.q3_half_spread_home = q3_half_spread_home
+    ncaa_football.q3_half_juice_spread_away = q3_half_juice_spread_away
+    ncaa_football.q3_half_juice_spread_home = q3_half_juice_spread_home
+    ncaa_football.q3_half_moneyLineAway = q3_half_moneyLineAway
+    ncaa_football.q3_half_moneyLineHome = q3_half_moneyLineHome
+    ncaa_football.q3_half_total = q3_half_total
+    ncaa_football.q3_juice_over = q3_juice_over
+    ncaa_football.q3_juice_under = q3_juice_under
+    ncaa_football.q3_half_tt_away = q3_half_tt_away
+    ncaa_football.q3_half_juice_over_away = q3_half_juice_over_away
+    ncaa_football.q3_half_juice_under_away = q3_half_juice_under_away
+    ncaa_football.q3_half_tt_home = q3_half_tt_home
+    ncaa_football.q3_half_juice_over_home = q3_half_juice_over_home
+    ncaa_football.q3_half_juice_under_home = q3_half_juice_under_home
+    ncaa_football.q3_half_final_score_away = q3_half_final_score_away
+    ncaa_football.q3_half_final_score_home = q3_half_final_score_home
+    # --
+    ncaa_football.q4_half_spread_away = q4_half_spread_away
+    ncaa_football.q4_half_spread_home = q4_half_spread_home
+    ncaa_football.q4_half_juice_spread_away = q4_half_juice_spread_away
+    ncaa_football.q4_half_juice_spread_home = q4_half_juice_spread_home
+    ncaa_football.q4_half_moneyLineAway = q4_half_moneyLineAway
+    ncaa_football.q4_half_moneyLineHome = q4_half_moneyLineHome
+    ncaa_football.q4_half_total = q4_half_total
+    ncaa_football.q4_juice_over = q4_juice_over
+    ncaa_football.q4_juice_under = q4_juice_under
+    ncaa_football.q4_half_tt_away = q4_half_tt_away
+    ncaa_football.q4_half_juice_over_away = q4_half_juice_over_away
+    ncaa_football.q4_half_juice_under_away = q4_half_juice_under_away
+    ncaa_football.q4_half_tt_home = q4_half_tt_home
+    ncaa_football.q4_half_juice_over_home = q4_half_juice_over_home
+    ncaa_football.q4_half_juice_under_home = q4_half_juice_under_home
+    ncaa_football.q4_half_final_score_away = q4_half_final_score_away
+    ncaa_football.q4_half_final_score_home = q4_half_final_score_home
     db.session.commit()
     return jsonify({"msg": "nfl edith successfully"}), 200
 
@@ -4647,9 +5133,11 @@ def ncaa_basketballEdit(id):
     ncaa_basketball = Ncaa_Basketball.query.get(id)
     date = request.json['date']
     hour = request.json['hour']
+    week = request.json['week']
     status = request.json['status']
-    preview = request.json['preview']
-    img_preview = request.json['img_preview']
+    casino = request.json['casino']
+    rotation_away = request.json['rotation_away']
+    rotation_home = request.json['rotation_home']
     away = request.json['away']
     home = request.json['home']
     spread_away = request.json['spread_away']
@@ -4669,64 +5157,122 @@ def ncaa_basketballEdit(id):
     juice_under_home = request.json['juice_under_home']
     final_score_away = request.json['final_score_away']
     final_score_home = request.json['final_score_home']
-
+    # --
     first_half_spread_away = request.json['first_half_spread_away']
     first_half_spread_home = request.json['first_half_spread_home']
     first_half_juice_spread_away = request.json['first_half_juice_spread_away']
     first_half_juice_spread_home = request.json['first_half_juice_spread_home']
-    first_half_moneyLineHome = request.json['first_half_moneyLineHome']
     first_half_moneyLineAway = request.json['first_half_moneyLineAway']
+    first_half_moneyLineHome = request.json['first_half_moneyLineHome']
     first_half_total = request.json['first_half_total']
-    first_half_juice_total = request.json['first_half_juice_total']
+    fh_juice_total_over = request.json['fh_juice_total_over']
+    fh_juice_total_under = request.json['fh_juice_total_under']
     first_half_tt_away = request.json['first_half_tt_away']
+    first_half_juice_over_away = request.json['first_half_juice_over_away']
+    first_half_juice_under_away = request.json['first_half_juice_under_away']
     first_half_tt_home = request.json['first_half_tt_home']
-    first_half_juice_over_away = request.json['first_half_juice_over_away']
     first_half_juice_over_home = request.json['first_half_juice_over_home']
-    first_half_juice_under_away = request.json['first_half_juice_under_away']
-    first_half_juice_under_home = request.json['first_half_juice_under_home']
-    first_half_juice_over_away = request.json['first_half_juice_over_away']
-    first_half_juice_over_home = request.json['first_half_juice_over_home']
-    first_half_juice_under_away = request.json['first_half_juice_under_away']
     first_half_juice_under_home = request.json['first_half_juice_under_home']
     first_half_final_score_away = request.json['first_half_final_score_away']
     first_half_final_score_home = request.json['first_half_final_score_home']
+    # --
     second_half_spread_away = request.json['second_half_spread_away']
     second_half_spread_home = request.json['second_half_spread_home']
     second_half_juice_spread_away = request.json['second_half_juice_spread_away']
     second_half_juice_spread_home = request.json['second_half_juice_spread_home']
-    second_half_moneyLineHome = request.json['second_half_moneyLineHome']
     second_half_moneyLineAway = request.json['second_half_moneyLineAway']
+    second_half_moneyLineHome = request.json['second_half_moneyLineHome']
     second_half_total = request.json['second_half_total']
-    second_half_juice_total = request.json['second_half_juice_total']
+    sh_juice_total_over = request.json['sh_juice_total_over']
+    sh_juice_total_under = request.json['sh_juice_total_under']
     second_half_tt_away = request.json['second_half_tt_away']
-    second_half_tt_home = request.json['second_half_tt_home']
     second_half_juice_over_away = request.json['second_half_juice_over_away']
-    second_half_juice_over_home = request.json['second_half_juice_over_home']
     second_half_juice_under_away = request.json['second_half_juice_under_away']
+    second_half_tt_home = request.json['second_half_tt_home']
+    second_half_juice_over_home = request.json['second_half_juice_over_home']
     second_half_juice_under_home = request.json['second_half_juice_under_home']
     second_half_final_score_away = request.json['second_half_final_score_away']
     second_half_final_score_home = request.json['second_half_final_score_home']
+    # --
     q1_half_spread_away = request.json['q1_half_spread_away']
     q1_half_spread_home = request.json['q1_half_spread_home']
     q1_half_juice_spread_away = request.json['q1_half_juice_spread_away']
     q1_half_juice_spread_home = request.json['q1_half_juice_spread_home']
-    q1_half_moneyLineHome = request.json['q1_half_moneyLineHome']
     q1_half_moneyLineAway = request.json['q1_half_moneyLineAway']
+    q1_half_moneyLineHome = request.json['q1_half_moneyLineHome']
     q1_half_total = request.json['q1_half_total']
     q1_juice_over = request.json['q1_juice_over']
     q1_juice_under = request.json['q1_juice_under']
     q1_half_tt_away = request.json['q1_half_tt_away']
-    q1_half_tt_home = request.json['q1_half_tt_home']
     q1_half_juice_over_away = request.json['q1_half_juice_over_away']
+    q1_half_juice_under_away = request.json['q1_half_juice_under_away']
+    q1_half_tt_home = request.json['q1_half_tt_home']
     q1_half_juice_over_home = request.json['q1_half_juice_over_home']
+    q1_half_juice_under_home = request.json['q1_half_juice_under_home']
     q1_half_final_score_away = request.json['q1_half_final_score_away']
     q1_half_final_score_home = request.json['q1_half_final_score_home']
+    # --
+    q2_half_spread_away = request.json['q2_half_spread_away']
+    q2_half_spread_home = request.json['q2_half_spread_home']
+    q2_half_juice_spread_away = request.json['q2_half_juice_spread_away']
+    q2_half_juice_spread_home = request.json['q2_half_juice_spread_home']
+    q2_half_moneyLineAway = request.json['q2_half_moneyLineAway']
+    q2_half_moneyLineHome = request.json['q2_half_moneyLineHome']
+    q2_half_total = request.json['q2_half_total']
+    q2_juice_over = request.json['q2_juice_over']
+    q2_juice_under = request.json['q2_juice_under']
+    q2_half_tt_away = request.json['q2_half_tt_away']
+    q2_half_juice_over_away = request.json['q2_half_juice_over_away']
+    q2_half_juice_under_away = request.json['q2_half_juice_under_away']
+    q2_half_tt_home = request.json['q2_half_tt_home']
+    q2_half_juice_over_home = request.json['q2_half_juice_over_home']
+    q2_half_juice_under_home = request.json['q2_half_juice_under_home']
+    q2_half_final_score_away = request.json['q2_half_final_score_away']
+    q2_half_final_score_home = request.json['q2_half_final_score_home']
+    # --
+    q3_half_spread_away = request.json['q3_half_spread_away']
+    q3_half_spread_home = request.json['q3_half_spread_home']
+    q3_half_juice_spread_away = request.json['q3_half_juice_spread_away']
+    q3_half_juice_spread_home = request.json['q3_half_juice_spread_home']
+    q3_half_moneyLineAway = request.json['q3_half_moneyLineAway']
+    q3_half_moneyLineHome = request.json['q3_half_moneyLineHome']
+    q3_half_total = request.json['q3_half_total']
+    q3_juice_over = request.json['q3_juice_over']
+    q3_juice_under = request.json['q3_juice_under']
+    q3_half_tt_away = request.json['q3_half_tt_away']
+    q3_half_juice_over_away = request.json['q3_half_juice_over_away']
+    q3_half_juice_under_away = request.json['q3_half_juice_under_away']
+    q3_half_tt_home = request.json['q3_half_tt_home']
+    q3_half_juice_over_home = request.json['q3_half_juice_over_home']
+    q3_half_juice_under_home = request.json['q3_half_juice_under_home']
+    q3_half_final_score_away = request.json['q3_half_final_score_away']
+    q3_half_final_score_home = request.json['q3_half_final_score_home']
+    # --
+    q4_half_spread_away = request.json['q4_half_spread_away']
+    q4_half_spread_home = request.json['q4_half_spread_home']
+    q4_half_juice_spread_away = request.json['q4_half_juice_spread_away']
+    q4_half_juice_spread_home = request.json['q4_half_juice_spread_home']
+    q4_half_moneyLineAway = request.json['q4_half_moneyLineAway']
+    q4_half_moneyLineHome = request.json['q4_half_moneyLineHome']
+    q4_half_total = request.json['q4_half_total']
+    q4_juice_over = request.json['q4_juice_over']
+    q4_juice_under = request.json['q4_juice_under']
+    q4_half_tt_away = request.json['q4_half_tt_away']
+    q4_half_juice_over_away = request.json['q4_half_juice_over_away']
+    q4_half_juice_under_away = request.json['q4_half_juice_under_away']
+    q4_half_tt_home = request.json['q4_half_tt_home']
+    q4_half_juice_over_home = request.json['q4_half_juice_over_home']
+    q4_half_juice_under_home = request.json['q4_half_juice_under_home']
+    q4_half_final_score_away = request.json['q4_half_final_score_away']
+    q4_half_final_score_home = request.json['q4_half_final_score_home']
 
     ncaa_basketball.date = date
     ncaa_basketball.hour = hour
-    ncaa_basketball.preview = preview
-    ncaa_basketball.img_preview = img_preview
+    ncaa_basketball.week = week
     ncaa_basketball.status = status
+    ncaa_basketball.casino = casino
+    ncaa_basketball.rotation_away = rotation_away
+    ncaa_basketball.rotation_home = rotation_home
     ncaa_basketball.away = away
     ncaa_basketball.home = home
     ncaa_basketball.spread_away = spread_away
@@ -4746,7 +5292,6 @@ def ncaa_basketballEdit(id):
     ncaa_basketball.juice_under_home = juice_under_home
     ncaa_basketball.final_score_away = final_score_away
     ncaa_basketball.final_score_home = final_score_home
-    ncaa_basketball.final_score_home = final_score_home
 
     ncaa_basketball.first_half_spread_away = first_half_spread_away
     ncaa_basketball.first_half_spread_home = first_half_spread_home
@@ -4765,6 +5310,7 @@ def ncaa_basketballEdit(id):
     ncaa_basketball.first_half_juice_under_home = first_half_juice_under_home
     ncaa_basketball.first_half_final_score_away = first_half_final_score_away
     ncaa_basketball.first_half_final_score_home = first_half_final_score_home
+    # --
     ncaa_basketball.second_half_spread_away = second_half_spread_away
     ncaa_basketball.second_half_spread_home = second_half_spread_home
     ncaa_basketball.second_half_juice_spread_away = second_half_juice_spread_away
@@ -4782,6 +5328,7 @@ def ncaa_basketballEdit(id):
     ncaa_basketball.second_half_juice_under_home = second_half_juice_under_home
     ncaa_basketball.second_half_final_score_away = second_half_final_score_away
     ncaa_basketball.second_half_final_score_home = second_half_final_score_home
+    # --
     ncaa_basketball.q1_half_spread_away = q1_half_spread_away
     ncaa_basketball.q1_half_spread_home = q1_half_spread_home
     ncaa_basketball.q1_half_juice_spread_away = q1_half_juice_spread_away
@@ -4799,6 +5346,60 @@ def ncaa_basketballEdit(id):
     ncaa_basketball.q1_half_juice_under_home = q1_half_juice_under_home
     ncaa_basketball.q1_half_final_score_away = q1_half_final_score_away
     ncaa_basketball.q1_half_final_score_home = q1_half_final_score_home
+    # --
+    ncaa_basketball.q2_half_spread_away = q2_half_spread_away
+    ncaa_basketball.q2_half_spread_home = q2_half_spread_home
+    ncaa_basketball.q2_half_juice_spread_away = q2_half_juice_spread_away
+    ncaa_basketball.q2_half_juice_spread_home = q2_half_juice_spread_home
+    ncaa_basketball.q2_half_moneyLineAway = q2_half_moneyLineAway
+    ncaa_basketball.q2_half_moneyLineHome = q2_half_moneyLineHome
+    ncaa_basketball.q2_half_total = q2_half_total
+    ncaa_basketball.q2_juice_over = q2_juice_over
+    ncaa_basketball.q2_juice_under = q2_juice_under
+    ncaa_basketball.q2_half_tt_away = q2_half_tt_away
+    ncaa_basketball.q2_half_juice_over_away = q2_half_juice_over_away
+    ncaa_basketball.q2_half_juice_under_away = q2_half_juice_under_away
+    ncaa_basketball.q2_half_tt_home = q2_half_tt_home
+    ncaa_basketball.q2_half_juice_over_home = q2_half_juice_over_home
+    ncaa_basketball.q2_half_juice_under_home = q2_half_juice_under_home
+    ncaa_basketball.q2_half_final_score_away = q2_half_final_score_away
+    ncaa_basketball.q2_half_final_score_home = q2_half_final_score_home
+    # --
+    ncaa_basketball.q3_half_spread_away = q3_half_spread_away
+    ncaa_basketball.q3_half_spread_home = q3_half_spread_home
+    ncaa_basketball.q3_half_juice_spread_away = q3_half_juice_spread_away
+    ncaa_basketball.q3_half_juice_spread_home = q3_half_juice_spread_home
+    ncaa_basketball.q3_half_moneyLineAway = q3_half_moneyLineAway
+    ncaa_basketball.q3_half_moneyLineHome = q3_half_moneyLineHome
+    ncaa_basketball.q3_half_total = q3_half_total
+    ncaa_basketball.q3_juice_over = q3_juice_over
+    ncaa_basketball.q3_juice_under = q3_juice_under
+    ncaa_basketball.q3_half_tt_away = q3_half_tt_away
+    ncaa_basketball.q3_half_juice_over_away = q3_half_juice_over_away
+    ncaa_basketball.q3_half_juice_under_away = q3_half_juice_under_away
+    ncaa_basketball.q3_half_tt_home = q3_half_tt_home
+    ncaa_basketball.q3_half_juice_over_home = q3_half_juice_over_home
+    ncaa_basketball.q3_half_juice_under_home = q3_half_juice_under_home
+    ncaa_basketball.q3_half_final_score_away = q3_half_final_score_away
+    ncaa_basketball.q3_half_final_score_home = q3_half_final_score_home
+    # --
+    ncaa_basketball.q4_half_spread_away = q4_half_spread_away
+    ncaa_basketball.q4_half_spread_home = q4_half_spread_home
+    ncaa_basketball.q4_half_juice_spread_away = q4_half_juice_spread_away
+    ncaa_basketball.q4_half_juice_spread_home = q4_half_juice_spread_home
+    ncaa_basketball.q4_half_moneyLineAway = q4_half_moneyLineAway
+    ncaa_basketball.q4_half_moneyLineHome = q4_half_moneyLineHome
+    ncaa_basketball.q4_half_total = q4_half_total
+    ncaa_basketball.q4_juice_over = q4_juice_over
+    ncaa_basketball.q4_juice_under = q4_juice_under
+    ncaa_basketball.q4_half_tt_away = q4_half_tt_away
+    ncaa_basketball.q4_half_juice_over_away = q4_half_juice_over_away
+    ncaa_basketball.q4_half_juice_under_away = q4_half_juice_under_away
+    ncaa_basketball.q4_half_tt_home = q4_half_tt_home
+    ncaa_basketball.q4_half_juice_over_home = q4_half_juice_over_home
+    ncaa_basketball.q4_half_juice_under_home = q4_half_juice_under_home
+    ncaa_basketball.q4_half_final_score_away = q4_half_final_score_away
+    ncaa_basketball.q4_half_final_score_home = q4_half_final_score_home
     db.session.commit()
     return jsonify({"msg": "ncaa_basketball edith successfully"}), 200
 
@@ -6130,6 +6731,13 @@ def soccer_tournament_delete(id):
     db.session.delete(soccer_tournament)
     db.session.commit()
     return "soccer_tournament was successfully deleted"
+
+@app.route("/props/<id>", methods=["DELETE"])
+def props_delete(id):
+    props = Props.query.get(id)
+    db.session.delete(props)
+    db.session.commit()
+    return "props was successfully deleted"
 
 @app.route("/logos_nfl/<id>", methods=["DELETE"])
 def logos_nfl_delete(id):
