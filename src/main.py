@@ -457,16 +457,16 @@ def createProps():
     props = Props.query.filter_by(title=title,line=line,type_prop=type_prop,feature=feature).first()
     # the team was not found on the database
     if props:
-        return jsonify({"msg": "Casino already exists", "Casino": props.name}), 401
+        return jsonify({"msg": "props already exists", "props": props.title}), 401
     else:
-        # crea casino nuevo
+        # crea props nuevo
         # crea registro nuevo en BBDD de
         props = Props(
             title=title,
             type_prop=type_prop,
             sport=sport,
             feature=feature,
-            line=line,
+            line=line
         )
         db.session.add(props)
         db.session.commit()
