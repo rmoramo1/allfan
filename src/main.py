@@ -2058,7 +2058,7 @@ def createGameNcaaBasket():
         "q4_half_final_score_home", None)
 
     # busca mlb en BBDD
-    ncaa_basketball = Ncaa_basketball.query.filter_by(
+    ncaa_basketball = Ncaa_Basketball.query.filter_by(
         home=home, away=away, date=date).first()
     # the mlb was not found on the database
     if ncaa_basketball:
@@ -2066,7 +2066,7 @@ def createGameNcaaBasket():
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
-        ncaa_basketball = Ncaa_basketball(
+        ncaa_basketball = Ncaa_Basketball(
             date=date,
             hour=hour,
             week=week,
