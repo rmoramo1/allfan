@@ -2305,7 +2305,7 @@ def createGameNcaaBaseBall():
     sh_25inning = request.json.get("sh_25inning", None)
 
     # busca mlb en BBDD
-    ncaa_baseball = Ncaa_baseball.query.filter_by(
+    ncaa_baseball = Ncaa_Baseball.query.filter_by(
         home=home, away=away, date=date).first()
     # the ncaa_baseball was not found on the database
     if ncaa_baseball:
@@ -2313,7 +2313,7 @@ def createGameNcaaBaseBall():
     else:
         # crea ncaa_baseball nuevo
         # crea registro nuevo en BBDD de
-        ncaa_baseball = Ncaa_baseball(
+        ncaa_baseball = Ncaa_Baseball(
             date=date, 
             hour=hour, 
             status=status, 
