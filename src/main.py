@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User , Casinos , Nfl , Mlb , Nba , Nhl , Boxeo , Mma , Nascar , Nascar_drivers , Match_Ups_Nacar , Golf , Golfer , Ncaa_Baseball , Ncaa_Football , Ncaa_Basketball , Stats_nba_player , Stats_nba_team , Stats_mlb_team , Stats_mlb_player , Stats_nhl_team , Stats_nhl_player , Stats_box_fighter , Stats_mma_fighter , Stats_nfl_team , Stats_defensive_player_nfl , Stats_offensive_player_nfl , Stats_returning_player_nfl , Stats_kiking_player_nfl , Stats_punting_player_nfl , Soccer , Soccer_Tournament , Stats_Soccer_Team , Stats_Soccer_Player , Logos_NFL , Logos_NBA , Logos_MLB , Logos_NHL , Logos_SOCCER , Props
+from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER , Props , Stats_ncaa_baseball_player ,  Stats_ncaa_baseball_team , Stats_ncaa_football_team , Stats_defensive_player_ncca_football , Stats_offensive_player_ncaa_football , Stats_returning_player_ncaa_football , Stats_kiking_player_ncaa_football , Stats_punting_player_ncaa_football , Stats_ncaa_basket_team , Stats_ncaa_basket_player
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -139,6 +139,61 @@ def ncaa_football():
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
 
+@app.route("/stats_defensive_player_ncca_football", methods=["GET"])
+#   @limiter.limit("12 per hour")
+def stats_defensive_player_ncca_football():
+    if request.method == "GET":
+        records = Stats_defensive_player_ncca_football.query.all()
+        return jsonify([Stats_defensive_player_ncca_football.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ---------------------------------------------------------------------------
+@app.route("/stats_offensive_player_ncaa_football", methods=["GET"])
+#   @limiter.limit("12 per hour")
+def stats_offensive_player_ncaa_football():
+    if request.method == "GET":
+        records = Stats_offensive_player_ncaa_football.query.all()
+        return jsonify([Stats_offensive_player_ncaa_football.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ---------------------------------------------------------------------------
+@app.route("/stats_returning_player_ncaa_football", methods=["GET"])
+#   @limiter.limit("12 per hour")
+def stats_returning_player_ncaa_football():
+    if request.method == "GET":
+        records = Stats_returning_player_ncaa_football.query.all()
+        return jsonify([Stats_returning_player_ncaa_football.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ---------------------------------------------------------------------------
+@app.route("/stats_kiking_player_ncaa_football", methods=["GET"])
+#   @limiter.limit("12 per hour")
+def stats_kiking_player_ncaa_football():
+    if request.method == "GET":
+        records = Stats_kiking_player_ncaa_football.query.all()
+        return jsonify([Stats_kiking_player_ncaa_football.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ---------------------------------------------------------------------------
+@app.route("/stats_punting_player_ncaa_football", methods=["GET"])
+#   @limiter.limit("12 per hour")
+def stats_punting_player_ncaa_football():
+    if request.method == "GET":
+        records = Stats_punting_player_ncaa_football.query.all()
+        return jsonify([Stats_punting_player_ncaa_football.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ---------------------------------------------------------------------------
+@app.route("/stats_ncaa_football_team", methods=["GET"])
+#   @limiter.limit("12 per hour")
+def stats_ncaa_football_team():
+    if request.method == "GET":
+        records = Stats_ncaa_football_team.query.all()
+        return jsonify([Stats_ncaa_football_team.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ---------------------------------------------------------------------------
+
 @app.route("/nfl", methods=["GET"])
 def nfl():
     if request.method == "GET":
@@ -158,6 +213,25 @@ def ncaa_baseball():
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
 
+@app.route("/stats_ncaa_baseball_player", methods=["GET"])
+#   @limiter.limit("12 per hour")
+def stats_ncaa_baseball_player():
+    if request.method == "GET":
+        records = Stats_ncaa_baseball_player.query.all()
+        return jsonify([Stats_ncaa_baseball_player.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ---------------------------------------------------------------------------
+@app.route("/stats_ncaa_baseball_team", methods=["GET"])
+#   @limiter.limit("12 per hour")
+def stats_ncaa_baseball_team():
+    if request.method == "GET":
+        records = Stats_ncaa_baseball_team.query.all()
+        return jsonify([Stats_ncaa_baseball_team.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ---------------------------------------------------------------------------
+
 @app.route("/nba", methods=["GET"])
 def nba():
     if request.method == "GET":
@@ -173,6 +247,24 @@ def ncaa_basketball():
     if request.method == "GET":
         records = Ncaa_Basketball.query.all()
         return jsonify([Ncaa_Basketball.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ---------------------------------------------------------------------------
+@app.route("/stats_ncaa_basket_team", methods=["GET"])
+#   @limiter.limit("12 per hour")
+def stats_ncaa_basket_team():
+    if request.method == "GET":
+        records = Stats_ncaa_basket_team.query.all()
+        return jsonify([Stats_ncaa_basket_team.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ---------------------------------------------------------------------------
+@app.route("/stats_ncaa_basket_player", methods=["GET"])
+#   @limiter.limit("12 per hour")
+def stats_ncaa_basket_player():
+    if request.method == "GET":
+        records = Stats_ncaa_basket_player.query.all()
+        return jsonify([Stats_ncaa_basket_player.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
@@ -2205,6 +2297,129 @@ def createGameNcaaBasket():
         db.session.commit()
         return jsonify({"msg": "Game created successfully"}), 200
 
+@app.route('/stats_ncaa_basket_team', methods=['POST'])
+def createstats_ncaa_basket_team():
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+    conference = request.json.get("conference", None)
+    division = request.json.get("division", None)
+
+    w = request.json.get("w", None)
+    L = request.json.get("L", None)
+    ptc = request.json.get("ptc", None)
+    home = request.json.get("home", None)
+    away = request.json.get("away", None)
+    div = request.json.get("div", None)
+    conf = request.json.get("conf", None)
+    ppg = request.json.get("ppg", None)
+    opp_ppg = request.json.get("opp_ppg", None)
+    diff = request.json.get("diff", None)
+    strk = request.json.get("strk", None)
+    l10 = request.json.get("l10", None)
+
+    # busca team en BBDD
+    stats_ncaa_basket_team = Stats_ncaa_basket_team.query.filter_by(team=team).first()
+    # the team was not found on the database
+    if stats_ncaa_basket_team:
+        return jsonify({"msg": "stats_ncaa_basket_team already exists", "team": stats_ncaa_basket_team.team}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_ncaa_basket_team = Stats_ncaa_basket_team(
+            season=season,
+            team=team,
+            conference=conference,
+            division=division,
+            w=w,
+            L=L,
+            ptc=ptc,
+            home=home,
+            away=away,
+            div=div,
+            conf=conf,
+            ppg=ppg,
+            opp_ppg=opp_ppg,
+            diff=diff,
+            strk=strk,
+            l10=l10
+        )
+        db.session.add(stats_ncaa_basket_team)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_ncaa_basket_team created successfully"}), 200
+
+@app.route('/stats_ncaa_basket_player', methods=['POST'])
+def createstats_ncaa_basket_player():
+    name = request.json.get("name", None)
+    height = request.json.get("height", None)
+    weight = request.json.get("weight", None)
+    birth = request.json.get("birth", None)
+    college = request.json.get("college", None)
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+
+    dorsal = request.json.get("dorsal", None)
+    minutes = request.json.get("minutes", None)
+    position = request.json.get("position", None)
+    gp = request.json.get("gp", None)
+    gs = request.json.get("gs", None)
+    fg = request.json.get("fg", None)
+    fg_AVG = request.json.get("fg_AVG", None)
+    three_pt = request.json.get("three_pt", None)
+    three_pt_AVG = request.json.get("three_pt_AVG", None)
+    ft = request.json.get("ft", None)
+    ft_AVG = request.json.get("ft_AVG", None)
+    Or = request.json.get("Or", None)
+    dr = request.json.get("dr", None)
+    reb = request.json.get("reb", None)
+    ast = request.json.get("ast", None)
+    stl = request.json.get("stl", None)
+    blk = request.json.get("blk", None)
+    to = request.json.get("to", None)
+    pf = request.json.get("pf", None)
+    pts = request.json.get("pts", None)
+    # busca team en BBDD
+    stats_ncaa_basket_player = Stats_ncaa_basket_player.query.filter_by(
+        name=name, dorsal=dorsal, team=team).first()
+    # the team was not found on the database
+    if stats_ncaa_basket_player:
+        return jsonify({"msg": "stats_ncaa_basket_player already exists", "name": stats_ncaa_basket_player.name}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_ncaa_basket_player = Stats_ncaa_basket_player(
+            name=name,
+            height=height,
+            weight=weight,
+            birth=birth,
+            college=college,
+            season=season,
+            team=team,
+
+            dorsal=dorsal,
+            minutes=minutes,
+            position=position,
+            gp=gp,
+            gs=gs,
+            fg=fg,
+            fg_AVG=fg_AVG,
+            three_pt=three_pt,
+            three_pt_AVG=three_pt_AVG,
+            ft=ft,
+            ft_AVG=ft_AVG,
+            Or=Or,
+            dr=dr,
+            reb=reb,
+            ast=ast,
+            stl=stl,
+            blk=blk,
+            to=to,
+            pf=pf,
+            pts=pts
+        )
+        db.session.add(stats_ncaa_basket_player)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_ncaa_basket_player created successfully"}), 200
+
 
 @app.route('/ncaa_baseball', methods=['POST'])
 def createGameNcaaBaseBall():
@@ -2360,6 +2575,125 @@ def createGameNcaaBaseBall():
         db.session.add(ncaa_baseball)
         db.session.commit()
         return jsonify({"msg": "User created successfully"}), 200
+
+@app.route('/stats_ncaa_baseball_team', methods=['POST'])
+def createstats_ncaa_baseball_team():
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+    league = request.json.get("league", None)
+    division = request.json.get("division", None)
+    w = request.json.get("w", None)
+    L = request.json.get("L", None)
+    pct = request.json.get("pct", None)
+    gb = request.json.get("gb", None)
+    home = request.json.get("home", None)
+    away = request.json.get("away", None)
+    rs = request.json.get("rs", None)
+    ra = request.json.get("ra", None)
+    diff = request.json.get("diff", None)
+    strk = request.json.get("strk", None)
+    L10 = request.json.get("L10", None)
+    poff = request.json.get("poff", None)
+
+    # busca team en BBDD
+    stats_ncaa_baseball_team = Stats_ncaa_baseball_team.query.filter_by(
+        team=team, league=league, division=division).first()
+    # the team was not found on the database
+    if stats_ncaa_baseball_team:
+        return jsonify({"msg": "stats_ncaa_baseball_team already exists", "team": stats_ncaa_baseball_team.team}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_ncaa_baseball_team = Stats_ncaa_baseball_team(
+            season=season,
+            team=team,
+            league=league,
+            division=division,
+            w=w,
+            L=L,
+            pct=pct,
+            gb=gb,
+            home=home,
+            away=away,
+            rs=rs,
+            ra=ra,
+            diff=diff,
+            strk=strk,
+            L10=L10,
+            poff=poff
+        )
+        db.session.add(stats_ncaa_baseball_team)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_ncaa_baseball_team created successfully"}), 200
+
+@app.route('/stats_ncaa_baseball_player', methods=['POST'])
+def createstats_ncaa_baseball_player():
+    name = request.json.get("name", None)
+    height = request.json.get("height", None)
+    weight = request.json.get("weight", None)
+    birth = request.json.get("birth", None)
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+    dorsal = request.json.get("dorsal", None)
+    position = request.json.get("position", None)
+
+    gp = request.json.get("gp", None)
+    ab = request.json.get("ab", None)
+    r = request.json.get("r", None)
+    h = request.json.get("h", None)
+    two_b = request.json.get("two_b", None)
+    three_b = request.json.get("three_b", None)
+    hb = request.json.get("hb", None)
+    rbi = request.json.get("rbi", None)
+    tb = request.json.get("tb", None)
+    bb = request.json.get("bb", None)
+    so = request.json.get("so", None)
+    sb = request.json.get("sb", None)
+    avg = request.json.get("avg", None)
+    obp = request.json.get("obp", None)
+    slg = request.json.get("slg", None)
+    ops = request.json.get("ops", None)
+    war = request.json.get("war", None)
+
+    # busca team en BBDD
+    stats_ncaa_baseball_player = Stats_ncaa_baseball_player.query.filter_by(
+        name=name, dorsal=dorsal, birth=birth).first()
+    # the team was not found on the database
+    if stats_ncaa_baseball_player:
+        return jsonify({"msg": "stats_ncaa_baseball_player already exists", "name": stats_ncaa_baseball_player.name}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_ncaa_baseball_player = Stats_ncaa_baseball_player(
+            name=name,
+            height=height,
+            weight=weight,
+            birth=birth,
+            season=season,
+            team=team,
+            dorsal=dorsal,
+            position=position,
+            gp=gp,
+            ab=ab,
+            r=r,
+            h=h,
+            two_b=two_b,
+            three_b=three_b,
+            hb=hb,
+            rbi=rbi,
+            tb=tb,
+            bb=bb,
+            so=so,
+            sb=sb,
+            avg=avg,
+            obp=obp,
+            slg=slg,
+            ops=ops,
+            war=war
+        )
+        db.session.add(stats_ncaa_baseball_player)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_ncaa_baseball_player created successfully"}), 200
 
 
 @app.route('/ncaa_football', methods=['POST'])
@@ -2692,6 +3026,462 @@ def createGameNcaa_football():
         db.session.add(ncaa_football)
         db.session.commit()
         return jsonify({"msg": "Game created successfully"}), 200
+
+@app.route('/stats_ncaa_football_team', methods=['POST'])
+def createstats_ncaa_football_team():
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+    conference = request.json.get("conference", None)
+    division = request.json.get("division", None)
+    TP = request.json.get("TP", None)
+    ttpg = request.json.get("ttpg", None)
+    t_td = request.json.get("t_td", None)
+    t_1_down = request.json.get("t_1_down", None)
+    Russ_1_d = request.json.get("Russ_1_d", None)
+    pass_1_d = request.json.get("pass_1_d", None)
+    down_1_penal = request.json.get("down_1_penal", None)
+    down_3_eff = request.json.get("down_3_eff", None)
+    down_3_AVG = request.json.get("down_3_AVG", None)
+    down_4_eff = request.json.get("down_4_eff", None)
+    down_4_AVG = request.json.get("down_4_AVG", None)
+    comp_att = request.json.get("comp_att", None)
+    net_pass_y = request.json.get("net_pass_y", None)
+    y_p_pas_attps = request.json.get("y_p_pas_attps", None)
+    net_pass_y_pg = request.json.get("net_pass_y_pg", None)
+    pass_td = request.json.get("pass_td", None)
+    interceptions = request.json.get("interceptions", None)
+    sacks_y_lost = request.json.get("sacks_y_lost", None)
+    russ_attps = request.json.get("russ_attps", None)
+    russ_y = request.json.get("russ_y", None)
+    y_p_russ_attp = request.json.get("y_p_russ_attp", None)
+    russ_y_pg = request.json.get("russ_y_pg", None)
+    russ_td = request.json.get("russ_td", None)
+    total_of_plays = request.json.get("total_of_plays", None)
+    total_y = request.json.get("total_y", None)
+    y_pg = request.json.get("y_pg", None)
+    kickoffs_t = request.json.get("kickoffs_t", None)
+    AVG_kickoff_return_y = request.json.get("AVG_kickoff_return_y", None)
+    punt_t = request.json.get("punt_t", None)
+    AVG_punt_ruturn_y = request.json.get("AVG_punt_ruturn_y", None)
+    int_t = request.json.get("int_t", None)
+    AVG_intercept_y = request.json.get("AVG_intercept_y", None)
+    net_AVG_punt_y = request.json.get("net_AVG_punt_y", None)
+    punt_ty = request.json.get("punt_ty", None)
+    fg_goog_attps = request.json.get("fg_goog_attps", None)
+    touchback_percent = request.json.get("touchback_percent", None)
+    penal_ty = request.json.get("penal_ty", None)
+    penal_y_AVG_pg = request.json.get("penal_y_AVG_pg", None)
+    possesion_time = request.json.get("possesion_time", None)
+    fumbles_lost = request.json.get("fumbles_lost", None)
+    turnover_ratio = request.json.get("turnover_ratio", None)
+
+    # valida si estan vacios los ingresos
+    # busca team en BBDD
+    stats_ncaa_football_team = Stats_ncaa_football_team.query.filter_by(
+        team=team, season=season, conference=conference, division=division).first()
+    # the team was not found on the database
+    if stats_ncaa_football_team:
+        return jsonify({"msg": "stats_ncaa_football_team already exists", "team": stats_ncaa_football_team.team}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_ncaa_football_team = Stats_ncaa_football_team(
+            season=season,
+            team=team,
+            conference=conference,
+            division=division,
+            TP=TP,
+            ttpg=ttpg,
+            t_td=t_td,
+            t_1_down=t_1_down,
+            Russ_1_d=Russ_1_d,
+            pass_1_d=pass_1_d,
+            down_1_penal=down_1_penal,
+            down_3_eff=down_3_eff,
+            down_3_AVG=down_3_AVG,
+            down_4_eff=down_4_eff,
+            down_4_AVG=down_4_AVG,
+            comp_att=comp_att,
+            net_pass_y=net_pass_y,
+            y_p_pas_attps=y_p_pas_attps,
+            net_pass_y_pg=net_pass_y_pg,
+            pass_td=pass_td,
+            interceptions=interceptions,
+            sacks_y_lost=sacks_y_lost,
+            russ_attps=russ_attps,
+            russ_y=russ_y,
+            y_p_russ_attp=y_p_russ_attp,
+            russ_y_pg=russ_y_pg,
+            russ_td=russ_td,
+            total_of_plays=total_of_plays,
+            total_y=total_y,
+            y_pg=y_pg,
+            kickoffs_t=kickoffs_t,
+            AVG_kickoff_return_y=AVG_kickoff_return_y,
+            punt_t=punt_t,
+            AVG_punt_ruturn_y=AVG_punt_ruturn_y,
+            int_t=int_t,
+            AVG_intercept_y=AVG_intercept_y,
+            net_AVG_punt_y=net_AVG_punt_y,
+            punt_ty=punt_ty,
+            fg_goog_attps=fg_goog_attps,
+            touchback_percent=touchback_percent,
+            penal_ty=penal_ty,
+            penal_y_AVG_pg=penal_y_AVG_pg,
+            possesion_time=possesion_time,
+            fumbles_lost=fumbles_lost,
+            turnover_ratio=turnover_ratio
+        )
+        db.session.add(stats_ncaa_football_team)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_ncaa_football_team created successfully"}), 200
+
+@app.route('/stats_defensive_player_ncca_football', methods=['POST'])
+def createstats_defensive_player_ncca_football():
+    name = request.json.get("name", None)
+    height = request.json.get("height", None)
+    weight = request.json.get("weight", None)
+    birth = request.json.get("birth", None)
+    position = request.json.get("position", None)
+    dorsal = request.json.get("dorsal", None)
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+    games = request.json.get("games", None)
+    tack_solo = request.json.get("tack_solo", None)
+    tack_ast = request.json.get("tack_ast", None)
+    tack_total = request.json.get("tack_total", None)
+    sacks = request.json.get("sacks", None)
+    sacks_yards = request.json.get("sacks_yards", None)
+    tfl = request.json.get("tfl", None)
+    pd = request.json.get("pd", None)
+    Int = request.json.get("Int", None)
+    yds = request.json.get("yds", None)
+    ing = request.json.get("ing", None)
+    td = request.json.get("td", None)
+    ff = request.json.get("ff", None)
+    fr = request.json.get("fr", None)
+    ftd = request.json.get("ftd", None)
+    kb = request.json.get("kb", None)
+
+    # busca team en BBDD
+    stats_defensive_player_ncca_football = Stats_defensive_player_ncca_football.query.filter_by(name=name, height=height, birth=birth, season=season).first()
+    # the team was not found on the database
+    if stats_defensive_player_ncca_football:
+        return jsonify({"msg": "stats_defensive_player_ncca_football already exists", "name": stats_defensive_player_ncca_football.name}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_defensive_player_ncca_football = Stats_defensive_player_ncca_football(
+            name=name,
+            height=height,
+            weight=weight,
+            birth=birth,
+            position=position,
+            dorsal=dorsal,
+            season=season,
+            team=team,
+            games=games,
+            tack_solo=tack_solo,
+            tack_ast=tack_ast,
+            tack_total=tack_total,
+            sacks=sacks,
+            sacks_yards=sacks_yards,
+            tfl=tfl,
+            pd=pd,
+            Int=Int,
+            yds=yds,
+            ing=ing,
+            td=td,
+            ff=ff,
+            fr=fr,
+            ftd=ftd,
+            kb=kb
+        )
+        db.session.add(stats_defensive_player_ncca_football)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_defensive_player_ncca_football created successfully"}), 200
+
+@app.route('/stats_offensive_player_ncaa_football', methods=['POST'])
+def createstats_offensive_player_ncaa_football():
+    name = request.json.get("name", None)
+    height = request.json.get("height", None)
+    weight = request.json.get("weight", None)
+    birth = request.json.get("birth", None)
+    position = request.json.get("position", None)
+    dorsal = request.json.get("dorsal", None)
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+    games = request.json.get("games", None)
+    Cmp = request.json.get("Cmp", None)
+    pass_att = request.json.get("pass_att", None)
+    cmp_AVG = request.json.get("cmp_AVG", None)
+    yards = request.json.get("yards", None)
+    yards_AVG = request.json.get("yards_AVG", None)
+    yards_pg = request.json.get("yards_pg", None)
+    pass_td = request.json.get("pass_td", None)
+    Int = request.json.get("Int", None)
+    asck = request.json.get("asck", None)
+    syl = request.json.get("syl", None)
+    rtg = request.json.get("rtg", None)
+    russ_att = request.json.get("russ_att", None)
+    russ_yards = request.json.get("russ_yards", None)
+    yards_p_russ = request.json.get("yards_p_russ", None)
+    big = request.json.get("big", None)
+    rush_tt = request.json.get("rush_tt", None)
+    rush_yard_pg = request.json.get("rush_yard_pg", None)
+    fum = request.json.get("fum", None)
+    lst = request.json.get("lst", None)
+    fd = request.json.get("fd", None)
+    rec = request.json.get("rec", None)
+    r_tgts = request.json.get("r_tgts", None)
+    r_yards = request.json.get("r_yards", None)
+    yards_p_r = request.json.get("yards_p_r", None)
+    r_td = request.json.get("r_td", None)
+    lr = request.json.get("lr", None)
+    r_big = request.json.get("r_big", None)
+    r_ypg = request.json.get("r_ypg", None)
+    r_fl = request.json.get("r_fl", None)
+    r_yac = request.json.get("r_yac", None)
+    r_fd = request.json.get("r_fd", None)
+    pts = request.json.get("pts", None)
+
+    # valida si estan vacios los ingresos
+
+    # busca team en BBDD
+    stats_offensive_player_ncaa_football = Stats_offensive_player_ncaa_football.query.filter_by(
+        name=name, dorsal=dorsal, birth=birth).first()
+    # the team was not found on the database
+    if stats_offensive_player_ncaa_football:
+        return jsonify({"msg": "stats_offensive_player_ncaa_football already exists", "name": stats_offensive_player_ncaa_football.name}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_offensive_player_ncaa_football = Stats_offensive_player_ncaa_football(
+            name=name,
+            height=height,
+            weight=weight,
+            birth=birth,
+            position=position,
+            dorsal=dorsal,
+            season=season,
+            team=team,
+            games=games,
+            Cmp=Cmp,
+            pass_att=pass_att,
+            cmp_AVG=cmp_AVG,
+            yards=yards,
+            yards_AVG=yards_AVG,
+            yards_pg=yards_pg,
+            pass_td=pass_td,
+            Int=Int,
+            asck=asck,
+            syl=syl,
+            rtg=rtg,
+            russ_att=russ_att,
+            russ_yards=russ_yards,
+            yards_p_russ=yards_p_russ,
+            big=big,
+            rush_tt=rush_tt,
+            rush_yard_pg=rush_yard_pg,
+            fum=fum,
+            lst=lst,
+            fd=fd,
+            rec=rec,
+            r_tgts=r_tgts,
+            r_yards=r_yards,
+            yards_p_r=yards_p_r,
+            r_td=r_td,
+            lr=lr,
+            r_big=r_big,
+            r_ypg=r_ypg,
+            r_fl=r_fl,
+            r_yac=r_yac,
+            r_fd=r_fd,
+            pts=pts
+        )
+        db.session.add(stats_offensive_player_ncaa_football)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_offensive_player_ncaa_football created successfully"}), 200
+
+@app.route('/stats_returning_player_ncaa_football', methods=['POST'])
+def createstats_returning_player_ncaa_football():
+    name = request.json.get("name", None)
+    height = request.json.get("height", None)
+    weight = request.json.get("weight", None)
+    birth = request.json.get("birth", None)
+    position = request.json.get("position", None)
+    dorsal = request.json.get("dorsal", None)
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+    games = request.json.get("games", None)
+    kick_returns = request.json.get("kick_returns", None)
+    kick_returns_yards = request.json.get("kick_returns_yards", None)
+    yards_p_k_p = request.json.get("yards_p_k_p", None)
+    l_k_r = request.json.get("l_k_r", None)
+    k_r_td = request.json.get("k_r_td", None)
+    punt_r = request.json.get("punt_r", None)
+    punt_r_y = request.json.get("punt_r_y", None)
+    y_ppr = request.json.get("y_ppr", None)
+    lpr = request.json.get("lpr", None)
+    pr_td = request.json.get("pr_td", None)
+    punt_r_fair_carches = request.json.get("punt_r_fair_carches", None)
+
+    # busca team en BBDD
+    stats_returning_player_ncaa_football = Stats_returning_player_ncaa_football.query.filter_by(
+        name=name, dorsal=dorsal, birth=birth).first()
+    # the team was not found on the database
+    if stats_returning_player_ncaa_football:
+        return jsonify({"msg": "stats_returning_player_ncaa_football already exists", "name": stats_returning_player_ncaa_football.name}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_returning_player_ncaa_football = Stats_returning_player_ncaa_football(
+            name=name,
+            height=height,
+            weight=weight,
+            birth=birth,
+            position=position,
+            dorsal=dorsal,
+            season=season,
+            team=team,
+            games=games,
+            kick_returns=kick_returns,
+            kick_returns_yards=kick_returns_yards,
+            yards_p_k_p=yards_p_k_p,
+            l_k_r=l_k_r,
+            k_r_td=k_r_td,
+            punt_r=punt_r,
+            punt_r_y=punt_r_y,
+            y_ppr=y_ppr,
+            lpr=lpr,
+            pr_td=pr_td,
+            punt_r_fair_carches=punt_r_fair_carches,
+        )
+        db.session.add(stats_returning_player_ncaa_football)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_returning_player_ncaa_football created successfully"}), 200
+
+@app.route('/stats_kiking_player_ncaa_football', methods=['POST'])
+def createstats_kiking_player_ncaa_football():
+    name = request.json.get("name", None)
+    height = request.json.get("height", None)
+    weight = request.json.get("weight", None)
+    birth = request.json.get("birth", None)
+    position = request.json.get("position", None)
+    dorsal = request.json.get("dorsal", None)
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+    games = request.json.get("games", None)
+    fgm = request.json.get("fgm", None)
+    fga = request.json.get("fga", None)
+    fg_AVG = request.json.get("fg_AVG", None)
+    lng = request.json.get("lng", None)
+    yars_f_goals_1_19 = request.json.get("yars_f_goals_1_19", None)
+    yars_f_goals_20_29 = request.json.get("yars_f_goals_20_29", None)
+    yars_f_goals_30_49 = request.json.get("yars_f_goals_30_49", None)
+    yars_f_goals_40_49 = request.json.get("yars_f_goals_40_49", None)
+    more_50 = request.json.get("more_50", None)
+    xpm = request.json.get("xpm", None)
+    xpa = request.json.get("xpa", None)
+    xp_AVG = request.json.get("xp_AVG", None)
+
+    # busca team en BBDD
+    stats_kiking_player_ncaa_football = Stats_kiking_player_ncaa_football.query.filter_by(
+        name=name, dorsal=dorsal, birth=birth).first()
+    # the team was not found on the database
+    if stats_kiking_player_ncaa_football:
+        return jsonify({"msg": "stats_kiking_player_ncaa_football already exists", "name": stats_kiking_player_ncaa_football.name}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_kiking_player_ncaa_football = Stats_kiking_player_ncaa_football(
+            name=name,
+            height=height,
+            weight=weight,
+            birth=birth,
+            position=position,
+            dorsal=dorsal,
+            season=season,
+            team=team,
+            games=games,
+            fgm=fgm,
+            fga=fga,
+            fg_AVG=fg_AVG,
+            lng=lng,
+            yars_f_goals_1_19=yars_f_goals_1_19,
+            yars_f_goals_20_29=yars_f_goals_20_29,
+            yars_f_goals_30_49=yars_f_goals_30_49,
+            yars_f_goals_40_49=yars_f_goals_40_49,
+            more_50=more_50,
+            xpm=xpm,
+            xpa=xpa,
+            xp_AVG=xp_AVG
+        )
+        db.session.add(stats_kiking_player_ncaa_football)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_kiking_player_ncaa_football created successfully"}), 200
+
+@app.route('/stats_punting_player_ncaa_football', methods=['POST'])
+def createstats_punting_player_ncaa_football():
+    name = request.json.get("name", None)
+    height = request.json.get("height", None)
+    weight = request.json.get("weight", None)
+    birth = request.json.get("birth", None)
+    position = request.json.get("position", None)
+    dorsal = request.json.get("dorsal", None)
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+    games = request.json.get("games", None)
+
+    punts = request.json.get("punts", None)
+    yards = request.json.get("yards", None)
+    lng = request.json.get("lng", None)
+    AVG = request.json.get("AVG", None)
+    net = request.json.get("net", None)
+    p_blk = request.json.get("p_blk", None)
+    IN_20 = request.json.get("IN_20", None)
+    tb = request.json.get("tb", None)
+    fc = request.json.get("fc", None)
+    att = request.json.get("att", None)
+    punt_return_yds = request.json.get("punt_return_yds", None)
+    AVG_punt_retun_yards = request.json.get("AVG_punt_retun_yards", None)
+
+    # busca team en BBDD
+    stats_punting_player_ncaa_football = Stats_punting_player_ncaa_football.query.filter_by(
+        name=name, dorsal=dorsal, birth=birth).first()
+    # the team was not found on the database
+    if stats_punting_player_ncaa_football:
+        return jsonify({"msg": "stats_punting_player_ncaa_football already exists", "name": stats_punting_player_ncaa_football.name}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_punting_player_ncaa_football = Stats_punting_player_ncaa_football(
+            name=name,
+            height=height,
+            weight=weight,
+            birth=birth,
+            position=position,
+            dorsal=dorsal,
+            season=season,
+            team=team,
+            games=games,
+            punts=punts,
+            yards=yards,
+            lng=lng,
+            AVG=AVG,
+            net=net,
+            p_blk=p_blk,
+            IN_20=IN_20,
+            tb=tb,
+            fc=fc,
+            att=att,
+            punt_return_yds=punt_return_yds,
+            AVG_punt_retun_yards=AVG_punt_retun_yards
+        )
+        db.session.add(stats_punting_player_ncaa_football)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_punting_player_ncaa_football created successfully"}), 200
+
 
 
 @app.route('/soccer', methods=['POST'])

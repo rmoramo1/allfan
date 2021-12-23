@@ -559,6 +559,111 @@ class Ncaa_Baseball(db.Model):
             # do not serialize the password, its a security breach
         }
 
+class Stats_ncaa_baseball_team(db.Model):
+    __tablename__ = "stats_ncaa_baseball_team"
+    id = db.Column(db.Integer, primary_key=True)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(20), nullable=False)
+    league = db.Column(db.String(20), nullable=False)
+    division = db.Column(db.String(20), nullable=False)
+    w = db.Column(db.String(10), default=0, nullable=False)
+    L = db.Column(db.String(10), default=0, nullable=False)
+    pct = db.Column(db.String(10), default=0, nullable=False)
+    gb = db.Column(db.String(10), default=0, nullable=False)
+    home = db.Column(db.String(10), default=0, nullable=False)
+    away = db.Column(db.String(10), default=0, nullable=False)
+    rs = db.Column(db.String(10), default=0, nullable=False)
+    ra = db.Column(db.String(10), default=0, nullable=False)
+    diff = db.Column(db.String(10), default=0, nullable=False)
+    strk = db.Column(db.String(10), default=0, nullable=False)
+    L10 = db.Column(db.String(10), default=-0, nullable=False)
+    poff = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "season": self.season,
+            "team": self.team,
+            "league": self.league,
+            "division": self.division,
+            "w": self.w,
+            "L": self.L,
+            "pct": self.pct,
+            "gb": self.gb,
+            "home": self.home,
+            "away": self.away,
+            "rs": self.rs,
+            "ra": self.ra,
+            "diff": self.diff,
+            "strk": self.strk,
+            "L10": self.L10,
+            "poff": self.poff
+            # do not serialize the password, its a security breach
+        }
+
+class Stats_ncaa_baseball_player(db.Model):
+    __tablename__ = "stats_ncaa_baseball_player"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(20), nullable=False)
+    dorsal = db.Column(db.String(20), nullable=False)
+    position = db.Column(db.String(20), nullable=False)
+
+    gp = db.Column(db.String(20), nullable=False)
+    ab = db.Column(db.String(10), default=0, nullable=False)
+    r = db.Column(db.String(10), default=0, nullable=False)
+    h = db.Column(db.String(10), default=0, nullable=False)
+    two_b = db.Column(db.String(10), default=0, nullable=False)
+    three_b = db.Column(db.String(10), default=0, nullable=False)
+    hb = db.Column(db.String(10), default=0, nullable=False)
+    rbi = db.Column(db.String(10), default=0, nullable=False)
+    tb = db.Column(db.String(10), default=0, nullable=False)
+    bb = db.Column(db.String(10), default=0, nullable=False)
+    so = db.Column(db.String(10), default=0, nullable=False)
+    sb = db.Column(db.String(10), default=-0, nullable=False)
+    avg = db.Column(db.String(10), default=0, nullable=False)
+    obp = db.Column(db.String(10), default=0, nullable=False)
+    slg = db.Column(db.String(10), default=0, nullable=False)
+    ops = db.Column(db.String(10), default=0, nullable=False)
+    war = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "season": self.season,
+            "team": self.team,
+            "dorsal": self.dorsal,
+            "position": self.position,
+            "gp": self.gp,
+            "ab": self.ab,
+            "r": self.r,
+            "h": self.h,
+            "two_b": self.two_b,
+            "three_b": self.three_b,
+            "hb": self.hb,
+            "rbi": self.rbi,
+            "tb": self.tb,
+            "bb": self.bb,
+            "so": self.so,
+            "sb": self.sb,
+            "avg": self.avg,
+            "obp": self.obp,
+            "slg": self.slg,
+            "ops": self.ops,
+            "war": self.war
+            # do not serialize the password, its a security breach
+        }
+
 
 class Nfl(db.Model):
     __tablename__ = "nfl"
@@ -1238,7 +1343,417 @@ class Ncaa_Football(db.Model):
             "q4_half_final_score_home": self.q4_half_final_score_home,
             # do not serialize the password, its a security breach
         }
+        
+class Stats_ncaa_football_team(db.Model):
+    __tablename__ = "stats_ncaa_football_team"
+    id = db.Column(db.Integer, primary_key=True)
+    season = db.Column(db.String(20), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    conference = db.Column(db.String(30), nullable=False)
+    division = db.Column(db.String(30), nullable=False)
+    TP = db.Column(db.String(10), nullable=False)
+    ttpg = db.Column(db.String(10), nullable=False)
+    t_td = db.Column(db.String(10), nullable=False)
+    t_1_down = db.Column(db.String(10), nullable=False)
+    Russ_1_d = db.Column(db.String(10), nullable=False)
+    pass_1_d = db.Column(db.String(10), nullable=False)
+    down_1_penal = db.Column(db.String(10), nullable=False)
+    down_3_eff = db.Column(db.String(10), nullable=False)
+    down_3_AVG = db.Column(db.String(10), nullable=False)
+    down_4_eff = db.Column(db.String(10), nullable=False)
+    down_4_AVG = db.Column(db.String(10), nullable=False)
+    comp_att = db.Column(db.String(10), nullable=False)
+    net_pass_y = db.Column(db.String(10), nullable=False)
+    y_p_pas_attps = db.Column(db.String(10), nullable=False)
+    net_pass_y_pg = db.Column(db.String(10), nullable=False)
+    pass_td = db.Column(db.String(10), nullable=False)
+    interceptions = db.Column(db.String(10), nullable=False)
+    sacks_y_lost = db.Column(db.String(10), nullable=False)
+    russ_attps = db.Column(db.String(10), nullable=False)
+    russ_y = db.Column(db.String(10), nullable=False)
+    y_p_russ_attp = db.Column(db.String(10), nullable=False)
+    russ_y_pg = db.Column(db.String(10), nullable=False)
+    russ_td = db.Column(db.String(10), nullable=False)
+    total_of_plays = db.Column(db.String(10), nullable=False)
+    total_y = db.Column(db.String(10), nullable=False)
+    y_pg = db.Column(db.String(10), nullable=False)
+    kickoffs_t = db.Column(db.String(10), nullable=False)
+    AVG_kickoff_return_y = db.Column(db.String(10), nullable=False)
+    punt_t = db.Column(db.String(10), nullable=False)
+    AVG_punt_ruturn_y = db.Column(db.String(10), nullable=False)
+    int_t = db.Column(db.String(10), nullable=False)
+    AVG_intercept_y = db.Column(db.String(10), nullable=False)
+    net_AVG_punt_y = db.Column(db.String(10), nullable=False)
+    punt_ty = db.Column(db.String(10), nullable=False)
+    fg_goog_attps = db.Column(db.String(10), nullable=False)
+    touchback_percent = db.Column(db.String(10), nullable=False)
+    penal_ty = db.Column(db.String(10), nullable=False)
+    penal_y_AVG_pg = db.Column(db.String(10), nullable=False)
+    possesion_time = db.Column(db.String(10), nullable=False)
+    fumbles_lost = db.Column(db.String(10), nullable=False)
+    turnover_ratio = db.Column(db.String(10), nullable=False)
 
+    def serialize(self):
+        return {
+            "id": self.id,
+            "season": self.season,
+            "team": self.team,
+            "conference": self.conference,
+            "division": self.division,
+            "TP": self.TP,
+            "ttpg": self.ttpg,
+            "t_td": self.t_td,
+            "t_1_down": self.t_1_down,
+            "Russ_1_d": self.Russ_1_d,
+            "pass_1_d": self.pass_1_d,
+            "down_1_penal": self.down_1_penal,
+            "down_3_eff": self.down_3_eff,
+            "down_3_AVG": self.down_3_AVG,
+            "down_4_eff": self.down_4_eff,
+            "down_4_AVG": self.down_4_AVG,
+            "comp_att": self.comp_att,
+            "net_pass_y": self.net_pass_y,
+            "y_p_pas_attps": self.y_p_pas_attps,
+            "net_pass_y_pg": self.net_pass_y_pg,
+            "pass_td": self.pass_td,
+            "interceptions": self.interceptions,
+            "sacks_y_lost": self.sacks_y_lost,
+            "russ_attps": self.russ_attps,
+            "russ_y": self.russ_y,
+            "y_p_russ_attp": self.y_p_russ_attp,
+            "russ_y_pg": self.russ_y_pg,
+            "russ_td": self.russ_td,
+            "total_of_plays": self.total_of_plays,
+            "total_y": self.total_y,
+            "y_pg": self.y_pg,
+            "kickoffs_t": self.kickoffs_t,
+            "AVG_kickoff_return_y": self.AVG_kickoff_return_y,
+            "punt_t": self.punt_t,
+            "AVG_punt_ruturn_y": self.AVG_punt_ruturn_y,
+            "int_t": self.int_t,
+            "AVG_intercept_y": self.AVG_intercept_y,
+            "net_AVG_punt_y": self.net_AVG_punt_y,
+            "punt_ty": self.punt_ty,
+            "fg_goog_attps": self.fg_goog_attps,
+            "touchback_percent": self.touchback_percent,
+            "penal_ty": self.penal_ty,
+            "penal_y_AVG_pg": self.penal_y_AVG_pg,
+            "possesion_time": self.possesion_time,
+            "fumbles_lost": self.fumbles_lost,
+            "turnover_ratio": self.turnover_ratio
+            # do not serialize the password, its a security breach
+        }
+
+class Stats_defensive_player_ncca_football(db.Model):
+    __tablename__ = "stats_defensive_player_ncca_football"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    position = db.Column(db.String(5), nullable=False)
+    dorsal = db.Column(db.String(10), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    games = db.Column(db.String(10), nullable=False)
+    tack_solo = db.Column(db.String(10), nullable=False)
+    tack_ast = db.Column(db.String(10), nullable=False)
+
+    tack_total = db.Column(db.String(10), nullable=False)
+    sacks = db.Column(db.String(10), nullable=False)
+    sacks_yards = db.Column(db.String(10), nullable=False)
+    tfl = db.Column(db.String(10), nullable=False)
+    pd = db.Column(db.String(10), nullable=False)
+    Int = db.Column(db.String(10), nullable=False)
+    yds = db.Column(db.String(10), nullable=False)
+    ing = db.Column(db.String(10), nullable=False)
+    td = db.Column(db.String(10), nullable=False)
+    ff = db.Column(db.String(10), nullable=False)
+    fr = db.Column(db.String(10), nullable=False)
+    ftd = db.Column(db.String(10), nullable=False)
+    kb = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "position": self.position,
+            "dorsal": self.dorsal,
+            "season": self.season,
+            "team": self.team,
+            "games": self.games,
+            "tack_solo": self.tack_solo,
+            "tack_ast": self.tack_ast,
+            "tack_total": self.tack_total,
+            "sacks": self.sacks,
+            "sacks_yards": self.sacks_yards,
+            "tfl": self.tfl,
+            "pd": self.pd,
+            "Int": self.Int,
+            "yds": self.yds,
+            "ing": self.ing,
+            "td": self.td,
+            "ff": self.ff,
+            "fr": self.fr,
+            "ftd": self.ftd,
+            "kb": self.kb,
+            # do not serialize the password, its a security breach
+        }
+
+class Stats_offensive_player_ncaa_football(db.Model):
+    __tablename__ = "Stats_offensive_player_ncaa_football"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    position = db.Column(db.String(5), nullable=False)
+    dorsal = db.Column(db.String(10), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    games = db.Column(db.String(10), nullable=False)
+
+    Cmp = db.Column(db.String(10), nullable=False)
+    pass_att = db.Column(db.String(10), nullable=False)
+    cmp_AVG = db.Column(db.String(10), nullable=False)
+    yards = db.Column(db.String(10), nullable=False)
+    yards_AVG = db.Column(db.String(10), nullable=False)
+    yards_pg = db.Column(db.String(10), nullable=False)
+    pass_td = db.Column(db.String(10), nullable=False)
+    Int = db.Column(db.String(10), nullable=False)
+    asck = db.Column(db.String(10), nullable=False)
+    syl = db.Column(db.String(10), nullable=False)
+    rtg = db.Column(db.String(10), nullable=False)
+    russ_att = db.Column(db.String(10), nullable=False)
+    russ_yards = db.Column(db.String(10), nullable=False)
+    yards_p_russ = db.Column(db.String(10), nullable=False)
+    big = db.Column(db.String(10), nullable=False)
+
+    rush_tt = db.Column(db.String(10), nullable=False)
+    rush_yard_pg = db.Column(db.String(10), nullable=False)
+    fum = db.Column(db.String(10), nullable=False)
+    lst = db.Column(db.String(10), nullable=False)
+    fd = db.Column(db.String(10), nullable=False)
+    rec = db.Column(db.String(10), nullable=False)
+    r_tgts = db.Column(db.String(10), nullable=False)
+    r_yards = db.Column(db.String(10), nullable=False)
+    yards_p_r = db.Column(db.String(10), nullable=False)
+    r_td = db.Column(db.String(10), nullable=False)
+    lr = db.Column(db.String(10), nullable=False)
+    r_big = db.Column(db.String(10), nullable=False)
+    r_ypg = db.Column(db.String(10), nullable=False)
+    r_fl = db.Column(db.String(10), nullable=False)
+    r_yac = db.Column(db.String(10), nullable=False)
+    r_fd = db.Column(db.String(10), nullable=False)
+    pts = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "position": self.position,
+            "dorsal": self.dorsal,
+            "season": self.season,
+            "team": self.team,
+            "games": self.games,
+            "Cmp": self.Cmp,
+            "pass_att": self.pass_att,
+            "cmp_AVG": self.cmp_AVG,
+            "yards": self.yards,
+            "yards_AVG": self.yards_AVG,
+            "yards_pg": self.yards_pg,
+            "pass_td": self.pass_td,
+            "Int": self.Int,
+            "asck": self.asck,
+            "syl": self.syl,
+            "rtg": self.rtg,
+            "russ_att": self.russ_att,
+            "russ_yards": self.russ_yards,
+            "yards_p_russ": self.yards_p_russ,
+            "big": self.big,
+            "rush_tt": self.rush_tt,
+            "rush_yard_pg": self.rush_yard_pg,
+            "fum": self.fum,
+            "lst": self.lst,
+            "fd": self.fd,
+            "rec": self.rec,
+            "r_tgts": self.r_tgts,
+            "r_yards": self.r_yards,
+            "yards_p_r": self.yards_p_r,
+            "r_td": self.r_td,
+            "lr": self.lr,
+            "r_big": self.r_big,
+            "r_big": self.r_big,
+            "r_ypg": self.r_ypg,
+            "r_fl": self.r_fl,
+            "r_yac": self.r_yac,
+            "r_fd": self.r_fd,
+            "pts": self.pts,
+            # do not serialize the password, its a security breach
+        }
+
+class Stats_returning_player_ncaa_football(db.Model):
+    __tablename__ = "stats_returning_player_ncaa_football"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    position = db.Column(db.String(5), nullable=False)
+    dorsal = db.Column(db.String(10), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    games = db.Column(db.String(10), nullable=False)
+
+    kick_returns = db.Column(db.String(10), nullable=False)
+    kick_returns_yards = db.Column(db.String(10), nullable=False)
+    yards_p_k_p = db.Column(db.String(10), nullable=False)
+    l_k_r = db.Column(db.String(10), nullable=False)
+    k_r_td = db.Column(db.String(10), nullable=False)
+    punt_r = db.Column(db.String(10), nullable=False)
+    punt_r_y = db.Column(db.String(10), nullable=False)
+    y_ppr = db.Column(db.String(10), nullable=False)
+    lpr = db.Column(db.String(10), nullable=False)
+    pr_td = db.Column(db.String(10), nullable=False)
+    punt_r_fair_carches = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "position": self.position,
+            "dorsal": self.dorsal,
+            "season": self.season,
+            "team": self.team,
+            "games": self.games,
+            "kick_returns": self.kick_returns,
+            "kick_returns_yards": self.kick_returns_yards,
+            "yards_p_k_p": self.yards_p_k_p,
+            "l_k_r": self.l_k_r,
+            "k_r_td": self.k_r_td,
+            "punt_r": self.punt_r,
+            "punt_r_y": self.punt_r_y,
+            "y_ppr": self.y_ppr,
+            "lpr": self.lpr,
+            "pr_td": self.pr_td,
+            "punt_r_fair_carches": self.punt_r_fair_carches,
+            # do not serialize the password, its a security breach
+        }
+
+class Stats_kiking_player_ncaa_football(db.Model):
+    __tablename__ = "stats_kiking_player_ncaa_football"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    position = db.Column(db.String(5), nullable=False)
+    dorsal = db.Column(db.String(10), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    games = db.Column(db.String(10), nullable=False)
+
+    fgm = db.Column(db.String(10), nullable=False)
+    fga = db.Column(db.String(10), nullable=False)
+    fg_AVG = db.Column(db.String(10), nullable=False)
+    lng = db.Column(db.String(10), nullable=False)
+    yars_f_goals_1_19 = db.Column(db.String(10), nullable=False)
+    yars_f_goals_20_29 = db.Column(db.String(10), nullable=False)
+    yars_f_goals_30_49 = db.Column(db.String(10), nullable=False)
+    yars_f_goals_40_49 = db.Column(db.String(10), nullable=False)
+    more_50 = db.Column(db.String(10), nullable=False)
+    xpm = db.Column(db.String(10), nullable=False)
+    xpa = db.Column(db.String(10), nullable=False)
+    xp_AVG = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "position": self.position,
+            "dorsal": self.dorsal,
+            "season": self.season,
+            "team": self.team,
+            "games": self.games,
+            "fgm": self.fgm,
+            "fga": self.fga,
+            "fg_AVG": self.fg_AVG,
+            "lng": self.lng,
+            "yars_f_goals_1_19": self.yars_f_goals_1_19,
+            "yars_f_goals_20_29": self.yars_f_goals_20_29,
+            "yars_f_goals_30_49": self.yars_f_goals_30_49,
+            "yars_f_goals_40_49": self.yars_f_goals_40_49,
+            "more_50": self.more_50,
+            "xpm": self.xpm,
+            "xpa": self.xpa,
+            "xp_AVG": self.xp_AVG,
+            # do not serialize the password, its a security breach
+        }
+
+class Stats_punting_player_ncaa_football(db.Model):
+    __tablename__ = "stats_punting_player_ncaa_football"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    position = db.Column(db.String(5), nullable=False)
+    dorsal = db.Column(db.String(10), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    games = db.Column(db.String(10), nullable=False)
+
+    punts = db.Column(db.String(10), nullable=False)
+    yards = db.Column(db.String(10), nullable=False)
+    lng = db.Column(db.String(10), nullable=False)
+    AVG = db.Column(db.String(10), nullable=False)
+    net = db.Column(db.String(10), nullable=False)
+    p_blk = db.Column(db.String(10), nullable=False)
+    IN_20 = db.Column(db.String(10), nullable=False)
+    tb = db.Column(db.String(10), nullable=False)
+    fc = db.Column(db.String(10), nullable=False)
+    att = db.Column(db.String(10), nullable=False)
+    punt_return_yds = db.Column(db.String(10), nullable=False)
+    AVG_punt_retun_yards = db.Column(db.String(10), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "position": self.position,
+            "dorsal": self.dorsal,
+            "season": self.season,
+            "team": self.team,
+            "games": self.games,
+            "punts": self.punts,
+            "yards": self.yards,
+            "AVG": self.AVG,
+            "lng": self.lng,
+            "net": self.net,
+            "p_blk": self.p_blk,
+            "IN_20": self.IN_20,
+            "tb": self.tb,
+            "fc": self.fc,
+            "att": self.att,
+            "punt_return_yds": self.punt_return_yds,
+            "AVG_punt_retun_yards": self.AVG_punt_retun_yards,
+            # do not serialize the password, its a security breach
+        }
 
 class Nba(db.Model):
     __tablename__ = "nba"
@@ -1916,6 +2431,117 @@ class Ncaa_Basketball(db.Model):
             "q4_half_juice_under_home": self.q4_half_juice_under_home,
             "q4_half_final_score_away": self.q4_half_final_score_away,
             "q4_half_final_score_home": self.q4_half_final_score_home,
+            # do not serialize the password, its a security breach
+        }
+
+class Stats_ncaa_basket_team(db.Model):
+    __tablename__ = "stats_ncaa_basket_team"
+    id = db.Column(db.Integer, primary_key=True)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    conference = db.Column(db.String(30), nullable=False)
+    division = db.Column(db.String(30), nullable=False)
+
+    w = db.Column(db.String(10), default=0, nullable=False)
+    L = db.Column(db.String(10), default=0, nullable=False)
+    ptc = db.Column(db.String(10), default=0, nullable=False)
+    home = db.Column(db.String(10), default=0, nullable=False)
+    away = db.Column(db.String(10), default=0, nullable=False)
+    div = db.Column(db.String(10), default=0, nullable=False)
+    conf = db.Column(db.String(10), default=0, nullable=False)
+    ppg = db.Column(db.String(10), default=0, nullable=False)
+    opp_ppg = db.Column(db.String(10), default=0, nullable=False)
+    diff = db.Column(db.String(10), default=0, nullable=False)
+    strk = db.Column(db.String(10), default=0, nullable=False)
+    l10 = db.Column(db.String(10), default=-0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "season": self.season,
+            "team": self.team,
+            "conference": self.conference,
+            "division": self.division,
+
+            "w": self.w,
+            "L": self.L,
+            "ptc": self.ptc,
+            "home": self.home,
+            "away": self.away,
+            "div": self.div,
+            "conf": self.conf,
+            "ppg": self.ppg,
+            "opp_ppg": self.opp_ppg,
+            "diff": self.diff,
+            "strk": self.strk,
+            "l10": self.l10
+            # do not serialize the password, its a security breach
+        }
+
+class Stats_ncaa_basket_player(db.Model):
+    __tablename__ = "stats_ncaa_basket_player"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    college = db.Column(db.String(30), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    
+    dorsal = db.Column(db.String(5), nullable=False)
+    minutes = db.Column(db.String(10), default=0, nullable=False)
+    position = db.Column(db.String(5), default=0, nullable=False)
+    gp = db.Column(db.String(10), default=0, nullable=False)
+    gs = db.Column(db.String(10), default=0, nullable=False)
+    fg = db.Column(db.String(10), default=0, nullable=False)
+    fg_AVG = db.Column(db.String(10), default=0, nullable=False)
+    three_pt = db.Column(db.String(10), default=0, nullable=False)
+    three_pt_AVG = db.Column(db.String(10), default=0, nullable=False)
+    ft = db.Column(db.String(10), default=0, nullable=False)
+    ft_AVG = db.Column(db.String(10), default=0, nullable=False)
+    Or = db.Column(db.String(10), default=0, nullable=False)
+    dr = db.Column(db.String(10), default=0, nullable=False)
+    reb = db.Column(db.String(10), default=0, nullable=False)
+    ast = db.Column(db.String(10), default=0, nullable=False)
+    stl = db.Column(db.String(10), default=0, nullable=False)
+    blk = db.Column(db.String(10), default=0, nullable=False)
+    to = db.Column(db.String(10), default=0, nullable=False)
+    pf = db.Column(db.String(10), default=0, nullable=False)
+    pts = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "college": self.college,
+            "season": self.season,
+            "team": self.team,
+            "dorsal": self.dorsal,
+            "minutes": self.minutes,
+            "position": self.position,
+            "gp": self.gp,
+            "gs": self.gs,
+            "fg": self.fg,
+            "fg_AVG": self.fg_AVG,
+            "three_pt": self.three_pt,
+            "three_pt_AVG": self.three_pt_AVG,
+            "ft": self.ft,
+            "Or": self.Or,
+            "dr": self.dr,
+            "ft_AVG": self.ft_AVG,
+            "reb": self.reb,
+            "ast": self.ast,
+            "stl": self.stl,
+            "blk": self.blk,
+            "to": self.to,
+            "pf": self.pf,
+            "pts": self.pts
             # do not serialize the password, its a security breach
         }
 
