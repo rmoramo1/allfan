@@ -7804,13 +7804,12 @@ def stats_ncaa_football_team_delete(id):
     db.session.commit()
     return "stats_ncaa_football_team was successfully deleted"
 
-@app.route("/Stats_offensive_player_ncaa_football/<id>", methods=["DELETE"])
+@app.route("/stats_offensive_player_ncaa_football/<id>", methods=["DELETE"])
 def Stats_offensive_player_ncaa_football_delete(id):
-    Stats_offensive_player_ncaa_football = Stats_offensive_player_ncaa_football.query.get(id)
-    db.session.delete(Stats_offensive_player_ncaa_football)
+    stats_offensive_player_ncaa_football = Stats_offensive_player_ncaa_football.query.get(id)
+    db.session.delete(stats_offensive_player_ncaa_football)
     db.session.commit()
     return "Stats_offensive_player_ncaa_football was successfully deleted"
-
 
 @app.route("/nba/<id>", methods=["DELETE"])
 def nba_delete(id):
