@@ -8220,7 +8220,6 @@ def stats_soccer_player_delete(id):
     db.session.commit()
     return "stats_soccer_player was successfully deleted"
 
-
 @app.route("/stats_nba_player/<id>", methods=["DELETE"])
 def stats_nba_player_delete(id):
     stats_nba_player = Stats_nba_player.query.get(id)
@@ -8234,7 +8233,6 @@ def stats_ncaa_basket_player_delete(id):
     db.session.delete(stats_ncaa_basket_player)
     db.session.commit()
     return "stats_ncaa_basket_player was successfully deleted"
-    @app.route("/stats_ncaa_basket_player/<id>", methods=["DELETE"])
 
 @app.route("/stats_ncaa_basket_team/<id>", methods=["DELETE"])
 def stats_ncaa_basket_team_delete(id):
@@ -8242,9 +8240,6 @@ def stats_ncaa_basket_team_delete(id):
     db.session.delete(stats_ncaa_basket_team)
     db.session.commit()
     return "stats_ncaa_basket_team was successfully deleted"
-    @app.route("/stats_ncaa_basket_team/<id>", methods=["DELETE"])
-
-
 
 @app.route("/stats_nba_team/<id>", methods=["DELETE"])
 def stats_nba_team_delete(id):
