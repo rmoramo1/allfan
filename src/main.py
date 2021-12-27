@@ -5740,6 +5740,96 @@ def stats_ncaa_football_teamEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_ncaa_football_team edith successfully"}), 200
 
+@app.route('/stats_offensive_player_ncaa_football/<id>', methods=['PUT'])
+def stats_offensive_player_ncaa_footballEdit(id):
+    stats_offensive_player_ncaa_football = Stats_offensive_player_ncaa_football.query.get(id)
+    name = request.json['name']
+    height = request.json['height']
+    weight = request.json['weight']
+    birth = request.json['birth']
+    position = request.json['position']
+    dorsal = request.json['dorsal']
+    season = request.json['season']
+    team = request.json['team']
+    games = request.json['games']
+
+    Cmp = request.json['Cmp']
+    pass_att = request.json['pass_att']
+    cmp_AVG = request.json['cmp_AVG']
+    yards = request.json['yards']
+    yards_AVG = request.json['yards_AVG']
+    yards_pg = request.json['yards_pg']
+    pass_td = request.json['pass_td']
+    Int = request.json['Int']
+    asck = request.json['asck']
+    syl = request.json['syl']
+    rtg = request.json['rtg']
+    russ_att = request.json['russ_att']
+    russ_yards = request.json['russ_yards']
+    yards_p_russ = request.json['yards_p_russ']
+    big = request.json['big']
+    rush_tt = request.json['rush_tt']
+    rush_yard_pg = request.json['rush_yard_pg']
+    fum = request.json['fum']
+    lst = request.json['lst']
+    fd = request.json['fd']
+    rec = request.json['rec']
+    r_tgts = request.json['r_tgts']
+    r_yards = request.json['r_yards']
+    yards_p_r = request.json['yards_p_r']
+    r_td = request.json['r_td']
+    lr = request.json['lr']
+    r_big = request.json['r_big']
+    r_ypg = request.json['r_ypg']
+    r_fl = request.json['r_fl']
+    r_yac = request.json['r_yac']
+    r_fd = request.json['r_fd']
+    pts = request.json['pts']
+
+    stats_offensive_player_ncaa_football.name = name
+    stats_offensive_player_ncaa_football.height = height
+    stats_offensive_player_ncaa_football.weight = weight
+    stats_offensive_player_ncaa_football.birth = birth
+    stats_offensive_player_ncaa_football.position = position
+    stats_offensive_player_ncaa_football.dorsal = dorsal
+    stats_offensive_player_ncaa_football.season = season
+    stats_offensive_player_ncaa_football.team = team
+    stats_offensive_player_ncaa_football.games = games
+    stats_offensive_player_ncaa_football.Cmp = Cmp
+    stats_offensive_player_ncaa_football.pass_att = pass_att
+    stats_offensive_player_ncaa_football.cmp_AVG = cmp_AVG
+    stats_offensive_player_ncaa_football.yards = yards
+    stats_offensive_player_ncaa_football.yards_AVG = yards_AVG
+    stats_offensive_player_ncaa_football.yards_pg = yards_pg
+    stats_offensive_player_ncaa_football.pass_td = pass_td
+    stats_offensive_player_ncaa_football.Int = Int
+    stats_offensive_player_ncaa_football.asck = asck
+    stats_offensive_player_ncaa_football.syl = syl
+    stats_offensive_player_ncaa_football.rtg = rtg
+    stats_offensive_player_ncaa_football.russ_att = russ_att
+    stats_offensive_player_ncaa_football.russ_yards = russ_yards
+    stats_offensive_player_ncaa_football.yards_p_russ = yards_p_russ
+    stats_offensive_player_ncaa_football.big = big
+    stats_offensive_player_ncaa_football.rush_tt = rush_tt
+    stats_offensive_player_ncaa_football.rush_yard_pg = rush_yard_pg
+    stats_offensive_player_ncaa_football.fum = fum
+    stats_offensive_player_ncaa_football.lst = lst
+    stats_offensive_player_ncaa_football.fd = fd
+    stats_offensive_player_ncaa_football.rec = rec
+    stats_offensive_player_ncaa_football.r_tgts = r_tgts
+    stats_offensive_player_ncaa_football.r_yards = r_yards
+    stats_offensive_player_ncaa_football.yards_p_r = yards_p_r
+    stats_offensive_player_ncaa_football.r_td = r_td
+    stats_offensive_player_ncaa_football.lr = lr
+    stats_offensive_player_ncaa_football.r_big = r_big
+    stats_offensive_player_ncaa_football.r_ypg = r_ypg
+    stats_offensive_player_ncaa_football.r_fl = r_fl
+    stats_offensive_player_ncaa_football.r_yac = r_yac
+    stats_offensive_player_ncaa_football.r_fd = r_fd
+    stats_offensive_player_ncaa_football.pts = pts
+    db.session.commit()
+    return jsonify({"msg": "stats_offensive_player_ncaa_football edith successfully"}), 200
+
 
 @app.route('/nba/<id>', methods=['PUT'])
 def nbaEdit(id):
@@ -7700,7 +7790,6 @@ def nfl_delete(id):
     db.session.commit()
     return "nfl was successfully deleted"
 
-
 @app.route("/ncaa_football/<id>", methods=["DELETE"])
 def ncaa_football_delete(id):
     ncaa_football = Ncaa_Football.query.get(id)
@@ -7714,6 +7803,13 @@ def stats_ncaa_football_team_delete(id):
     db.session.delete(stats_ncaa_football_team)
     db.session.commit()
     return "stats_ncaa_football_team was successfully deleted"
+
+@app.route("/Stats_offensive_player_ncaa_football/<id>", methods=["DELETE"])
+def Stats_offensive_player_ncaa_football_delete(id):
+    Stats_offensive_player_ncaa_football = Stats_offensive_player_ncaa_football.query.get(id)
+    db.session.delete(Stats_offensive_player_ncaa_football)
+    db.session.commit()
+    return "Stats_offensive_player_ncaa_football was successfully deleted"
 
 
 @app.route("/nba/<id>", methods=["DELETE"])
