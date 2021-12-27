@@ -5642,6 +5642,104 @@ def ncaa_footballEdit(id):
     db.session.commit()
     return jsonify({"msg": "nfl edith successfully"}), 200
 
+@app.route('/stats_ncaa_football_team/<id>', methods=['PUT'])
+def stats_ncaa_football_teamEdit(id):
+    stats_ncaa_football_team = Stats_ncaa_football_team.query.get(id)
+    season = request.json['season']
+    team = request.json['team']
+    conference = request.json['conference']
+    division = request.json['division']
+    TP = request.json['TP']
+    ttpg = request.json['ttpg']
+    t_td = request.json['t_td']
+    t_1_down = request.json['t_1_down']
+    Russ_1_d = request.json['Russ_1_d']
+    pass_1_d = request.json['pass_1_d']
+    down_1_penal = request.json['down_1_penal']
+    down_3_eff = request.json['down_3_eff']
+    down_3_AVG = request.json['down_3_AVG']
+    down_4_eff = request.json['down_4_eff']
+    down_4_AVG = request.json['down_4_AVG']
+    comp_att = request.json['comp_att']
+    net_pass_y = request.json['net_pass_y']
+    y_p_pas_attps = request.json['y_p_pas_attps']
+    net_pass_y_pg = request.json['net_pass_y_pg']
+    pass_td = request.json['pass_td']
+    interceptions = request.json['interceptions']
+    sacks_y_lost = request.json['sacks_y_lost']
+    russ_attps = request.json['russ_attps']
+    russ_y = request.json['russ_y']
+    y_p_russ_attp = request.json['y_p_russ_attp']
+    russ_y_pg = request.json['russ_y_pg']
+    russ_td = request.json['russ_td']
+    total_of_plays = request.json['total_of_plays']
+    total_y = request.json['total_y']
+    y_pg = request.json['y_pg']
+    kickoffs_t = request.json['kickoffs_t']
+    AVG_kickoff_return_y = request.json['AVG_kickoff_return_y']
+    punt_t = request.json['punt_t']
+    AVG_punt_ruturn_y = request.json['AVG_punt_ruturn_y']
+    int_t = request.json['int_t']
+    AVG_intercept_y = request.json['AVG_intercept_y']
+    net_AVG_punt_y = request.json['net_AVG_punt_y']
+    punt_ty = request.json['punt_ty']
+    fg_goog_attps = request.json['fg_goog_attps']
+    touchback_percent = request.json['touchback_percent']
+    penal_ty = request.json['penal_ty']
+    penal_y_AVG_pg = request.json['penal_y_AVG_pg']
+    possesion_time = request.json['possesion_time']
+    fumbles_lost = request.json['fumbles_lost']
+    turnover_ratio = request.json['turnover_ratio']
+
+    stats_ncaa_football_team.season = season
+    stats_ncaa_football_team.team = team
+    stats_ncaa_football_team.conference = conference
+    stats_ncaa_football_team.division = division
+    stats_ncaa_football_team.TP = TP
+    stats_ncaa_football_team.ttpg = ttpg
+    stats_ncaa_football_team.t_td = t_td
+    stats_ncaa_football_team.t_1_down = t_1_down
+    stats_ncaa_football_team.Russ_1_d = Russ_1_d
+    stats_ncaa_football_team.pass_1_d = pass_1_d
+    stats_ncaa_football_team.down_1_penal = down_1_penal
+    stats_ncaa_football_team.down_3_eff = down_3_eff
+    stats_ncaa_football_team.down_3_AVG = down_3_AVG
+    stats_ncaa_football_team.down_4_eff = down_4_eff
+    stats_ncaa_football_team.down_4_AVG = down_4_AVG
+    stats_ncaa_football_team.comp_att = comp_att
+    stats_ncaa_football_team.net_pass_y = net_pass_y
+    stats_ncaa_football_team.y_p_pas_attps = y_p_pas_attps
+    stats_ncaa_football_team.net_pass_y_pg = net_pass_y_pg
+    stats_ncaa_football_team.pass_td = pass_td
+    stats_ncaa_football_team.interceptions = interceptions
+    stats_ncaa_football_team.sacks_y_lost = sacks_y_lost
+    stats_ncaa_football_team.russ_attps = russ_attps
+    stats_ncaa_football_team.russ_y = russ_y
+    stats_ncaa_football_team.y_p_russ_attp = y_p_russ_attp
+    stats_ncaa_football_team.russ_y_pg = russ_y_pg
+    stats_ncaa_football_team.russ_td = russ_td
+    stats_ncaa_football_team.total_of_plays = total_of_plays
+    stats_ncaa_football_team.total_y = total_y
+    stats_ncaa_football_team.y_pg = y_pg
+    stats_ncaa_football_team.kickoffs_t = kickoffs_t
+    stats_ncaa_football_team.AVG_kickoff_return_y = AVG_kickoff_return_y
+    stats_ncaa_football_team.punt_t = punt_t
+    stats_ncaa_football_team.AVG_punt_ruturn_y = AVG_punt_ruturn_y
+    stats_ncaa_football_team.int_t = int_t
+    stats_ncaa_football_team.AVG_intercept_y = AVG_intercept_y
+    stats_ncaa_football_team.net_AVG_punt_y = net_AVG_punt_y
+    stats_ncaa_football_team.punt_ty = punt_ty
+    stats_ncaa_football_team.fg_goog_attps = fg_goog_attps
+    stats_ncaa_football_team.touchback_percent = touchback_percent
+    stats_ncaa_football_team.penal_ty = penal_ty
+    stats_ncaa_football_team.penal_y_AVG_pg = penal_y_AVG_pg
+    stats_ncaa_football_team.possesion_time = possesion_time
+    stats_ncaa_football_team.fumbles_lost = fumbles_lost
+    stats_ncaa_football_team.turnover_ratio = turnover_ratio
+
+    db.session.commit()
+    return jsonify({"msg": "stats_ncaa_football_team edith successfully"}), 200
+
 
 @app.route('/nba/<id>', methods=['PUT'])
 def nbaEdit(id):
