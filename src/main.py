@@ -5830,6 +5830,61 @@ def stats_offensive_player_ncaa_footballEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_offensive_player_ncaa_football edith successfully"}), 200
 
+@app.route('/stats_defensive_player_ncca_football/<id>', methods=['PUT'])
+def stats_defensive_player_ncca_footballEdit(id):
+    stats_defensive_player_ncca_football = Stats_defensive_player_ncca_football.query.get(id)
+    name = request.json['name']
+    height = request.json['height']
+    weight = request.json['weight']
+    birth = request.json['birth']
+    position = request.json['position']
+    dorsal = request.json['dorsal']
+    season = request.json['season']
+    team = request.json['team']
+    games = request.json['games']
+    tack_solo = request.json['tack_solo']
+    tack_ast = request.json['tack_ast']
+    tack_total = request.json['tack_total']
+    sacks = request.json['sacks']
+    sacks_yards = request.json['sacks_yards']
+    tfl = request.json['tfl']
+    pd = request.json['pd']
+    Int = request.json['Int']
+    yds = request.json['yds']
+    ing = request.json['ing']
+    td = request.json['td']
+    ff = request.json['ff']
+    fr = request.json['fr']
+    ftd = request.json['ftd']
+    kb = request.json['kb']
+
+    stats_defensive_player_ncca_football.name = name
+    stats_defensive_player_ncca_football.height = height
+    stats_defensive_player_ncca_football.weight = weight
+    stats_defensive_player_ncca_football.birth = birth
+    stats_defensive_player_ncca_football.position = position
+    stats_defensive_player_ncca_football.dorsal = dorsal
+    stats_defensive_player_ncca_football.season = season
+    stats_defensive_player_ncca_football.team = team
+    stats_defensive_player_ncca_football.games = games
+    stats_defensive_player_ncca_football.tack_solo = tack_solo
+    stats_defensive_player_ncca_football.tack_ast = tack_ast
+    stats_defensive_player_ncca_football.tack_total = tack_total
+    stats_defensive_player_ncca_football.sacks = sacks
+    stats_defensive_player_ncca_football.sacks_yards = sacks_yards
+    stats_defensive_player_ncca_football.tfl = tfl
+    stats_defensive_player_ncca_football.pd = pd
+    stats_defensive_player_ncca_football.Int = Int
+    stats_defensive_player_ncca_football.yds = yds
+    stats_defensive_player_ncca_football.ing = ing
+    stats_defensive_player_ncca_football.td = td
+    stats_defensive_player_ncca_football.ff = ff
+    stats_defensive_player_ncca_football.fr = fr
+    stats_defensive_player_ncca_football.ftd = ftd
+    stats_defensive_player_ncca_football.kb = kb
+    db.session.commit()
+    return jsonify({"msg": "stats_defensive_player_ncca_football edith successfully"}), 200
+
 
 @app.route('/nba/<id>', methods=['PUT'])
 def nbaEdit(id):
@@ -7403,7 +7458,6 @@ def stats_nfl_teamEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_nfl_team edith successfully"}), 200
 
-
 @app.route('/stats_defensive_player_nfl/<id>', methods=['PUT'])
 def stats_defensive_player_nflEdit(id):
     stats_defensive_player_nfl = Stats_defensive_player_nfl.query.get(id)
@@ -7810,6 +7864,13 @@ def Stats_offensive_player_ncaa_football_delete(id):
     db.session.delete(stats_offensive_player_ncaa_football)
     db.session.commit()
     return "Stats_offensive_player_ncaa_football was successfully deleted"
+
+@app.route("/stats_defensive_player_ncca_football/<id>", methods=["DELETE"])
+def atats_defensive_player_ncca_football_delete(id):
+    stats_defensive_player_ncca_football = Stats_defensive_player_ncca_football.query.get(id)
+    db.session.delete(stats_defensive_player_ncca_football)
+    db.session.commit()
+    return "stats_defensive_player_ncca_football was successfully deleted"
 
 @app.route("/nba/<id>", methods=["DELETE"])
 def nba_delete(id):
