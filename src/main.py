@@ -7708,6 +7708,13 @@ def ncaa_football_delete(id):
     db.session.commit()
     return "ncaa_football was successfully deleted"
 
+@app.route("/stats_ncaa_football_team/<id>", methods=["DELETE"])
+def stats_ncaa_football_team_delete(id):
+    stats_ncaa_football_team = Stats_ncaa_football_team.query.get(id)
+    db.session.delete(stats_ncaa_football_team)
+    db.session.commit()
+    return "stats_ncaa_football_team was successfully deleted"
+
 
 @app.route("/nba/<id>", methods=["DELETE"])
 def nba_delete(id):
