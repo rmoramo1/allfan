@@ -6584,6 +6584,108 @@ def ncaa_basketballEdit(id):
     db.session.commit()
     return jsonify({"msg": "ncaa_basketball edith successfully"}), 200
 
+@app.route('/stats_ncaa_basket_player/<id>', methods=['PUT'])
+def stats_ncaa_basket_playerEdit(id):
+    stats_ncaa_basket_player = Stats_ncaa_basket_player.query.get(id)
+    name = request.json['name']
+    height = request.json['height']
+    weight = request.json['weight']
+    birth = request.json['birth']
+    college = request.json['college']
+    season = request.json['season']
+    team = request.json['team']
+    dorsal = request.json['dorsal']
+    minutes = request.json['minutes']
+    position = request.json['position']
+    gp = request.json['gp']
+    gs = request.json['gs']
+    fg = request.json['fg']
+    fg_AVG = request.json['fg_AVG']
+    three_pt = request.json['three_pt']
+    three_pt_AVG = request.json['three_pt_AVG']
+    ft = request.json['ft']
+    ft_AVG = request.json['ft_AVG']
+    Or = request.json['Or']
+    dr = request.json['dr']
+    reb = request.json['reb']
+    ast = request.json['ast']
+    stl = request.json['stl']
+    blk = request.json['blk']
+    to = request.json['to']
+    pf = request.json['pf']
+    pts = request.json['pts']
+
+    stats_ncaa_basket_player.name = name
+    stats_ncaa_basket_player.height = height
+    stats_ncaa_basket_player.weight = weight
+    stats_ncaa_basket_player.birth = birth
+    stats_ncaa_basket_player.college = college
+    stats_ncaa_basket_player.season = season
+    stats_ncaa_basket_player.team = team
+    stats_ncaa_basket_player.dorsal = dorsal
+    stats_ncaa_basket_player.minutes = minutes
+    stats_ncaa_basket_player.position = position
+    stats_ncaa_basket_player.gp = gp
+    stats_ncaa_basket_player.gs = gs
+    stats_ncaa_basket_player.fg = fg
+    stats_ncaa_basket_player.fg_AVG = fg_AVG
+    stats_ncaa_basket_player.three_pt = three_pt
+    stats_ncaa_basket_player.three_pt_AVG = three_pt_AVG
+    stats_ncaa_basket_player.ft = ft
+    stats_ncaa_basket_player.ft_AVG = ft_AVG
+    stats_ncaa_basket_player.Or = Or
+    stats_ncaa_basket_player.dr = dr
+    stats_ncaa_basket_player.reb = reb
+    stats_ncaa_basket_player.ast = ast
+    stats_ncaa_basket_player.stl = stl
+    stats_ncaa_basket_player.blk = blk
+    stats_ncaa_basket_player.to = to
+    stats_ncaa_basket_player.pf = pf
+    stats_ncaa_basket_player.pts = pts
+
+    db.session.commit()
+    return jsonify({"msg": "stats_ncaa_basket_player edith successfully"}), 200
+
+@app.route('/stats_ncaa_basket_team/<id>', methods=['PUT'])
+def stats_ncaa_basket_teamEdit(id):
+    stats_ncaa_basket_team = Stats_ncaa_basket_team.query.get(id)
+    season = request.json['season']
+    team = request.json['team']
+    conference = request.json['conference']
+    division = request.json['division']
+
+    w = request.json['w']
+    L = request.json['L']
+    ptc = request.json['ptc']
+    home = request.json['home']
+    away = request.json['away']
+    div = request.json['div']
+    conf = request.json['conf']
+    ppg = request.json['ppg']
+    opp_ppg = request.json['opp_ppg']
+    diff = request.json['diff']
+    strk = request.json['strk']
+    l10 = request.json['l10']
+
+    stats_ncaa_basket_team.season = season
+    stats_ncaa_basket_team.team = team
+    stats_ncaa_basket_team.conference = conference
+    stats_ncaa_basket_team.division = division
+    stats_ncaa_basket_team.w = w
+    stats_ncaa_basket_team.L = L
+    stats_ncaa_basket_team.ptc = ptc
+    stats_ncaa_basket_team.home = home
+    stats_ncaa_basket_team.away = away
+    stats_ncaa_basket_team.div = div
+    stats_ncaa_basket_team.conf = conf
+    stats_ncaa_basket_team.ppg = ppg
+    stats_ncaa_basket_team.opp_ppg = opp_ppg
+    stats_ncaa_basket_team.diff = diff
+    stats_ncaa_basket_team.strk = strk
+    stats_ncaa_basket_team.l10 = l10
+
+    db.session.commit()
+    return jsonify({"msg": "stats_ncaa_basket_team edith successfully"}), 200
 
 @app.route('/nhl/<id>', methods=['PUT'])
 def nhlEdit(id):
@@ -8125,6 +8227,23 @@ def stats_nba_player_delete(id):
     db.session.delete(stats_nba_player)
     db.session.commit()
     return "stats_nba_player was successfully deleted"
+
+@app.route("/stats_ncaa_basket_player/<id>", methods=["DELETE"])
+def stats_ncaa_basket_player_delete(id):
+    stats_ncaa_basket_player = Stats_ncaa_basket_player.query.get(id)
+    db.session.delete(stats_ncaa_basket_player)
+    db.session.commit()
+    return "stats_ncaa_basket_player was successfully deleted"
+    @app.route("/stats_ncaa_basket_player/<id>", methods=["DELETE"])
+
+@app.route("/stats_ncaa_basket_team/<id>", methods=["DELETE"])
+def stats_ncaa_basket_team_delete(id):
+    stats_ncaa_basket_team = Stats_ncaa_basket_team.query.get(id)
+    db.session.delete(stats_ncaa_basket_team)
+    db.session.commit()
+    return "stats_ncaa_basket_team was successfully deleted"
+    @app.route("/stats_ncaa_basket_team/<id>", methods=["DELETE"])
+
 
 
 @app.route("/stats_nba_team/<id>", methods=["DELETE"])
