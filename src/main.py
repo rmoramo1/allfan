@@ -7913,14 +7913,14 @@ def Stats_offensive_player_ncaa_football_delete(id):
     return "Stats_offensive_player_ncaa_football was successfully deleted"
 
 @app.route("/stats_defensive_player_ncca_football/<id>", methods=["DELETE"])
-def atats_defensive_player_ncca_football_delete(id):
+def stats_defensive_player_ncca_football_delete(id):
     stats_defensive_player_ncca_football = Stats_defensive_player_ncca_football.query.get(id)
     db.session.delete(stats_defensive_player_ncca_football)
     db.session.commit()
     return "stats_defensive_player_ncca_football was successfully deleted"
 
 @app.route("/stats_returning_player_ncaa_football/<id>", methods=["DELETE"])
-def atats_defensive_player_ncca_football_delete(id):
+def stats_returning_player_ncaa_football_delete(id):
     stats_returning_player_ncaa_football = Stats_returning_player_ncaa_football.query.get(id)
     db.session.delete(stats_returning_player_ncaa_football)
     db.session.commit()
