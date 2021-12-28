@@ -2695,6 +2695,64 @@ def createstats_ncaa_baseball_player():
         db.session.commit()
         return jsonify({"msg": "Game stats_ncaa_baseball_player created successfully"}), 200
 
+@app.route('/stats_ncaa_baseball_player/<id>', methods=['PUT'])
+def stats_ncaa_baseball_playerEdit(id):
+    stats_ncaa_baseball_player = Stats_ncaa_baseball_player.query.get(id)
+    name = request.json['name']
+    height = request.json['height']
+    weight = request.json['weight']
+    birth = request.json['birth']
+    season = request.json['season']
+    team = request.json['team']
+    dorsal = request.json['dorsal']
+    position = request.json['position']
+    gp = request.json['gp']
+    ab = request.json['ab']
+    r = request.json['r']
+    h = request.json['h']
+    two_b = request.json['two_b']
+    three_b = request.json['three_b']
+    hb = request.json['hb']
+    rbi = request.json['rbi']
+    tb = request.json['tb']
+    bb = request.json['bb']
+    so = request.json['so']
+    sb = request.json['sb']
+    avg = request.json['avg']
+    obp = request.json['obp']
+    slg = request.json['slg']
+    ops = request.json['ops']
+    war = request.json['war']
+
+    stats_ncaa_baseball_player.name = name
+    stats_ncaa_baseball_player.height = height
+    stats_ncaa_baseball_player.weight = weight
+    stats_ncaa_baseball_player.birth = birth
+    stats_ncaa_baseball_player.season = season
+    stats_ncaa_baseball_player.team = team
+    stats_ncaa_baseball_player.dorsal = dorsal
+    stats_ncaa_baseball_player.position = position
+    stats_ncaa_baseball_player.gp = gp
+    stats_ncaa_baseball_player.ab = ab
+    stats_ncaa_baseball_player.r = r
+    stats_ncaa_baseball_player.h = h
+    stats_ncaa_baseball_player.two_b = two_b
+    stats_ncaa_baseball_player.three_b = three_b
+    stats_ncaa_baseball_player.hb = hb
+    stats_ncaa_baseball_player.rbi = rbi
+    stats_ncaa_baseball_player.tb = tb
+    stats_ncaa_baseball_player.bb = bb
+    stats_ncaa_baseball_player.so = so
+    stats_ncaa_baseball_player.sb = sb
+    stats_ncaa_baseball_player.avg = avg
+    stats_ncaa_baseball_player.obp = obp
+    stats_ncaa_baseball_player.slg = slg
+    stats_ncaa_baseball_player.ops = ops
+    stats_ncaa_baseball_player.war = war
+
+    db.session.commit()
+    return jsonify({"msg": "stats_ncaa_baseball_player edith successfully"}), 200
+
 
 @app.route('/ncaa_football', methods=['POST'])
 def createGameNcaa_football():
@@ -4993,102 +5051,142 @@ def ncaa_baseballEdit(id):
     sh_24inning = request.json['sh_24inning']
     sa_25inning = request.json['sa_25inning']
     sh_25inning = request.json['sh_25inning']
-    mlb.date = date
-    mlb.hour = hour
-    mlb.status = status
-    mlb.rotation_away = rotation_away
-    mlb.rotation_home = rotation_home
-    mlb.casino = casino
-    mlb.away = away
-    mlb.pitcher_a = pitcher_a
-    mlb.home = home
-    mlb.pitcher_h = pitcher_h
-    mlb.rl_away = rl_away
-    mlb.rl_home = rl_home
-    mlb.juice_rl_away = juice_rl_away
-    mlb.juice_rl_home = juice_rl_home
-    mlb.moneyLineAway = moneyLineAway
-    mlb.moneyLineHome = moneyLineHome
-    mlb.total = total
-    mlb.juice_total_over = juice_total_over
-    mlb.juice_total_under = juice_total_under
-    mlb.tt_away = tt_away
-    mlb.juice_over_away = juice_over_away
-    mlb.juice_under_away = juice_under_away
-    mlb.tt_home = tt_home
-    mlb.juice_over_home = juice_over_home
-    mlb.juice_under_home = juice_under_home
-    mlb.final_score_away = final_score_away
-    mlb.final_score_home = final_score_home
-    mlb.final_score_home = final_score_home
-    mlb.rl_home_f5 = rl_home_f5
-    mlb.juice_rl_away_f5 = juice_rl_away_f5
-    mlb.juice_rl_home_f5 = juice_rl_home_f5
-    mlb.moneyLineAway_f5 = moneyLineAway_f5
-    mlb.moneyLineHome_f5 = moneyLineHome_f5
-    mlb.total_f5 = total_f5
-    mlb.juice_total_over_f5 = juice_total_over_f5
-    mlb.juice_total_under_f5 = juice_total_under_f5
-    mlb.tt_away_f5 = tt_away_f5
-    mlb.juice_over_away_f5 = juice_over_away_f5
-    mlb.juice_under_away_f5 = juice_under_away_f5
-    mlb.tt_home_f5 = tt_home_f5
-    mlb.juice_over_home_f5 = juice_over_home_f5
-    mlb.juice_under_home_f5 = juice_under_home_f5
-    mlb.fs_away_f5 = fs_away_f5
-    mlb.fs_home_f5 = fs_home_f5
-    mlb.sa_1inning = sa_1inning
-    mlb.sh_1inning = sh_1inning
-    mlb.sa_2inning = sa_2inning
-    mlb.sh_2inning = sh_2inning
-    mlb.sa_3inning = sa_3inning
-    mlb.sh_3inning = sh_3inning
-    mlb.sa_4inning = sa_4inning
-    mlb.sh_4inning = sh_4inning
-    mlb.sa_5inning = sa_5inning
-    mlb.sh_5inning = sh_5inning
-    mlb.sa_6inning = sa_6inning
-    mlb.sh_6inning = sh_6inning
-    mlb.sa_7inning = sa_7inning
-    mlb.sh_7inning = sh_7inning
-    mlb.sa_8inning = sa_8inning
-    mlb.sh_8inning = sh_8inning
-    mlb.sa_9inning = sa_9inning
-    mlb.sh_9inning = sh_9inning
-    mlb.sa_10inning = sa_10inning
-    mlb.sh_10inning = sh_10inning
-    mlb.sa_11inning = sa_11inning
-    mlb.sh_11inning = sh_11inning
-    mlb.sa_12inning = sa_12inning
-    mlb.sh_12inning = sh_12inning
-    mlb.sa_13inning = sa_13inning
-    mlb.sh_13inning = sh_13inning
-    mlb.sa_14inning = sa_14inning
-    mlb.sh_14inning = sh_14inning
-    mlb.sa_15inning = sa_15inning
-    mlb.sh_15inning = sh_15inning
-    mlb.sa_16inning = sa_16inning
-    mlb.sh_16inning = sh_16inning
-    mlb.sa_17inning = sa_17inning
-    mlb.sh_17inning = sh_17inning
-    mlb.sa_18inning = sa_18inning
-    mlb.sh_18inning = sh_18inning
-    mlb.sa_19inning = sa_19inning
-    mlb.sh_19inning = sh_19inning
-    mlb.sa_20inning = sa_20inning
-    mlb.sh_20inning = sh_20inning
-    mlb.sa_21inning = sa_21inning
-    mlb.sh_21inning = sh_21inning
-    mlb.sa_22inning = sa_22inning
-    mlb.sh_22inning = sh_22inning
-    mlb.sa_23inning = sa_23inning
-    mlb.sh_23inning = sh_23inning
-    mlb.sa_24inning = sa_24inning
-    mlb.sh_24inning = sh_24inning
-    mlb.sa_25inning = sa_25inning
-    mlb.sh_25inning = sh_25inning
+    ncaa_baseball.date = date
+    ncaa_baseball.hour = hour
+    ncaa_baseball.status = status
+    ncaa_baseball.rotation_away = rotation_away
+    ncaa_baseball.rotation_home = rotation_home
+    ncaa_baseball.casino = casino
+    ncaa_baseball.away = away
+    ncaa_baseball.pitcher_a = pitcher_a
+    ncaa_baseball.home = home
+    ncaa_baseball.pitcher_h = pitcher_h
+    ncaa_baseball.rl_away = rl_away
+    ncaa_baseball.rl_home = rl_home
+    ncaa_baseball.juice_rl_away = juice_rl_away
+    ncaa_baseball.juice_rl_home = juice_rl_home
+    ncaa_baseball.moneyLineAway = moneyLineAway
+    ncaa_baseball.moneyLineHome = moneyLineHome
+    ncaa_baseball.total = total
+    ncaa_baseball.juice_total_over = juice_total_over
+    ncaa_baseball.juice_total_under = juice_total_under
+    ncaa_baseball.tt_away = tt_away
+    ncaa_baseball.juice_over_away = juice_over_away
+    ncaa_baseball.juice_under_away = juice_under_away
+    ncaa_baseball.tt_home = tt_home
+    ncaa_baseball.juice_over_home = juice_over_home
+    ncaa_baseball.juice_under_home = juice_under_home
+    ncaa_baseball.final_score_away = final_score_away
+    ncaa_baseball.final_score_home = final_score_home
+    ncaa_baseball.final_score_home = final_score_home
+    ncaa_baseball.rl_home_f5 = rl_home_f5
+    ncaa_baseball.juice_rl_away_f5 = juice_rl_away_f5
+    ncaa_baseball.juice_rl_home_f5 = juice_rl_home_f5
+    ncaa_baseball.moneyLineAway_f5 = moneyLineAway_f5
+    ncaa_baseball.moneyLineHome_f5 = moneyLineHome_f5
+    ncaa_baseball.total_f5 = total_f5
+    ncaa_baseball.juice_total_over_f5 = juice_total_over_f5
+    ncaa_baseball.juice_total_under_f5 = juice_total_under_f5
+    ncaa_baseball.tt_away_f5 = tt_away_f5
+    ncaa_baseball.juice_over_away_f5 = juice_over_away_f5
+    ncaa_baseball.juice_under_away_f5 = juice_under_away_f5
+    ncaa_baseball.tt_home_f5 = tt_home_f5
+    ncaa_baseball.juice_over_home_f5 = juice_over_home_f5
+    ncaa_baseball.juice_under_home_f5 = juice_under_home_f5
+    ncaa_baseball.fs_away_f5 = fs_away_f5
+    ncaa_baseball.fs_home_f5 = fs_home_f5
+    ncaa_baseball.sa_1inning = sa_1inning
+    ncaa_baseball.sh_1inning = sh_1inning
+    ncaa_baseball.sa_2inning = sa_2inning
+    ncaa_baseball.sh_2inning = sh_2inning
+    ncaa_baseball.sa_3inning = sa_3inning
+    ncaa_baseball.sh_3inning = sh_3inning
+    ncaa_baseball.sa_4inning = sa_4inning
+    ncaa_baseball.sh_4inning = sh_4inning
+    ncaa_baseball.sa_5inning = sa_5inning
+    ncaa_baseball.sh_5inning = sh_5inning
+    ncaa_baseball.sa_6inning = sa_6inning
+    ncaa_baseball.sh_6inning = sh_6inning
+    ncaa_baseball.sa_7inning = sa_7inning
+    ncaa_baseball.sh_7inning = sh_7inning
+    ncaa_baseball.sa_8inning = sa_8inning
+    ncaa_baseball.sh_8inning = sh_8inning
+    ncaa_baseball.sa_9inning = sa_9inning
+    ncaa_baseball.sh_9inning = sh_9inning
+    ncaa_baseball.sa_10inning = sa_10inning
+    ncaa_baseball.sh_10inning = sh_10inning
+    ncaa_baseball.sa_11inning = sa_11inning
+    ncaa_baseball.sh_11inning = sh_11inning
+    ncaa_baseball.sa_12inning = sa_12inning
+    ncaa_baseball.sh_12inning = sh_12inning
+    ncaa_baseball.sa_13inning = sa_13inning
+    ncaa_baseball.sh_13inning = sh_13inning
+    ncaa_baseball.sa_14inning = sa_14inning
+    ncaa_baseball.sh_14inning = sh_14inning
+    ncaa_baseball.sa_15inning = sa_15inning
+    ncaa_baseball.sh_15inning = sh_15inning
+    ncaa_baseball.sa_16inning = sa_16inning
+    ncaa_baseball.sh_16inning = sh_16inning
+    ncaa_baseball.sa_17inning = sa_17inning
+    ncaa_baseball.sh_17inning = sh_17inning
+    ncaa_baseball.sa_18inning = sa_18inning
+    ncaa_baseball.sh_18inning = sh_18inning
+    ncaa_baseball.sa_19inning = sa_19inning
+    ncaa_baseball.sh_19inning = sh_19inning
+    ncaa_baseball.sa_20inning = sa_20inning
+    ncaa_baseball.sh_20inning = sh_20inning
+    ncaa_baseball.sa_21inning = sa_21inning
+    ncaa_baseball.sh_21inning = sh_21inning
+    ncaa_baseball.sa_22inning = sa_22inning
+    ncaa_baseball.sh_22inning = sh_22inning
+    ncaa_baseball.sa_23inning = sa_23inning
+    ncaa_baseball.sh_23inning = sh_23inning
+    ncaa_baseball.sa_24inning = sa_24inning
+    ncaa_baseball.sh_24inning = sh_24inning
+    ncaa_baseball.sa_25inning = sa_25inning
+    ncaa_baseball.sh_25inning = sh_25inning
     db.session.commit()
     return jsonify({"msg": "ncaa_baseball edith successfully"}), 200
+
+@app.route('/stats_ncaa_baseball_team/<id>', methods=['PUT'])
+def stats_ncaa_baseball_teamEdit(id):
+    stats_ncaa_baseball_team = Stats_ncaa_baseball_team.query.get(id)
+    season = request.json['season']
+    team = request.json['team']
+    league = request.json['league']
+    division = request.json['division']
+    w = request.json['w']
+    L = request.json['L']
+    pct = request.json['pct']
+    gb = request.json['gb']
+    home = request.json['home']
+    away = request.json['away']
+    rs = request.json['rs']
+    ra = request.json['ra']
+    diff = request.json['diff']
+    strk = request.json['strk']
+    L10 = request.json['L10']
+    poff = request.json['poff']
+
+    stats_ncaa_baseball_team.season = season
+    stats_ncaa_baseball_team.team = team
+    stats_ncaa_baseball_team.league = league
+    stats_ncaa_baseball_team.division = division
+    stats_ncaa_baseball_team.w = w
+    stats_ncaa_baseball_team.L = L
+    stats_ncaa_baseball_team.pct = pct
+    stats_ncaa_baseball_team.gb = gb
+    stats_ncaa_baseball_team.home = home
+    stats_ncaa_baseball_team.away = away
+    stats_ncaa_baseball_team.rs = rs
+    stats_ncaa_baseball_team.ra = ra
+    stats_ncaa_baseball_team.diff = diff
+    stats_ncaa_baseball_team.strk = strk
+    stats_ncaa_baseball_team.L10 = L10
+    stats_ncaa_baseball_team.poff = poff
+
+    db.session.commit()
+    return jsonify({"msg": "stats_ncaa_baseball_team edith successfully"}), 200
 
 
 @app.route('/nfl/<id>', methods=['PUT'])
@@ -8077,15 +8175,6 @@ def mlb_delete(id):
     db.session.commit()
     return "mlb was successfully deleted"
 
-
-@app.route("/ncaa_baseball/<id>", methods=["DELETE"])
-def ncaa_baseball_delete(id):
-    ncaa_baseball = Ncaa_Baseball.query.get(id)
-    db.session.delete(ncaa_baseball)
-    db.session.commit()
-    return "ncaa_baseball was successfully deleted"
-
-
 @app.route("/nfl/<id>", methods=["DELETE"])
 def nfl_delete(id):
     nfl = Nfl.query.get(id)
@@ -8240,6 +8329,27 @@ def stats_ncaa_basket_team_delete(id):
     db.session.delete(stats_ncaa_basket_team)
     db.session.commit()
     return "stats_ncaa_basket_team was successfully deleted"
+
+@app.route("/ncaa_baseball/<id>", methods=["DELETE"])
+def ncaa_baseball_delete(id):
+    ncaa_baseball = Ncaa_Baseball.query.get(id)
+    db.session.delete(ncaa_baseball)
+    db.session.commit()
+    return "ncaa_baseball was successfully deleted"
+
+@app.route("/stats_ncaa_baseball_player/<id>", methods=["DELETE"])
+def stats_ncaa_baseball_player_delete(id):
+    stats_ncaa_baseball_player = Stats_ncaa_baseball_player.query.get(id)
+    db.session.delete(stats_ncaa_baseball_player)
+    db.session.commit()
+    return "stats_ncaa_baseball_player was successfully deleted"
+
+@app.route("/stats_ncaa_baseball_team/<id>", methods=["DELETE"])
+def stats_ncaa_baseball_team_delete(id):
+    stats_ncaa_baseball_team = Stats_ncaa_baseball_team.query.get(id)
+    db.session.delete(stats_ncaa_baseball_team)
+    db.session.commit()
+    return "stats_ncaa_baseball_team was successfully deleted"
 
 @app.route("/stats_nba_team/<id>", methods=["DELETE"])
 def stats_nba_team_delete(id):
