@@ -49,6 +49,8 @@ class Props(db.Model):
     sport = db.Column(db.String(30), nullable=False)
     feature = db.Column(db.String(30), nullable=False)
     line = db.Column(db.String(10), nullable=False)
+    home = db.Column(db.String(10), nullable=False)
+    away = db.Column(db.String(10), nullable=False)
     # def __repr__(self):
     #     return '<User %r>' % self.name
 
@@ -59,9 +61,36 @@ class Props(db.Model):
             "type_prop": self.type_prop,
             "sport": self.sport,
             "feature": self.feature,
-            "line": self.line
+            "line": self.line,
+            "home": self.home,
+            "away": self.away
             # do not serialize the password, its a security breach
         }
+
+class Odds_to_win(db.Model):
+    __tablename__ = 'odds_to_win'
+    # Here we define columns for the table person
+    # Notice that each column is also a normal Python instance attribute.
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(30), nullable=False)
+    sport = db.Column(db.String(30), nullable=False)
+    type_odd = db.Column(db.String(30), nullable=False)
+    line = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(10), nullable=False)
+    # def __repr__(self):
+    #     return '<User %r>' % self.name
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "sport": self.sport,
+            "type_odd": self.type_odd,
+            "line": self.line,
+            "team": self.team
+            # do not serialize the password, its a security breach
+        }
+
 
 class Logos_NFL(db.Model):
     __tablename__ = 'logos_nfl'

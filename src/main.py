@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER , Props , Stats_ncaa_baseball_player ,  Stats_ncaa_baseball_team , Stats_ncaa_football_team , Stats_defensive_player_ncca_football , Stats_offensive_player_ncaa_football , Stats_returning_player_ncaa_football , Stats_kiking_player_ncaa_football , Stats_punting_player_ncaa_football , Stats_ncaa_basket_team , Stats_ncaa_basket_player
+from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER , Props , Odds_to_win , Stats_ncaa_baseball_player ,  Stats_ncaa_baseball_team , Stats_ncaa_football_team , Stats_defensive_player_ncca_football , Stats_offensive_player_ncaa_football , Stats_returning_player_ncaa_football , Stats_kiking_player_ncaa_football , Stats_punting_player_ncaa_football , Stats_ncaa_basket_team , Stats_ncaa_basket_player
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -74,6 +74,14 @@ def props():
     if request.method == "GET":
         records = Props.query.all()
         return jsonify([Props.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ----------------------------------------------------------------------------
+@app.route("/odds_to_win", methods=["GET"])
+def odds_to_win():
+    if request.method == "GET":
+        records = Odds_to_win.query.all()
+        return jsonify([Odds_to_win.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
@@ -543,9 +551,11 @@ def createProps():
     sport = request.json.get("sport", None)
     feature = request.json.get("feature", None)
     line = request.json.get("line", None)
+    home = request.json.get("home", None)
+    away = request.json.get("away", None)
 
     # busca team en BBDD
-    props = Props.query.filter_by(title=title,line=line,type_prop=type_prop,feature=feature).first()
+    props = Props.query.filter_by(title=title,line=line,type_prop=type_prop,feature=feature,home=home,away=away).first()
     # the team was not found on the database
     if props:
         return jsonify({"msg": "props already exists", "props": props.title}), 401
@@ -557,11 +567,41 @@ def createProps():
             type_prop=type_prop,
             sport=sport,
             feature=feature,
-            line=line
+            line=line,
+            home=home,
+            away=away
         )
         db.session.add(props)
         db.session.commit()
         return jsonify({"msg": "Props created successfully"}), 200
+
+@app.route('/odds_to_win', methods=['POST'])
+def createOdds_to_win():
+    title = request.json.get("title", None)
+    sport = request.json.get("sport", None)
+    type_odd = request.json.get("type_odd", None)
+    line = request.json.get("line", None)
+    line = request.json.get("line", None)
+    team = request.json.get("team", None)
+
+    # busca team en BBDD
+    odds_to_win = Odds_to_win.query.filter_by(title=title,line=line,type_odd=type_odd,team=team).first()
+    # the team was not found on the database
+    if odds_to_win:
+        return jsonify({"msg": "odds_to_win already exists", "odds_to_win": odds_to_win.title}), 401
+    else:
+        # crea odds_to_win nuevo
+        # crea registro nuevo en BBDD de
+        odds_to_win = Odds_to_win(
+            title=title,
+            sport=sport,
+            type_odd=type_odd,
+            line=line,
+            team=team
+        )
+        db.session.add(odds_to_win)
+        db.session.commit()
+        return jsonify({"msg": "odds_to_win created successfully"}), 200
 
 @app.route('/logos_nfl', methods=['POST'])
 def createLogos_nfl():
@@ -4671,14 +4711,35 @@ def newsProps(id):
     sport = request.json['sport']
     feature = request.json['feature']
     line = request.json['line']
+    home = request.json['home']
+    away = request.json['away']
     props.title = title
     props.type_prop = type_prop
     props.sport = sport
     props.feature = feature
     props.line = line
+    props.home = home
+    props.away = away
 
     db.session.commit()
     return jsonify({"msg": "Props edith successfully"}), 200
+
+@app.route('/odds_to_win/<id>', methods=['PUT'])
+def newsodds_to_win(id):
+    odds_to_win = Odds_to_win.query.get(id)
+    title = request.json['title']
+    sport = request.json['sport']
+    type_odd = request.json['type_odd']
+    line = request.json['line']
+    team = request.json['team']
+    odds_to_win.title = title
+    odds_to_win.sport = sport
+    odds_to_win.type_odd = type_odd
+    odds_to_win.line = line
+    odds_to_win.team = team
+
+    db.session.commit()
+    return jsonify({"msg": "odds_to_win edith successfully"}), 200
 
 @app.route('/casinos/<id>', methods=['PUT'])
 def newsCasinos(id):
@@ -8118,6 +8179,13 @@ def props_delete(id):
     db.session.delete(props)
     db.session.commit()
     return "props was successfully deleted"
+
+@app.route("/odds_to_win/<id>", methods=["DELETE"])
+def odds_to_win_delete(id):
+    odds_to_win = Odds_to_win.query.get(id)
+    db.session.delete(odds_to_win)
+    db.session.commit()
+    return "odds_to_win was successfully deleted"
 
 @app.route("/logos_nfl/<id>", methods=["DELETE"])
 def logos_nfl_delete(id):

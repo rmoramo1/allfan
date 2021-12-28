@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: c6dd37fdafb7
+Revision ID: 2eaf9c2bd45a
 Revises: 
-Create Date: 2021-12-23 14:33:57.532686
+Create Date: 2021-12-28 13:10:47.857757
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c6dd37fdafb7'
+revision = '2eaf9c2bd45a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -1008,6 +1008,15 @@ def upgrade():
     sa.Column('sh_3Q', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('odds_to_win',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('title', sa.String(length=30), nullable=False),
+    sa.Column('sport', sa.String(length=30), nullable=False),
+    sa.Column('type_odd', sa.String(length=30), nullable=False),
+    sa.Column('line', sa.String(length=10), nullable=False),
+    sa.Column('team', sa.String(length=10), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('props',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=30), nullable=False),
@@ -1015,6 +1024,8 @@ def upgrade():
     sa.Column('sport', sa.String(length=30), nullable=False),
     sa.Column('feature', sa.String(length=30), nullable=False),
     sa.Column('line', sa.String(length=10), nullable=False),
+    sa.Column('home', sa.String(length=10), nullable=False),
+    sa.Column('away', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('soccer',
@@ -1779,6 +1790,7 @@ def downgrade():
     op.drop_table('soccer_tournament')
     op.drop_table('soccer')
     op.drop_table('props')
+    op.drop_table('odds_to_win')
     op.drop_table('nhl')
     op.drop_table('nfl')
     op.drop_table('ncaa_football')
