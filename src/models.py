@@ -25,18 +25,50 @@ class User(db.Model):
 
 class Casinos(db.Model):
     __tablename__ = 'casinos'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
-    # def __repr__(self):
-    #     return '<User %r>' % self.name
 
     def serialize(self):
         return {
             "id": self.id,
             "name": self.name,
-            # do not serialize the password, its a security breach
+        }
+
+class Injuries(db.Model):
+    __tablename__ = 'injuries'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name_player = db.Column(db.String(20), nullable=False)
+    team = db.Column(db.String(20), nullable=False)
+    team = db.Column(db.String(20), nullable=False)
+    team = db.Column(db.String(20), nullable=False)
+    injurie = db.Column(db.String(20), nullable=False)
+    time_injurie = db.Column(db.String(20), nullable=False)
+    date = db.Column(db.String(20), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name_player": self.name_player,
+            "team": self.team,
+            "injurie": self.injurie,
+            "time_injurie": self.time_injurie,
+            "date": self.date
+        }
+
+class Futures(db.Model):
+    __tablename__ = 'futures'
+
+    id = db.Column(db.Integer, primary_key=True)
+    future = db.Column(db.String(20), nullable=False)
+    line = db.Column(db.String(20), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "future": self.future,
+            "line": self.line,
         }
 
 class Props(db.Model):
@@ -642,6 +674,7 @@ class Stats_ncaa_baseball_player(db.Model):
     team = db.Column(db.String(20), nullable=False)
     dorsal = db.Column(db.String(20), nullable=False)
     position = db.Column(db.String(20), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
 
     gp = db.Column(db.String(20), nullable=False)
     ab = db.Column(db.String(10), default=0, nullable=False)
@@ -673,6 +706,7 @@ class Stats_ncaa_baseball_player(db.Model):
             "team": self.team,
             "dorsal": self.dorsal,
             "position": self.position,
+            "headshot": self.headshot,
             "gp": self.gp,
             "ab": self.ab,
             "r": self.r,
@@ -1481,6 +1515,7 @@ class Stats_defensive_player_ncca_football(db.Model):
     weight = db.Column(db.String(10), nullable=False)
     birth = db.Column(db.String(10), nullable=False)
     position = db.Column(db.String(5), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
     dorsal = db.Column(db.String(10), nullable=False)
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
@@ -1510,6 +1545,7 @@ class Stats_defensive_player_ncca_football(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "position": self.position,
+            "headshot": self.headshot,
             "dorsal": self.dorsal,
             "season": self.season,
             "team": self.team,
@@ -1544,6 +1580,7 @@ class Stats_offensive_player_ncaa_football(db.Model):
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     games = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
 
     Cmp = db.Column(db.String(10), nullable=False)
     pass_att = db.Column(db.String(10), nullable=False)
@@ -1587,6 +1624,7 @@ class Stats_offensive_player_ncaa_football(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "position": self.position,
+            "headshot": self.headshot,
             "dorsal": self.dorsal,
             "season": self.season,
             "team": self.team,
@@ -1639,6 +1677,7 @@ class Stats_returning_player_ncaa_football(db.Model):
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     games = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
 
     kick_returns = db.Column(db.String(10), nullable=False)
     kick_returns_yards = db.Column(db.String(10), nullable=False)
@@ -1660,6 +1699,7 @@ class Stats_returning_player_ncaa_football(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "position": self.position,
+            "headshot": self.headshot,
             "dorsal": self.dorsal,
             "season": self.season,
             "team": self.team,
@@ -1690,6 +1730,7 @@ class Stats_kiking_player_ncaa_football(db.Model):
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     games = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
 
     fgm = db.Column(db.String(10), nullable=False)
     fga = db.Column(db.String(10), nullable=False)
@@ -1712,6 +1753,7 @@ class Stats_kiking_player_ncaa_football(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "position": self.position,
+            "headshot": self.headshot,
             "dorsal": self.dorsal,
             "season": self.season,
             "team": self.team,
@@ -1743,6 +1785,7 @@ class Stats_punting_player_ncaa_football(db.Model):
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     games = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
 
     punts = db.Column(db.String(10), nullable=False)
     yards = db.Column(db.String(10), nullable=False)
@@ -1765,6 +1808,7 @@ class Stats_punting_player_ncaa_football(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "position": self.position,
+            "headshot": self.headshot,
             "dorsal": self.dorsal,
             "season": self.season,
             "team": self.team,
@@ -2518,6 +2562,7 @@ class Stats_ncaa_basket_player(db.Model):
     college = db.Column(db.String(30), nullable=False)
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
     
     dorsal = db.Column(db.String(5), nullable=False)
     minutes = db.Column(db.String(10), default=0, nullable=False)
@@ -2554,6 +2599,7 @@ class Stats_ncaa_basket_player(db.Model):
             "dorsal": self.dorsal,
             "minutes": self.minutes,
             "position": self.position,
+            "headshot": self.headshot,
             "gp": self.gp,
             "gs": self.gs,
             "fg": self.fg,
@@ -3058,6 +3104,7 @@ class Stats_nba_player(db.Model):
     college = db.Column(db.String(30), nullable=False)
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
     
     dorsal = db.Column(db.String(5), nullable=False)
     minutes = db.Column(db.String(10), default=0, nullable=False)
@@ -3094,6 +3141,7 @@ class Stats_nba_player(db.Model):
             "dorsal": self.dorsal,
             "minutes": self.minutes,
             "position": self.position,
+            "headshot": self.headshot,
             "gp": self.gp,
             "gs": self.gs,
             "fg": self.fg,
@@ -3216,6 +3264,7 @@ class Stats_mlb_player(db.Model):
     team = db.Column(db.String(20), nullable=False)
     dorsal = db.Column(db.String(20), nullable=False)
     position = db.Column(db.String(20), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
 
     gp = db.Column(db.String(20), nullable=False)
     ab = db.Column(db.String(10), default=0, nullable=False)
@@ -3247,6 +3296,7 @@ class Stats_mlb_player(db.Model):
             "team": self.team,
             "dorsal": self.dorsal,
             "position": self.position,
+            "headshot": self.headshot,
             "gp": self.gp,
             "ab": self.ab,
             "r": self.r,
@@ -3323,6 +3373,7 @@ class Stats_nhl_player(db.Model):
     team = db.Column(db.String(20), nullable=False)
     dorsal = db.Column(db.String(20), nullable=False)
     position = db.Column(db.String(20), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
     gp = db.Column(db.String(20), nullable=False)
 
     g = db.Column(db.String(10), default=0, nullable=False)
@@ -3353,6 +3404,7 @@ class Stats_nhl_player(db.Model):
             "team": self.team,
             "dorsal": self.dorsal,
             "position": self.position,
+            "headshot": self.headshot,
             "gp": self.gp,
             "g": self.g,
             "a": self.a,
@@ -3378,6 +3430,7 @@ class Stats_box_fighter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     nickname = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
     height = db.Column(db.String(10), nullable=False)
     weight = db.Column(db.String(10), nullable=False)
     birth = db.Column(db.String(10), nullable=False)
@@ -3395,6 +3448,7 @@ class Stats_box_fighter(db.Model):
             "id": self.id,
             "name": self.name,
             "nickname": self.nickname,
+            "headshot": self.headshot,
             "height": self.height,
             "weight": self.weight,
             "birth": self.birth,
@@ -3414,6 +3468,7 @@ class Stats_mma_fighter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     nickname = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
     height = db.Column(db.String(10), nullable=False)
     weight = db.Column(db.String(10), nullable=False)
     birth = db.Column(db.String(10), nullable=False)
@@ -3431,6 +3486,7 @@ class Stats_mma_fighter(db.Model):
             "id": self.id,
             "name": self.name,
             "nickname": self.nickname,
+            "headshot": self.headshot,
             "height": self.height,
             "weight": self.weight,
             "birth": self.birth,
@@ -3451,6 +3507,7 @@ class Nascar_drivers(db.Model):
     name = db.Column(db.String(50), nullable=False)
     country = db.Column(db.String(50), nullable=False)
     birth = db.Column(db.String(50), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
     
     sponsor = db.Column(db.String(100), nullable=False)
     engine = db.Column(db.String(50), nullable=False)
@@ -3471,6 +3528,7 @@ class Nascar_drivers(db.Model):
             "name": self.name,
             "country": self.country,
             "birth": self.birth,
+            "headshot": self.headshot,
             "sponsor": self.sponsor,
             "engine": self.engine,
             "number_car": self.number_car,
@@ -3494,6 +3552,7 @@ class Golfer(db.Model):
     country = db.Column(db.String(50), nullable=False)
     swing = db.Column(db.String(10), nullable=False)
     birth = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
     cuts = db.Column(db.String(10), nullable=False)
     top10 = db.Column(db.String(10), nullable=False)
     w = db.Column(db.String(10), nullable=False)
@@ -3506,6 +3565,7 @@ class Golfer(db.Model):
             "id": self.id,
             "name": self.name,
             "country": self.country,
+            "headshot": self.headshot,
             "swing": self.swing,
             "birth": self.birth,
             "cuts": self.cuts,
@@ -3633,6 +3693,7 @@ class Stats_defensive_player_nfl(db.Model):
     games = db.Column(db.String(10), nullable=False)
     tack_solo = db.Column(db.String(10), nullable=False)
     tack_ast = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
 
     tack_total = db.Column(db.String(10), nullable=False)
     sacks = db.Column(db.String(10), nullable=False)
@@ -3656,6 +3717,7 @@ class Stats_defensive_player_nfl(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "position": self.position,
+            "headshot": self.headshot,
             "dorsal": self.dorsal,
             "season": self.season,
             "team": self.team,
@@ -3691,6 +3753,7 @@ class Stats_offensive_player_nfl(db.Model):
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     games = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
 
     Cmp = db.Column(db.String(10), nullable=False)
     pass_att = db.Column(db.String(10), nullable=False)
@@ -3734,6 +3797,7 @@ class Stats_offensive_player_nfl(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "position": self.position,
+            "headshot": self.headshot,
             "dorsal": self.dorsal,
             "season": self.season,
             "team": self.team,
@@ -3787,6 +3851,7 @@ class Stats_returning_player_nfl(db.Model):
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     games = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
 
     kick_returns = db.Column(db.String(10), nullable=False)
     kick_returns_yards = db.Column(db.String(10), nullable=False)
@@ -3808,6 +3873,7 @@ class Stats_returning_player_nfl(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "position": self.position,
+            "headshot": self.headshot,
             "dorsal": self.dorsal,
             "season": self.season,
             "team": self.team,
@@ -3839,6 +3905,7 @@ class Stats_kiking_player_nfl(db.Model):
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     games = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
 
     fgm = db.Column(db.String(10), nullable=False)
     fga = db.Column(db.String(10), nullable=False)
@@ -3861,6 +3928,7 @@ class Stats_kiking_player_nfl(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "position": self.position,
+            "headshot": self.headshot,
             "dorsal": self.dorsal,
             "season": self.season,
             "team": self.team,
@@ -3893,6 +3961,7 @@ class Stats_punting_player_nfl(db.Model):
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     games = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
 
     punts = db.Column(db.String(10), nullable=False)
     yards = db.Column(db.String(10), nullable=False)
@@ -3915,6 +3984,7 @@ class Stats_punting_player_nfl(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "position": self.position,
+            "headshot": self.headshot,
             "dorsal": self.dorsal,
             "season": self.season,
             "team": self.team,
@@ -3986,6 +4056,7 @@ class Stats_Soccer_Player(db.Model):
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     games = db.Column(db.String(10), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
 
     strt = db.Column(db.String(10), nullable=False)
     fc = db.Column(db.String(10), nullable=False)
@@ -4006,6 +4077,7 @@ class Stats_Soccer_Player(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "position": self.position,
+            "headshot": self.headshot,
             "dorsal": self.dorsal,
             "season": self.season,
             "team": self.team,

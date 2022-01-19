@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 0b099edeb9f2
+Revision ID: 4fd69448e654
 Revises: 
-Create Date: 2022-01-13 15:23:14.239688
+Create Date: 2022-01-19 07:39:12.137567
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0b099edeb9f2'
+revision = '4fd69448e654'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,6 +29,7 @@ def upgrade():
     sa.Column('season', sa.String(length=10), nullable=False),
     sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('Cmp', sa.String(length=10), nullable=False),
     sa.Column('pass_att', sa.String(length=10), nullable=False),
     sa.Column('cmp_AVG', sa.String(length=10), nullable=False),
@@ -101,6 +102,12 @@ def upgrade():
     sa.Column('name', sa.String(length=20), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('futures',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('future', sa.String(length=20), nullable=False),
+    sa.Column('line', sa.String(length=20), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('golf',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('date', sa.String(length=12), nullable=False),
@@ -121,12 +128,22 @@ def upgrade():
     sa.Column('country', sa.String(length=50), nullable=False),
     sa.Column('swing', sa.String(length=10), nullable=False),
     sa.Column('birth', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('cuts', sa.String(length=10), nullable=False),
     sa.Column('top10', sa.String(length=10), nullable=False),
     sa.Column('w', sa.String(length=10), nullable=False),
     sa.Column('rnds', sa.String(length=10), nullable=False),
     sa.Column('holes', sa.String(length=10), nullable=False),
     sa.Column('avg', sa.String(length=10), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('injuries',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name_player', sa.String(length=20), nullable=False),
+    sa.Column('team', sa.String(length=20), nullable=False),
+    sa.Column('injurie', sa.String(length=20), nullable=False),
+    sa.Column('time_injurie', sa.String(length=20), nullable=False),
+    sa.Column('date', sa.String(length=20), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('logos_mlb',
@@ -318,6 +335,7 @@ def upgrade():
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('country', sa.String(length=50), nullable=False),
     sa.Column('birth', sa.String(length=50), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('sponsor', sa.String(length=100), nullable=False),
     sa.Column('engine', sa.String(length=50), nullable=False),
     sa.Column('number_car', sa.String(length=50), nullable=False),
@@ -1084,6 +1102,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=20), nullable=False),
     sa.Column('nickname', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('height', sa.String(length=10), nullable=False),
     sa.Column('weight', sa.String(length=10), nullable=False),
     sa.Column('birth', sa.String(length=10), nullable=False),
@@ -1103,6 +1122,7 @@ def upgrade():
     sa.Column('weight', sa.String(length=10), nullable=False),
     sa.Column('birth', sa.String(length=10), nullable=False),
     sa.Column('position', sa.String(length=5), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('dorsal', sa.String(length=10), nullable=False),
     sa.Column('season', sa.String(length=10), nullable=False),
     sa.Column('team', sa.String(length=30), nullable=False),
@@ -1137,6 +1157,7 @@ def upgrade():
     sa.Column('games', sa.String(length=10), nullable=False),
     sa.Column('tack_solo', sa.String(length=10), nullable=False),
     sa.Column('tack_ast', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('tack_total', sa.String(length=10), nullable=False),
     sa.Column('sacks', sa.String(length=10), nullable=False),
     sa.Column('sacks_yards', sa.String(length=10), nullable=False),
@@ -1163,6 +1184,7 @@ def upgrade():
     sa.Column('season', sa.String(length=10), nullable=False),
     sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('fgm', sa.String(length=10), nullable=False),
     sa.Column('fga', sa.String(length=10), nullable=False),
     sa.Column('fg_AVG', sa.String(length=10), nullable=False),
@@ -1188,6 +1210,7 @@ def upgrade():
     sa.Column('season', sa.String(length=10), nullable=False),
     sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('fgm', sa.String(length=10), nullable=False),
     sa.Column('fga', sa.String(length=10), nullable=False),
     sa.Column('fg_AVG', sa.String(length=10), nullable=False),
@@ -1212,6 +1235,7 @@ def upgrade():
     sa.Column('team', sa.String(length=20), nullable=False),
     sa.Column('dorsal', sa.String(length=20), nullable=False),
     sa.Column('position', sa.String(length=20), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('gp', sa.String(length=20), nullable=False),
     sa.Column('ab', sa.String(length=10), nullable=False),
     sa.Column('r', sa.String(length=10), nullable=False),
@@ -1255,6 +1279,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=20), nullable=False),
     sa.Column('nickname', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('height', sa.String(length=10), nullable=False),
     sa.Column('weight', sa.String(length=10), nullable=False),
     sa.Column('birth', sa.String(length=10), nullable=False),
@@ -1276,6 +1301,7 @@ def upgrade():
     sa.Column('college', sa.String(length=30), nullable=False),
     sa.Column('season', sa.String(length=10), nullable=False),
     sa.Column('team', sa.String(length=30), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('dorsal', sa.String(length=5), nullable=False),
     sa.Column('minutes', sa.String(length=10), nullable=False),
     sa.Column('position', sa.String(length=5), nullable=False),
@@ -1328,6 +1354,7 @@ def upgrade():
     sa.Column('team', sa.String(length=20), nullable=False),
     sa.Column('dorsal', sa.String(length=20), nullable=False),
     sa.Column('position', sa.String(length=20), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('gp', sa.String(length=20), nullable=False),
     sa.Column('ab', sa.String(length=10), nullable=False),
     sa.Column('r', sa.String(length=10), nullable=False),
@@ -1376,6 +1403,7 @@ def upgrade():
     sa.Column('college', sa.String(length=30), nullable=False),
     sa.Column('season', sa.String(length=10), nullable=False),
     sa.Column('team', sa.String(length=30), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('dorsal', sa.String(length=5), nullable=False),
     sa.Column('minutes', sa.String(length=10), nullable=False),
     sa.Column('position', sa.String(length=5), nullable=False),
@@ -1526,6 +1554,7 @@ def upgrade():
     sa.Column('team', sa.String(length=20), nullable=False),
     sa.Column('dorsal', sa.String(length=20), nullable=False),
     sa.Column('position', sa.String(length=20), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('gp', sa.String(length=20), nullable=False),
     sa.Column('g', sa.String(length=10), nullable=False),
     sa.Column('a', sa.String(length=10), nullable=False),
@@ -1575,6 +1604,7 @@ def upgrade():
     sa.Column('season', sa.String(length=10), nullable=False),
     sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('Cmp', sa.String(length=10), nullable=False),
     sa.Column('pass_att', sa.String(length=10), nullable=False),
     sa.Column('cmp_AVG', sa.String(length=10), nullable=False),
@@ -1620,6 +1650,7 @@ def upgrade():
     sa.Column('season', sa.String(length=10), nullable=False),
     sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('punts', sa.String(length=10), nullable=False),
     sa.Column('yards', sa.String(length=10), nullable=False),
     sa.Column('lng', sa.String(length=10), nullable=False),
@@ -1645,6 +1676,7 @@ def upgrade():
     sa.Column('season', sa.String(length=10), nullable=False),
     sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('punts', sa.String(length=10), nullable=False),
     sa.Column('yards', sa.String(length=10), nullable=False),
     sa.Column('lng', sa.String(length=10), nullable=False),
@@ -1670,6 +1702,7 @@ def upgrade():
     sa.Column('season', sa.String(length=10), nullable=False),
     sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('kick_returns', sa.String(length=10), nullable=False),
     sa.Column('kick_returns_yards', sa.String(length=10), nullable=False),
     sa.Column('yards_p_k_p', sa.String(length=10), nullable=False),
@@ -1694,6 +1727,7 @@ def upgrade():
     sa.Column('season', sa.String(length=10), nullable=False),
     sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('kick_returns', sa.String(length=10), nullable=False),
     sa.Column('kick_returns_yards', sa.String(length=10), nullable=False),
     sa.Column('yards_p_k_p', sa.String(length=10), nullable=False),
@@ -1718,6 +1752,7 @@ def upgrade():
     sa.Column('season', sa.String(length=10), nullable=False),
     sa.Column('team', sa.String(length=30), nullable=False),
     sa.Column('games', sa.String(length=10), nullable=False),
+    sa.Column('headshot', sa.String(length=30), nullable=False),
     sa.Column('strt', sa.String(length=10), nullable=False),
     sa.Column('fc', sa.String(length=10), nullable=False),
     sa.Column('fa', sa.String(length=10), nullable=False),
@@ -1807,8 +1842,10 @@ def downgrade():
     op.drop_table('logos_nfl')
     op.drop_table('logos_nba')
     op.drop_table('logos_mlb')
+    op.drop_table('injuries')
     op.drop_table('golfer')
     op.drop_table('golf')
+    op.drop_table('futures')
     op.drop_table('casinos')
     op.drop_table('boxeo')
     op.drop_table('Stats_offensive_player_ncaa_football')

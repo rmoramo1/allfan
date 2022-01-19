@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER , Props , Odds_to_win , Stats_ncaa_baseball_player ,  Stats_ncaa_baseball_team , Stats_ncaa_football_team , Stats_defensive_player_ncca_football , Stats_offensive_player_ncaa_football , Stats_returning_player_ncaa_football , Stats_kiking_player_ncaa_football , Stats_punting_player_ncaa_football , Stats_ncaa_basket_team , Stats_ncaa_basket_player
+from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER , Props , Odds_to_win , Stats_ncaa_baseball_player ,  Stats_ncaa_baseball_team , Stats_ncaa_football_team , Stats_defensive_player_ncca_football , Stats_offensive_player_ncaa_football , Stats_returning_player_ncaa_football , Stats_kiking_player_ncaa_football , Stats_punting_player_ncaa_football , Stats_ncaa_basket_team , Stats_ncaa_basket_player,Injuries, Futures
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -65,6 +65,23 @@ def user():
     if request.method == "GET":
         records = User.query.all()
         return jsonify([User.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ----------------------------------------------------------------------------
+@app.route("/injuries", methods=["GET"])
+def injuries():
+    if request.method == "GET":
+        records = Injuries.query.all()
+        return jsonify([Injuries.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ----------------------------------------------------------------------------
+
+@app.route("/futures", methods=["GET"])
+def futures():
+    if request.method == "GET":
+        records = Futures.query.all()
+        return jsonify([Futures.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
@@ -543,6 +560,54 @@ def createCasino():
         db.session.add(casinos)
         db.session.commit()
         return jsonify({"msg": "casino created successfully"}), 200
+
+@app.route('/futures', methods=['POST'])
+def createfutures():
+    future = request.json.get("future", None)
+    line = request.json.get("line", None)
+
+    # busca team en BBDD
+    futures = Futures.query.filter_by(name=name).first()
+    # the team was not found on the database
+    if futures:
+        return jsonify({"msg": "futures already exists", "futures": futures.name}), 401
+    else:
+        # crea casino nuevo
+        # crea registro nuevo en BBDD de
+        futures = Futures(
+            future=future,
+            line=line,
+        )
+        db.session.add(futures)
+        db.session.commit()
+        return jsonify({"msg": "futures created successfully"}), 200
+
+@app.route('/injuries', methods=['POST'])
+def createinjuries():
+    name_player = request.json.get("name_player", None)
+    team = request.json.get("team", None)
+    injurie = request.json.get("injurie", None)
+    time_injurie = request.json.get("time_injurie", None)
+    date = request.json.get("date", None)
+
+    # busca team en BBDD
+    injuries = Injuries.query.filter_by(name_player=name_player,date=date,team=team).first()
+    # the team was not found on the database
+    if injuries:
+        return jsonify({"msg": "injuries already exists", "Casino": injuries.name}), 401
+    else:
+        # crea casino nuevo
+        # crea registro nuevo en BBDD de
+        injuries = Injuries(
+            name_player=name_player,
+            team=team,
+            injurie=injurie,
+            time_injurie=time_injurie,
+            date=date,
+        )
+        db.session.add(injuries)
+        db.session.commit()
+        return jsonify({"msg": "injuries created successfully"}), 200
 
 @app.route('/props', methods=['POST'])
 def createProps():
@@ -1859,6 +1924,7 @@ def createNacarDrivers():
     name = request.json.get("name", None)
     country = request.json.get("country", None)
     birth = request.json.get("birth", None)
+    headshot = request.json.get("headshot", None)
     sponsor = request.json.get("sponsor", None)
     engine = request.json.get("engine", None)
     number_car = request.json.get("number_car", None)
@@ -1885,6 +1951,7 @@ def createNacarDrivers():
             name=name,
             country=country,
             birth=birth,
+            headshot=headshot,
             sponsor=sponsor,
             engine=engine,
             number_car=number_car,
@@ -1975,6 +2042,7 @@ def createGoler():
     country = request.json.get("country", None)
     swing = request.json.get("swing", None)
     birth = request.json.get("birth", None)
+    headshot = request.json.get("headshot", None)
     cuts = request.json.get("cuts", None)
     top10 = request.json.get("top10", None)
     w = request.json.get("w", None)
@@ -1995,6 +2063,7 @@ def createGoler():
             country=country,
             swing=swing,
             birth=birth,
+            headshot=headshot,
             cuts=cuts,
             top10=top10,
             w=w,
@@ -2400,6 +2469,7 @@ def createstats_ncaa_basket_player():
     dorsal = request.json.get("dorsal", None)
     minutes = request.json.get("minutes", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     gp = request.json.get("gp", None)
     gs = request.json.get("gs", None)
     fg = request.json.get("fg", None)
@@ -2438,6 +2508,7 @@ def createstats_ncaa_basket_player():
             dorsal=dorsal,
             minutes=minutes,
             position=position,
+            headshot=headshot,
             gp=gp,
             gs=gs,
             fg=fg,
@@ -2676,6 +2747,7 @@ def createstats_ncaa_baseball_player():
     team = request.json.get("team", None)
     dorsal = request.json.get("dorsal", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
 
     gp = request.json.get("gp", None)
     ab = request.json.get("ab", None)
@@ -2713,6 +2785,7 @@ def createstats_ncaa_baseball_player():
             team=team,
             dorsal=dorsal,
             position=position,
+            headshot=headshot,
             gp=gp,
             ab=ab,
             r=r,
@@ -2746,6 +2819,7 @@ def stats_ncaa_baseball_playerEdit(id):
     team = request.json['team']
     dorsal = request.json['dorsal']
     position = request.json['position']
+    headshot = request.json['headshot']
     gp = request.json['gp']
     ab = request.json['ab']
     r = request.json['r']
@@ -2772,6 +2846,7 @@ def stats_ncaa_baseball_playerEdit(id):
     stats_ncaa_baseball_player.team = team
     stats_ncaa_baseball_player.dorsal = dorsal
     stats_ncaa_baseball_player.position = position
+    stats_ncaa_baseball_player.headshot = headshot
     stats_ncaa_baseball_player.gp = gp
     stats_ncaa_baseball_player.ab = ab
     stats_ncaa_baseball_player.r = r
@@ -3241,6 +3316,7 @@ def createstats_defensive_player_ncca_football():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     dorsal = request.json.get("dorsal", None)
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -3275,6 +3351,7 @@ def createstats_defensive_player_ncca_football():
             weight=weight,
             birth=birth,
             position=position,
+            headshot=headshot,
             dorsal=dorsal,
             season=season,
             team=team,
@@ -3306,6 +3383,7 @@ def createstats_offensive_player_ncaa_football():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     dorsal = request.json.get("dorsal", None)
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -3360,6 +3438,7 @@ def createstats_offensive_player_ncaa_football():
             weight=weight,
             birth=birth,
             position=position,
+            headshot=headshot,
             dorsal=dorsal,
             season=season,
             team=team,
@@ -3408,6 +3487,7 @@ def createstats_returning_player_ncaa_football():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     dorsal = request.json.get("dorsal", None)
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -3439,6 +3519,7 @@ def createstats_returning_player_ncaa_football():
             weight=weight,
             birth=birth,
             position=position,
+            headshot=headshot,
             dorsal=dorsal,
             season=season,
             team=team,
@@ -3466,6 +3547,7 @@ def createstats_kiking_player_ncaa_football():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     dorsal = request.json.get("dorsal", None)
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -3498,6 +3580,7 @@ def createstats_kiking_player_ncaa_football():
             weight=weight,
             birth=birth,
             position=position,
+            headshot=headshot,
             dorsal=dorsal,
             season=season,
             team=team,
@@ -3526,6 +3609,7 @@ def createstats_punting_player_ncaa_football():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     dorsal = request.json.get("dorsal", None)
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -3559,6 +3643,7 @@ def createstats_punting_player_ncaa_football():
             weight=weight,
             birth=birth,
             position=position,
+            headshot=headshot,
             dorsal=dorsal,
             season=season,
             team=team,
@@ -3740,6 +3825,7 @@ def createStats_Soccer_Player():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     dorsal = request.json.get("dorsal", None)
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -3771,6 +3857,7 @@ def createStats_Soccer_Player():
             weight=weight,
             birth=birth,
             position=position,
+            headshot=headshot,
             dorsal=dorsal,
             season=season,
             team=team,
@@ -3855,6 +3942,7 @@ def createStats_nba_player():
     dorsal = request.json.get("dorsal", None)
     minutes = request.json.get("minutes", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     gp = request.json.get("gp", None)
     gs = request.json.get("gs", None)
     fg = request.json.get("fg", None)
@@ -3893,6 +3981,7 @@ def createStats_nba_player():
             dorsal=dorsal,
             minutes=minutes,
             position=position,
+            headshot=headshot,
             gp=gp,
             gs=gs,
             fg=fg,
@@ -3977,6 +4066,7 @@ def createStats_nhl_player():
     team = request.json.get("team", None)
     dorsal = request.json.get("dorsal", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     gp = request.json.get("gp", None)
     g = request.json.get("g", None)
     a = request.json.get("a", None)
@@ -4011,6 +4101,7 @@ def createStats_nhl_player():
             team=team,
             dorsal=dorsal,
             position=position,
+            headshot=headshot,
             gp=gp,
             g=g,
             a=a,
@@ -4094,6 +4185,7 @@ def createStats_mlb_player():
     team = request.json.get("team", None)
     dorsal = request.json.get("dorsal", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
 
     gp = request.json.get("gp", None)
     ab = request.json.get("ab", None)
@@ -4131,6 +4223,7 @@ def createStats_mlb_player():
             team=team,
             dorsal=dorsal,
             position=position,
+            headshot=headshot,
             gp=gp,
             ab=ab,
             r=r,
@@ -4158,6 +4251,7 @@ def createStats_mlb_player():
 def createStats_box_fighter():
     name = request.json.get("name", None)
     nickname = request.json.get("nickname", None)
+    headshot = request.json.get("headshot", None)
     height = request.json.get("height", None)
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
@@ -4181,6 +4275,7 @@ def createStats_box_fighter():
         stats_box_fighter = Stats_box_fighter(
             name=name,
             nickname=nickname,
+            headshot=headshot,
             height=height,
             weight=weight,
             birth=birth,
@@ -4204,6 +4299,7 @@ def createStats_mma_fighter():
     height = request.json.get("height", None)
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
+    headshot = request.json.get("headshot", None)
     country = request.json.get("country", None)
     association = request.json.get("association", None)
     category = request.json.get("category", None)
@@ -4226,6 +4322,7 @@ def createStats_mma_fighter():
             nickname=nickname,
             height=height,
             weight=weight,
+            headshot=headshot,
             birth=birth,
             country=country,
             association=association,
@@ -4357,6 +4454,7 @@ def createStats_defensive_player_nfl():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     dorsal = request.json.get("dorsal", None)
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -4391,6 +4489,7 @@ def createStats_defensive_player_nfl():
             weight=weight,
             birth=birth,
             position=position,
+            headshot=headshot,
             dorsal=dorsal,
             season=season,
             team=team,
@@ -4423,6 +4522,7 @@ def createStats_offensive_player_nfl():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     dorsal = request.json.get("dorsal", None)
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -4477,6 +4577,7 @@ def createStats_offensive_player_nfl():
             weight=weight,
             birth=birth,
             position=position,
+            headshot=headshot,
             dorsal=dorsal,
             season=season,
             team=team,
@@ -4526,6 +4627,7 @@ def createStats_returning_player_nfl():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     dorsal = request.json.get("dorsal", None)
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -4557,6 +4659,7 @@ def createStats_returning_player_nfl():
             weight=weight,
             birth=birth,
             position=position,
+            headshot=headshot,
             dorsal=dorsal,
             season=season,
             team=team,
@@ -4585,6 +4688,7 @@ def createStats_kiking_player_nfl():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     dorsal = request.json.get("dorsal", None)
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -4617,6 +4721,7 @@ def createStats_kiking_player_nfl():
             weight=weight,
             birth=birth,
             position=position,
+            headshot=headshot,
             dorsal=dorsal,
             season=season,
             team=team,
@@ -4646,6 +4751,7 @@ def createStats_punting_player_nfl():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
     dorsal = request.json.get("dorsal", None)
     season = request.json.get("season", None)
     team = request.json.get("team", None)
@@ -4679,6 +4785,7 @@ def createStats_punting_player_nfl():
             weight=weight,
             birth=birth,
             position=position,
+            headshot=headshot,
             dorsal=dorsal,
             season=season,
             team=team,
@@ -4741,6 +4848,23 @@ def newsodds_to_win(id):
     db.session.commit()
     return jsonify({"msg": "odds_to_win edith successfully"}), 200
 
+@app.route('/injuries/<id>', methods=['PUT'])
+def newsinjuries(id):
+    injuries = Injuries.query.get(id)
+    name_player = request.json['name_player']
+    team = request.json['team']
+    injurie = request.json['injurie']
+    time_injurie = request.json['time_injurie']
+    date = request.json['date']
+    injuries.name_player = name_player
+    injuries.team = team
+    injuries.injurie = injurie
+    injuries.time_injurie = time_injurie
+    injuries.date = date
+
+    db.session.commit()
+    return jsonify({"msg": "injuries edith successfully"}), 200
+
 @app.route('/casinos/<id>', methods=['PUT'])
 def newsCasinos(id):
     casinos = Casinos.query.get(id)
@@ -4749,6 +4873,17 @@ def newsCasinos(id):
 
     db.session.commit()
     return jsonify({"msg": "casino edith successfully"}), 200
+
+@app.route('/futures/<id>', methods=['PUT'])
+def newsfutures(id):
+    futures = Futures.query.get(id)
+    future = request.json['future']
+    line = request.json['line']
+    futures.future = future
+    futures.line = line
+
+    db.session.commit()
+    return jsonify({"msg": "futures edith successfully"}), 200
 
 @app.route('/logos_nfl/<id>', methods=['PUT'])
 def newslogos_nfl(id):
@@ -5907,6 +6042,7 @@ def stats_offensive_player_ncaa_footballEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     position = request.json['position']
+    headshot = request.json['headshot']
     dorsal = request.json['dorsal']
     season = request.json['season']
     team = request.json['team']
@@ -5950,6 +6086,7 @@ def stats_offensive_player_ncaa_footballEdit(id):
     stats_offensive_player_ncaa_football.weight = weight
     stats_offensive_player_ncaa_football.birth = birth
     stats_offensive_player_ncaa_football.position = position
+    stats_offensive_player_ncaa_football.headshot = headshot
     stats_offensive_player_ncaa_football.dorsal = dorsal
     stats_offensive_player_ncaa_football.season = season
     stats_offensive_player_ncaa_football.team = team
@@ -5997,6 +6134,7 @@ def stats_defensive_player_ncca_footballEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     position = request.json['position']
+    headshot = request.json['headshot']
     dorsal = request.json['dorsal']
     season = request.json['season']
     team = request.json['team']
@@ -6022,6 +6160,7 @@ def stats_defensive_player_ncca_footballEdit(id):
     stats_defensive_player_ncca_football.weight = weight
     stats_defensive_player_ncca_football.birth = birth
     stats_defensive_player_ncca_football.position = position
+    stats_offensive_player_ncaa_football.headshot = headshot
     stats_defensive_player_ncca_football.dorsal = dorsal
     stats_defensive_player_ncca_football.season = season
     stats_defensive_player_ncca_football.team = team
@@ -6052,6 +6191,7 @@ def stats_returning_player_ncaa_footballEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     position = request.json['position']
+    headshot = request.json['headshot']
     dorsal = request.json['dorsal']
     season = request.json['season']
     team = request.json['team']
@@ -6073,6 +6213,7 @@ def stats_returning_player_ncaa_footballEdit(id):
     stats_returning_player_ncaa_football.weight = weight
     stats_returning_player_ncaa_football.birth = birth
     stats_returning_player_ncaa_football.position = position
+    stats_offensive_player_ncaa_football.headshot = headshot
     stats_returning_player_ncaa_football.dorsal = dorsal
     stats_returning_player_ncaa_football.season = season
     stats_returning_player_ncaa_football.team = team
@@ -6099,6 +6240,7 @@ def stats_kiking_player_ncaa_footballEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     position = request.json['position']
+    headshot = request.json['headshot']
     dorsal = request.json['dorsal']
     season = request.json['season']
     team = request.json['team']
@@ -6121,6 +6263,7 @@ def stats_kiking_player_ncaa_footballEdit(id):
     stats_kiking_player_ncaa_football.weight = weight
     stats_kiking_player_ncaa_football.birth = birth
     stats_kiking_player_ncaa_football.position = position
+    stats_kiking_player_ncaa_football.headshot = headshot
     stats_kiking_player_ncaa_football.dorsal = dorsal
     stats_kiking_player_ncaa_football.season = season
     stats_kiking_player_ncaa_football.team = team
@@ -6148,6 +6291,7 @@ def stats_punting_player_ncaa_footballEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     position = request.json['position']
+    headshot = request.json['headshot']
     dorsal = request.json['dorsal']
     season = request.json['season']
     team = request.json['team']
@@ -6171,6 +6315,7 @@ def stats_punting_player_ncaa_footballEdit(id):
     stats_punting_player_ncaa_football.weight = weight
     stats_punting_player_ncaa_football.birth = birth
     stats_punting_player_ncaa_football.position = position
+    stats_punting_player_ncaa_football.headshot = headshot
     stats_punting_player_ncaa_football.dorsal = dorsal
     stats_punting_player_ncaa_football.season = season
     stats_punting_player_ncaa_football.team = team
@@ -6756,6 +6901,7 @@ def stats_ncaa_basket_playerEdit(id):
     dorsal = request.json['dorsal']
     minutes = request.json['minutes']
     position = request.json['position']
+    headshot = request.json['headshot']
     gp = request.json['gp']
     gs = request.json['gs']
     fg = request.json['fg']
@@ -6784,6 +6930,7 @@ def stats_ncaa_basket_playerEdit(id):
     stats_ncaa_basket_player.dorsal = dorsal
     stats_ncaa_basket_player.minutes = minutes
     stats_ncaa_basket_player.position = position
+    stats_ncaa_basket_player.headshot = headshot
     stats_ncaa_basket_player.gp = gp
     stats_ncaa_basket_player.gs = gs
     stats_ncaa_basket_player.fg = fg
@@ -7118,6 +7265,7 @@ def nascar_driversEdit(id):
     name = request.json['name']
     country = request.json['country']
     birth = request.json['birth']
+    headshot = request.json['headshot']
     sponsor = request.json['sponsor']
     engine = request.json['engine']
     number_car = request.json['number_car']
@@ -7134,6 +7282,7 @@ def nascar_driversEdit(id):
     nascar_drivers.name = name
     nascar_drivers.country = country
     nascar_drivers.birth = birth
+    nascar_drivers.headshot = headshot
     nascar_drivers.sponsor = sponsor
     nascar_drivers.engine = engine
     nascar_drivers.number_car = number_car
@@ -7361,6 +7510,7 @@ def stats_soccer_playerEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     position = request.json['position']
+    headshot = request.json['headshot']
     season = request.json['season']
     dorsal = request.json['dorsal']
     team = request.json['team']
@@ -7382,6 +7532,7 @@ def stats_soccer_playerEdit(id):
     stats_soccer_player.weight = weight
     stats_soccer_player.birth = birth
     stats_soccer_player.position = position
+    stats_soccer_player.headshot = headshot
     stats_soccer_player.season = season
     stats_soccer_player.dorsal = dorsal
     stats_soccer_player.team = team
@@ -7455,6 +7606,7 @@ def stats_nba_playerEdit(id):
     dorsal = request.json['dorsal']
     minutes = request.json['minutes']
     position = request.json['position']
+    headshot = request.json['headshot']
     gp = request.json['gp']
     gs = request.json['gs']
     fg = request.json['fg']
@@ -7483,6 +7635,7 @@ def stats_nba_playerEdit(id):
     stats_nba_player.dorsal = dorsal
     stats_nba_player.minutes = minutes
     stats_nba_player.position = position
+    stats_nba_player.headshot = headshot
     stats_nba_player.gp = gp
     stats_nba_player.gs = gs
     stats_nba_player.fg = fg
@@ -7557,6 +7710,7 @@ def stats_mlb_playerEdit(id):
     team = request.json['team']
     dorsal = request.json['dorsal']
     position = request.json['position']
+    headshot = request.json['headshot']
     gp = request.json['gp']
     ab = request.json['ab']
     r = request.json['r']
@@ -7583,6 +7737,7 @@ def stats_mlb_playerEdit(id):
     stats_mlb_player.team = team
     stats_mlb_player.dorsal = dorsal
     stats_mlb_player.position = position
+    stats_mlb_player.headshot = headshot
     stats_mlb_player.gp = gp
     stats_mlb_player.ab = ab
     stats_mlb_player.r = r
@@ -7658,6 +7813,7 @@ def stats_nhl_playerEdit(id):
     team = request.json['team']
     dorsal = request.json['dorsal']
     position = request.json['position']
+    headshot = request.json['headshot']
     gp = request.json['gp']
 
     g = request.json['g']
@@ -7684,6 +7840,7 @@ def stats_nhl_playerEdit(id):
     stats_nhl_player.team = team
     stats_nhl_player.dorsal = dorsal
     stats_nhl_player.position = position
+    stats_nhl_player.headshot = headshot
     stats_nhl_player.gp = gp
     stats_nhl_player.g = g
     stats_nhl_player.a = a
@@ -7874,6 +8031,7 @@ def stats_defensive_player_nflEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     position = request.json['position']
+    headshot = request.json['headshot']
     dorsal = request.json['dorsal']
     season = request.json['season']
     team = request.json['team']
@@ -7899,6 +8057,7 @@ def stats_defensive_player_nflEdit(id):
     stats_defensive_player_nfl.weight = weight
     stats_defensive_player_nfl.birth = birth
     stats_defensive_player_nfl.position = position
+    stats_defensive_player_nfl.headshot = headshot
     stats_defensive_player_nfl.dorsal = dorsal
     stats_defensive_player_nfl.season = season
     stats_defensive_player_nfl.team = team
@@ -7930,6 +8089,7 @@ def stats_offensive_player_nflEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     position = request.json['position']
+    headshot = request.json['headshot']
     dorsal = request.json['dorsal']
     season = request.json['season']
     team = request.json['team']
@@ -7973,6 +8133,7 @@ def stats_offensive_player_nflEdit(id):
     stats_offensive_player_nfl.weight = weight
     stats_offensive_player_nfl.birth = birth
     stats_offensive_player_nfl.position = position
+    stats_offensive_player_nfl.headshot = headshot
     stats_offensive_player_nfl.dorsal = dorsal
     stats_offensive_player_nfl.season = season
     stats_offensive_player_nfl.team = team
@@ -8021,6 +8182,7 @@ def stats_returning_player_nflEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     position = request.json['position']
+    headshot = request.json['headshot']
     dorsal = request.json['dorsal']
     season = request.json['season']
     team = request.json['team']
@@ -8042,6 +8204,7 @@ def stats_returning_player_nflEdit(id):
     stats_returning_player_nfl.weight = weight
     stats_returning_player_nfl.birth = birth
     stats_returning_player_nfl.position = position
+    stats_returning_player_nfl.headshot = headshot
     stats_returning_player_nfl.dorsal = dorsal
     stats_returning_player_nfl.season = season
     stats_returning_player_nfl.team = team
@@ -8069,6 +8232,7 @@ def stats_kiking_player_nflEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     position = request.json['position']
+    headshot = request.json['headshot']
     dorsal = request.json['dorsal']
     season = request.json['season']
     team = request.json['team']
@@ -8091,6 +8255,7 @@ def stats_kiking_player_nflEdit(id):
     stats_kiking_player_nfl.weight = weight
     stats_kiking_player_nfl.birth = birth
     stats_kiking_player_nfl.position = position
+    stats_kiking_player_nfl.headshot = headshot
     stats_kiking_player_nfl.dorsal = dorsal
     stats_kiking_player_nfl.season = season
     stats_kiking_player_nfl.team = team
@@ -8119,6 +8284,7 @@ def stats_punting_player_nflEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     position = request.json['position']
+    headshot = request.json['headshot']
     dorsal = request.json['dorsal']
     season = request.json['season']
     team = request.json['team']
@@ -8142,6 +8308,7 @@ def stats_punting_player_nflEdit(id):
     stats_punting_player_nfl.weight = weight
     stats_punting_player_nfl.birth = birth
     stats_punting_player_nfl.position = position
+    stats_punting_player_nfl.headshot = headshot
     stats_punting_player_nfl.dorsal = dorsal
     stats_punting_player_nfl.season = season
     stats_punting_player_nfl.team = team
@@ -8172,6 +8339,20 @@ def soccer_tournament_delete(id):
     db.session.delete(soccer_tournament)
     db.session.commit()
     return "soccer_tournament was successfully deleted"
+
+@app.route("/futures/<id>", methods=["DELETE"])
+def futures_delete(id):
+    futures = Futures.query.get(id)
+    db.session.delete(futures)
+    db.session.commit()
+    return "futures was successfully deleted"
+
+@app.route("/injuries/<id>", methods=["DELETE"])
+def injuries_delete(id):
+    injuries = Injuries.query.get(id)
+    db.session.delete(injuries)
+    db.session.commit()
+    return "injuries was successfully deleted"
 
 @app.route("/props/<id>", methods=["DELETE"])
 def props_delete(id):
