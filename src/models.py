@@ -41,8 +41,6 @@ class Injuries(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name_player = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(20), nullable=False)
-    team = db.Column(db.String(20), nullable=False)
-    team = db.Column(db.String(20), nullable=False)
     injurie = db.Column(db.String(20), nullable=False)
     time_injurie = db.Column(db.String(20), nullable=False)
     date = db.Column(db.String(20), nullable=False)

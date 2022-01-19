@@ -567,10 +567,10 @@ def createfutures():
     line = request.json.get("line", None)
 
     # busca team en BBDD
-    futures = Futures.query.filter_by(name=name).first()
+    futures = Futures.query.filter_by(future=future).first()
     # the team was not found on the database
     if futures:
-        return jsonify({"msg": "futures already exists", "futures": futures.name}), 401
+        return jsonify({"msg": "futures already exists", "futures": futures.future}), 401
     else:
         # crea casino nuevo
         # crea registro nuevo en BBDD de
@@ -594,7 +594,7 @@ def createinjuries():
     injuries = Injuries.query.filter_by(name_player=name_player,date=date,team=team).first()
     # the team was not found on the database
     if injuries:
-        return jsonify({"msg": "injuries already exists", "Casino": injuries.name}), 401
+        return jsonify({"msg": "injuries already exists", "Casino": injuries.name_player}), 401
     else:
         # crea casino nuevo
         # crea registro nuevo en BBDD de
