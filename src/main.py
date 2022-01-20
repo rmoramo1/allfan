@@ -4137,6 +4137,8 @@ def createStats_nhl_player():
 @app.route('/stats_mlb_team', methods=['POST'])
 def createStats_mlb_team():
     season = request.json.get("season", None)
+    season_type = request.json.get("season_type", None)
+    group_type_comparation = request.json.get("group_type_comparation", None)
     team = request.json.get("team", None)
     league = request.json.get("league", None)
     division = request.json.get("division", None)
@@ -4164,6 +4166,8 @@ def createStats_mlb_team():
         # crea registro nuevo en BBDD de
         stats_mlb_team = Stats_mlb_team(
             season=season,
+            season_type=season_type,
+            group_type_comparation=group_type_comparation,
             team=team,
             league=league,
             division=division,
