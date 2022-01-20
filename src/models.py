@@ -3168,10 +3168,13 @@ class Stats_nba_team(db.Model):
     team = db.Column(db.String(30), nullable=False)
     conference = db.Column(db.String(30), nullable=False)
     division = db.Column(db.String(30), nullable=False)
+    season_type = db.Column(db.String(20), nullable=False)
+    group_type_comparation = db.Column(db.String(20), nullable=False)
 
     w = db.Column(db.String(10), default=0, nullable=False)
     L = db.Column(db.String(10), default=0, nullable=False)
     ptc = db.Column(db.String(10), default=0, nullable=False)
+    gb = db.Column(db.String(10), default=0, nullable=False)
     home = db.Column(db.String(10), default=0, nullable=False)
     away = db.Column(db.String(10), default=0, nullable=False)
     div = db.Column(db.String(10), default=0, nullable=False)
@@ -3190,10 +3193,13 @@ class Stats_nba_team(db.Model):
             "team": self.team,
             "conference": self.conference,
             "division": self.division,
+            "season_type": self.season_type,
+            "group_type_comparation": self.group_type_comparation,
 
             "w": self.w,
             "L": self.L,
             "ptc": self.ptc,
+            "gb": self.gb,
             "home": self.home,
             "away": self.away,
             "div": self.div,
@@ -3211,6 +3217,8 @@ class Stats_mlb_team(db.Model):
     __tablename__ = "stats_mlb_team"
     id = db.Column(db.Integer, primary_key=True)
     season = db.Column(db.String(10), nullable=False)
+    season_type = db.Column(db.String(20), nullable=False)
+    group_type_comparation = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(20), nullable=False)
     league = db.Column(db.String(20), nullable=False)
     division = db.Column(db.String(20), nullable=False)
@@ -3232,6 +3240,8 @@ class Stats_mlb_team(db.Model):
         return {
             "id": self.id,
             "season": self.season,
+            "season_type": self.season_type,
+            "group_type_comparation self.group_type_comparation,
             "team": self.team,
             "league": self.league,
             "division": self.division,
@@ -3320,6 +3330,8 @@ class Stats_nhl_team(db.Model):
     __tablename__ = "stats_nhl_team"
     id = db.Column(db.Integer, primary_key=True)
     season = db.Column(db.String(10), nullable=False)
+    season_type = db.Column(db.String(20), nullable=False)
+    group_type_comparation = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(20), nullable=False)
     conference = db.Column(db.String(20), nullable=False)
     division = db.Column(db.String(20), nullable=False)
@@ -3344,6 +3356,8 @@ class Stats_nhl_team(db.Model):
             "team": self.team,
             "conference": self.conference,
             "division": self.division,
+            "season_type": self.season_type,
+            "group_type_comparation": self.group_type_comparation,
             "w": self.w,
             "L": self.L,
             "Ga_a": self.Ga_a,
@@ -3580,6 +3594,8 @@ class Stats_nfl_team(db.Model):
     __tablename__ = "stats_nfl_team"
     id = db.Column(db.Integer, primary_key=True)
     season = db.Column(db.String(20), nullable=False)
+    season_type = db.Column(db.String(20), nullable=False)
+    group_type_comparation = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     conference = db.Column(db.String(30), nullable=False)
     division = db.Column(db.String(30), nullable=False)
@@ -3629,6 +3645,8 @@ class Stats_nfl_team(db.Model):
         return {
             "id": self.id,
             "season": self.season,
+            "season_type": self.season_type,
+            "group_type_comparation": self.group_type_comparation,
             "team": self.team,
             "conference": self.conference,
             "division": self.division,

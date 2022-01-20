@@ -3881,6 +3881,8 @@ def createStats_Soccer_Player():
 @app.route('/stats_nba_team', methods=['POST'])
 def createStats_nba_team():
     season = request.json.get("season", None)
+    season_type = request.json.get("season_type", None)
+    group_type_comparation = request.json.get("group_type_comparation", None)
     team = request.json.get("team", None)
     conference = request.json.get("conference", None)
     division = request.json.get("division", None)
@@ -3888,6 +3890,7 @@ def createStats_nba_team():
     w = request.json.get("w", None)
     L = request.json.get("L", None)
     ptc = request.json.get("ptc", None)
+    gb = request.json.get("gb", None)
     home = request.json.get("home", None)
     away = request.json.get("away", None)
     div = request.json.get("div", None)
@@ -3908,12 +3911,15 @@ def createStats_nba_team():
         # crea registro nuevo en BBDD de
         stats_nba_team = Stats_nba_team(
             season=season,
+            season_type=season_type,
+            group_type_comparation=group_type_comparation,
             team=team,
             conference=conference,
             division=division,
             w=w,
             L=L,
             ptc=ptc,
+            gb=gb,
             home=home,
             away=away,
             div=div,
@@ -4008,6 +4014,8 @@ def createStats_nba_player():
 @app.route('/stats_nhl_team', methods=['POST'])
 def createStats_nhl_team():
     season = request.json.get("season", None)
+    season_type = request.json.get("season_type", None)
+    group_type_comparation = request.json.get("group_type_comparation", None)
     team = request.json.get("team", None)
     conference = request.json.get("conference", None)
     division = request.json.get("division", None)
@@ -4035,6 +4043,8 @@ def createStats_nhl_team():
         # crea registro nuevo en BBDD de
         stats_nhl_team = Stats_nhl_team(
             season=season,
+            season_type=season_type,
+            group_type_comparation=group_type_comparation,
             team=team,
             conference=conference,
             division=division,
@@ -4340,6 +4350,8 @@ def createStats_mma_fighter():
 @app.route('/stats_nfl_team', methods=['POST'])
 def createStats_nfl_team():
     season = request.json.get("season", None)
+    season_type = request.json.get("season_type", None)
+    group_type_comparation = request.json.get("group_type_comparation", None)
     team = request.json.get("team", None)
     conference = request.json.get("conference", None)
     division = request.json.get("division", None)
@@ -4397,6 +4409,8 @@ def createStats_nfl_team():
         # crea registro nuevo en BBDD de
         stats_nfl_team = Stats_nfl_team(
             season=season,
+            season_type=season_type,
+            group_type_comparation=group_type_comparation,
             team=team,
             conference=conference,
             division=division,
@@ -7555,6 +7569,8 @@ def stats_soccer_playerEdit(id):
 def stats_nba_teamEdit(id):
     stats_nba_team = Stats_nba_team.query.get(id)
     season = request.json['season']
+    season_type = request.json['season_type']
+    group_type_comparation = request.json['group_type_comparation']
     team = request.json['team']
     conference = request.json['conference']
     division = request.json['division']
@@ -7562,6 +7578,7 @@ def stats_nba_teamEdit(id):
     w = request.json['w']
     L = request.json['L']
     ptc = request.json['ptc']
+    gb = request.json['gb']
     home = request.json['home']
     away = request.json['away']
     div = request.json['div']
@@ -7573,12 +7590,15 @@ def stats_nba_teamEdit(id):
     l10 = request.json['l10']
 
     stats_nba_team.season = season
+    stats_nba_team.season_type = season_type
+    stats_nba_team.group_type_comparation = group_type_comparation
     stats_nba_team.team = team
     stats_nba_team.conference = conference
     stats_nba_team.division = division
     stats_nba_team.w = w
     stats_nba_team.L = L
     stats_nba_team.ptc = ptc
+    stats_nba_team.gb = gb
     stats_nba_team.home = home
     stats_nba_team.away = away
     stats_nba_team.div = div
@@ -7764,6 +7784,8 @@ def stats_mlb_playerEdit(id):
 def stats_nhl_teamEdit(id):
     stats_nhl_team = Stats_nhl_team.query.get(id)
     season = request.json['season']
+    season_type = request.json['season_type']
+    group_type_comparation = request.json['group_type_comparation']
     team = request.json['team']
     conference = request.json['conference']
     division = request.json['division']
@@ -7782,6 +7804,8 @@ def stats_nhl_teamEdit(id):
     sos_AVG = request.json['sos_AVG']
 
     stats_nhl_team.season = season
+    stats_nhl_team.season_type = season_type
+    stats_nhl_team.group_type_comparation = group_type_comparation
     stats_nhl_team.team = team
     stats_nhl_team.conference = conference
     stats_nhl_team.division = division
@@ -7929,6 +7953,8 @@ def stats_mma_fighterEdit(id):
 def stats_nfl_teamEdit(id):
     stats_nfl_team = Stats_nfl_team.query.get(id)
     season = request.json['season']
+    season_type = request.json['season_type']
+    group_type_comparation = request.json['group_type_comparation']
     team = request.json['team']
     conference = request.json['conference']
     division = request.json['division']
@@ -7975,6 +8001,8 @@ def stats_nfl_teamEdit(id):
     turnover_ratio = request.json['turnover_ratio']
 
     stats_nfl_team.season = season
+    stats_nfl_team.season_type = season_type
+    stats_nfl_team.group_type_comparation = group_type_comparation
     stats_nfl_team.team = team
     stats_nfl_team.conference = conference
     stats_nfl_team.division = division
