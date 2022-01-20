@@ -7682,6 +7682,8 @@ def stats_nba_playerEdit(id):
 def stats_mlb_teamEdit(id):
     stats_mlb_team = Stats_mlb_team.query.get(id)
     season = request.json['season']
+    season_type = request.json['season_type']
+    group_type_comparation = request.json['group_type_comparation']
     team = request.json['team']
     league = request.json['league']
     division = request.json['division']
@@ -7699,6 +7701,8 @@ def stats_mlb_teamEdit(id):
     poff = request.json['poff']
 
     stats_mlb_team.season = season
+    stats_mlb_team.season_type = season_type
+    stats_mlb_team.group_type_comparation = group_type_comparation
     stats_mlb_team.team = team
     stats_mlb_team.league = league
     stats_mlb_team.division = division
