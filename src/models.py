@@ -35,6 +35,7 @@ class Casinos(db.Model):
             "name": self.name,
         }
 
+
 class Injuries(db.Model):
     __tablename__ = 'injuries'
 
@@ -55,6 +56,7 @@ class Injuries(db.Model):
             "date": self.date
         }
 
+
 class Futures(db.Model):
     __tablename__ = 'futures'
 
@@ -68,6 +70,7 @@ class Futures(db.Model):
             "future": self.future,
             "line": self.line,
         }
+
 
 class Props(db.Model):
     __tablename__ = 'props'
@@ -96,6 +99,7 @@ class Props(db.Model):
             "away": self.away
             # do not serialize the password, its a security breach
         }
+
 
 class Odds_to_win(db.Model):
     __tablename__ = 'odds_to_win'
@@ -135,6 +139,7 @@ class Logos_NFL(db.Model):
             "url": self.url,
         }
 
+
 class Logos_NBA(db.Model):
     __tablename__ = 'logos_nba'
     id = db.Column(db.Integer, primary_key=True)
@@ -147,6 +152,8 @@ class Logos_NBA(db.Model):
             "team": self.team,
             "url": self.url,
         }
+
+
 class Logos_MLB(db.Model):
     __tablename__ = 'logos_mlb'
     id = db.Column(db.Integer, primary_key=True)
@@ -160,6 +167,7 @@ class Logos_MLB(db.Model):
             "url": self.url,
         }
 
+
 class Logos_NHL(db.Model):
     __tablename__ = 'logos_nhl'
     id = db.Column(db.Integer, primary_key=True)
@@ -172,7 +180,8 @@ class Logos_NHL(db.Model):
             "team": self.team,
             "url": self.url,
         }
-        
+
+
 class Logos_SOCCER(db.Model):
     __tablename__ = 'logos_soccer'
     id = db.Column(db.Integer, primary_key=True)
@@ -185,6 +194,7 @@ class Logos_SOCCER(db.Model):
             "team": self.team,
             "url": self.url,
         }
+
 
 class Soccer_Tournament(db.Model):
     __tablename__ = 'soccer_tournament'
@@ -618,6 +628,7 @@ class Ncaa_Baseball(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Stats_ncaa_baseball_team(db.Model):
     __tablename__ = "stats_ncaa_baseball_team"
     id = db.Column(db.Integer, primary_key=True)
@@ -660,6 +671,7 @@ class Stats_ncaa_baseball_team(db.Model):
             "poff": self.poff
             # do not serialize the password, its a security breach
         }
+
 
 class Stats_ncaa_baseball_player(db.Model):
     __tablename__ = "stats_ncaa_baseball_player"
@@ -1404,7 +1416,8 @@ class Ncaa_Football(db.Model):
             "q4_half_final_score_home": self.q4_half_final_score_home,
             # do not serialize the password, its a security breach
         }
-        
+
+
 class Stats_ncaa_football_team(db.Model):
     __tablename__ = "stats_ncaa_football_team"
     id = db.Column(db.Integer, primary_key=True)
@@ -1505,6 +1518,7 @@ class Stats_ncaa_football_team(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Stats_defensive_player_ncca_football(db.Model):
     __tablename__ = "stats_defensive_player_ncca_football"
     id = db.Column(db.Integer, primary_key=True)
@@ -1565,6 +1579,7 @@ class Stats_defensive_player_ncca_football(db.Model):
             "kb": self.kb,
             # do not serialize the password, its a security breach
         }
+
 
 class Stats_offensive_player_ncaa_football(db.Model):
     __tablename__ = "Stats_offensive_player_ncaa_football"
@@ -1663,6 +1678,7 @@ class Stats_offensive_player_ncaa_football(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Stats_returning_player_ncaa_football(db.Model):
     __tablename__ = "stats_returning_player_ncaa_football"
     id = db.Column(db.Integer, primary_key=True)
@@ -1715,6 +1731,7 @@ class Stats_returning_player_ncaa_football(db.Model):
             "punt_r_fair_carches": self.punt_r_fair_carches,
             # do not serialize the password, its a security breach
         }
+
 
 class Stats_kiking_player_ncaa_football(db.Model):
     __tablename__ = "stats_kiking_player_ncaa_football"
@@ -1771,6 +1788,7 @@ class Stats_kiking_player_ncaa_football(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Stats_punting_player_ncaa_football(db.Model):
     __tablename__ = "stats_punting_player_ncaa_football"
     id = db.Column(db.Integer, primary_key=True)
@@ -1825,6 +1843,7 @@ class Stats_punting_player_ncaa_football(db.Model):
             "AVG_punt_retun_yards": self.AVG_punt_retun_yards,
             # do not serialize the password, its a security breach
         }
+
 
 class Nba(db.Model):
     __tablename__ = "nba"
@@ -2505,6 +2524,7 @@ class Ncaa_Basketball(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Stats_ncaa_basket_team(db.Model):
     __tablename__ = "stats_ncaa_basket_team"
     id = db.Column(db.Integer, primary_key=True)
@@ -2550,6 +2570,7 @@ class Stats_ncaa_basket_team(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Stats_ncaa_basket_player(db.Model):
     __tablename__ = "stats_ncaa_basket_player"
     id = db.Column(db.Integer, primary_key=True)
@@ -2561,7 +2582,7 @@ class Stats_ncaa_basket_player(db.Model):
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     headshot = db.Column(db.String(30), nullable=False)
-    
+
     dorsal = db.Column(db.String(5), nullable=False)
     minutes = db.Column(db.String(10), default=0, nullable=False)
     position = db.Column(db.String(5), default=0, nullable=False)
@@ -2854,7 +2875,7 @@ class Mma(db.Model):
 
     def serialize(self):
         return {
-             "id": self.id,
+            "id": self.id,
             "status": self.status,
             "casino": self.casino,
             "event": self.event,
@@ -3092,6 +3113,7 @@ class Soccer(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Stats_nba_player(db.Model):
     __tablename__ = "stats_nba_player"
     id = db.Column(db.Integer, primary_key=True)
@@ -3103,7 +3125,7 @@ class Stats_nba_player(db.Model):
     season = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     headshot = db.Column(db.String(30), nullable=False)
-    
+
     dorsal = db.Column(db.String(5), nullable=False)
     minutes = db.Column(db.String(10), default=0, nullable=False)
     position = db.Column(db.String(5), default=0, nullable=False)
@@ -3241,7 +3263,7 @@ class Stats_mlb_team(db.Model):
             "id": self.id,
             "season": self.season,
             "season_type": self.season_type,
-            "group_type_comparation self.group_type_comparation,
+            "group_type_comparation": self.group_type_comparation,
             "team": self.team,
             "league": self.league,
             "division": self.division,
@@ -3520,7 +3542,7 @@ class Nascar_drivers(db.Model):
     country = db.Column(db.String(50), nullable=False)
     birth = db.Column(db.String(50), nullable=False)
     headshot = db.Column(db.String(30), nullable=False)
-    
+
     sponsor = db.Column(db.String(100), nullable=False)
     engine = db.Column(db.String(50), nullable=False)
     number_car = db.Column(db.String(50), nullable=False)
@@ -4020,6 +4042,7 @@ class Stats_punting_player_nfl(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Stats_Soccer_Team(db.Model):
     __tablename__ = "stats_soccer_team"
     id = db.Column(db.Integer, primary_key=True)
@@ -4060,6 +4083,8 @@ class Stats_Soccer_Team(db.Model):
 
             # do not serialize the password, its a security breach
         }
+
+
 class Stats_Soccer_Player(db.Model):
     __tablename__ = "stats_soccer_player"
     id = db.Column(db.Integer, primary_key=True)
