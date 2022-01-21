@@ -4153,7 +4153,6 @@ def createStats_mlb_team():
     diff = request.json.get("diff", None)
     strk = request.json.get("strk", None)
     L10 = request.json.get("L10", None)
-    poff = request.json.get("poff", None)
 
     # busca team en BBDD
     stats_mlb_team = Stats_mlb_team.query.filter_by(
@@ -4181,8 +4180,7 @@ def createStats_mlb_team():
             ra=ra,
             diff=diff,
             strk=strk,
-            L10=L10,
-            poff=poff
+            L10=L10
         )
         db.session.add(stats_mlb_team)
         db.session.commit()
@@ -7700,7 +7698,6 @@ def stats_mlb_teamEdit(id):
     diff = request.json['diff']
     strk = request.json['strk']
     L10 = request.json['L10']
-    poff = request.json['poff']
 
     stats_mlb_team.season = season
     stats_mlb_team.season_type = season_type
@@ -7719,7 +7716,6 @@ def stats_mlb_teamEdit(id):
     stats_mlb_team.diff = diff
     stats_mlb_team.strk = strk
     stats_mlb_team.L10 = L10
-    stats_mlb_team.poff = poff
 
     db.session.commit()
     return jsonify({"msg": "stats_mlb_team edith successfully"}), 200

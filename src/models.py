@@ -3255,7 +3255,6 @@ class Stats_mlb_team(db.Model):
     diff = db.Column(db.String(10), default=0, nullable=False)
     strk = db.Column(db.String(10), default=0, nullable=False)
     L10 = db.Column(db.String(10), default=-0, nullable=False)
-    poff = db.Column(db.String(10), default=0, nullable=False)
     # -----------------------------------------------------------------------
 
     def serialize(self):
@@ -3277,8 +3276,7 @@ class Stats_mlb_team(db.Model):
             "ra": self.ra,
             "diff": self.diff,
             "strk": self.strk,
-            "L10": self.L10,
-            "poff": self.poff
+            "L10": self.L10
             # do not serialize the password, its a security breach
         }
 
