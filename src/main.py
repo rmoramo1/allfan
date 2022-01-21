@@ -4063,10 +4063,10 @@ def createStats_nhl_team():
             home=home,
             away=away,
             gf=gf,
-            ga=ga
-            diff=diff
-            l10=l10
-            strk=strk
+            ga=ga,
+            diff=diff,
+            l10=l10,
+            strk=strk,
         )
         db.session.add(stats_nhl_team)
         db.session.commit()
