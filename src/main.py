@@ -4053,6 +4053,7 @@ def createStats_nhl_team():
             team=team,
             conference=conference,
             division=division,
+            gp=gp,
             w=w,
             L=L,
             otl=otl,
