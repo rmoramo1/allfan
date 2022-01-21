@@ -3357,16 +3357,20 @@ class Stats_nhl_team(db.Model):
     division = db.Column(db.String(20), nullable=False)
     w = db.Column(db.String(10), default=0, nullable=False)
     L = db.Column(db.String(10), default=0, nullable=False)
-    Ga_a = db.Column(db.String(10), default=0, nullable=False)
+
     otl = db.Column(db.String(10), default=0, nullable=False)
-    sa = db.Column(db.String(10), default=0, nullable=False)
+    pts = db.Column(db.String(10), default=0, nullable=False)
+    rw = db.Column(db.String(10), default=0, nullable=False)
+    row = db.Column(db.String(10), default=0, nullable=False)
+    sow = db.Column(db.String(10), default=0, nullable=False)
+    sol = db.Column(db.String(10), default=0, nullable=False)
+    home = db.Column(db.String(10), default=0, nullable=False)
+    away = db.Column(db.String(10), default=0, nullable=False)
+    gf = db.Column(db.String(10), default=-0, nullable=False)
     ga = db.Column(db.String(10), default=0, nullable=False)
-    s = db.Column(db.String(10), default=0, nullable=False)
-    sv_AVG = db.Column(db.String(10), default=0, nullable=False)
-    so = db.Column(db.String(10), default=0, nullable=False)
-    so_sa = db.Column(db.String(10), default=0, nullable=False)
-    sos = db.Column(db.String(10), default=-0, nullable=False)
-    sos_AVG = db.Column(db.String(10), default=0, nullable=False)
+    diff = db.Column(db.String(10), default=0, nullable=False)
+    l10 = db.Column(db.String(10), default=0, nullable=False)
+    strk = db.Column(db.String(10), default=0, nullable=False)
     # -----------------------------------------------------------------------
 
     def serialize(self):
@@ -3380,16 +3384,20 @@ class Stats_nhl_team(db.Model):
             "group_type_comparation": self.group_type_comparation,
             "w": self.w,
             "L": self.L,
-            "Ga_a": self.Ga_a,
+
             "otl": self.otl,
-            "sa": self.sa,
+            "pts": self.pts,
+            "rw": self.rw,
+            "row": self.row,
+            "sow": self.sow,
+            "sol": self.sol,
+            "home": self.home,
+            "away": self.away,
+            "gf": self.gf,
             "ga": self.ga,
-            "s": self.s,
-            "sv_AVG": self.sv_AVG,
-            "so": self.so,
-            "so_sa": self.so_sa,
-            "sos": self.sos,
-            "sos_AVG": self.sos_AVG,
+            "diff": self.diff,
+            "l10": self.l10,
+            "strk": self.strk
             # do not serialize the password, its a security breach
         }
 

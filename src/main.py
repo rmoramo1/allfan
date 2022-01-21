@@ -4021,16 +4021,20 @@ def createStats_nhl_team():
     division = request.json.get("division", None)
     w = request.json.get("w", None)
     L = request.json.get("l", None)
-    Ga_a = request.json.get("Ga_a", None)
+
     otl = request.json.get("otl", None)
-    sa = request.json.get("sa", None)
+    pts = request.json.get("pts", None)
+    rw = request.json.get("rw", None)
+    row = request.json.get("row", None)
+    sow = request.json.get("sow", None)
+    sol = request.json.get("sol", None)
+    home = request.json.get("home", None)
+    away = request.json.get("away", None)
+    gf = request.json.get("gf", None)
     ga = request.json.get("ga", None)
-    s = request.json.get("s", None)
-    sv_AVG = request.json.get("sv_AVG", None)
-    so = request.json.get("so", None)
-    so_sa = request.json.get("so_sa", None)
-    sos = request.json.get("sos", None)
-    sos_AVG = request.json.get("sos_AVG", None)
+    diff = request.json.get("diff", None)
+    l10 = request.json.get("l10", None)
+    strk = request.json.get("strk", None)
 
     # busca team en BBDD
     stats_nhl_team = Stats_nhl_team.query.filter_by(
@@ -4050,16 +4054,19 @@ def createStats_nhl_team():
             division=division,
             w=w,
             L=L,
-            Ga_a=Ga_a,
             otl=otl,
-            sa=sa,
-            ga=ga,
-            s=s,
-            sv_AVG=sv_AVG,
-            so=so,
-            so_sa=so_sa,
-            sos=sos,
-            sos_AVG=sos_AVG
+            pts=pts,
+            rw=rw,
+            row=row,
+            sow=sow,
+            sol=sol,
+            home=home,
+            away=away,
+            gf=gf,
+            ga=ga
+            diff=diff
+            l10=l10
+            strk=strk
         )
         db.session.add(stats_nhl_team)
         db.session.commit()
@@ -7794,16 +7801,19 @@ def stats_nhl_teamEdit(id):
     w = request.json['w']
     L = request.json['L']
 
-    Ga_a = request.json['Ga_a']
     otl = request.json['otl']
-    sa = request.json['sa']
+    pts = request.json['pts']
+    rw = request.json['rw']
+    row = request.json['row']
+    sow = request.json['sow']
+    sol = request.json['sol']
+    home = request.json['home']
+    away = request.json['away']
+    gf = request.json['gf']
     ga = request.json['ga']
-    s = request.json['s']
-    sv_AVG = request.json['sv_AVG']
-    so = request.json['so']
-    so_sa = request.json['so_sa']
-    sos = request.json['sos']
-    sos_AVG = request.json['sos_AVG']
+    diff = request.json['diff']
+    l10 = request.json['l10']
+    strk = request.json['strk']
 
     stats_nhl_team.season = season
     stats_nhl_team.season_type = season_type
@@ -7813,16 +7823,20 @@ def stats_nhl_teamEdit(id):
     stats_nhl_team.division = division
     stats_nhl_team.w = w
     stats_nhl_team.L = L
-    stats_nhl_team.Ga_a = Ga_a
+
     stats_nhl_team.otl = otl
-    stats_nhl_team.sa = sa
+    stats_nhl_team.pts = pts
+    stats_nhl_team.rw = rw
+    stats_nhl_team.row = row
+    stats_nhl_team.sow = sow
+    stats_nhl_team.sol = sol
+    stats_nhl_team.home = home
+    stats_nhl_team.away = away
+    stats_nhl_team.gf = gf
     stats_nhl_team.ga = ga
-    stats_nhl_team.s = s
-    stats_nhl_team.sv_AVG = sv_AVG
-    stats_nhl_team.so = so
-    stats_nhl_team.so_sa = so_sa
-    stats_nhl_team.sos = sos
-    stats_nhl_team.sos_AVG = sos_AVG
+    stats_nhl_team.diff = diff
+    stats_nhl_team.l10 = l10
+    stats_nhl_team.strk = strk
 
     db.session.commit()
     return jsonify({"msg": "stats_nhl_team edith successfully"}), 200
