@@ -3355,6 +3355,7 @@ class Stats_nhl_team(db.Model):
     team = db.Column(db.String(20), nullable=False)
     conference = db.Column(db.String(20), nullable=False)
     division = db.Column(db.String(20), nullable=False)
+    gp = db.Column(db.String(20), nullable=False)
     w = db.Column(db.String(10), default=0, nullable=False)
     L = db.Column(db.String(10), default=0, nullable=False)
 
@@ -3382,6 +3383,7 @@ class Stats_nhl_team(db.Model):
             "division": self.division,
             "season_type": self.season_type,
             "group_type_comparation": self.group_type_comparation,
+            "gp": self.gp,
             "w": self.w,
             "L": self.L,
 

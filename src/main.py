@@ -4019,8 +4019,9 @@ def createStats_nhl_team():
     team = request.json.get("team", None)
     conference = request.json.get("conference", None)
     division = request.json.get("division", None)
+    gp = request.json.get("gp", None)
     w = request.json.get("w", None)
-    L = request.json.get("l", None)
+    L = request.json.get("L", None)
 
     otl = request.json.get("otl", None)
     pts = request.json.get("pts", None)
@@ -7798,6 +7799,7 @@ def stats_nhl_teamEdit(id):
     team = request.json['team']
     conference = request.json['conference']
     division = request.json['division']
+    gp = request.json['gp']
     w = request.json['w']
     L = request.json['L']
 
@@ -7821,6 +7823,7 @@ def stats_nhl_teamEdit(id):
     stats_nhl_team.team = team
     stats_nhl_team.conference = conference
     stats_nhl_team.division = division
+    stats_nhl_team.gp = gp
     stats_nhl_team.w = w
     stats_nhl_team.L = L
 
