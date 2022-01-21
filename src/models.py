@@ -3617,7 +3617,6 @@ class Stats_nfl_team(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     season = db.Column(db.String(20), nullable=False)
     season_type = db.Column(db.String(20), nullable=False)
-    group_type_comparation = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(30), nullable=False)
     conference = db.Column(db.String(30), nullable=False)
     division = db.Column(db.String(30), nullable=False)
@@ -3668,7 +3667,6 @@ class Stats_nfl_team(db.Model):
             "id": self.id,
             "season": self.season,
             "season_type": self.season_type,
-            "group_type_comparation": self.group_type_comparation,
             "team": self.team,
             "conference": self.conference,
             "division": self.division,

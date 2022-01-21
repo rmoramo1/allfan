@@ -4355,7 +4355,6 @@ def createStats_mma_fighter():
 def createStats_nfl_team():
     season = request.json.get("season", None)
     season_type = request.json.get("season_type", None)
-    group_type_comparation = request.json.get("group_type_comparation", None)
     team = request.json.get("team", None)
     conference = request.json.get("conference", None)
     division = request.json.get("division", None)
@@ -4414,7 +4413,6 @@ def createStats_nfl_team():
         stats_nfl_team = Stats_nfl_team(
             season=season,
             season_type=season_type,
-            group_type_comparation=group_type_comparation,
             team=team,
             conference=conference,
             division=division,
@@ -7962,7 +7960,6 @@ def stats_nfl_teamEdit(id):
     stats_nfl_team = Stats_nfl_team.query.get(id)
     season = request.json['season']
     season_type = request.json['season_type']
-    group_type_comparation = request.json['group_type_comparation']
     team = request.json['team']
     conference = request.json['conference']
     division = request.json['division']
@@ -8010,7 +8007,6 @@ def stats_nfl_teamEdit(id):
 
     stats_nfl_team.season = season
     stats_nfl_team.season_type = season_type
-    stats_nfl_team.group_type_comparation = group_type_comparation
     stats_nfl_team.team = team
     stats_nfl_team.conference = conference
     stats_nfl_team.division = division
