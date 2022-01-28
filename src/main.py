@@ -612,6 +612,7 @@ def createinjuries():
 @app.route('/props', methods=['POST'])
 def createProps():
     title = request.json.get("title", None)
+    date = request.json.get("date", None)
     type_prop = request.json.get("type_prop", None)
     sport = request.json.get("sport", None)
     feature = request.json.get("feature", None)
@@ -629,6 +630,7 @@ def createProps():
         # crea registro nuevo en BBDD de
         props = Props(
             title=title,
+            date=date,
             type_prop=type_prop,
             sport=sport,
             feature=feature,
@@ -4837,6 +4839,7 @@ def createStats_punting_player_nfl():
 def newsProps(id):
     props = Props.query.get(id)
     title = request.json['title']
+    date = request.json['date']
     type_prop = request.json['type_prop']
     sport = request.json['sport']
     feature = request.json['feature']
@@ -4844,6 +4847,7 @@ def newsProps(id):
     home = request.json['home']
     away = request.json['away']
     props.title = title
+    props.date = date
     props.type_prop = type_prop
     props.sport = sport
     props.feature = feature

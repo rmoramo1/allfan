@@ -78,6 +78,7 @@ class Props(db.Model):
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(30), nullable=False)
+    date = db.Column(db.String(30), nullable=False)
     type_prop = db.Column(db.String(30), nullable=False)
     sport = db.Column(db.String(30), nullable=False)
     feature = db.Column(db.String(30), nullable=False)
@@ -91,6 +92,7 @@ class Props(db.Model):
         return {
             "id": self.id,
             "title": self.title,
+            "date": self.date,
             "type_prop": self.type_prop,
             "sport": self.sport,
             "feature": self.feature,
