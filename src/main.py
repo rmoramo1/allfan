@@ -563,6 +563,7 @@ def createCasino():
 
 @app.route('/futures', methods=['POST'])
 def createfutures():
+    sport = request.json.get("sport", None)
     future = request.json.get("future", None)
     line = request.json.get("line", None)
 
@@ -575,6 +576,7 @@ def createfutures():
         # crea casino nuevo
         # crea registro nuevo en BBDD de
         futures = Futures(
+            sport=sport,
             future=future,
             line=line,
         )
@@ -4908,8 +4910,10 @@ def newsCasinos(id):
 @app.route('/futures/<id>', methods=['PUT'])
 def newsfutures(id):
     futures = Futures.query.get(id)
+    sport = request.json['sport']
     future = request.json['future']
     line = request.json['line']
+    futures.sport = sport
     futures.future = future
     futures.line = line
 
