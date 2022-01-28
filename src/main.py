@@ -584,6 +584,7 @@ def createfutures():
 
 @app.route('/injuries', methods=['POST'])
 def createinjuries():
+    sport = request.json.get("sport", None)
     name_player = request.json.get("name_player", None)
     team = request.json.get("team", None)
     injurie = request.json.get("injurie", None)
@@ -599,6 +600,7 @@ def createinjuries():
         # crea casino nuevo
         # crea registro nuevo en BBDD de
         injuries = Injuries(
+            sport=sport,
             name_player=name_player,
             team=team,
             injurie=injurie,
@@ -4878,11 +4880,13 @@ def newsodds_to_win(id):
 @app.route('/injuries/<id>', methods=['PUT'])
 def newsinjuries(id):
     injuries = Injuries.query.get(id)
+    sport = request.json['sport']
     name_player = request.json['name_player']
     team = request.json['team']
     injurie = request.json['injurie']
     time_injurie = request.json['time_injurie']
     date = request.json['date']
+    injuries.sport = sport
     injuries.name_player = name_player
     injuries.team = team
     injuries.injurie = injurie

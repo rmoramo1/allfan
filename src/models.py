@@ -40,6 +40,7 @@ class Injuries(db.Model):
     __tablename__ = 'injuries'
 
     id = db.Column(db.Integer, primary_key=True)
+    sport = db.Column(db.String(20), nullable=False)
     name_player = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(20), nullable=False)
     injurie = db.Column(db.String(20), nullable=False)
@@ -49,6 +50,7 @@ class Injuries(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "sport": self.sport,
             "name_player": self.name_player,
             "team": self.team,
             "injurie": self.injurie,
