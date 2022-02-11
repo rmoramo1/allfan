@@ -545,7 +545,7 @@ def logos_mlb():
 def logos_ncaa_basketball():
     if request.method == "GET":
         records = Logos_Ncaa_Basketball().query.all()
-        return jsonify([logos_ncaa_basketball.serialize(record) for record in records])
+        return jsonify([Logos_Ncaa_Basketball.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
 
@@ -555,7 +555,7 @@ def logos_ncaa_basketball():
 def logos_ncaa_football():
     if request.method == "GET":
         records = Logos_Ncaa_Football().query.all()
-        return jsonify([logos_ncaa_football.serialize(record) for record in records])
+        return jsonify([Logos_Ncaa_Football.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
 
@@ -565,7 +565,7 @@ def logos_ncaa_football():
 def logos_ncaa_baseball():
     if request.method == "GET":
         records = Logos_Ncaa_Baseball().query.all()
-        return jsonify([logos_ncaa_baseball.serialize(record) for record in records])
+        return jsonify([Logos_Ncaa_Baseball.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
 
