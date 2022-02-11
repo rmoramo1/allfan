@@ -135,8 +135,8 @@ class Odds_to_win(db.Model):
 class Logos_NFL(db.Model):
     __tablename__ = 'logos_nfl'
     id = db.Column(db.Integer, primary_key=True)
-    team = db.Column(db.String(20), nullable=False)
-    url = db.Column(db.String(70), nullable=False)
+    team = db.Column(db.String(50), nullable=False)
+    url = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -149,8 +149,8 @@ class Logos_NFL(db.Model):
 class Logos_NBA(db.Model):
     __tablename__ = 'logos_nba'
     id = db.Column(db.Integer, primary_key=True)
-    team = db.Column(db.String(20), nullable=False)
-    url = db.Column(db.String(70), nullable=False)
+    team = db.Column(db.String(50), nullable=False)
+    url = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -163,8 +163,8 @@ class Logos_NBA(db.Model):
 class Logos_MLB(db.Model):
     __tablename__ = 'logos_mlb'
     id = db.Column(db.Integer, primary_key=True)
-    team = db.Column(db.String(20), nullable=False)
-    url = db.Column(db.String(70), nullable=False)
+    team = db.Column(db.String(50), nullable=False)
+    url = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -177,8 +177,8 @@ class Logos_MLB(db.Model):
 class Logos_NHL(db.Model):
     __tablename__ = 'logos_nhl'
     id = db.Column(db.Integer, primary_key=True)
-    team = db.Column(db.String(20), nullable=False)
-    url = db.Column(db.String(70), nullable=False)
+    team = db.Column(db.String(50), nullable=False)
+    url = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -191,8 +191,8 @@ class Logos_NHL(db.Model):
 class Logos_SOCCER(db.Model):
     __tablename__ = 'logos_soccer'
     id = db.Column(db.Integer, primary_key=True)
-    team = db.Column(db.String(20), nullable=False)
-    url = db.Column(db.String(70), nullable=False)
+    team = db.Column(db.String(50), nullable=False)
+    url = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -201,14 +201,52 @@ class Logos_SOCCER(db.Model):
             "url": self.url,
         }
 
+class Logos_Ncaa_Basketball(db.Model):
+    __tablename__ = 'logos_ncaa_basketball'
+    id = db.Column(db.Integer, primary_key=True)
+    team = db.Column(db.String(50), nullable=False)
+    url = db.Column(db.String(100), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "team": self.team,
+            "url": self.url,
+        }
+
+class Logos_Ncaa_Football(db.Model):
+    __tablename__ = 'logos_ncaa_football'
+    id = db.Column(db.Integer, primary_key=True)
+    team = db.Column(db.String(50), nullable=False)
+    url = db.Column(db.String(100), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "team": self.team,
+            "url": self.url,
+        }
+
+class Logos_Ncaa_Baseball(db.Model):
+    __tablename__ = 'logos_ncaa_baseball'
+    id = db.Column(db.Integer, primary_key=True)
+    team = db.Column(db.String(50), nullable=False)
+    url = db.Column(db.String(100), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "team": self.team,
+            "url": self.url,
+        }
 
 class Soccer_Tournament(db.Model):
     __tablename__ = 'soccer_tournament'
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
-    country = db.Column(db.String(30), nullable=False)
-    tournament = db.Column(db.String(30), nullable=True)
+    country = db.Column(db.String(70), nullable=False)
+    tournament = db.Column(db.String(70), nullable=True)
     # def __repr__(self):
     #     return '<User %r>' % self.name
 
@@ -3483,6 +3521,7 @@ class Stats_box_fighter(db.Model):
     weight = db.Column(db.String(10), nullable=False)
     birth = db.Column(db.String(10), nullable=False)
     country = db.Column(db.String(20), nullable=False)
+    season = db.Column(db.String(20), nullable=False)
     association = db.Column(db.String(20), nullable=False)
     category = db.Column(db.String(20), nullable=False)
     w = db.Column(db.String(10), default=0, nullable=False)
@@ -3501,6 +3540,7 @@ class Stats_box_fighter(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "country": self.country,
+            "season": self.season,
             "association": self.association,
             "category": self.category,
             "w": self.w,
@@ -3521,6 +3561,7 @@ class Stats_mma_fighter(db.Model):
     weight = db.Column(db.String(10), nullable=False)
     birth = db.Column(db.String(10), nullable=False)
     country = db.Column(db.String(20), nullable=False)
+    season = db.Column(db.String(20), nullable=False)
     association = db.Column(db.String(20), nullable=False)
     category = db.Column(db.String(20), nullable=False)
     w = db.Column(db.String(10), default=0, nullable=False)
@@ -3539,6 +3580,7 @@ class Stats_mma_fighter(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "country": self.country,
+            "season": self.season,
             "association": self.association,
             "category": self.category,
             "w": self.w,
@@ -3598,6 +3640,7 @@ class Golfer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     country = db.Column(db.String(50), nullable=False)
+    season = db.Column(db.String(50), nullable=False)
     swing = db.Column(db.String(10), nullable=False)
     birth = db.Column(db.String(10), nullable=False)
     headshot = db.Column(db.String(30), nullable=False)
@@ -3613,6 +3656,7 @@ class Golfer(db.Model):
             "id": self.id,
             "name": self.name,
             "country": self.country,
+            "season": self.season,
             "headshot": self.headshot,
             "swing": self.swing,
             "birth": self.birth,

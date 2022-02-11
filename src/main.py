@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER , Props , Odds_to_win , Stats_ncaa_baseball_player ,  Stats_ncaa_baseball_team , Stats_ncaa_football_team , Stats_defensive_player_ncca_football , Stats_offensive_player_ncaa_football , Stats_returning_player_ncaa_football , Stats_kiking_player_ncaa_football , Stats_punting_player_ncaa_football , Stats_ncaa_basket_team , Stats_ncaa_basket_player,Injuries, Futures
+from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER , Logos_Ncaa_Basketball , Logos_Ncaa_Football, Logos_Ncaa_Baseball , Props , Odds_to_win , Stats_ncaa_baseball_player ,  Stats_ncaa_baseball_team , Stats_ncaa_football_team , Stats_defensive_player_ncca_football , Stats_offensive_player_ncaa_football , Stats_returning_player_ncaa_football , Stats_kiking_player_ncaa_football , Stats_punting_player_ncaa_football , Stats_ncaa_basket_team , Stats_ncaa_basket_player,Injuries, Futures
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -539,6 +539,35 @@ def logos_mlb():
         return jsonify([Logos_MLB.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
+# --------------------------------------------------------------------
+
+@app.route("/logos_ncaa_basketball", methods=["GET"])
+def logos_ncaa_basketball():
+    if request.method == "GET":
+        records = Logos_Ncaa_Basketball().query.all()
+        return jsonify([logos_ncaa_basketball.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+
+# --------------------------------------------------------------------
+
+@app.route("/logos_ncaa_football", methods=["GET"])
+def logos_ncaa_football():
+    if request.method == "GET":
+        records = Logos_Ncaa_Football().query.all()
+        return jsonify([logos_ncaa_football.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+
+# --------------------------------------------------------------------
+
+@app.route("/logos_ncaa_baseball", methods=["GET"])
+def logos_ncaa_baseball():
+    if request.method == "GET":
+        records = Logos_Ncaa_Baseball().query.all()
+        return jsonify([logos_ncaa_baseball.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
 
 # --------------------------post methot--------------------------------------------
 
@@ -778,6 +807,69 @@ def createLogos_SOCCER():
         db.session.add(logos_soccer)
         db.session.commit()
         return jsonify({"msg": "logos_soccer created successfully"}), 200
+
+@app.route('/logos_ncaa_basketball', methods=['POST'])
+def createLogos_ncaa_basketball():
+    team = request.json.get("team", None)
+    url = request.json.get("url", None)
+
+    # busca team en BBDD
+    logos_ncaa_basketball = Logos_Ncaa_Basketball.query.filter_by(team=team,url=url).first()
+    # the team was not found on the database
+    if logos_ncaa_basketball:
+        return jsonify({"msg": "LOGO already exists", "LOGO": logos_ncaa_basketball.team}), 401
+    else:
+        # crea casino nuevo
+        # crea registro nuevo en BBDD de
+        logos_ncaa_basketball = Logos_Ncaa_Basketball(
+            team=team,
+            url=url
+        )
+        db.session.add(logos_ncaa_basketball)
+        db.session.commit()
+        return jsonify({"msg": "logos_ncaa_basketball created successfully"}), 200
+
+@app.route('/logos_ncaa_football', methods=['POST'])
+def createlogos_ncaa_football():
+    team = request.json.get("team", None)
+    url = request.json.get("url", None)
+
+    # busca team en BBDD
+    logos_ncaa_football = Logos_Ncaa_Football.query.filter_by(team=team,url=url).first()
+    # the team was not found on the database
+    if logos_ncaa_football:
+        return jsonify({"msg": "LOGO already exists", "LOGO": logos_ncaa_football.team}), 401
+    else:
+        # crea casino nuevo
+        # crea registro nuevo en BBDD de
+        logos_ncaa_football = Logos_Ncaa_Football(
+            team=team,
+            url=url
+        )
+        db.session.add(logos_ncaa_football)
+        db.session.commit()
+        return jsonify({"msg": "logos_ncaa_football created successfully"}), 200
+
+@app.route('/logos_ncaa_baseball', methods=['POST'])
+def createlogos_ncaa_baseball():
+    team = request.json.get("team", None)
+    url = request.json.get("url", None)
+
+    # busca team en BBDD
+    logos_ncaa_baseball = Logos_Ncaa_Baseball.query.filter_by(team=team,url=url).first()
+    # the team was not found on the database
+    if logos_ncaa_baseball:
+        return jsonify({"msg": "LOGO already exists", "LOGO": logos_ncaa_baseball.team}), 401
+    else:
+        # crea casino nuevo
+        # crea registro nuevo en BBDD de
+        logos_ncaa_baseball = Logos_Ncaa_Baseball(
+            team=team,
+            url=url
+        )
+        db.session.add(logos_ncaa_baseball)
+        db.session.commit()
+        return jsonify({"msg": "logos_ncaa_baseball created successfully"}), 200
 
 
 @app.route('/soccer_tournament', methods=['POST'])
@@ -2046,6 +2138,7 @@ def createGolfMatch():
 def createGoler():
     name = request.json.get("name", None)
     country = request.json.get("country", None)
+    season = request.json.get("season", None)
     swing = request.json.get("swing", None)
     birth = request.json.get("birth", None)
     headshot = request.json.get("headshot", None)
@@ -2067,6 +2160,7 @@ def createGoler():
         golfer = Golfer(
             name=name,
             country=country,
+            season=season,
             swing=swing,
             birth=birth,
             headshot=headshot,
@@ -4283,6 +4377,7 @@ def createStats_box_fighter():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     country = request.json.get("country", None)
+    season = request.json.get("season", None)
     association = request.json.get("association", None)
     category = request.json.get("category", None)
     w = request.json.get("w", None)
@@ -4307,6 +4402,7 @@ def createStats_box_fighter():
             weight=weight,
             birth=birth,
             country=country,
+            season=season,
             association=association,
             category=category,
             w=w,
@@ -4328,6 +4424,7 @@ def createStats_mma_fighter():
     birth = request.json.get("birth", None)
     headshot = request.json.get("headshot", None)
     country = request.json.get("country", None)
+    season = request.json.get("season", None)
     association = request.json.get("association", None)
     category = request.json.get("category", None)
     w = request.json.get("w", None)
@@ -4352,6 +4449,7 @@ def createStats_mma_fighter():
             headshot=headshot,
             birth=birth,
             country=country,
+            season=season,
             association=association,
             category=category,
             w=w,
@@ -4974,6 +5072,39 @@ def newslogos_soccer(id):
 
     db.session.commit()
     return jsonify({"msg": "logos_soccer edith successfully"}), 200
+
+@app.route('/logos_ncaa_basketball/<id>', methods=['PUT'])
+def newslogos_ncaa_basketball(id):
+    logos_ncaa_basketball = Logos_Ncaa_Basketball.query.get(id)
+    team = request.json['team']
+    url = request.json['url']
+    logos_ncaa_basketball.team = team
+    logos_ncaa_basketball.url = url
+
+    db.session.commit()
+    return jsonify({"msg": "logos_ncaa_basketball edith successfully"}), 200
+
+@app.route('/logos_ncaa_football/<id>', methods=['PUT'])
+def newslogos_ncaa_football(id):
+    logos_ncaa_football = Logos_Ncaa_Football.query.get(id)
+    team = request.json['team']
+    url = request.json['url']
+    logos_ncaa_football.team = team
+    logos_ncaa_football.url = url
+
+    db.session.commit()
+    return jsonify({"msg": "logos_ncaa_football edith successfully"}), 200
+
+@app.route('/logos_ncaa_baseball/<id>', methods=['PUT'])
+def newslogos_ncaa_baseball(id):
+    logos_ncaa_baseball = Logos_Ncaa_Baseball.query.get(id)
+    team = request.json['team']
+    url = request.json['url']
+    logos_ncaa_baseball.team = team
+    logos_ncaa_baseball.url = url
+
+    db.session.commit()
+    return jsonify({"msg": "logos_ncaa_baseball edith successfully"}), 200
 
 @app.route('/soccer_tournament/<id>', methods=['PUT'])
 def newTournament(id):
@@ -7384,6 +7515,7 @@ def golfEdit(id):
 def golferEdit(id):
     golfer = Golfer.query.get(id)
     country = request.json['country']
+    season = request.json['season']
     swing = request.json['swing']
     birth = request.json['birth']
     cuts = request.json['cuts']
@@ -7394,6 +7526,7 @@ def golferEdit(id):
     avg = request.json['avg']
 
     golfer.country = country
+    golfer.season = season
     golfer.swing = swing
     golfer.birth = birth
     golfer.cuts = cuts
@@ -7926,6 +8059,7 @@ def stats_box_fighterEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     country = request.json['country']
+    season = request.json['season']
     association = request.json['association']
     category = request.json['category']
     w = request.json['w']
@@ -7939,6 +8073,7 @@ def stats_box_fighterEdit(id):
     stats_box_fighter.weight = weight
     stats_box_fighter.birth = birth
     stats_box_fighter.country = country
+    stats_box_fighter.season = season
     stats_box_fighter.association = association
     stats_box_fighter.category = category
     stats_box_fighter.w = w
@@ -7958,6 +8093,7 @@ def stats_mma_fighterEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     country = request.json['country']
+    season = request.json['season']
     association = request.json['association']
     category = request.json['category']
     w = request.json['w']
@@ -7971,6 +8107,7 @@ def stats_mma_fighterEdit(id):
     stats_mma_fighter.weight = weight
     stats_mma_fighter.birth = birth
     stats_mma_fighter.country = country
+    stats_mma_fighter.season = season
     stats_mma_fighter.association = association
     stats_mma_fighter.category = category
     stats_mma_fighter.w = w
@@ -8460,6 +8597,27 @@ def logos_soccer_delete(id):
     db.session.delete(logos_soccer)
     db.session.commit()
     return "logos_soccer was successfully deleted"
+
+@app.route("/logos_ncaa_basketball/<id>", methods=["DELETE"])
+def logos_ncaa_basketball_delete(id):
+    logos_ncaa_basketball = Logos_Ncaa_Basketball.query.get(id)
+    db.session.delete(logos_ncaa_basketball)
+    db.session.commit()
+    return "logos_ncaa_basketball was successfully deleted"
+
+@app.route("/logos_ncaa_football/<id>", methods=["DELETE"])
+def logos_ncaa_football_delete(id):
+    logos_ncaa_football = Logos_Ncaa_Football.query.get(id)
+    db.session.delete(logos_ncaa_football)
+    db.session.commit()
+    return "logos_ncaa_football was successfully deleted"
+
+@app.route("/logos_ncaa_baseball/<id>", methods=["DELETE"])
+def logos_ncaa_baseball_delete(id):
+    logos_ncaa_baseball = Logos_Ncaa_Baseball.query.get(id)
+    db.session.delete(logos_ncaa_baseball)
+    db.session.commit()
+    return "logos_ncaa_baseball was successfully deleted"
 
 @app.route("/soccer/<id>", methods=["DELETE"])
 def soccer_delete(id):
