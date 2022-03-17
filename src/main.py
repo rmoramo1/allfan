@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER , Logos_Ncaa_Basketball , Logos_Ncaa_Football, Logos_Ncaa_Baseball , Props , Odds_to_win , Stats_ncaa_baseball_player ,  Stats_ncaa_baseball_team , Stats_ncaa_football_team , Stats_defensive_player_ncca_football , Stats_offensive_player_ncaa_football , Stats_returning_player_ncaa_football , Stats_kiking_player_ncaa_football , Stats_punting_player_ncaa_football , Stats_ncaa_basket_team , Stats_ncaa_basket_player,Injuries, Futures , Moto_GP
+from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER , Logos_Ncaa_Basketball , Logos_Ncaa_Football, Logos_Ncaa_Baseball , Props , Odds_to_win , Stats_ncaa_baseball_player ,  Stats_ncaa_baseball_team , Stats_ncaa_football_team , Stats_defensive_player_ncca_football , Stats_offensive_player_ncaa_football , Stats_returning_player_ncaa_football , Stats_kiking_player_ncaa_football , Stats_punting_player_ncaa_football , Stats_ncaa_basket_team , Stats_ncaa_basket_player,Injuries, Futures , Moto_GP, Moto_gp_drivers
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -343,6 +343,14 @@ def nascar_drivers():
     if request.method == "GET":
         records = Nascar_drivers.query.all()
         return jsonify([Nascar_drivers.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+ # ---------------------------------------------------------------------------
+ @app.route("/moto_gp_drivers", methods=["GET"])
+def moto_gp_drivers():
+    if request.method == "GET":
+        records = Moto_gp_drivers.query.all()
+        return jsonify([Moto_gp_drivers.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
  # ---------------------------------------------------------------------------
@@ -2024,7 +2032,6 @@ def createNacarRun():
         db.session.commit()
         return jsonify({"msg": "Fight created successfully"}), 200
 
-
 @app.route('/nascar_drivers', methods=['POST'])
 def createNacarDrivers():
     name = request.json.get("name", None)
@@ -2074,6 +2081,56 @@ def createNacarDrivers():
         db.session.add(nascar_drivers)
         db.session.commit()
         return jsonify({"msg": "Nascar Driver created successfully"}), 200
+
+@app.route('/moto_gp_drivers', methods=['POST'])
+def createNacarDrivers():
+    name = request.json.get("name", None)
+    country = request.json.get("country", None)
+    birth = request.json.get("birth", None)
+    headshot = request.json.get("headshot", None)
+    sponsor = request.json.get("sponsor", None)
+    engine = request.json.get("engine", None)
+    number_car = request.json.get("number_car", None)
+    rank = request.json.get("rank", None)
+    starts = request.json.get("starts", None)
+    poles = request.json.get("poles", None)
+    top5 = request.json.get("top5", None)
+    top10 = request.json.get("top10", None)
+    laps_lead = request.json.get("laps_lead", None)
+    pts = request.json.get("pts", None)
+    AVG_laps = request.json.get("AVG_laps", None)
+    AVG_finish = request.json.get("AVG_finish", None)
+
+    # busca mlb en BBDD
+    moto_gp_drivers = Moto_gp_drivers.query.filter_by(
+        engine=engine, number_car=number_car, name=name).first()
+    # the mlb was not found on the database
+    if moto_gp_drivers:
+        return jsonify({"msg": "Nascar Driver already exists", "name": moto_gp_drivers.name}), 401
+    else:
+        # crea mlb nuevo
+        # crea registro nuevo en BBDD de
+        moto_gp_drivers = Moto_gp_drivers(
+            name=name,
+            country=country,
+            birth=birth,
+            headshot=headshot,
+            sponsor=sponsor,
+            engine=engine,
+            number_car=number_car,
+            rank=rank,
+            starts=starts,
+            poles=poles,
+            top5=top5,
+            top10=top10,
+            laps_lead=laps_lead,
+            pts=pts,
+            AVG_laps=AVG_laps,
+            AVG_finish=AVG_finish,
+        )
+        db.session.add(moto_gp_drivers)
+        db.session.commit()
+        return jsonify({"msg": "moto Driver created successfully"}), 200
 
 @app.route('/moto_gp', methods=['POST'])
 def createMoto_gpRun():
@@ -7472,7 +7529,6 @@ def nascarEdit(id):
     db.session.commit()
     return jsonify({"msg": "nascar edith successfully"}), 200
 
-
 @app.route('/nascar_drivers/<id>', methods=['PUT'])
 def nascar_driversEdit(id):
     nascar_drivers = Nascar_drivers.query.get(id)
@@ -7512,6 +7568,46 @@ def nascar_driversEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "nascar_drivers edith successfully"}), 200
+
+@app.route('/moto_gp_drivers/<id>', methods=['PUT'])
+def moto_gp_driversEdit(id):
+    moto_gp_drivers = Moto_gp_drivers.query.get(id)
+    name = request.json['name']
+    country = request.json['country']
+    birth = request.json['birth']
+    headshot = request.json['headshot']
+    sponsor = request.json['sponsor']
+    engine = request.json['engine']
+    number_car = request.json['number_car']
+    rank = request.json['rank']
+    starts = request.json['starts']
+    poles = request.json['poles']
+    top5 = request.json['top5']
+    top10 = request.json['top10']
+    laps_lead = request.json['laps_lead']
+    pts = request.json['pts']
+    AVG_laps = request.json['AVG_laps']
+    AVG_finish = request.json['AVG_finish']
+
+    moto_gp_drivers.name = name
+    moto_gp_drivers.country = country
+    moto_gp_drivers.birth = birth
+    moto_gp_drivers.headshot = headshot
+    moto_gp_drivers.sponsor = sponsor
+    moto_gp_drivers.engine = engine
+    moto_gp_drivers.number_car = number_car
+    moto_gp_drivers.rank = rank
+    moto_gp_drivers.starts = starts
+    moto_gp_drivers.poles = poles
+    moto_gp_drivers.top5 = top5
+    moto_gp_drivers.top10 = top10
+    moto_gp_drivers.laps_lead = laps_lead
+    moto_gp_drivers.pts = pts
+    moto_gp_drivers.AVG_laps = AVG_laps
+    moto_gp_drivers.AVG_finish = AVG_finish
+
+    db.session.commit()
+    return jsonify({"msg": "moto_gp_drivers edith successfully"}), 200
 
 @app.route('/moto_gp/<id>', methods=['PUT'])
 def moto_gpEdit(id):
@@ -8963,6 +9059,13 @@ def nascar_drivers_delete(id):
     db.session.delete(nascar_drivers)
     db.session.commit()
     return "nascar_drivers was successfully deleted"
+
+@app.route("/moto_gp_drivers/<id>", methods=["DELETE"])
+def moto_gp_drivers_delete(id):
+    moto_gp_drivers = Moto_gp_drivers.query.get(id)
+    db.session.delete(moto_gp_drivers)
+    db.session.commit()
+    return "moto_gp_drivers was successfully deleted"
 
 
 @app.route("/golfer/<id>", methods=["DELETE"])

@@ -3665,6 +3665,48 @@ class Nascar_drivers(db.Model):
             # do not serialize the password, its a security breach
         }
 
+class Moto_gp_drivers(db.Model):
+    __tablename__ = "moto_gp_drivers"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    country = db.Column(db.String(50), nullable=False)
+    birth = db.Column(db.String(50), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
+
+    sponsor = db.Column(db.String(100), nullable=False)
+    engine = db.Column(db.String(50), nullable=False)
+    number_car = db.Column(db.String(50), nullable=False)
+    rank = db.Column(db.String(50), nullable=False)
+    starts = db.Column(db.String(50), nullable=False)
+    poles = db.Column(db.String(50), nullable=False)
+    top5 = db.Column(db.String(50), nullable=False)
+    top10 = db.Column(db.String(50), nullable=False)
+    laps_lead = db.Column(db.String(50), nullable=False)
+    pts = db.Column(db.String(50), nullable=False)
+    AVG_laps = db.Column(db.String(50), nullable=False)
+    AVG_finish = db.Column(db.String(50), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "country": self.country,
+            "birth": self.birth,
+            "headshot": self.headshot,
+            "sponsor": self.sponsor,
+            "engine": self.engine,
+            "number_car": self.number_car,
+            "rank": self.rank,
+            "starts": self.starts,
+            "poles": self.poles,
+            "top5": self.top5,
+            "top10": self.top10,
+            "laps_lead": self.laps_lead,
+            "pts": self.pts,
+            "AVG_laps": self.AVG_laps,
+            "AVG_finish": self.AVG_finish,
+            # do not serialize the password, its a security breach
+        }
 
 class Golfer(db.Model):
     __tablename__ = "golfer"
