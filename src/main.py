@@ -2076,7 +2076,7 @@ def createNacarDrivers():
         return jsonify({"msg": "Nascar Driver created successfully"}), 200
 
 @app.route('/moto_gp', methods=['POST'])
-def createNacarRun():
+def createMoto_gpRun():
     date = request.json.get("date", None)
     hour = request.json.get("hour", None)
     week = request.json.get("week", None)
