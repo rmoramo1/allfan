@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER , Logos_Ncaa_Basketball , Logos_Ncaa_Football, Logos_Ncaa_Baseball , Props , Odds_to_win , Stats_ncaa_baseball_player ,  Stats_ncaa_baseball_team , Stats_ncaa_football_team , Stats_defensive_player_ncca_football , Stats_offensive_player_ncaa_football , Stats_returning_player_ncaa_football , Stats_kiking_player_ncaa_football , Stats_punting_player_ncaa_football , Stats_ncaa_basket_team , Stats_ncaa_basket_player,Injuries, Futures
+from models import db,User,Casinos, Nfl, Mlb, Nba, Nhl , Boxeo , Mma ,Nascar ,Nascar_drivers,Match_Ups_Nacar ,Golf ,Golfer ,Ncaa_Baseball,Ncaa_Football,Ncaa_Basketball,Stats_nba_player,Stats_nba_team, Stats_mlb_team, Stats_mlb_player,Stats_nhl_team, Stats_nhl_player,Stats_box_fighter, Stats_mma_fighter,Stats_nfl_team,Stats_defensive_player_nfl, Stats_offensive_player_nfl,Stats_returning_player_nfl,Stats_kiking_player_nfl,Stats_punting_player_nfl,Soccer,Soccer_Tournament,Stats_Soccer_Team,Stats_Soccer_Player,Logos_NFL,Logos_NBA,Logos_MLB,Logos_NHL,Logos_SOCCER , Logos_Ncaa_Basketball , Logos_Ncaa_Football, Logos_Ncaa_Baseball , Props , Odds_to_win , Stats_ncaa_baseball_player ,  Stats_ncaa_baseball_team , Stats_ncaa_football_team , Stats_defensive_player_ncca_football , Stats_offensive_player_ncaa_football , Stats_returning_player_ncaa_football , Stats_kiking_player_ncaa_football , Stats_punting_player_ncaa_football , Stats_ncaa_basket_team , Stats_ncaa_basket_player,Injuries, Futures , Moto_GP
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -326,6 +326,14 @@ def nascar():
     if request.method == "GET":
         records = Nascar.query.all()
         return jsonify([Nascar.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ---------------------------------------------------------------------------
+@app.route("/moto_gp", methods=["GET"])
+def moto_gp():
+    if request.method == "GET":
+        records = Moto_GP.query.all()
+        return jsonify([Moto_GP.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
@@ -2067,6 +2075,46 @@ def createNacarDrivers():
         db.session.commit()
         return jsonify({"msg": "Nascar Driver created successfully"}), 200
 
+@app.route('/moto_gp', methods=['POST'])
+def createNacarRun():
+    date = request.json.get("date", None)
+    hour = request.json.get("hour", None)
+    week = request.json.get("week", None)
+    status = request.json.get("status", None)
+    casino = request.json.get("casino", None)
+    race = request.json.get("race", None)
+    track = request.json.get("track", None)
+    rounds = request.json.get("rounds", None)
+    location = request.json.get("location", None)
+    place1 = request.json.get("place1", None)
+    place2 = request.json.get("place2", None)
+    place3 = request.json.get("place3", None)
+
+    # busca mlb en BBDD
+    moto_gp = Moto_GP.query.filter_by(
+        race=race, place1=place1, date=date).first()
+    # the mlb was not found on the database
+    if moto_gp:
+        return jsonify({"msg": "Carrera ya existe already exists", "status": moto_gp.race}), 401
+    else:
+        # crea mlb nuevo
+        # crea registro nuevo en BBDD de
+        moto_gp = Moto_GP(
+            date=date,
+            hour=hour,
+            week=week,
+            status=status,
+            casino=casino,
+            race=race,
+            track=track,
+            location=location,
+            place1=place1,
+            place2=place2,
+            place3=place3,
+        )
+        db.session.add(moto_gp)
+        db.session.commit()
+        return jsonify({"msg": "moto_gp created successfully"}), 200
 
 @app.route('/match_ups_nascar', methods=['POST'])
 def createNacarMatch():
@@ -7465,6 +7513,36 @@ def nascar_driversEdit(id):
     db.session.commit()
     return jsonify({"msg": "nascar_drivers edith successfully"}), 200
 
+@app.route('/moto_gp/<id>', methods=['PUT'])
+def moto_gpEdit(id):
+    moto_gp = Moto_GP.query.get(id)
+    date = request.json['date']
+    hour = request.json['hour']
+    week = request.json['week']
+    status = request.json['status']
+    casino = request.json['casino']
+    race = request.json['race']
+    track = request.json['track']
+    location = request.json['location']
+    place1 = request.json['place1']
+    place2 = request.json['place2']
+    place3 = request.json['place3']
+
+    moto_gp.date = date
+    moto_gp.hour = hour
+    moto_gp.week = week
+    moto_gp.status = status
+    moto_gp.casino = casino
+    moto_gp.race = race
+    moto_gp.track = track
+    moto_gp.location = location
+    moto_gp.place1 = place1
+    moto_gp.place2 = place2
+    moto_gp.place3 = place3
+
+    db.session.commit()
+    return jsonify({"msg": "moto_gp edith successfully"}), 200
+
 
 @app.route('/match_ups_nascar/<id>', methods=['PUT'])
 def match_ups_nascarEdit(id):
@@ -8742,6 +8820,13 @@ def nascar_delete(id):
     db.session.delete(nascar)
     db.session.commit()
     return "nascar was successfully deleted"
+
+@app.route("/moto_gp/<id>", methods=["DELETE"])
+def moto_gp_delete(id):
+    moto_gp = Moto_GP.query.get(id)
+    db.session.delete(moto_gp)
+    db.session.commit()
+    return "moto_gp was successfully deleted"
 
 
 @app.route("/match_ups_nascar/<id>", methods=["DELETE"])

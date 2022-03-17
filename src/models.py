@@ -2987,6 +2987,37 @@ class Nascar(db.Model):
             # do not serialize the password, its a security breach
         }
 
+class Moto_GP(db.Model):
+    __tablename__ = "moto_gp"
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(12), nullable=False)
+    hour = db.Column(db.String(20), nullable=False)
+    week = db.Column(db.String(10), nullable=False)
+    status = db.Column(db.String(15), nullable=False)
+    casino = db.Column(db.String(15), nullable=False)
+    race = db.Column(db.String(50), nullable=False)
+    track = db.Column(db.String(50), nullable=False)
+    location = db.Column(db.String(100), nullable=False)
+    place1 = db.Column(db.String(50), nullable=False)
+    place2 = db.Column(db.String(50), nullable=False)
+    place3 = db.Column(db.String(50), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "hour": self.hour,
+            "week": self.week,
+            "status": self.status,
+            "casino": self.casino,
+            "race": self.race,
+            "track": self.track,
+            "location": self.location,
+            "place1": self.place1,
+            "place2": self.place2,
+            "place3": self.place3,
+            "date": self.date,
+            # do not serialize the password, its a security breach
+        }
 
 class Match_Ups_Nacar(db.Model):
     __tablename__ = "match_ups_nascar"
