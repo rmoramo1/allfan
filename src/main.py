@@ -346,7 +346,7 @@ def nascar_drivers():
     else:
         return jsonify({"msg": "no autorizado"})
  # ---------------------------------------------------------------------------
- @app.route("/moto_gp_drivers", methods=["GET"])
+@app.route("/moto_gp_drivers", methods=["GET"])
 def moto_gp_drivers():
     if request.method == "GET":
         records = Moto_gp_drivers.query.all()
