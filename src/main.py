@@ -701,6 +701,7 @@ def createOdds_to_win():
     line = request.json.get("line", None)
     line = request.json.get("line", None)
     team = request.json.get("team", None)
+    date = request.json.get("date", None)
 
     # busca team en BBDD
     odds_to_win = Odds_to_win.query.filter_by(title=title,line=line,type_odd=type_odd,team=team).first()
@@ -715,7 +716,8 @@ def createOdds_to_win():
             sport=sport,
             type_odd=type_odd,
             line=line,
-            team=team
+            team=team,
+            date=date
         )
         db.session.add(odds_to_win)
         db.session.commit()
@@ -2001,6 +2003,7 @@ def createNacarRun():
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
     race = request.json.get("race", None)
+    event = request.json.get("event", None)
     track = request.json.get("track", None)
     rounds = request.json.get("rounds", None)
     location = request.json.get("location", None)
@@ -2024,6 +2027,7 @@ def createNacarRun():
             status=status,
             casino=casino,
             race=race,
+            event=event,
             track=track,
             location=location,
             place1=place1,
@@ -5075,11 +5079,13 @@ def newsodds_to_win(id):
     type_odd = request.json['type_odd']
     line = request.json['line']
     team = request.json['team']
+    date = request.json['date']
     odds_to_win.title = title
     odds_to_win.sport = sport
     odds_to_win.type_odd = type_odd
     odds_to_win.line = line
     odds_to_win.team = team
+    odds_to_win.date = date
 
     db.session.commit()
     return jsonify({"msg": "odds_to_win edith successfully"}), 200
@@ -7512,6 +7518,7 @@ def nascarEdit(id):
     status = request.json['status']
     casino = request.json['casino']
     race = request.json['race']
+    event = request.json['event']
     track = request.json['track']
     location = request.json['location']
     place1 = request.json['place1']
@@ -7524,6 +7531,7 @@ def nascarEdit(id):
     nascar.status = status
     nascar.casino = casino
     nascar.race = race
+    nascar.event = event
     nascar.track = track
     nascar.location = location
     nascar.place1 = place1

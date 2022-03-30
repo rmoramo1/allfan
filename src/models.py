@@ -119,6 +119,7 @@ class Odds_to_win(db.Model):
     type_odd = db.Column(db.String(30), nullable=False)
     line = db.Column(db.String(10), nullable=False)
     team = db.Column(db.String(10), nullable=False)
+    date = db.Column(db.String(20), nullable=False)
     # def __repr__(self):
     #     return '<User %r>' % self.name
 
@@ -129,7 +130,8 @@ class Odds_to_win(db.Model):
             "sport": self.sport,
             "type_odd": self.type_odd,
             "line": self.line,
-            "team": self.team
+            "team": self.team,
+            "date": self.date
             # do not serialize the password, its a security breach
         }
 
@@ -2966,6 +2968,7 @@ class Nascar(db.Model):
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
     race = db.Column(db.String(50), nullable=False)
+    event = db.Column(db.String(50), nullable=False)
     track = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(100), nullable=False)
     place1 = db.Column(db.String(50), nullable=False)
@@ -2980,6 +2983,7 @@ class Nascar(db.Model):
             "status": self.status,
             "casino": self.casino,
             "race": self.race,
+            "event": self.event,
             "track": self.track,
             "location": self.location,
             "place1": self.place1,
