@@ -611,6 +611,7 @@ def createfutures():
     sport = request.json.get("sport", None)
     future = request.json.get("future", None)
     line = request.json.get("line", None)
+    date = request.json.get("date", None)
 
     # busca team en BBDD
     futures = Futures.query.filter_by(future=future).first()
@@ -624,6 +625,7 @@ def createfutures():
             sport=sport,
             future=future,
             line=line,
+            date=date,
         )
         db.session.add(futures)
         db.session.commit()
@@ -5116,9 +5118,11 @@ def newsfutures(id):
     sport = request.json['sport']
     future = request.json['future']
     line = request.json['line']
+    date = request.json['date']
     futures.sport = sport
     futures.future = future
     futures.line = line
+    futures.date = date
 
     db.session.commit()
     return jsonify({"msg": "futures edith successfully"}), 200

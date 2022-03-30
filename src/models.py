@@ -66,6 +66,7 @@ class Futures(db.Model):
     sport = db.Column(db.String(20), nullable=False)
     future = db.Column(db.String(20), nullable=False)
     line = db.Column(db.String(20), nullable=False)
+    date = db.Column(db.String(20), nullable=False)
 
     def serialize(self):
         return {
@@ -73,6 +74,7 @@ class Futures(db.Model):
             "sport": self.sport,
             "future": self.future,
             "line": self.line,
+            "date": self.date,
         }
 
 
