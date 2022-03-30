@@ -2824,6 +2824,7 @@ class Boxeo(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
+    rotation_number = db.Column(db.String(10), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
@@ -2855,6 +2856,7 @@ class Boxeo(db.Model):
             "id": self.id,
             "status": self.status,
             "casino": self.casino,
+            "rotation_number": self.rotation_number,
             "event": self.event,
             "rounds": self.rounds,
             "location_Fight": self.location_Fight,
@@ -2895,6 +2897,7 @@ class Mma(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
+    rotation_number = db.Column(db.String(15), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
@@ -2926,6 +2929,7 @@ class Mma(db.Model):
             "id": self.id,
             "status": self.status,
             "casino": self.casino,
+            "rotation_number": self.rotation_number,
             "event": self.event,
             "rounds": self.rounds,
             "location_Fight": self.location_Fight,
@@ -2967,6 +2971,7 @@ class Nascar(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
+    rotation_number = db.Column(db.String(10), nullable=False)
     race = db.Column(db.String(50), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     track = db.Column(db.String(50), nullable=False)
@@ -2982,6 +2987,7 @@ class Nascar(db.Model):
             "week": self.week,
             "status": self.status,
             "casino": self.casino,
+            "rotation_number": self.rotation_number,
             "race": self.race,
             "event": self.event,
             "track": self.track,
@@ -3001,6 +3007,7 @@ class Moto_GP(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
+    rotation_number = db.Column(db.String(15), nullable=False)
     race = db.Column(db.String(50), nullable=False)
     track = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(100), nullable=False)
@@ -3015,6 +3022,7 @@ class Moto_GP(db.Model):
             "week": self.week,
             "status": self.status,
             "casino": self.casino,
+            "rotation_number": self.rotation_number,
             "race": self.race,
             "track": self.track,
             "location": self.location,
@@ -3052,6 +3060,7 @@ class Golf(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
+    rotation_number = db.Column(db.String(15), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
     place1 = db.Column(db.String(50), nullable=False)

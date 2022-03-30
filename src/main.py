@@ -1846,6 +1846,7 @@ def createBoxFight():
     week = request.json.get("week", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
+    rotation_number = request.json.get("rotation_number", None)
     event = request.json.get("event", None)
     rounds = request.json.get("rounds", None)
     location_Fight = request.json.get("location_Fight", None)
@@ -1887,6 +1888,7 @@ def createBoxFight():
             week=week,
             status=status,
             casino=casino,
+            rotation_number=rotation_number,
             event=event,
             rounds=rounds,
             location_Fight=location_Fight,
@@ -1924,6 +1926,7 @@ def createMmaFight():
     week = request.json.get("week", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
+    rotation_number = request.json.get("rotation_number", None)
     event = request.json.get("event", None)
     rounds = request.json.get("rounds", None)
     location_Fight = request.json.get("location_Fight", None)
@@ -1965,6 +1968,7 @@ def createMmaFight():
             week=week,
             status=status,
             casino=casino,
+            rotation_number=rotation_number,
             event=event,
             rounds=rounds,
             location_Fight=location_Fight,
@@ -2002,6 +2006,7 @@ def createNacarRun():
     week = request.json.get("week", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
+    rotation_number = request.json.get("rotation_number", None)
     race = request.json.get("race", None)
     event = request.json.get("event", None)
     track = request.json.get("track", None)
@@ -2016,7 +2021,7 @@ def createNacarRun():
         race=race, place1=place1, date=date).first()
     # the mlb was not found on the database
     if nascar:
-        return jsonify({"msg": "Pelea de Box already exists", "status": nascar.race}), 401
+        return jsonify({"msg": "Carrera de Nscar already exists", "status": nascar.race}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
@@ -2026,6 +2031,7 @@ def createNacarRun():
             week=week,
             status=status,
             casino=casino,
+            rotation_number=rotation_number,
             race=race,
             event=event,
             track=track,
@@ -2112,7 +2118,7 @@ def createMoto_gp_drivers():
         engine=engine, number_car=number_car, name=name).first()
     # the mlb was not found on the database
     if moto_gp_drivers:
-        return jsonify({"msg": "Nascar Driver already exists", "name": moto_gp_drivers.name}), 401
+        return jsonify({"msg": "Moto GP Driver already exists", "name": moto_gp_drivers.name}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
@@ -2144,7 +2150,8 @@ def createMoto_gpRun():
     hour = request.json.get("hour", None)
     week = request.json.get("week", None)
     status = request.json.get("status", None)
-    casino = request.json.get("casino", None)
+    casino = request.json.get("casino", None) 
+    moto_gp = request.json.get("moto_gp", None)
     race = request.json.get("race", None)
     track = request.json.get("track", None)
     rounds = request.json.get("rounds", None)
@@ -2168,6 +2175,7 @@ def createMoto_gpRun():
             week=week,
             status=status,
             casino=casino,
+            moto_gp=moto_gp,
             race=race,
             track=track,
             location=location,
@@ -2213,6 +2221,7 @@ def createGolfMatch():
     week = request.json.get("week", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
+    rotation_number = request.json.get("rotation_number", None)
     event = request.json.get("event", None)
     location = request.json.get("location", None)
     place1 = request.json.get("place1", None)
@@ -2234,6 +2243,7 @@ def createGolfMatch():
             week=week,
             status=status,
             casino=casino,
+            rotation_number=rotation_number,
             event=event,
             location=location,
             place1=place1,
@@ -7383,6 +7393,7 @@ def boxeoEdit(id):
     week = request.json['week']
     status = request.json['status']
     casino = request.json['casino']
+    rotation_number = request.json['rotation_number']
     event = request.json['event']
     rounds = request.json['rounds']
     location_Fight = request.json['location_Fight']
@@ -7412,7 +7423,8 @@ def boxeoEdit(id):
     boxeo.hour = hour
     boxeo.week = week
     boxeo.status = status
-    boxeo.casino = casino
+    boxeo.casino = casino 
+    boxeo.rotation_number = rotation_number 
     boxeo.event = event
     boxeo.rounds = rounds
     boxeo.location_Fight = location_Fight
@@ -7450,6 +7462,7 @@ def mmaEdit(id):
     week = request.json['week']
     status = request.json['status']
     casino = request.json['casino']
+    rotation_number = request.json['rotation_number']
     event = request.json['event']
     rounds = request.json['rounds']
     location_Fight = request.json['location_Fight']
@@ -7479,7 +7492,8 @@ def mmaEdit(id):
     mma.hour = hour
     mma.week = week
     mma.status = status
-    mma.casino = casino
+    mma.casino = casino 
+    mma.rotation_number = rotation_number
     mma.event = event
     mma.rounds = rounds
     mma.location_Fight = location_Fight
@@ -7517,6 +7531,7 @@ def nascarEdit(id):
     week = request.json['week']
     status = request.json['status']
     casino = request.json['casino']
+    rotation_number = request.json['rotation_number']
     race = request.json['race']
     event = request.json['event']
     track = request.json['track']
@@ -7529,7 +7544,8 @@ def nascarEdit(id):
     nascar.hour = hour
     nascar.week = week
     nascar.status = status
-    nascar.casino = casino
+    nascar.casino = casino 
+    nascar.rotation_number = rotation_number
     nascar.race = race
     nascar.event = event
     nascar.track = track
@@ -7629,6 +7645,7 @@ def moto_gpEdit(id):
     week = request.json['week']
     status = request.json['status']
     casino = request.json['casino']
+    rotation_number = request.json['rotation_number']
     race = request.json['race']
     track = request.json['track']
     location = request.json['location']
@@ -7640,7 +7657,8 @@ def moto_gpEdit(id):
     moto_gp.hour = hour
     moto_gp.week = week
     moto_gp.status = status
-    moto_gp.casino = casino
+    moto_gp.casino = casino 
+    moto_gp.rotation_number = rotation_number 
     moto_gp.race = race
     moto_gp.track = track
     moto_gp.location = location
@@ -7676,6 +7694,7 @@ def golfEdit(id):
     week = request.json['week']
     status = request.json['status']
     casino = request.json['casino']
+    rotation_number = request.json['rotation_number']
     event = request.json['event']
     location = request.json['location']
     place1 = request.json['place1']
@@ -7686,7 +7705,8 @@ def golfEdit(id):
     golf.hour = hour
     golf.week = week
     golf.status = status
-    golf.casino = status
+    golf.casino = casino 
+    golf.rotation_number = rotation_number 
     golf.event = event
     golf.location = location
     golf.place1 = place1
