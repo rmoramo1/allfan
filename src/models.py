@@ -110,7 +110,7 @@ class Props(db.Model):
 
 
 class Odds_to_win(db.Model):
-    __tablename__ = 'nasca'
+    __tablename__ = 'odds_to_win'
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
