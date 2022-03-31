@@ -110,7 +110,7 @@ class Props(db.Model):
 
 
 class Odds_to_win(db.Model):
-    __tablename__ = 'odds_to_win'
+    __tablename__ = 'nasca'
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
@@ -2897,7 +2897,7 @@ class Mma(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
-    rotation_number = db.Column(db.String(15), nullable=False)
+    rotation_number = db.Column(db.String(10), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
@@ -3007,7 +3007,7 @@ class Moto_GP(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
-    rotation_number = db.Column(db.String(15), nullable=False)
+    rotation_number = db.Column(db.String(10), nullable=False)
     race = db.Column(db.String(50), nullable=False)
     track = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(100), nullable=False)
@@ -3060,7 +3060,7 @@ class Golf(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
-    rotation_number = db.Column(db.String(15), nullable=False)
+    rotation_number = db.Column(db.String(10), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
     place1 = db.Column(db.String(50), nullable=False)
@@ -3073,6 +3073,7 @@ class Golf(db.Model):
             "status": self.status,
             "casino": self.casino,
             "event": self.event,
+            "rotation_number": self.rotation_number,
             "location": self.location,
             "place1": self.place1,
             "place2": self.place2,
