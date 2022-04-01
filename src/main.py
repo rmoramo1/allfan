@@ -8515,6 +8515,7 @@ def stats_offensive_player_nflEdit(id):
     rush_yard_pg = request.json['rush_yard_pg']
     fum = request.json['fum']
     lst = request.json['lst']
+    long_pass = request.json['long_pass']
     fd = request.json['fd']
     rec = request.json['rec']
     r_tgts = request.json['r_tgts']
@@ -8557,7 +8558,9 @@ def stats_offensive_player_nflEdit(id):
     stats_offensive_player_nfl.rush_tt = rush_tt
     stats_offensive_player_nfl.rush_yard_pg = rush_yard_pg
     stats_offensive_player_nfl.fum = fum
-    stats_offensive_player_nfl.lst = lst
+    stats_offensive_player_nfl.lst = lst 
+    stats_offensive_player_nfl.lst = lst 
+    stats_offensive_player_nfl.long_pass = long_pass
     stats_offensive_player_nfl.fd = fd
     stats_offensive_player_nfl.rec = rec
     stats_offensive_player_nfl.r_tgts = r_tgts
