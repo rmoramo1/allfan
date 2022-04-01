@@ -3628,6 +3628,7 @@ def createstats_offensive_player_ncaa_football():
     rush_yard_pg = request.json.get("rush_yard_pg", None)
     fum = request.json.get("fum", None)
     lst = request.json.get("lst", None)
+    long_pass = request.json.get("long_pass", None)
     fd = request.json.get("fd", None)
     rec = request.json.get("rec", None)
     r_tgts = request.json.get("r_tgts", None)
@@ -3683,6 +3684,7 @@ def createstats_offensive_player_ncaa_football():
             rush_yard_pg=rush_yard_pg,
             fum=fum,
             lst=lst,
+            long_pass=long_pass,
             fd=fd,
             rec=rec,
             r_tgts=r_tgts,
@@ -6358,6 +6360,7 @@ def stats_offensive_player_ncaa_footballEdit(id):
     rush_yard_pg = request.json['rush_yard_pg']
     fum = request.json['fum']
     lst = request.json['lst']
+    long_pass = request.json['long_pass']
     fd = request.json['fd']
     rec = request.json['rec']
     r_tgts = request.json['r_tgts']
@@ -6400,7 +6403,8 @@ def stats_offensive_player_ncaa_footballEdit(id):
     stats_offensive_player_ncaa_football.rush_tt = rush_tt
     stats_offensive_player_ncaa_football.rush_yard_pg = rush_yard_pg
     stats_offensive_player_ncaa_football.fum = fum
-    stats_offensive_player_ncaa_football.lst = lst
+    stats_offensive_player_ncaa_football.lst = lst 
+    stats_offensive_player_ncaa_football.long_pass = long_pass 
     stats_offensive_player_ncaa_football.fd = fd
     stats_offensive_player_ncaa_football.rec = rec
     stats_offensive_player_ncaa_football.r_tgts = r_tgts

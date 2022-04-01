@@ -1662,7 +1662,8 @@ class Stats_offensive_player_ncaa_football(db.Model):
     rush_tt = db.Column(db.String(10), nullable=False)
     rush_yard_pg = db.Column(db.String(10), nullable=False)
     fum = db.Column(db.String(10), nullable=False)
-    lst = db.Column(db.String(10), nullable=False)
+    lst = db.Column(db.String(10), nullable=False) 
+    long_pass = db.Column(db.String(10), nullable=False) 
     fd = db.Column(db.String(10), nullable=False)
     rec = db.Column(db.String(10), nullable=False)
     r_tgts = db.Column(db.String(10), nullable=False)
@@ -1709,6 +1710,7 @@ class Stats_offensive_player_ncaa_football(db.Model):
             "rush_yard_pg": self.rush_yard_pg,
             "fum": self.fum,
             "lst": self.lst,
+            "long_pass": self.long_pass,
             "fd": self.fd,
             "rec": self.rec,
             "r_tgts": self.r_tgts,
