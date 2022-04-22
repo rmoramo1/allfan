@@ -2637,6 +2637,7 @@ def createstats_ncaa_basket_team():
     w = request.json.get("w", None)
     L = request.json.get("L", None)
     ptc = request.json.get("ptc", None)
+    gb = request.json.get("gb", None)
     home = request.json.get("home", None)
     away = request.json.get("away", None)
     div = request.json.get("div", None)
@@ -2663,6 +2664,7 @@ def createstats_ncaa_basket_team():
             w=w,
             L=L,
             ptc=ptc,
+            gb=gb,
             home=home,
             away=away,
             div=div,
@@ -7258,6 +7260,7 @@ def stats_ncaa_basket_teamEdit(id):
     w = request.json['w']
     L = request.json['L']
     ptc = request.json['ptc']
+    gb = request.json['gb']
     home = request.json['home']
     away = request.json['away']
     div = request.json['div']

@@ -2586,6 +2586,7 @@ class Stats_ncaa_basket_team(db.Model):
     w = db.Column(db.String(10), default=0, nullable=False)
     L = db.Column(db.String(10), default=0, nullable=False)
     ptc = db.Column(db.String(10), default=0, nullable=False)
+    gb = db.Column(db.String(10), default=0, nullable=False)
     home = db.Column(db.String(10), default=0, nullable=False)
     away = db.Column(db.String(10), default=0, nullable=False)
     div = db.Column(db.String(10), default=0, nullable=False)
@@ -2608,6 +2609,7 @@ class Stats_ncaa_basket_team(db.Model):
             "w": self.w,
             "L": self.L,
             "ptc": self.ptc,
+            "gb": self.gb,
             "home": self.home,
             "away": self.away,
             "div": self.div,
