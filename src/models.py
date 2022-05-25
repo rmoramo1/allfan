@@ -224,8 +224,6 @@ class Odds_to_win(db.Model):
     money_line_49 = db.Column(db.String(10), nullable=False)
     money_line_50 = db.Column(db.String(10), nullable=False)
 
-    line = db.Column(db.String(10), nullable=False)
-
     def serialize(self):
         return {
             "id": self.id,

@@ -924,7 +924,7 @@ def createOdds_to_win():
             money_line_47=money_line_47,
             money_line_48=money_line_48,
             money_line_49=money_line_49,
-            money_line_50=money_line_50,
+            money_line_50=money_line_50
         )
         db.session.add(odds_to_win)
         db.session.commit()
