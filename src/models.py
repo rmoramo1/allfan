@@ -114,24 +114,228 @@ class Odds_to_win(db.Model):
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
+    rotation_number = db.Column(db.String(30), nullable=False)
     title = db.Column(db.String(30), nullable=False)
     sport = db.Column(db.String(30), nullable=False)
-    type_odd = db.Column(db.String(30), nullable=False)
-    line = db.Column(db.String(10), nullable=False)
-    team = db.Column(db.String(10), nullable=False)
     date = db.Column(db.String(20), nullable=False)
-    # def __repr__(self):
-    #     return '<User %r>' % self.name
+    position_1 = db.Column(db.String(20), nullable=False)
+    position_2 = db.Column(db.String(20), nullable=False)
+    position_3 = db.Column(db.String(20), nullable=False)
+    date = db.Column(db.String(20), nullable=False)
+    date = db.Column(db.String(20), nullable=False)
+    competitor_1 = db.Column(db.String(50), nullable=False)
+    competitor_2 = db.Column(db.String(50), nullable=False)
+    competitor_3 = db.Column(db.String(50), nullable=False)
+    competitor_4 = db.Column(db.String(50), nullable=False)
+    competitor_5 = db.Column(db.String(50), nullable=False)
+    competitor_6 = db.Column(db.String(50), nullable=False)
+    competitor_7 = db.Column(db.String(50), nullable=False)
+    competitor_8 = db.Column(db.String(50), nullable=False)
+    competitor_9 = db.Column(db.String(50), nullable=False)
+    competitor_10 = db.Column(db.String(50), nullable=False)
+    competitor_11 = db.Column(db.String(50), nullable=False)
+    competitor_12 = db.Column(db.String(50), nullable=False)
+    competitor_13 = db.Column(db.String(50), nullable=False)
+    competitor_14 = db.Column(db.String(50), nullable=False)
+    competitor_15 = db.Column(db.String(50), nullable=False)
+    competitor_16 = db.Column(db.String(50), nullable=False)
+    competitor_17 = db.Column(db.String(50), nullable=False)
+    competitor_18 = db.Column(db.String(50), nullable=False)
+    competitor_19 = db.Column(db.String(50), nullable=False)
+    competitor_20 = db.Column(db.String(50), nullable=False)
+    competitor_21 = db.Column(db.String(50), nullable=False)
+    competitor_22 = db.Column(db.String(50), nullable=False)
+    competitor_23 = db.Column(db.String(50), nullable=False)
+    competitor_24 = db.Column(db.String(50), nullable=False)
+    competitor_25 = db.Column(db.String(50), nullable=False)
+    competitor_26 = db.Column(db.String(50), nullable=False)
+    competitor_27 = db.Column(db.String(50), nullable=False)
+    competitor_28 = db.Column(db.String(50), nullable=False)
+    competitor_29 = db.Column(db.String(50), nullable=False)
+    competitor_30 = db.Column(db.String(50), nullable=False)
+    competitor_31 = db.Column(db.String(50), nullable=False)
+    competitor_32 = db.Column(db.String(50), nullable=False)
+    competitor_33 = db.Column(db.String(50), nullable=False)
+    competitor_34 = db.Column(db.String(50), nullable=False)
+    competitor_35 = db.Column(db.String(50), nullable=False)
+    competitor_36 = db.Column(db.String(50), nullable=False)
+    competitor_37 = db.Column(db.String(50), nullable=False)
+    competitor_38 = db.Column(db.String(50), nullable=False)
+    competitor_39 = db.Column(db.String(50), nullable=False)
+    competitor_40 = db.Column(db.String(50), nullable=False)
+    competitor_41 = db.Column(db.String(50), nullable=False)
+    competitor_42 = db.Column(db.String(50), nullable=False)
+    competitor_43 = db.Column(db.String(50), nullable=False)
+    competitor_44 = db.Column(db.String(50), nullable=False)
+    competitor_45 = db.Column(db.String(50), nullable=False)
+    competitor_46 = db.Column(db.String(50), nullable=False)
+    competitor_47 = db.Column(db.String(50), nullable=False)
+    competitor_48 = db.Column(db.String(50), nullable=False)
+    competitor_49 = db.Column(db.String(50), nullable=False)
+    competitor_50 = db.Column(db.String(50), nullable=False)
+
+    money_line_1 = db.Column(db.String(10), nullable=False)
+    money_line_2 = db.Column(db.String(10), nullable=False)
+    money_line_3 = db.Column(db.String(10), nullable=False)
+    money_line_4 = db.Column(db.String(10), nullable=False)
+    money_line_5 = db.Column(db.String(10), nullable=False)
+    money_line_6 = db.Column(db.String(10), nullable=False)
+    money_line_7 = db.Column(db.String(10), nullable=False)
+    money_line_8 = db.Column(db.String(10), nullable=False)
+    money_line_9 = db.Column(db.String(10), nullable=False)
+    money_line_10 = db.Column(db.String(10), nullable=False)
+    money_line_11 = db.Column(db.String(10), nullable=False)
+    money_line_12 = db.Column(db.String(10), nullable=False)
+    money_line_13 = db.Column(db.String(10), nullable=False)
+    money_line_14 = db.Column(db.String(10), nullable=False)
+    money_line_15 = db.Column(db.String(10), nullable=False)
+    money_line_16 = db.Column(db.String(10), nullable=False)
+    money_line_17 = db.Column(db.String(10), nullable=False)
+    money_line_18 = db.Column(db.String(10), nullable=False)
+    money_line_19 = db.Column(db.String(10), nullable=False)
+    money_line_20 = db.Column(db.String(10), nullable=False)
+    money_line_21 = db.Column(db.String(10), nullable=False)
+    money_line_22 = db.Column(db.String(10), nullable=False)
+    money_line_23 = db.Column(db.String(10), nullable=False)
+    money_line_24 = db.Column(db.String(10), nullable=False)
+    money_line_25 = db.Column(db.String(10), nullable=False)
+    money_line_26 = db.Column(db.String(10), nullable=False)
+    money_line_27 = db.Column(db.String(10), nullable=False)
+    money_line_28 = db.Column(db.String(10), nullable=False)
+    money_line_29 = db.Column(db.String(10), nullable=False)
+    money_line_30 = db.Column(db.String(10), nullable=False)
+    money_line_31 = db.Column(db.String(10), nullable=False)
+    money_line_32 = db.Column(db.String(10), nullable=False)
+    money_line_33 = db.Column(db.String(10), nullable=False)
+    money_line_34 = db.Column(db.String(10), nullable=False)
+    money_line_35 = db.Column(db.String(10), nullable=False)
+    money_line_36 = db.Column(db.String(10), nullable=False)
+    money_line_37 = db.Column(db.String(10), nullable=False)
+    money_line_38 = db.Column(db.String(10), nullable=False)
+    money_line_39 = db.Column(db.String(10), nullable=False)
+    money_line_40 = db.Column(db.String(10), nullable=False)
+    money_line_41 = db.Column(db.String(10), nullable=False)
+    money_line_42 = db.Column(db.String(10), nullable=False)
+    money_line_43 = db.Column(db.String(10), nullable=False)
+    money_line_44 = db.Column(db.String(10), nullable=False)
+    money_line_45 = db.Column(db.String(10), nullable=False)
+    money_line_46 = db.Column(db.String(10), nullable=False)
+    money_line_47 = db.Column(db.String(10), nullable=False)
+    money_line_48 = db.Column(db.String(10), nullable=False)
+    money_line_49 = db.Column(db.String(10), nullable=False)
+    money_line_10 = db.Column(db.String(10), nullable=False)
+
+    line = db.Column(db.String(10), nullable=False)
 
     def serialize(self):
         return {
             "id": self.id,
+            "rotation_number": self.rotation_number,
             "title": self.title,
             "sport": self.sport,
-            "type_odd": self.type_odd,
-            "line": self.line,
-            "team": self.team,
-            "date": self.date
+            "date": self.date,
+            "position_1": self.position_1,
+            "position_2": self.position_2,
+            "position_3": self.position_3,
+
+            "competitor_1": self.competitor_1,
+            "competitor_2": self.competitor_2,
+            "competitor_3": self.competitor_3,
+            "competitor_4": self.competitor_4,
+            "competitor_5": self.competitor_5,
+            "competitor_6": self.competitor_6,
+            "competitor_7": self.competitor_7,
+            "competitor_8": self.competitor_8,
+            "competitor_9": self.competitor_9,
+            "competitor_10": self.competitor_10,
+            "competitor_11": self.competitor_11,
+            "competitor_12": self.competitor_12,
+            "competitor_13": self.competitor_13,
+            "competitor_14": self.competitor_14,
+            "competitor_15": self.competitor_15,
+            "competitor_16": self.competitor_16,
+            "competitor_17": self.competitor_17,
+            "competitor_18": self.competitor_18,
+            "competitor_19": self.competitor_19,
+            "competitor_20": self.competitor_20,
+            "competitor_21": self.competitor_21,
+            "competitor_22": self.competitor_22,
+            "competitor_23": self.competitor_23,
+            "competitor_24": self.competitor_24,
+            "competitor_25": self.competitor_25,
+            "competitor_26": self.competitor_26,
+            "competitor_27": self.competitor_27,
+            "competitor_28": self.competitor_28,
+            "competitor_29": self.competitor_29,
+            "competitor_30": self.competitor_30,
+            "competitor_31": self.competitor_31,
+            "competitor32": self.competitor_32,
+            "competitor33": self.competitor_33,
+            "competitor_34": self.competitor_34,
+            "competitor_36": self.competitor_35,
+            "competitor_37": self.competitor_38,
+            "competitor_39": self.competitor_39,
+            "competitor_40": self.competitor_40,
+            "competitor_41": self.competitor_41,
+            "competitor_42": self.competitor_42,
+            "competitor_43": self.competitor_43,
+            "competitor_44": self.competitor_44,
+            "competitor_45": self.competitor_45,
+            "competitor_46": self.competitor_46,
+            "competitor_47": self.competitor_47,
+            "competitor_48": self.competitor_48,
+            "competitor_49": self.competitor_49,
+            "competitor_50": self.competitor_50,
+
+            "money_line_1": self.money_line_1,
+            "money_line_2": self.money_line_2,
+            "money_line_3": self.money_line_3,
+            "money_line_4": self.money_line_4,
+            "money_line_5": self.money_line_5,
+            "money_line_6": self.money_line_6,
+            "money_line_7": self.money_line_7,
+            "money_line_8": self.money_line_8,
+            "money_line_9": self.money_line_9,
+            "money_line_10": self.money_line_10,
+            "money_line_11": self.money_line_11,
+            "money_line_12": self.money_line_12,
+            "money_line_13": self.money_line_13,
+            "money_line_14": self.money_line_14,
+            "money_line_15": self.money_line_15,
+            "money_line_16": self.money_line_16,
+            "money_line_17": self.money_line_17,
+            "money_line_18": self.money_line_18,
+            "money_line_19": self.money_line_19,
+            "money_line_20": self.money_line_20,
+            "money_line_21": self.money_line_21,
+            "money_line_22": self.money_line_22,
+            "money_line_23": self.money_line_23,
+            "money_line_24": self.money_line_24,
+            "money_line_25": self.money_line_25,
+            "money_line_26": self.money_line_26,
+            "money_line_27": self.money_line_27,
+            "money_line_28": self.money_line_28,
+            "money_line_29": self.money_line_29,
+            "money_line_30": self.money_line_30,
+            "money_line_31": self.money_line_31,
+            "money_line32": self.money_line_32,
+            "money_line33": self.money_line_33,
+            "money_line_34": self.money_line_34,
+            "money_line_36": self.money_line_35,
+            "money_line_37": self.money_line_38,
+            "money_line_39": self.money_line_39,
+            "money_line_40": self.money_line_40,
+            "money_line_41": self.money_line_41,
+            "money_line_42": self.money_line_42,
+            "money_line_43": self.money_line_43,
+            "money_line_44": self.money_line_44,
+            "money_line_45": self.money_line_45,
+            "money_line_46": self.money_line_46,
+            "money_line_47": self.money_line_47,
+            "money_line_48": self.money_line_48,
+            "money_line_49": self.money_line_49,
+            "money_line_50": self.money_line_50
+
             # do not serialize the password, its a security breach
         }
 
@@ -2835,8 +3039,11 @@ class Boxeo(db.Model):
     location_Fight = db.Column(db.String(100), nullable=False)
     fighter_One = db.Column(db.String(50), nullable=False)
     money_Line_One = db.Column(db.String(10), nullable=False)
+    juice_One = db.Column(db.String(10), nullable=False)
     fighter_Two = db.Column(db.String(50), nullable=False)
     money_Line_Two = db.Column(db.String(10), nullable=False)
+    juice_Two = db.Column(db.String(10), nullable=False)
+    total = db.Column(db.String(10), nullable=False)
     winner = db.Column(db.String(50), nullable=False)
     finish_by = db.Column(db.String(50), nullable=False)
 
@@ -2869,7 +3076,10 @@ class Boxeo(db.Model):
             "fighter_One": self.fighter_One,
             "fighter_Two": self.fighter_Two,
             "money_Line_One": self.money_Line_One,
+            "juice_One": self.juice_One,
             "money_Line_Two": self.money_Line_Two,
+            "juice_Two": self.juice_Two,
+            "total": self.total,
             "winner": self.winner,
             "week": self.week,
             "finish_by": self.finish_by,
@@ -2910,8 +3120,10 @@ class Mma(db.Model):
     location_Fight = db.Column(db.String(100), nullable=False)
     fighter_One = db.Column(db.String(50), nullable=False)
     money_Line_One = db.Column(db.String(10), nullable=False)
+    juice_One = db.Column(db.String(10), nullable=False)
     fighter_Two = db.Column(db.String(50), nullable=False)
     money_Line_Two = db.Column(db.String(10), nullable=False)
+    juice_Two = db.Column(db.String(10), nullable=False)
     winner = db.Column(db.String(50), nullable=False)
     finish_by = db.Column(db.String(50), nullable=False)
 
@@ -2944,7 +3156,9 @@ class Mma(db.Model):
             "fighter_One": self.fighter_One,
             "fighter_Two": self.fighter_Two,
             "money_Line_One": self.money_Line_One,
+            "juice_One": self.juice_One,
             "money_Line_Two": self.money_Line_Two,
+            "juice_Two": self.juice_Two,
             "winner": self.winner,
             "week": self.week,
             "finish_by": self.finish_by,
