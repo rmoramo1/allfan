@@ -222,7 +222,7 @@ class Odds_to_win(db.Model):
     money_line_47 = db.Column(db.String(10), nullable=False)
     money_line_48 = db.Column(db.String(10), nullable=False)
     money_line_49 = db.Column(db.String(10), nullable=False)
-    money_line_10 = db.Column(db.String(10), nullable=False)
+    money_line_50 = db.Column(db.String(10), nullable=False)
 
     line = db.Column(db.String(10), nullable=False)
 
@@ -268,11 +268,13 @@ class Odds_to_win(db.Model):
             "competitor_29": self.competitor_29,
             "competitor_30": self.competitor_30,
             "competitor_31": self.competitor_31,
-            "competitor32": self.competitor_32,
-            "competitor33": self.competitor_33,
+            "competitor_32": self.competitor_32,
+            "competitor_33": self.competitor_33,
             "competitor_34": self.competitor_34,
-            "competitor_36": self.competitor_35,
-            "competitor_37": self.competitor_38,
+            "competitor_35": self.competitor_35,
+            "competitor_36": self.competitor_36,
+            "competitor_37": self.competitor_37,
+            "competitor_38": self.competitor_38,
             "competitor_39": self.competitor_39,
             "competitor_40": self.competitor_40,
             "competitor_41": self.competitor_41,
