@@ -2828,7 +2828,8 @@ class Boxeo(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
-    rotation_number = db.Column(db.String(10), nullable=False)
+    rotation_number_f_one = db.Column(db.String(10), nullable=False)
+    rotation_number_f_two = db.Column(db.String(10), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
@@ -2860,7 +2861,8 @@ class Boxeo(db.Model):
             "id": self.id,
             "status": self.status,
             "casino": self.casino,
-            "rotation_number": self.rotation_number,
+            "rotation_number_f_one": self.rotation_number_f_one,
+            "rotation_number_f_two": self.rotation_number_f_two,
             "event": self.event,
             "rounds": self.rounds,
             "location_Fight": self.location_Fight,
@@ -2901,7 +2903,8 @@ class Mma(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
-    rotation_number = db.Column(db.String(10), nullable=False)
+    rotation_number_f_one = db.Column(db.String(10), nullable=False)
+    rotation_number_f_two = db.Column(db.String(10), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     rounds = db.Column(db.String(50), nullable=False)
     location_Fight = db.Column(db.String(100), nullable=False)
@@ -2933,7 +2936,8 @@ class Mma(db.Model):
             "id": self.id,
             "status": self.status,
             "casino": self.casino,
-            "rotation_number": self.rotation_number,
+            "rotation_number_f_one": self.rotation_number_f_one,
+            "rotation_number_f_two": self.rotation_number_f_two,
             "event": self.event,
             "rounds": self.rounds,
             "location_Fight": self.location_Fight,

@@ -1846,7 +1846,8 @@ def createBoxFight():
     week = request.json.get("week", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
-    rotation_number = request.json.get("rotation_number", None)
+    rotation_number_f_one = request.json.get("rotation_number_f_one", None)
+    rotation_number_f_two = request.json.get("rotation_number_f_two", None)
     event = request.json.get("event", None)
     rounds = request.json.get("rounds", None)
     location_Fight = request.json.get("location_Fight", None)
@@ -1888,7 +1889,8 @@ def createBoxFight():
             week=week,
             status=status,
             casino=casino,
-            rotation_number=rotation_number,
+            rotation_number_f_one=rotation_number_f_one,
+            rotation_number_f_two=rotation_number_f_two,
             event=event,
             rounds=rounds,
             location_Fight=location_Fight,
@@ -1926,7 +1928,8 @@ def createMmaFight():
     week = request.json.get("week", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
-    rotation_number = request.json.get("rotation_number", None)
+    rotation_number_f_one = request.json.get("rotation_number_f_one", None)
+    rotation_number_f_two = request.json.get("rotation_number_f_two", None)
     event = request.json.get("event", None)
     rounds = request.json.get("rounds", None)
     location_Fight = request.json.get("location_Fight", None)
@@ -1968,7 +1971,8 @@ def createMmaFight():
             week=week,
             status=status,
             casino=casino,
-            rotation_number=rotation_number,
+            rotation_number_f_one=rotation_number_f_one,
+            rotation_number_f_two=rotation_number_f_two,
             event=event,
             rounds=rounds,
             location_Fight=location_Fight,
@@ -7400,7 +7404,8 @@ def boxeoEdit(id):
     week = request.json['week']
     status = request.json['status']
     casino = request.json['casino']
-    rotation_number = request.json['rotation_number']
+    rotation_number_f_one = request.json['rotation_number_f_one']
+    rotation_number_f_two = request.json['rotation_number_f_two']
     event = request.json['event']
     rounds = request.json['rounds']
     location_Fight = request.json['location_Fight']
@@ -7431,7 +7436,8 @@ def boxeoEdit(id):
     boxeo.week = week
     boxeo.status = status
     boxeo.casino = casino 
-    boxeo.rotation_number = rotation_number 
+    boxeo.rotation_number_f_one = rotation_number_f_one 
+    boxeo.rotation_number_f_two = rotation_number_f_two 
     boxeo.event = event
     boxeo.rounds = rounds
     boxeo.location_Fight = location_Fight
@@ -7469,7 +7475,8 @@ def mmaEdit(id):
     week = request.json['week']
     status = request.json['status']
     casino = request.json['casino']
-    rotation_number = request.json['rotation_number']
+    rotation_number_f_one = request.json['rotation_number_f_one']
+    rotation_number_f_two = request.json['rotation_number_f_two']
     event = request.json['event']
     rounds = request.json['rounds']
     location_Fight = request.json['location_Fight']
@@ -7500,7 +7507,8 @@ def mmaEdit(id):
     mma.week = week
     mma.status = status
     mma.casino = casino 
-    mma.rotation_number = rotation_number
+    mma.rotation_number_f_one = rotation_number_f_one
+    mma.rotation_number_f_two = rotation_number_f_two
     mma.event = event
     mma.rounds = rounds
     mma.location_Fight = location_Fight
