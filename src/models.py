@@ -121,8 +121,7 @@ class Odds_to_win(db.Model):
     position_1 = db.Column(db.String(20), nullable=False)
     position_2 = db.Column(db.String(20), nullable=False)
     position_3 = db.Column(db.String(20), nullable=False)
-    date = db.Column(db.String(20), nullable=False)
-    date = db.Column(db.String(20), nullable=False)
+
     competitor_1 = db.Column(db.String(50), nullable=False)
     competitor_2 = db.Column(db.String(50), nullable=False)
     competitor_3 = db.Column(db.String(50), nullable=False)
@@ -318,8 +317,8 @@ class Odds_to_win(db.Model):
             "money_line_29": self.money_line_29,
             "money_line_30": self.money_line_30,
             "money_line_31": self.money_line_31,
-            "money_line32": self.money_line_32,
-            "money_line33": self.money_line_33,
+            "money_line_32": self.money_line_32,
+            "money_line_33": self.money_line_33,
             "money_line_34": self.money_line_34,
             "money_line_36": self.money_line_35,
             "money_line_37": self.money_line_38,
@@ -3074,9 +3073,9 @@ class Boxeo(db.Model):
             "rounds": self.rounds,
             "location_Fight": self.location_Fight,
             "fighter_One": self.fighter_One,
-            "fighter_Two": self.fighter_Two,
             "money_Line_One": self.money_Line_One,
             "juice_One": self.juice_One,
+            "fighter_Two": self.fighter_Two,
             "money_Line_Two": self.money_Line_Two,
             "juice_Two": self.juice_Two,
             "total": self.total,
@@ -3124,6 +3123,7 @@ class Mma(db.Model):
     fighter_Two = db.Column(db.String(50), nullable=False)
     money_Line_Two = db.Column(db.String(10), nullable=False)
     juice_Two = db.Column(db.String(10), nullable=False)
+    total = db.Column(db.String(10), nullable=False)
     winner = db.Column(db.String(50), nullable=False)
     finish_by = db.Column(db.String(50), nullable=False)
 
@@ -3159,6 +3159,7 @@ class Mma(db.Model):
             "juice_One": self.juice_One,
             "money_Line_Two": self.money_Line_Two,
             "juice_Two": self.juice_Two,
+            "total": self.total,
             "winner": self.winner,
             "week": self.week,
             "finish_by": self.finish_by,

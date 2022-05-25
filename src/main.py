@@ -2064,6 +2064,7 @@ def createBoxFight():
     fighter_Two = request.json.get("fighter_Two", None)
     money_Line_Two = request.json.get("money_Line_Two", None)
     juice_Two = request.json.get("juice_Two", None)
+    total = request.json.get("total", None)
     winner = request.json.get("winner", None)
     finish_by = request.json.get("finish_by", None)
 
@@ -2109,6 +2110,7 @@ def createBoxFight():
             fighter_Two=fighter_Two,
             money_Line_Two=money_Line_Two,
             juice_Two=juice_Two,
+            total=total,
             winner=winner,
             finish_by=finish_by,
             r1_result=r1_result,
@@ -2150,6 +2152,7 @@ def createMmaFight():
     fighter_Two = request.json.get("fighter_Two", None)
     money_Line_Two = request.json.get("money_Line_Two", None)
     juice_Two = request.json.get("juice_Two", None)
+    total = request.json.get("total", None)
     winner = request.json.get("winner", None)
     finish_by = request.json.get("finish_by", None)
 
@@ -2195,6 +2198,7 @@ def createMmaFight():
             fighter_Two=fighter_Two,
             money_Line_Two=money_Line_Two,
             juice_Two=juice_Two,
+            total=total,
             winner=winner,
             finish_by=finish_by,
             r1_result=r1_result,
@@ -7837,6 +7841,7 @@ def boxeoEdit(id):
     fighter_Two = request.json['fighter_Two']
     money_Line_Two = request.json['money_Line_Two']
     juice_Two = request.json['juice_Two']
+    total = request.json['total']
     winner = request.json['winner']
     finish_by = request.json['finish_by']
     r1_result = request.json['r1_result']
@@ -7871,6 +7876,7 @@ def boxeoEdit(id):
     boxeo.fighter_Two = fighter_Two
     boxeo.money_Line_Two = money_Line_Two
     boxeo.juice_Two = juice_Two
+    boxeo.total = total
     boxeo.winner = winner
     boxeo.finish_by = finish_by
     boxeo.r1_result = r1_result
@@ -7912,6 +7918,7 @@ def mmaEdit(id):
     fighter_Two = request.json['fighter_Two']
     money_Line_Two = request.json['money_Line_Two']
     juice_Two = request.json['juice_Two']
+    total = request.json['total']
     winner = request.json['winner']
     finish_by = request.json['finish_by']
     r1_result = request.json['r1_result']
@@ -7946,6 +7953,7 @@ def mmaEdit(id):
     mma.fighter_Two = fighter_Two
     mma.money_Line_Two = money_Line_Two
     mma.juice_Two = juice_Two
+    mma.total = total
     mma.winner = winner
     mma.finish_by = finish_by
     mma.r1_result = r1_result
