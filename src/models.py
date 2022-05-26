@@ -3358,11 +3358,11 @@ class Nascar(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "date": self.date,
             "hour": self.hour,
             "week": self.week,
             "status": self.status,
             "casino": self.casino,
-            "rotation_number": self.rotation_number,
             "race": self.race,
             "event": self.event,
             "track": self.track,
@@ -3370,8 +3370,7 @@ class Nascar(db.Model):
             "place1": self.place1,
             "place2": self.place2,
             "place3": self.place3,
-            "date": self.date,
-            
+
             "rotation_number_1": self.rotation_number_1,
             "rotation_number_2": self.rotation_number_2,
             "rotation_number_3": self.rotation_number_3,
@@ -3523,7 +3522,7 @@ class Nascar(db.Model):
             "money_line_47": self.money_line_47,
             "money_line_48": self.money_line_48,
             "money_line_49": self.money_line_49,
-            "money_line_50": self.money_line_50,
+            "money_line_50": self.money_line_50
             # do not serialize the password, its a security breach
         }
 
