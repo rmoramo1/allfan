@@ -3576,6 +3576,7 @@ class Moto_GP(db.Model):
     rotation_number_33 = db.Column(db.String(10), nullable=False)
     rotation_number_34 = db.Column(db.String(10), nullable=False)
     rotation_number_35 = db.Column(db.String(10), nullable=False)
+    rotation_number_36 = db.Column(db.String(10), nullable=False)
     rotation_number_37 = db.Column(db.String(10), nullable=False)
     rotation_number_38 = db.Column(db.String(10), nullable=False)
     rotation_number_39 = db.Column(db.String(10), nullable=False)
