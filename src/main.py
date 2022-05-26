@@ -8609,7 +8609,6 @@ def moto_gpEdit(id):
     place1 = request.json['place1']
     place2 = request.json['place2']
     place3 = request.json['place3']
-
     rotation_number_1 = request.json['rotation_number_1']
     rotation_number_2 = request.json['rotation_number_2']
     rotation_number_3 = request.json['rotation_number_3']
