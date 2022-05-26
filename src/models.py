@@ -3586,6 +3586,7 @@ class Golf(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
+    rotation_number = db.Column(db.String(10), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
     place1 = db.Column(db.String(50), nullable=False)
