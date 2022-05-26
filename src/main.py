@@ -2373,10 +2373,8 @@ def createMoto_gpRun():
     week = request.json.get("week", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None) 
-    rotation_number = request.json.get("rotation_number", None)
     race = request.json.get("race", None)
     track = request.json.get("track", None)
-    rounds = request.json.get("rounds", None)
     location = request.json.get("location", None)
     place1 = request.json.get("place1", None)
     place2 = request.json.get("place2", None)
@@ -2550,7 +2548,6 @@ def createMoto_gpRun():
             week=week,
             status=status,
             casino=casino,
-            rotation_number=rotation_number,
             race=race,
             track=track,
             location=location,
@@ -8605,7 +8602,6 @@ def moto_gpEdit(id):
     week = request.json['week']
     status = request.json['status']
     casino = request.json['casino']
-    rotation_number = request.json['rotation_number']
     race = request.json['race']
     track = request.json['track']
     location = request.json['location']
