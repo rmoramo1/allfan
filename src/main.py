@@ -2228,7 +2228,6 @@ def createNacarRun():
     week = request.json.get("week", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
-    rotation_number = request.json.get("rotation_number", None)
     race = request.json.get("race", None)
     event = request.json.get("event", None)
     track = request.json.get("track", None)
@@ -2237,6 +2236,13 @@ def createNacarRun():
     place1 = request.json.get("place1", None)
     place2 = request.json.get("place2", None)
     place3 = request.json.get("place3", None)
+
+    for i in range(1,50):
+        rotation_number_(i) = request.json.get("rotation_number_"+(i), None)
+    for i in range(1,50):
+        competitor_(i) = request.json.get("competitor_"+(i), None)
+    for i in range(1,50):
+        money_line_(i) = request.json.get("money_line"+(i), None)
 
     # busca mlb en BBDD
     nascar = Nascar.query.filter_by(
@@ -2253,7 +2259,6 @@ def createNacarRun():
             week=week,
             status=status,
             casino=casino,
-            rotation_number=rotation_number,
             race=race,
             event=event,
             track=track,
@@ -2261,6 +2266,12 @@ def createNacarRun():
             place1=place1,
             place2=place2,
             place3=place3,
+            for i in range(1,50):
+                rotation_number_(i) = rotation_number_(i),
+            for i in range(1,50):
+                competitor_(i) =competitor_(i),
+            for i in range(1,50):
+                money_line_(i) = money_line_(i),
         )
         db.session.add(nascar)
         db.session.commit()
@@ -8489,7 +8500,6 @@ def nascarEdit(id):
     week = request.json['week']
     status = request.json['status']
     casino = request.json['casino']
-    rotation_number = request.json['rotation_number']
     race = request.json['race']
     event = request.json['event']
     track = request.json['track']
@@ -8497,13 +8507,18 @@ def nascarEdit(id):
     place1 = request.json['place1']
     place2 = request.json['place2']
     place3 = request.json['place3']
+    for i in range(1,50):
+        rotation_number_(i) = request.json['rotation_number_'+(i)]
+    for i in range(1,50):
+        competitor_(i) = request.json['competitor_'+(i)]
+    for i in range(1,50):
+        money_line_(i) = request.json['money_line_'+(i)]
 
     nascar.date = date
     nascar.hour = hour
     nascar.week = week
     nascar.status = status
     nascar.casino = casino 
-    nascar.rotation_number = rotation_number
     nascar.race = race
     nascar.event = event
     nascar.track = track
@@ -8511,6 +8526,12 @@ def nascarEdit(id):
     nascar.place1 = place1
     nascar.place2 = place2
     nascar.place3 = place3
+    for i in range(1,50):
+        nascar.money_line_(i) = money_line_(i)
+    for i in range(1,50):
+        nascar.competitor_(i) = competitor_(i)
+    for i in range(1,50):
+        nascar.money_line_(i) = money_line_(i)
 
     db.session.commit()
     return jsonify({"msg": "nascar edith successfully"}), 200
@@ -8609,6 +8630,7 @@ def moto_gpEdit(id):
     place1 = request.json['place1']
     place2 = request.json['place2']
     place3 = request.json['place3']
+
     rotation_number_1 = request.json['rotation_number_1']
     rotation_number_2 = request.json['rotation_number_2']
     rotation_number_3 = request.json['rotation_number_3']
