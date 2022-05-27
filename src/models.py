@@ -3050,10 +3050,10 @@ class Boxeo(db.Model):
     location_Fight = db.Column(db.String(100), nullable=False)
     fighter_One = db.Column(db.String(50), nullable=False)
     money_Line_One = db.Column(db.String(10), nullable=False)
-    juice_One = db.Column(db.String(10), nullable=False)
+    juice_Over = db.Column(db.String(10), nullable=False)
     fighter_Two = db.Column(db.String(50), nullable=False)
     money_Line_Two = db.Column(db.String(10), nullable=False)
-    juice_Two = db.Column(db.String(10), nullable=False)
+    juice_Under = db.Column(db.String(10), nullable=False)
     total = db.Column(db.String(10), nullable=False)
     winner = db.Column(db.String(50), nullable=False)
     finish_by = db.Column(db.String(50), nullable=False)
@@ -3086,10 +3086,10 @@ class Boxeo(db.Model):
             "location_Fight": self.location_Fight,
             "fighter_One": self.fighter_One,
             "money_Line_One": self.money_Line_One,
-            "juice_One": self.juice_One,
+            "juice_Over": self.juice_Over,
             "fighter_Two": self.fighter_Two,
             "money_Line_Two": self.money_Line_Two,
-            "juice_Two": self.juice_Two,
+            "juice_Under": self.juice_Under,
             "total": self.total,
             "winner": self.winner,
             "week": self.week,
@@ -3131,10 +3131,10 @@ class Mma(db.Model):
     location_Fight = db.Column(db.String(100), nullable=False)
     fighter_One = db.Column(db.String(50), nullable=False)
     money_Line_One = db.Column(db.String(10), nullable=False)
-    juice_One = db.Column(db.String(10), nullable=False)
+    juice_Over = db.Column(db.String(10), nullable=False)
     fighter_Two = db.Column(db.String(50), nullable=False)
     money_Line_Two = db.Column(db.String(10), nullable=False)
-    juice_Two = db.Column(db.String(10), nullable=False)
+    juice_Under = db.Column(db.String(10), nullable=False)
     total = db.Column(db.String(10), nullable=False)
     winner = db.Column(db.String(50), nullable=False)
     finish_by = db.Column(db.String(50), nullable=False)
@@ -3168,9 +3168,9 @@ class Mma(db.Model):
             "fighter_One": self.fighter_One,
             "fighter_Two": self.fighter_Two,
             "money_Line_One": self.money_Line_One,
-            "juice_One": self.juice_One,
+            "juice_Over": self.juice_Over,
             "money_Line_Two": self.money_Line_Two,
-            "juice_Two": self.juice_Two,
+            "juice_Under": self.juice_Under,
             "total": self.total,
             "winner": self.winner,
             "week": self.week,
