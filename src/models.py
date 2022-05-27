@@ -2908,6 +2908,7 @@ class Nhl(db.Model):
     rotation_away = db.Column(db.String(15), nullable=False)
     rotation_home = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
+    type_of_line = db.Column(db.String(20), nullable=False)
     away = db.Column(db.String(50), nullable=False)
     home = db.Column(db.String(50), nullable=False)
     puck_line_away = db.Column(db.String(10), nullable=False)
@@ -2960,6 +2961,7 @@ class Nhl(db.Model):
             "id": self.id,
             "status": self.status,
             "casino": self.casino,
+            "type_of_line": self.type_of_line,
             "rotation_away": self.rotation_away,
             "rotation_home": self.rotation_home,
             "away": self.away,

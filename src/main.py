@@ -1615,6 +1615,7 @@ def createGameNhl():
     rotation_away = request.json.get("rotation_away", None)
     rotation_home = request.json.get("rotation_home", None)
     casino = request.json.get("casino", None)
+    type_of_line = request.json.get("type_of_line", None)
     away = request.json.get("away", None)
     home = request.json.get("home", None)
     puck_line_away = request.json.get("puck_line_away", None)
@@ -1672,6 +1673,7 @@ def createGameNhl():
             rotation_away=rotation_away,
             rotation_home=rotation_home,
             casino=casino,
+            type_of_line=type_of_line,
             away=away,
             home=home,
             puck_line_away=puck_line_away,
@@ -8546,6 +8548,7 @@ def nhlEdit(id):
     rotation_away = request.json['rotation_away']
     rotation_home = request.json['rotation_home']
     casino = request.json['casino']
+    type_of_line = request.json['type_of_line']
     away = request.json['away']
     home = request.json['home']
     puck_line_away = request.json['puck_line_away']
@@ -8594,6 +8597,7 @@ def nhlEdit(id):
     nhl.rotation_away = rotation_away
     nhl.rotation_home = rotation_home
     nhl.casino = casino
+    nhl.type_of_line = type_of_line
     nhl.away = away
     nhl.home = home
 
