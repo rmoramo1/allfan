@@ -3799,6 +3799,7 @@ def createGameNcaaBaseBall():
     hour = request.json.get("hour", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
+    type_of_line = request.json.get("type_of_line", None)
     rotation_home = request.json.get("rotation_home", None)
     rotation_away = request.json.get("rotation_away", None)
     away = request.json.get("away", None)
@@ -3906,6 +3907,7 @@ def createGameNcaaBaseBall():
             rotation_away=rotation_away, 
             rotation_home=rotation_home, 
             casino=casino, 
+            type_of_line=type_of_line, 
             away=away, 
             pitcher_a=pitcher_a, 
             home=home, 
@@ -6698,6 +6700,7 @@ def ncaa_baseballEdit(id):
     hour = request.json['hour']
     status = request.json['status']
     casino = request.json['casino']
+    type_of_line = request.json['type_of_line']
     rotation_away = request.json['rotation_away']
     rotation_home = request.json['rotation_home']
     away = request.json['away']
@@ -6795,6 +6798,7 @@ def ncaa_baseballEdit(id):
     ncaa_baseball.rotation_away = rotation_away
     ncaa_baseball.rotation_home = rotation_home
     ncaa_baseball.casino = casino
+    ncaa_baseball.type_of_line = type_of_line
     ncaa_baseball.away = away
     ncaa_baseball.pitcher_a = pitcher_a
     ncaa_baseball.home = home
