@@ -1283,6 +1283,7 @@ def createGameNba():
     week = request.json.get("week", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
+    type_of_line = request.json.get("type_of_line", None)
     rotation_home = request.json.get("rotation_home", None)
     rotation_away = request.json.get("rotation_away", None)
     away = request.json.get("away", None)
@@ -1470,6 +1471,7 @@ def createGameNba():
             week=week,
             status=status,
             casino=casino,
+            type_of_line=type_of_line,
             rotation_away=rotation_away,
             rotation_home=rotation_home,
             away=away,
@@ -7881,6 +7883,7 @@ def nbaEdit(id):
     week = request.json['week']
     status = request.json['status']
     casino = request.json['casino']
+    type_of_line = request.json['type_of_line']
     rotation_away = request.json['rotation_away']
     rotation_home = request.json['rotation_home']
     away = request.json['away']
@@ -8015,7 +8018,8 @@ def nbaEdit(id):
     nba.hour = hour
     nba.week = week
     nba.status = status
-    nba.casino = casino
+    nba.casino = casino 
+    nba.type_of_line = type_of_line
     nba.rotation_away = rotation_away
     nba.rotation_home = rotation_home
     nba.away = away
