@@ -3342,6 +3342,7 @@ def createGameNcaaBasket():
     week = request.json.get("week", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
+    type_of_line = request.json.get("type_of_line", None)
     rotation_home = request.json.get("rotation_home", None)
     rotation_away = request.json.get("rotation_away", None)
     away = request.json.get("away", None)
@@ -3531,6 +3532,7 @@ def createGameNcaaBasket():
             week=week,
             status=status,
             casino=casino,
+            type_of_line=type_of_line,
             rotation_away=rotation_away,
             rotation_home=rotation_home,
             away=away,
@@ -8174,6 +8176,7 @@ def ncaa_basketballEdit(id):
     week = request.json['week']
     status = request.json['status']
     casino = request.json['casino']
+    type_of_line = request.json['type_of_line']
     rotation_away = request.json['rotation_away']
     rotation_home = request.json['rotation_home']
     away = request.json['away']
@@ -8309,6 +8312,7 @@ def ncaa_basketballEdit(id):
     ncaa_basketball.week = week
     ncaa_basketball.status = status
     ncaa_basketball.casino = casino
+    ncaa_basketball.type_of_line = type_of_line
     ncaa_basketball.rotation_away = rotation_away
     ncaa_basketball.rotation_home = rotation_home
     ncaa_basketball.away = away

@@ -2454,6 +2454,7 @@ class Ncaa_Basketball(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(20), nullable=False)
+    type_of_line = db.Column(db.String(20), nullable=False)
     rotation_home = db.Column(db.String(10), nullable=False)
     rotation_away = db.Column(db.String(10), nullable=False)
     away = db.Column(db.String(50), nullable=False)
@@ -2655,6 +2656,7 @@ class Ncaa_Basketball(db.Model):
             "rotation_away": self.rotation_away,
             "rotation_home": self.rotation_home,
             "casino": self.casino,
+            "type_of_line": self.type_of_line,
             "away": self.away,
             "home": self.home,
             "spread_away": self.spread_away,
