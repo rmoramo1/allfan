@@ -3402,10 +3402,6 @@ class Nascar(db.Model):
             "event": self.event,
             "track": self.track,
             "location": self.location,
-            "place1": self.place1,
-            "place2": self.place2,
-            "place3": self.place3,
-
             "winner_1": self.winner_1,
             "winner_2": self.winner_2,
             "winner_3": self.winner_3,
