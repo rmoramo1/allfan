@@ -3210,9 +3210,32 @@ class Nascar(db.Model):
     event = db.Column(db.String(50), nullable=False)
     track = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(100), nullable=False)
-    place1 = db.Column(db.String(50), nullable=False)
-    place2 = db.Column(db.String(50), nullable=False)
-    place3 = db.Column(db.String(50), nullable=False)
+
+    winner_1 = db.Column(db.String(50), nullable=False)
+    winner_2 = db.Column(db.String(50), nullable=False)
+    winner_3 = db.Column(db.String(50), nullable=False)
+    winner_4 = db.Column(db.String(50), nullable=False)
+    winner_5 = db.Column(db.String(50), nullable=False)
+    winner_6 = db.Column(db.String(50), nullable=False)
+    winner_7 = db.Column(db.String(50), nullable=False)
+    winner_8 = db.Column(db.String(50), nullable=False)
+    winner_9 = db.Column(db.String(50), nullable=False)
+    winner_10 = db.Column(db.String(50), nullable=False)
+    winner_11 = db.Column(db.String(50), nullable=False)
+    winner_12 = db.Column(db.String(50), nullable=False)
+    winner_13 = db.Column(db.String(50), nullable=False)
+    winner_14 = db.Column(db.String(50), nullable=False)
+    winner_15 = db.Column(db.String(50), nullable=False)
+    winner_16 = db.Column(db.String(50), nullable=False)
+    winner_17 = db.Column(db.String(50), nullable=False)
+    winner_18 = db.Column(db.String(50), nullable=False)
+    winner_19 = db.Column(db.String(50), nullable=False)
+    winner_20 = db.Column(db.String(50), nullable=False)
+    winner_21 = db.Column(db.String(50), nullable=False)
+    winner_22 = db.Column(db.String(50), nullable=False)
+    winner_23 = db.Column(db.String(50), nullable=False)
+    winner_24 = db.Column(db.String(50), nullable=False)
+    winner_25 = db.Column(db.String(50), nullable=False)
 
     rotation_number_1 = db.Column(db.String(10), nullable=False)
     rotation_number_2 = db.Column(db.String(10), nullable=False)
@@ -3549,9 +3572,32 @@ class Moto_GP(db.Model):
     race = db.Column(db.String(50), nullable=False)
     track = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(100), nullable=False)
-    place1 = db.Column(db.String(50), nullable=False)
-    place2 = db.Column(db.String(50), nullable=False)
-    place3 = db.Column(db.String(50), nullable=False)
+
+    winner_1 = db.Column(db.String(50), nullable=False)
+    winner_2 = db.Column(db.String(50), nullable=False)
+    winner_3 = db.Column(db.String(50), nullable=False)
+    winner_4 = db.Column(db.String(50), nullable=False)
+    winner_5 = db.Column(db.String(50), nullable=False)
+    winner_6 = db.Column(db.String(50), nullable=False)
+    winner_7 = db.Column(db.String(50), nullable=False)
+    winner_8 = db.Column(db.String(50), nullable=False)
+    winner_9 = db.Column(db.String(50), nullable=False)
+    winner_10 = db.Column(db.String(50), nullable=False)
+    winner_11 = db.Column(db.String(50), nullable=False)
+    winner_12 = db.Column(db.String(50), nullable=False)
+    winner_13 = db.Column(db.String(50), nullable=False)
+    winner_14 = db.Column(db.String(50), nullable=False)
+    winner_15 = db.Column(db.String(50), nullable=False)
+    winner_16 = db.Column(db.String(50), nullable=False)
+    winner_17 = db.Column(db.String(50), nullable=False)
+    winner_18 = db.Column(db.String(50), nullable=False)
+    winner_19 = db.Column(db.String(50), nullable=False)
+    winner_20 = db.Column(db.String(50), nullable=False)
+    winner_21 = db.Column(db.String(50), nullable=False)
+    winner_22 = db.Column(db.String(50), nullable=False)
+    winner_23 = db.Column(db.String(50), nullable=False)
+    winner_24 = db.Column(db.String(50), nullable=False)
+    winner_25 = db.Column(db.String(50), nullable=False)
 
     rotation_number_1 = db.Column(db.String(10), nullable=False)
     rotation_number_2 = db.Column(db.String(10), nullable=False)
@@ -3716,10 +3762,33 @@ class Moto_GP(db.Model):
             "race": self.race,
             "track": self.track,
             "location": self.location,
-            "place1": self.place1,
-            "place2": self.place2,
-            "place3": self.place3,
             "date": self.date,
+
+            "winner_1": self.winner_1,
+            "winner_2": self.winner_2,
+            "winner_3": self.winner_3,
+            "winner_4": self.winner_4,
+            "winner_5": self.winner_5,
+            "winner_6": self.winner_6,
+            "winner_7": self.winner_7,
+            "winner_8": self.winner_8,
+            "winner_9": self.winner_9,
+            "winner_10": self.winner_10,
+            "winner_11": self.winner_11,
+            "winner_12": self.winner_12,
+            "winner_13": self.winner_13,
+            "winner_14": self.winner_14,
+            "winner_15": self.winner_15,
+            "winner_16": self.winner_16,
+            "winner_17": self.winner_17,
+            "winner_18": self.winner_18,
+            "winner_19": self.winner_19,
+            "winner_20": self.winner_20,
+            "winner_21": self.winner_21,
+            "winner_22": self.winner_22,
+            "winner_23": self.winner_23,
+            "winner_24": self.winner_24,
+            "winner_25": self.winner_25,
 
             "rotation_number_1": self.rotation_number_1,
             "rotation_number_2": self.rotation_number_2,
@@ -3905,10 +3974,33 @@ class Golf(db.Model):
     casino = db.Column(db.String(15), nullable=False)
     rotation_number = db.Column(db.String(10), nullable=False)
     event = db.Column(db.String(50), nullable=False)
-    location = db.Column(db.String(50), nullable=False)
-    place1 = db.Column(db.String(50), nullable=False)
-    place2 = db.Column(db.String(50), nullable=False)
-    place3 = db.Column(db.String(50), nullable=False)
+    location = db.Column(db.String(100), nullable=False)
+
+    winner_1 = db.Column(db.String(50), nullable=False)
+    winner_2 = db.Column(db.String(50), nullable=False)
+    winner_3 = db.Column(db.String(50), nullable=False)
+    winner_4 = db.Column(db.String(50), nullable=False)
+    winner_5 = db.Column(db.String(50), nullable=False)
+    winner_6 = db.Column(db.String(50), nullable=False)
+    winner_7 = db.Column(db.String(50), nullable=False)
+    winner_8 = db.Column(db.String(50), nullable=False)
+    winner_9 = db.Column(db.String(50), nullable=False)
+    winner_10 = db.Column(db.String(50), nullable=False)
+    winner_11 = db.Column(db.String(50), nullable=False)
+    winner_12 = db.Column(db.String(50), nullable=False)
+    winner_13 = db.Column(db.String(50), nullable=False)
+    winner_14 = db.Column(db.String(50), nullable=False)
+    winner_15 = db.Column(db.String(50), nullable=False)
+    winner_16 = db.Column(db.String(50), nullable=False)
+    winner_17 = db.Column(db.String(50), nullable=False)
+    winner_18 = db.Column(db.String(50), nullable=False)
+    winner_19 = db.Column(db.String(50), nullable=False)
+    winner_20 = db.Column(db.String(50), nullable=False)
+    winner_21 = db.Column(db.String(50), nullable=False)
+    winner_22 = db.Column(db.String(50), nullable=False)
+    winner_23 = db.Column(db.String(50), nullable=False)
+    winner_24 = db.Column(db.String(50), nullable=False)
+    winner_25 = db.Column(db.String(50), nullable=False)
     
     competitor_1 = db.Column(db.String(50), nullable=False)
     competitor_2 = db.Column(db.String(50), nullable=False)
@@ -4020,12 +4112,36 @@ class Golf(db.Model):
             "event": self.event,
             "rotation_number": self.rotation_number,
             "location": self.location,
-            "place1": self.place1,
-            "place2": self.place2,
-            "place3": self.place3,
             "date": self.date,
             "hour": self.hour,
             "week": self.week,
+
+            "winner_1": self.winner_1,
+            "winner_2": self.winner_2,
+            "winner_3": self.winner_3,
+            "winner_4": self.winner_4,
+            "winner_5": self.winner_5,
+            "winner_6": self.winner_6,
+            "winner_7": self.winner_7,
+            "winner_8": self.winner_8,
+            "winner_9": self.winner_9,
+            "winner_10": self.winner_10,
+            "winner_11": self.winner_11,
+            "winner_12": self.winner_12,
+            "winner_13": self.winner_13,
+            "winner_14": self.winner_14,
+            "winner_15": self.winner_15,
+            "winner_16": self.winner_16,
+            "winner_17": self.winner_17,
+            "winner_18": self.winner_18,
+            "winner_19": self.winner_19,
+            "winner_20": self.winner_20,
+            "winner_21": self.winner_21,
+            "winner_22": self.winner_22,
+            "winner_23": self.winner_23,
+            "winner_24": self.winner_24,
+            "winner_25": self.winner_25,
+
             "competitor_1": self.competitor_1,
             "competitor_2": self.competitor_2,
             "competitor_3": self.competitor_3,
