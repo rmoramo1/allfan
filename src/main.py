@@ -3146,7 +3146,6 @@ def createGolfMatch():
     week = request.json.get("week", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
-    rotation_number = request.json.get("rotation_number", None)
     event = request.json.get("event", None)
     location = request.json.get("location", None)
 
@@ -3344,7 +3343,6 @@ def createGolfMatch():
             week=week,
             status=status,
             casino=casino,
-            rotation_number=rotation_number,
             event=event,
             location=location,
             winner_1=winner_1,

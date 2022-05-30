@@ -3994,7 +3994,6 @@ class Golf(db.Model):
     week = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(15), nullable=False)
     casino = db.Column(db.String(15), nullable=False)
-    rotation_number = db.Column(db.String(10), nullable=False)
     event = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(100), nullable=False)
 
@@ -4183,7 +4182,6 @@ class Golf(db.Model):
             "status": self.status,
             "casino": self.casino,
             "event": self.event,
-            "rotation_number": self.rotation_number,
             "location": self.location,
             "date": self.date,
             "hour": self.hour,
@@ -4214,7 +4212,7 @@ class Golf(db.Model):
             "winner_23": self.winner_23,
             "winner_24": self.winner_24,
             "winner_25": self.winner_25,
-            
+
             "rotation_number_1": self.rotation_number_1,
             "rotation_number_2": self.rotation_number_2,
             "rotation_number_3": self.rotation_number_3,
