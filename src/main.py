@@ -9133,7 +9133,6 @@ def nascarEdit(id):
     money_line_49 = request.json['money_line_49']
     money_line_50 = request.json['money_line_50']
 
-    
     nascar.date = date
     nascar.hour = hour
     nascar.week = week
