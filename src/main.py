@@ -2436,6 +2436,7 @@ def createNacarRun():
             race=race,
             event=event,
             track=track,
+            location=location,
             winner_1=winner_1,
             winner_2=winner_2,
             winner_3=winner_3,
