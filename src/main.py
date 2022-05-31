@@ -803,7 +803,6 @@ def createOdds_to_win():
     money_line_49 = request.json.get("money_line_49", None)
     money_line_50 = request.json.get("money_line_50", None)
 
-
     # busca team en BBDD
     odds_to_win = Odds_to_win.query.filter_by(title=title,date=date).first()
     # the team was not found on the database
@@ -919,7 +918,7 @@ def createOdds_to_win():
             money_line_47=money_line_47,
             money_line_48=money_line_48,
             money_line_49=money_line_49,
-            money_line_50=money_line_50
+            money_line_50=money_line_50,
         )
         db.session.add(odds_to_win)
         db.session.commit()
@@ -8710,7 +8709,7 @@ def stats_ncaa_basket_playerEdit(id):
     pf = request.json['pf']
     pts = request.json['pts']
 
-    stats_ncaa_basket_player.name = name
+    stats_ncaa_basket_player.name = n_1ame
     stats_ncaa_basket_player.height = height
     stats_ncaa_basket_player.weight = weight
     stats_ncaa_basket_player.birth = birth
