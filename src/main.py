@@ -1126,6 +1126,7 @@ def createGameMlb():
     hour = request.json.get("hour", None)
     status = request.json.get("status", None)
     casino = request.json.get("casino", None)
+    type_of_line = request.json.get("type_of_line", None)
     rotation_home = request.json.get("rotation_home", None)
     rotation_away = request.json.get("rotation_away", None)
     away = request.json.get("away", None)
@@ -1233,6 +1234,7 @@ def createGameMlb():
             rotation_away=rotation_away, 
             rotation_home=rotation_home, 
             casino=casino, 
+            type_of_line=type_of_line, 
             away=away, 
             pitcher_a=pitcher_a, 
             home=home, 
@@ -6742,6 +6744,7 @@ def mlbEdit(id):
     hour = request.json['hour']
     status = request.json['status']
     casino = request.json['casino']
+    type_of_line = request.json['type_of_line']
     rotation_away = request.json['rotation_away']
     rotation_home = request.json['rotation_home']
     away = request.json['away']
@@ -6839,6 +6842,7 @@ def mlbEdit(id):
     mlb.rotation_away = rotation_away
     mlb.rotation_home = rotation_home
     mlb.casino = casino
+    mlb.type_of_line = type_of_line
     mlb.away = away
     mlb.pitcher_a = pitcher_a
     mlb.home = home

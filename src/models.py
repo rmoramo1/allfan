@@ -473,6 +473,7 @@ class Mlb(db.Model):
     hour = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(10), nullable=False)
     casino = db.Column(db.String(20), nullable=False)
+    type_of_line = db.Column(db.String(20), nullable=False)
     rotation_home = db.Column(db.String(10), nullable=False)
     rotation_away = db.Column(db.String(10), nullable=False)
     away = db.Column(db.String(30), nullable=False)
@@ -577,6 +578,7 @@ class Mlb(db.Model):
             "rotation_away": self.rotation_away,
             "rotation_home": self.rotation_home,
             "casino": self.casino,
+            "type_of_line": self.type_of_line,
             "away": self.away,
             "pitcher_a": self.pitcher_a,
             "home": self.home,
