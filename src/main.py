@@ -918,7 +918,7 @@ def createOdds_to_win():
             money_line_47=money_line_47,
             money_line_48=money_line_48,
             money_line_49=money_line_49,
-            money_line_50=money_line_50,
+            money_line_50=money_line_50
         )
         db.session.add(odds_to_win)
         db.session.commit()
@@ -2413,7 +2413,6 @@ def createNacarRun():
     money_line_48 = request.json.get("money_line_48", None)
     money_line_49 = request.json.get("money_line_49", None)
     money_line_50 = request.json.get("money_line_50", None)
-
 
     # busca mlb en BBDD
     nascar = Nascar.query.filter_by(
@@ -6370,7 +6369,6 @@ def newsodds_to_win(id):
     sport = request.json['sport']
     date = request.json['date']
     winner = request.json['winner']
-
 
     competitor_1 = request.json['competitor_1']
     competitor_2 = request.json['competitor_2']
