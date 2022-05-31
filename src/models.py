@@ -118,9 +118,7 @@ class Odds_to_win(db.Model):
     title = db.Column(db.String(30), nullable=False)
     sport = db.Column(db.String(30), nullable=False)
     date = db.Column(db.String(20), nullable=False)
-    position_1 = db.Column(db.String(20), nullable=False)
-    position_2 = db.Column(db.String(20), nullable=False)
-    position_3 = db.Column(db.String(20), nullable=False)
+    winner = db.Column(db.String(50), nullable=False)
 
     competitor_1 = db.Column(db.String(50), nullable=False)
     competitor_2 = db.Column(db.String(50), nullable=False)
@@ -231,9 +229,7 @@ class Odds_to_win(db.Model):
             "title": self.title,
             "sport": self.sport,
             "date": self.date,
-            "position_1": self.position_1,
-            "position_2": self.position_2,
-            "position_3": self.position_3,
+            "winner": self.winner,
 
             "competitor_1": self.competitor_1,
             "competitor_2": self.competitor_2,

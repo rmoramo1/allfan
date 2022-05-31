@@ -699,9 +699,7 @@ def createOdds_to_win():
     title = request.json.get("title", None)
     sport = request.json.get("sport", None)
     date = request.json.get("date", None)
-    position_1 = request.json.get("position_1", None)
-    position_2 = request.json.get("position_2", None)
-    position_3 = request.json.get("position_3", None)
+    winner = request.json.get("winner", None)
 
     competitor_1 = request.json.get("competitor_1", None)
     competitor_2 = request.json.get("competitor_2", None)
@@ -819,9 +817,7 @@ def createOdds_to_win():
             title=title,
             sport=sport,
             date=date,
-            position_1=position_1,
-            position_2=position_2,
-            position_3=position_3,
+            winner=winner,
 
             competitor_1=competitor_1,
             competitor_2=competitor_2,
@@ -6374,9 +6370,8 @@ def newsodds_to_win(id):
     title = request.json['title']
     sport = request.json['sport']
     date = request.json['date']
-    position_1 = request.json['position_1']
-    position_2 = request.json['position_2']
-    position_3 = request.json['position_3']
+    winner = request.json['winner']
+
 
     competitor_1 = request.json['competitor_1']
     competitor_2 = request.json['competitor_2']
@@ -6484,9 +6479,7 @@ def newsodds_to_win(id):
     odds_to_win.title = title
     odds_to_win.sport = sport
     odds_to_win.date = date
-    odds_to_win.position_1 = position_1
-    odds_to_win.position_2 = position_2
-    odds_to_win.position_3 = position_3
+    odds_to_win.winner = winner
     
     odds_to_win.competitor_1 = competitor_1
     odds_to_win.competitor_2 = competitor_2
