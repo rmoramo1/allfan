@@ -9520,6 +9520,7 @@ def moto_gpEdit(id):
     casino = request.json['casino']
     race = request.json['race']
     track = request.json['track']
+    location = request.json['location']
     winner_1 = request.json['winner_1']
     winner_2 = request.json['winner_2']
     winner_3 = request.json['winner_3']
