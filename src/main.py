@@ -9704,7 +9704,8 @@ def moto_gpEdit(id):
     moto_gp.week = week
     moto_gp.status = status
     moto_gp.casino = casino 
-    moto_gp.event = event
+    moto_gp.race = race
+    moto_gp.track = track
     moto_gp.location = location
 
     moto_gp.winner_1 = winner_1
