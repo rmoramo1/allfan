@@ -777,11 +777,11 @@ def createProps():
 
 
 @app.route('/odds_to_win', methods=['POST'])
-def createOdds_to_win():
+def createodds_to_win():
     rotation_number = request.json.get("rotation_number", None)
     title = request.json.get("title", None)
     sport = request.json.get("sport", None)
-    date = request.json.get("date", None)
+    date = request.json.get("date", None)     
     winner = request.json.get("winner", None)
 
     competitor_1 = request.json.get("competitor_1", None)
@@ -886,13 +886,14 @@ def createOdds_to_win():
     money_line_49 = request.json.get("money_line_49", None)
     money_line_50 = request.json.get("money_line_50", None)
 
-    # busca team en BBDD
-    odds_to_win = Odds_to_win.query.filter_by(title=title, date=date).first()
-    # the team was not found on the database
+    # busca mlb en BBDD
+    odds_to_win = Odds_to_win.query.filter_by(
+        date=date, title=title).first()
+    # the mlb was not found on the database
     if odds_to_win:
-        return jsonify({"msg": "odds_to_win already exists", "odds_to_win": odds_to_win.title}), 401
+        return jsonify({"msg": "odds_to_win already exists", "title": odds_to_win.title}), 401
     else:
-        # crea odds_to_win nuevo
+        # crea mlb nuevo
         # crea registro nuevo en BBDD de
         odds_to_win = Odds_to_win(
             rotation_number=rotation_number,
@@ -900,6 +901,7 @@ def createOdds_to_win():
             sport=sport,
             date=date,
             winner=winner,
+
             competitor_1=competitor_1,
             competitor_2=competitor_2,
             competitor_3=competitor_3,
@@ -1004,7 +1006,7 @@ def createOdds_to_win():
         )
         db.session.add(odds_to_win)
         db.session.commit()
-        return jsonify({"msg": "odds_to_win created successfully"}), 200
+        return jsonify({"msg": "Odd created successfully"}), 200
 
 
 @app.route('/logos_nfl', methods=['POST'])
