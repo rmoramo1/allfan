@@ -120,6 +120,57 @@ class Odds_to_win(db.Model):
     date = db.Column(db.String(20), nullable=False)
     winner = db.Column(db.String(50), nullable=False)
 
+    rotation_number_1 = db.Column(db.String(10), nullable=False)
+    rotation_number_2 = db.Column(db.String(10), nullable=False)
+    rotation_number_3 = db.Column(db.String(10), nullable=False)
+    rotation_number_4 = db.Column(db.String(10), nullable=False)
+    rotation_number_5 = db.Column(db.String(10), nullable=False)
+    rotation_number_6 = db.Column(db.String(10), nullable=False)
+    rotation_number_7 = db.Column(db.String(10), nullable=False)
+    rotation_number_8 = db.Column(db.String(10), nullable=False)
+    rotation_number_9 = db.Column(db.String(10), nullable=False)
+    rotation_number_10 = db.Column(db.String(10), nullable=False)
+    rotation_number_11 = db.Column(db.String(10), nullable=False)
+    rotation_number_12 = db.Column(db.String(10), nullable=False)
+    rotation_number_13 = db.Column(db.String(10), nullable=False)
+    rotation_number_14 = db.Column(db.String(10), nullable=False)
+    rotation_number_15 = db.Column(db.String(10), nullable=False)
+    rotation_number_16 = db.Column(db.String(10), nullable=False)
+    rotation_number_17 = db.Column(db.String(10), nullable=False)
+    rotation_number_18 = db.Column(db.String(10), nullable=False)
+    rotation_number_19 = db.Column(db.String(10), nullable=False)
+    rotation_number_20 = db.Column(db.String(10), nullable=False)
+    rotation_number_21 = db.Column(db.String(10), nullable=False)
+    rotation_number_22 = db.Column(db.String(10), nullable=False)
+    rotation_number_23 = db.Column(db.String(10), nullable=False)
+    rotation_number_24 = db.Column(db.String(10), nullable=False)
+    rotation_number_25 = db.Column(db.String(10), nullable=False)
+    rotation_number_26 = db.Column(db.String(10), nullable=False)
+    rotation_number_27 = db.Column(db.String(10), nullable=False)
+    rotation_number_28 = db.Column(db.String(10), nullable=False)
+    rotation_number_29 = db.Column(db.String(10), nullable=False)
+    rotation_number_30 = db.Column(db.String(10), nullable=False)
+    rotation_number_31 = db.Column(db.String(10), nullable=False)
+    rotation_number_32 = db.Column(db.String(10), nullable=False)
+    rotation_number_33 = db.Column(db.String(10), nullable=False)
+    rotation_number_34 = db.Column(db.String(10), nullable=False)
+    rotation_number_35 = db.Column(db.String(10), nullable=False)
+    rotation_number_36 = db.Column(db.String(10), nullable=False)
+    rotation_number_37 = db.Column(db.String(10), nullable=False)
+    rotation_number_38 = db.Column(db.String(10), nullable=False)
+    rotation_number_39 = db.Column(db.String(10), nullable=False)
+    rotation_number_40 = db.Column(db.String(10), nullable=False)
+    rotation_number_41 = db.Column(db.String(10), nullable=False)
+    rotation_number_42 = db.Column(db.String(10), nullable=False)
+    rotation_number_43 = db.Column(db.String(10), nullable=False)
+    rotation_number_44 = db.Column(db.String(10), nullable=False)
+    rotation_number_45 = db.Column(db.String(10), nullable=False)
+    rotation_number_46 = db.Column(db.String(10), nullable=False)
+    rotation_number_47 = db.Column(db.String(10), nullable=False)
+    rotation_number_48 = db.Column(db.String(10), nullable=False)
+    rotation_number_49 = db.Column(db.String(10), nullable=False)
+    rotation_number_50 = db.Column(db.String(10), nullable=False)
+
     competitor_1 = db.Column(db.String(50), nullable=False)
     competitor_2 = db.Column(db.String(50), nullable=False)
     competitor_3 = db.Column(db.String(50), nullable=False)
@@ -230,6 +281,57 @@ class Odds_to_win(db.Model):
             "sport": self.sport,
             "date": self.date,
             "winner": self.winner,
+
+            "rotation_number_1": self.rotation_number_1,
+            "rotation_number_2": self.rotation_number_2,
+            "rotation_number_3": self.rotation_number_3,
+            "rotation_number_4": self.rotation_number_4,
+            "rotation_number_5": self.rotation_number_5,
+            "rotation_number_6": self.rotation_number_6,
+            "rotation_number_7": self.rotation_number_7,
+            "rotation_number_8": self.rotation_number_8,
+            "rotation_number_9": self.rotation_number_9,
+            "rotation_number_10": self.rotation_number_10,
+            "rotation_number_11": self.rotation_number_11,
+            "rotation_number_12": self.rotation_number_12,
+            "rotation_number_13": self.rotation_number_13,
+            "rotation_number_14": self.rotation_number_14,
+            "rotation_number_15": self.rotation_number_15,
+            "rotation_number_16": self.rotation_number_16,
+            "rotation_number_17": self.rotation_number_17,
+            "rotation_number_18": self.rotation_number_18,
+            "rotation_number_19": self.rotation_number_19,
+            "rotation_number_20": self.rotation_number_20,
+            "rotation_number_21": self.rotation_number_21,
+            "rotation_number_22": self.rotation_number_22,
+            "rotation_number_23": self.rotation_number_23,
+            "rotation_number_24": self.rotation_number_24,
+            "rotation_number_25": self.rotation_number_25,
+            "rotation_number_26": self.rotation_number_26,
+            "rotation_number_27": self.rotation_number_27,
+            "rotation_number_28": self.rotation_number_28,
+            "rotation_number_29": self.rotation_number_29,
+            "rotation_number_30": self.rotation_number_30,
+            "rotation_number_31": self.rotation_number_31,
+            "rotation_number_32": self.rotation_number_32,
+            "rotation_number_33": self.rotation_number_33,
+            "rotation_number_34": self.rotation_number_34,
+            "rotation_number_35": self.rotation_number_35,
+            "rotation_number_36": self.rotation_number_36,
+            "rotation_number_37": self.rotation_number_37,
+            "rotation_number_38": self.rotation_number_38,
+            "rotation_number_39": self.rotation_number_39,
+            "rotation_number_40": self.rotation_number_40,
+            "rotation_number_41": self.rotation_number_41,
+            "rotation_number_42": self.rotation_number_42,
+            "rotation_number_43": self.rotation_number_43,
+            "rotation_number_44": self.rotation_number_44,
+            "rotation_number_45": self.rotation_number_45,
+            "rotation_number_46": self.rotation_number_46,
+            "rotation_number_47": self.rotation_number_47,
+            "rotation_number_48": self.rotation_number_48,
+            "rotation_number_49": self.rotation_number_49,
+            "rotation_number_50": self.rotation_number_50,
 
             "competitor_1": self.competitor_1,
             "competitor_1": self.competitor_1,
