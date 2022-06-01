@@ -7638,6 +7638,7 @@ def nflEdit(id):
     nfl.week = week
     nfl.status = status
     nfl.casino = casino
+    nfl.type_of_line = type_of_line
     nfl.rotation_away = rotation_away
     nfl.rotation_home = rotation_home
     nfl.away = away
