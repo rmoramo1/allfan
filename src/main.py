@@ -778,7 +778,6 @@ def createProps():
 
 @app.route('/odds_to_win', methods=['POST'])
 def createodds_to_win():
-    rotation_number = request.json.get("rotation_number", None)
     title = request.json.get("title", None)
     sport = request.json.get("sport", None)
     date = request.json.get("date", None)     
@@ -947,7 +946,6 @@ def createodds_to_win():
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
         odds_to_win = Odds_to_win(
-            rotation_number=rotation_number,
             title=title,
             sport=sport,
             date=date,
@@ -6584,7 +6582,6 @@ def newsProps(id):
 @app.route('/odds_to_win/<id>', methods=['PUT'])
 def newsodds_to_win(id):
     odds_to_win = Odds_to_win.query.get(id)
-    rotation_number = request.json['rotation_number']
     title = request.json['title']
     sport = request.json['sport']
     date = request.json['date']
@@ -6743,7 +6740,6 @@ def newsodds_to_win(id):
     money_line_49 = request.json['money_line_49']
     money_line_50 = request.json['money_line_50']
 
-    odds_to_win.rotation_number = rotation_number
     odds_to_win.title = title
     odds_to_win.sport = sport
     odds_to_win.date = date

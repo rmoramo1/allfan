@@ -114,7 +114,6 @@ class Odds_to_win(db.Model):
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
-    rotation_number = db.Column(db.String(30), nullable=False)
     title = db.Column(db.String(30), nullable=False)
     sport = db.Column(db.String(30), nullable=False)
     date = db.Column(db.String(20), nullable=False)
@@ -276,7 +275,6 @@ class Odds_to_win(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "rotation_number": self.rotation_number,
             "title": self.title,
             "sport": self.sport,
             "date": self.date,
