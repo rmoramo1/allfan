@@ -817,7 +817,6 @@ def createOdds_to_win():
             sport=sport,
             date=date,
             winner=winner,
-
             competitor_1=competitor_1,
             competitor_2=competitor_2,
             competitor_3=competitor_3,
