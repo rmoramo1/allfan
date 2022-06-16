@@ -1438,7 +1438,7 @@ def createGameMlb():
     # valida si estan vacios los ingresos
 
     # busca mlb en BBDD
-    mlb = Mlb.query.filter_by(home=home, away=away, date=date).first()
+    mlb = Mlb.query.filter_by(home=home, away=away, date=date,type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if mlb:
         return jsonify({"msg": "Mlb already exists", "status": mlb.status}), 401
@@ -1678,7 +1678,7 @@ def createGameNba():
     q4_half_final_score_home = request.json.get(
         "q4_half_final_score_home", None)
     # busca mlb en BBDD
-    nba = Nba.query.filter_by(home=home, away=away, date=date).first()
+    nba = Nba.query.filter_by(home=home, away=away, date=date,type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if nba:
         return jsonify({"msg": "nba game already exists", "status": nba.home, "vrs": nba.away}), 401
@@ -1879,7 +1879,7 @@ def createGameNhl():
     sh_3Q = request.json.get("sh_3Q", None)
 
     # busca mlb en BBDD
-    nhl = Nhl.query.filter_by(home=home, away=away, date=date).first()
+    nhl = Nhl.query.filter_by(home=home, away=away, date=date,type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if nhl:
         return jsonify({"msg": "Mlb already exists", "status": nhl.status}), 401
@@ -2122,7 +2122,7 @@ def createGameNfl():
     q4_half_final_score_home = request.json.get(
         "q4_half_final_score_home", None)
     # busca mlb en BBDD
-    nfl = Nfl.query.filter_by(home=home, away=away, date=date).first()
+    nfl = Nfl.query.filter_by(home=home, away=away, date=date,type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if nfl:
         return jsonify({"msg": "Nfl game already exists", "status": nfl.status}), 401
@@ -4030,7 +4030,7 @@ def createGameNcaaBasket():
 
     # busca mlb en BBDD
     ncaa_basketball = Ncaa_Basketball.query.filter_by(
-        home=home, away=away, date=date).first()
+        home=home, away=away, date=date,type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if ncaa_basketball:
         return jsonify({"msg": "Mlb already exists", "status": ncaa_basketball.status}), 401
@@ -4409,7 +4409,7 @@ def createGameNcaaBaseBall():
 
     # busca mlb en BBDD
     ncaa_baseball = Ncaa_Baseball.query.filter_by(
-        home=home, away=away, date=date).first()
+        home=home, away=away, date=date,type_of_line=type_of_line).first()
     # the ncaa_baseball was not found on the database
     if ncaa_baseball:
         return jsonify({"msg": "ncaa_baseball already exists", "status": ncaa_baseball.status}), 401
@@ -4835,7 +4835,7 @@ def createGameNcaa_football():
 
     # busca mlb en BBDD
     ncaa_football = Ncaa_Football.query.filter_by(
-        home=home, away=away, date=date).first()
+        home=home, away=away, date=date,type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if ncaa_football:
         return jsonify({"msg": "Ncaa_Football game already exists", "status": ncaa_football.status}), 401
