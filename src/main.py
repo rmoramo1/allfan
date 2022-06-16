@@ -102,7 +102,7 @@ def props():
 # ----------------------------------------------------------------------------
 
 @app.route("/props_list", methods=["GET"])
-def Props_List():
+def props_list():
     if request.method == "GET":
         records = Props_List.query.all()
         return jsonify([Props_List.serialize(record) for record in records])
