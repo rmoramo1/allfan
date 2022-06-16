@@ -4124,6 +4124,32 @@ class Golf(db.Model):
     winner_24 = db.Column(db.String(50), nullable=False)
     winner_25 = db.Column(db.String(50), nullable=False)
 
+    hour_matchup_1 = db.Column(db.String(50), nullable=False)
+    hour_matchup_2 = db.Column(db.String(50), nullable=False)
+    hour_matchup_3 = db.Column(db.String(50), nullable=False)
+    hour_matchup_4 = db.Column(db.String(50), nullable=False)
+    hour_matchup_5 = db.Column(db.String(50), nullable=False)
+    hour_matchup_6 = db.Column(db.String(50), nullable=False)
+    hour_matchup_7 = db.Column(db.String(50), nullable=False)
+    hour_matchup_8 = db.Column(db.String(50), nullable=False)
+    hour_matchup_9 = db.Column(db.String(50), nullable=False)
+    hour_matchup_10 = db.Column(db.String(50), nullable=False)
+    hour_matchup_11 = db.Column(db.String(50), nullable=False)
+    hour_matchup_12 = db.Column(db.String(50), nullable=False)
+    hour_matchup_13 = db.Column(db.String(50), nullable=False)
+    hour_matchup_14 = db.Column(db.String(50), nullable=False)
+    hour_matchup_15 = db.Column(db.String(50), nullable=False)
+    hour_matchup_16 = db.Column(db.String(50), nullable=False)
+    hour_matchup_17 = db.Column(db.String(50), nullable=False)
+    hour_matchup_18 = db.Column(db.String(50), nullable=False)
+    hour_matchup_19 = db.Column(db.String(50), nullable=False)
+    hour_matchup_20 = db.Column(db.String(50), nullable=False)
+    hour_matchup_21 = db.Column(db.String(50), nullable=False)
+    hour_matchup_22 = db.Column(db.String(50), nullable=False)
+    hour_matchup_23 = db.Column(db.String(50), nullable=False)
+    hour_matchup_24 = db.Column(db.String(50), nullable=False)
+    hour_matchup_25 = db.Column(db.String(50), nullable=False)
+
     rotation_number_1 = db.Column(db.String(10), nullable=False)
     rotation_number_2 = db.Column(db.String(10), nullable=False)
     rotation_number_3 = db.Column(db.String(10), nullable=False)
@@ -4313,6 +4339,32 @@ class Golf(db.Model):
             "winner_23": self.winner_23,
             "winner_24": self.winner_24,
             "winner_25": self.winner_25,
+
+            "hour_matchup_1": self.hour_matchup_1,
+            "hour_matchup_2": self.hour_matchup_2,
+            "hour_matchup_3": self.hour_matchup_3,
+            "hour_matchup_4": self.hour_matchup_4,
+            "hour_matchup_5": self.hour_matchup_5,
+            "hour_matchup_6": self.hour_matchup_6,
+            "hour_matchup_7": self.hour_matchup_7,
+            "hour_matchup_8": self.hour_matchup_8,
+            "hour_matchup_9": self.hour_matchup_9,
+            "hour_matchup_10": self.hour_matchup_10,
+            "hour_matchup_11": self.hour_matchup_11,
+            "hour_matchup_12": self.hour_matchup_12,
+            "hour_matchup_13": self.hour_matchup_13,
+            "hour_matchup_14": self.hour_matchup_14,
+            "hour_matchup_15": self.hour_matchup_15,
+            "hour_matchup_16": self.hour_matchup_16,
+            "hour_matchup_17": self.hour_matchup_17,
+            "hour_matchup_18": self.hour_matchup_18,
+            "hour_matchup_19": self.hour_matchup_19,
+            "hour_matchup_20": self.hour_matchup_20,
+            "hour_matchup_21": self.hour_matchup_21,
+            "hour_matchup_22": self.hour_matchup_22,
+            "hour_matchup_23": self.hour_matchup_23,
+            "hour_matchup_24": self.hour_matchup_24,
+            "hour_matchup_25": self.hour_matchup_25,
 
             "rotation_number_1": self.rotation_number_1,
             "rotation_number_2": self.rotation_number_2,
