@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_mlb_player, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Soccer, Soccer_Tournament, Stats_Soccer_Team, Stats_Soccer_Player, Logos_NFL, Logos_NBA, Logos_MLB, Logos_NHL, Logos_SOCCER, Logos_Ncaa_Basketball, Logos_Ncaa_Football, Logos_Ncaa_Baseball, Props, Odds_to_win, Stats_ncaa_baseball_player,  Stats_ncaa_baseball_team, Stats_ncaa_football_team, Stats_defensive_player_ncca_football, Stats_offensive_player_ncaa_football, Stats_returning_player_ncaa_football, Stats_kiking_player_ncaa_football, Stats_punting_player_ncaa_football, Stats_ncaa_basket_team, Stats_ncaa_basket_player, Injuries, Futures, Moto_GP, Moto_gp_drivers
+from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_mlb_player, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Soccer, Soccer_Tournament, Stats_Soccer_Team, Stats_Soccer_Player, Logos_NFL, Logos_NBA, Logos_MLB, Logos_NHL, Logos_SOCCER, Logos_Ncaa_Basketball, Logos_Ncaa_Football, Logos_Ncaa_Baseball, Props, Odds_to_win, Stats_ncaa_baseball_player,  Stats_ncaa_baseball_team, Stats_ncaa_football_team, Stats_defensive_player_ncca_football, Stats_offensive_player_ncaa_football, Stats_returning_player_ncaa_football, Stats_kiking_player_ncaa_football, Stats_punting_player_ncaa_football, Stats_ncaa_basket_team, Stats_ncaa_basket_player, Injuries, Futures, Moto_GP, Moto_gp_drivers , Props_List
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -92,12 +92,20 @@ def futures():
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
 
-
 @app.route("/props", methods=["GET"])
 def props():
     if request.method == "GET":
         records = Props.query.all()
         return jsonify([Props.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+# ----------------------------------------------------------------------------
+
+@app.route("/props_list", methods=["GET"])
+def Props_List():
+    if request.method == "GET":
+        records = Props_List.query.all()
+        return jsonify([Props_List.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
@@ -682,6 +690,25 @@ def createCasino():
         db.session.add(casinos)
         db.session.commit()
         return jsonify({"msg": "casino created successfully"}), 200
+
+@app.route('/props_list', methods=['POST'])
+def createCasino():
+    name = request.json.get("name", None)
+
+    # busca team en BBDD
+    props_list = Props_List.query.filter_by(name=name).first()
+    # the team was not found on the database
+    if props_list:
+        return jsonify({"msg": "Casino already exists", "Casino": props_list.name}), 401
+    else:
+        # crea casino nuevo
+        # crea registro nuevo en BBDD de
+        props_list = Props_List(
+            name=name,
+        )
+        db.session.add(props_list)
+        db.session.commit()
+        return jsonify({"msg": "props list created successfully"}), 200
 
 
 @app.route('/futures', methods=['POST'])
@@ -6984,6 +7011,16 @@ def newsCasinos(id):
     return jsonify({"msg": "casino edith successfully"}), 200
 
 
+@app.route('/props_list/<id>', methods=['PUT'])
+def newsProps_List(id):
+    props_list = Props_List.query.get(id)
+    name = request.json['name']
+    props_list.name = name
+
+    db.session.commit()
+    return jsonify({"msg": "Props_List edith successfully"}), 200
+
+
 @app.route('/futures/<id>', methods=['PUT'])
 def newsfutures(id):
     futures = Futures.query.get(id)
@@ -11824,6 +11861,13 @@ def casinos_delete(id):
     db.session.delete(casinos)
     db.session.commit()
     return "casinos was successfully deleted"
+
+@app.route("/props_list/<id>", methods=["DELETE"])
+def Props_List_delete(id):
+    props_list = Props_List.query.get(id)
+    db.session.delete(props_list)
+    db.session.commit()
+    return "props list was successfully deleted"
 
 
 @app.route("/mlb/<id>", methods=["DELETE"])

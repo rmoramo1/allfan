@@ -35,6 +35,17 @@ class Casinos(db.Model):
             "name": self.name,
         }
 
+class Props_List(db.Model):
+    __tablename__ = 'props_list'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+        }
 
 class Injuries(db.Model):
     __tablename__ = 'injuries'
