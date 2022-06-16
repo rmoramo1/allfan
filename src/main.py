@@ -692,16 +692,16 @@ def createCasino():
         return jsonify({"msg": "casino created successfully"}), 200
 
 @app.route('/props_list', methods=['POST'])
-def createCasino():
+def createProps_List():
     name = request.json.get("name", None)
 
     # busca team en BBDD
     props_list = Props_List.query.filter_by(name=name).first()
     # the team was not found on the database
     if props_list:
-        return jsonify({"msg": "Casino already exists", "Casino": props_list.name}), 401
+        return jsonify({"msg": "Props_List already exists", "Props_List": props_list.name}), 401
     else:
-        # crea casino nuevo
+        # crea Props_List nuevo
         # crea registro nuevo en BBDD de
         props_list = Props_List(
             name=name,
