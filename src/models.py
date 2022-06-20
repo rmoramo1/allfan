@@ -5008,9 +5008,9 @@ class Stats_nhl_player(db.Model):
 class Stats_box_fighter(db.Model):
     __tablename__ = "stats_box_fighter"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20), nullable=False)
-    nickname = db.Column(db.String(10), nullable=False)
-    headshot = db.Column(db.String(30), nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    nickname = db.Column(db.String(30), nullable=False)
+    headshot = db.Column(db.String(70), nullable=False)
     height = db.Column(db.String(10), nullable=False)
     weight = db.Column(db.String(10), nullable=False)
     birth = db.Column(db.String(10), nullable=False)
@@ -5048,9 +5048,9 @@ class Stats_box_fighter(db.Model):
 class Stats_mma_fighter(db.Model):
     __tablename__ = "stats_mma_fighter"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20), nullable=False)
-    nickname = db.Column(db.String(10), nullable=False)
-    headshot = db.Column(db.String(30), nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    nickname = db.Column(db.String(30), nullable=False)
+    headshot = db.Column(db.String(70), nullable=False)
     height = db.Column(db.String(10), nullable=False)
     weight = db.Column(db.String(10), nullable=False)
     birth = db.Column(db.String(10), nullable=False)
