@@ -11265,6 +11265,7 @@ def stats_box_fighterEdit(id):
     stats_box_fighter = Stats_box_fighter.query.get(id)
     name = request.json['name']
     nickname = request.json['nickname']
+    headshot = request.json['headshot']
     height = request.json['height']
     weight = request.json['weight']
     birth = request.json['birth']
@@ -11279,6 +11280,7 @@ def stats_box_fighterEdit(id):
 
     stats_box_fighter.name = name
     stats_box_fighter.nickname = nickname
+    stats_box_fighter.headshot = headshot
     stats_box_fighter.height = height
     stats_box_fighter.weight = weight
     stats_box_fighter.birth = birth
