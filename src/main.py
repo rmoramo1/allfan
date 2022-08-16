@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_mlb_player, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Soccer, Soccer_Tournament, Stats_Soccer_Team, Stats_Soccer_Player, Logos_NFL, Logos_NBA, Logos_MLB, Logos_NHL, Logos_SOCCER, Logos_Ncaa_Basketball, Logos_Ncaa_Football, Logos_Ncaa_Baseball, Props, Odds_to_win, Stats_ncaa_baseball_player,  Stats_ncaa_baseball_team, Stats_ncaa_football_team, Stats_defensive_player_ncca_football, Stats_offensive_player_ncaa_football, Stats_returning_player_ncaa_football, Stats_kiking_player_ncaa_football, Stats_punting_player_ncaa_football, Stats_ncaa_basket_team, Stats_ncaa_basket_player, Injuries, Futures, Moto_GP, Moto_gp_drivers , Props_List
+from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_mlb_player, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Soccer, Soccer_Tournament, Stats_Soccer_Team, Stats_Soccer_Player, Logos_NFL, Logos_NBA, Logos_MLB, Logos_NHL, Logos_SOCCER, Logos_Ncaa_Basketball, Logos_Ncaa_Football, Logos_Ncaa_Baseball, Props, Odds_to_win, Stats_ncaa_baseball_player,  Stats_ncaa_baseball_team, Stats_ncaa_football_team, Stats_defensive_player_ncca_football, Stats_offensive_player_ncaa_football, Stats_returning_player_ncaa_football, Stats_kiking_player_ncaa_football, Stats_punting_player_ncaa_football, Stats_ncaa_basket_team, Stats_ncaa_basket_player, Injuries, Futures, Moto_GP, Moto_gp_drivers, Props_List
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -92,6 +92,7 @@ def futures():
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
 
+
 @app.route("/props", methods=["GET"])
 def props():
     if request.method == "GET":
@@ -100,6 +101,7 @@ def props():
     else:
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
+
 
 @app.route("/props_list", methods=["GET"])
 def props_list():
@@ -691,6 +693,7 @@ def createCasino():
         db.session.commit()
         return jsonify({"msg": "casino created successfully"}), 200
 
+
 @app.route('/props_list', methods=['POST'])
 def createProps_List():
     name = request.json.get("name", None)
@@ -807,7 +810,7 @@ def createProps():
 def createodds_to_win():
     title = request.json.get("title", None)
     sport = request.json.get("sport", None)
-    date = request.json.get("date", None)     
+    date = request.json.get("date", None)
     winner = request.json.get("winner", None)
 
     rotation_number_1 = request.json.get("rotation_number_1", None)
@@ -1438,7 +1441,8 @@ def createGameMlb():
     # valida si estan vacios los ingresos
 
     # busca mlb en BBDD
-    mlb = Mlb.query.filter_by(home=home, away=away, date=date,type_of_line=type_of_line).first()
+    mlb = Mlb.query.filter_by(home=home, away=away,
+                              date=date, type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if mlb:
         return jsonify({"msg": "Mlb already exists", "status": mlb.status}), 401
@@ -1678,7 +1682,8 @@ def createGameNba():
     q4_half_final_score_home = request.json.get(
         "q4_half_final_score_home", None)
     # busca mlb en BBDD
-    nba = Nba.query.filter_by(home=home, away=away, date=date,type_of_line=type_of_line).first()
+    nba = Nba.query.filter_by(home=home, away=away,
+                              date=date, type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if nba:
         return jsonify({"msg": "nba game already exists", "status": nba.home, "vrs": nba.away}), 401
@@ -1879,7 +1884,8 @@ def createGameNhl():
     sh_3Q = request.json.get("sh_3Q", None)
 
     # busca mlb en BBDD
-    nhl = Nhl.query.filter_by(home=home, away=away, date=date,type_of_line=type_of_line).first()
+    nhl = Nhl.query.filter_by(home=home, away=away,
+                              date=date, type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if nhl:
         return jsonify({"msg": "Mlb already exists", "status": nhl.status}), 401
@@ -2122,7 +2128,8 @@ def createGameNfl():
     q4_half_final_score_home = request.json.get(
         "q4_half_final_score_home", None)
     # busca mlb en BBDD
-    nfl = Nfl.query.filter_by(home=home, away=away, date=date,type_of_line=type_of_line).first()
+    nfl = Nfl.query.filter_by(home=home, away=away,
+                              date=date, type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if nfl:
         return jsonify({"msg": "Nfl game already exists", "status": nfl.status}), 401
@@ -4027,17 +4034,16 @@ def createGameNcaaBasket():
         "q4_half_final_score_away", None)
     q4_half_final_score_home = request.json.get(
         "q4_half_final_score_home", None)
-
     # busca mlb en BBDD
-    ncaa_basketball = Ncaa_Basketball.query.filter_by(
-        home=home, away=away, date=date,type_of_line=type_of_line).first()
+    nba = Nba.query.filter_by(home=home, away=away,
+                              date=date, type_of_line=type_of_line).first()
     # the mlb was not found on the database
-    if ncaa_basketball:
-        return jsonify({"msg": "Mlb already exists", "status": ncaa_basketball.status}), 401
+    if nba:
+        return jsonify({"msg": "nba game already exists", "status": nba.home, "vrs": nba.away}), 401
     else:
         # crea mlb nuevo
         # crea registro nuevo en BBDD de
-        ncaa_basketball = Ncaa_Basketball(
+        nba = Nba(
             date=date,
             hour=hour,
             week=week,
@@ -4409,7 +4415,7 @@ def createGameNcaaBaseBall():
 
     # busca mlb en BBDD
     ncaa_baseball = Ncaa_Baseball.query.filter_by(
-        home=home, away=away, date=date,type_of_line=type_of_line).first()
+        home=home, away=away, date=date, type_of_line=type_of_line).first()
     # the ncaa_baseball was not found on the database
     if ncaa_baseball:
         return jsonify({"msg": "ncaa_baseball already exists", "status": ncaa_baseball.status}), 401
@@ -4835,7 +4841,7 @@ def createGameNcaa_football():
 
     # busca mlb en BBDD
     ncaa_football = Ncaa_Football.query.filter_by(
-        home=home, away=away, date=date,type_of_line=type_of_line).first()
+        home=home, away=away, date=date, type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if ncaa_football:
         return jsonify({"msg": "Ncaa_Football game already exists", "status": ncaa_football.status}), 401
@@ -11865,6 +11871,7 @@ def casinos_delete(id):
     db.session.delete(casinos)
     db.session.commit()
     return "casinos was successfully deleted"
+
 
 @app.route("/props_list/<id>", methods=["DELETE"])
 def Props_List_delete(id):
