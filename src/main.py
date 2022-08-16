@@ -4036,7 +4036,7 @@ def createGameNcaaBasket():
         "q4_half_final_score_home", None)
     # busca mlb en BBDD
     ncaa_basketball = Ncaa_Basketball.query.filter_by(home=home, away=away,
-                              date=date, type_of_line=type_of_line).first()
+                                                      date=date, type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if ncaa_basketball:
         return jsonify({"msg": "ncaa_basketball game already exists", "status": ncaa_basketball.home, "vrs": ncaa_basketball.away}), 401
