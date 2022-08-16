@@ -6120,8 +6120,8 @@ def createStats_box_fighter():
             w_sub=w_sub,
             w_dec=w_dec,
             L=L,
-            L_ko_tko=L_ko_tko
-            L_sub=L_sub
+            L_ko_tko=L_ko_tko,
+            L_sub=L_sub,
             L_dec=L_dec
         )
         db.session.add(stats_box_fighter)
