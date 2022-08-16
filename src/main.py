@@ -6134,9 +6134,13 @@ def createStats_mma_fighter():
     association = request.json.get("association", None)
     category = request.json.get("category", None)
     w = request.json.get("w", None)
-    w_by = request.json.get("w_by", None)
+    w_ko_tko = request.json.get("w_ko_tko", None)
+    w_sub = request.json.get("w_sub", None)
+    w_dec = request.json.get("w_dec", None)
     L = request.json.get("L", None)
-    L_by = request.json.get("L_by", None)
+    L_ko_tko = request.json.get("L_ko_tko", None)
+    L_sub = request.json.get("L_sub", None)
+    L_dec = request.json.get("L_dec", None)
 
     # busca team en BBDD
     stats_mma_fighter = Stats_mma_fighter.query.filter_by(
@@ -6159,9 +6163,13 @@ def createStats_mma_fighter():
             association=association,
             category=category,
             w=w,
-            w_by=w_by,
+            w_ko_tko=w_ko_tko,
+            w_sub=w_sub,
+            w_dec=w_dec,
             L=L,
-            L_by=L_by
+            L_ko_tko=L_ko_tko
+            L_sub=L_sub
+            L_dec=L_dec
         )
         db.session.add(stats_mma_fighter)
         db.session.commit()
