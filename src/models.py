@@ -4551,6 +4551,7 @@ class Soccer(db.Model):
     juice_goal_home = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway = db.Column(db.String(10), nullable=False)
     moneyLineHome = db.Column(db.String(10), nullable=False)
+    draw = db.Column(db.String(10), nullable=False)
     total = db.Column(db.String(10), default=0, nullable=False)
     juice_total_over = db.Column(db.String(10), default=-110, nullable=False)
     juice_total_under = db.Column(db.String(10), default=-110, nullable=False)
@@ -4570,6 +4571,7 @@ class Soccer(db.Model):
     juice_goal_home_1H = db.Column(db.String(10), default=-110, nullable=False)
     moneyLineAway_1H = db.Column(db.String(10), default=0, nullable=False)
     moneyLineHome_1H = db.Column(db.String(10), default=0, nullable=False)
+    draw_1H = db.Column(db.String(10), default=0, nullable=False)
     total_1H = db.Column(db.String(10), default=0, nullable=False)
     H1_juice_over = db.Column(db.String(10), default=-110, nullable=False)
     H1_juice_under = db.Column(db.String(10), default=-110, nullable=False)
@@ -4604,6 +4606,7 @@ class Soccer(db.Model):
 
             "moneyLineHome": self.moneyLineHome,
             "moneyLineAway": self.moneyLineAway,
+            "draw": self.draw,
 
             "total": self.total,
 
@@ -4633,6 +4636,7 @@ class Soccer(db.Model):
 
             "moneyLineHome_1H": self.moneyLineHome_1H,
             "moneyLineAway_1H": self.moneyLineAway_1H,
+            "draw_1H": self.draw_1H,
 
             "total_1H": self.total_1H,
             "tt_home_1H": self.tt_home_1H,

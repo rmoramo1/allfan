@@ -5483,6 +5483,7 @@ def createSoccer():
     juice_goal_home = request.json.get("juice_goal_home", None)
     moneyLineAway = request.json.get("moneyLineAway", None)
     moneyLineHome = request.json.get("moneyLineHome", None)
+    draw = request.json.get("draw", None)
     total = request.json.get("total", None)
     juice_total_over = request.json.get("juice_total_over", None)
     juice_total_under = request.json.get("juice_total_under", None)
@@ -5502,6 +5503,7 @@ def createSoccer():
     juice_goal_home_1H = request.json.get("juice_goal_home_1H", None)
     moneyLineAway_1H = request.json.get("moneyLineAway_1H", None)
     moneyLineHome_1H = request.json.get("moneyLineHome_1H", None)
+    draw_1H = request.json.get("draw_1H", None)
     total_1H = request.json.get("total_1H", None)
     H1_juice_over = request.json.get("H1_juice_over", None)
     H1_juice_under = request.json.get("H1_juice_under", None)
@@ -5538,6 +5540,7 @@ def createSoccer():
             juice_goal_home=juice_goal_home,
             moneyLineAway=moneyLineAway,
             moneyLineHome=moneyLineHome,
+            draw=draw,
             total=total,
             juice_total_over=juice_total_over,
             juice_total_under=juice_total_under,
@@ -5556,6 +5559,7 @@ def createSoccer():
             juice_goal_home_1H=juice_goal_home_1H,
             moneyLineAway_1H=moneyLineAway_1H,
             moneyLineHome_1H=moneyLineHome_1H,
+            draw_1H=draw_1H,
             total_1H=total_1H,
             H1_juice_over=H1_juice_over,
             H1_juice_under=H1_juice_under,
@@ -10782,6 +10786,7 @@ def soccerEdit(id):
     juice_goal_home = request.json['juice_goal_home']
     moneyLineAway = request.json['moneyLineAway']
     moneyLineHome = request.json['moneyLineHome']
+    draw = request.json['draw']
     total = request.json['total']
     juice_total_over = request.json['juice_total_over']
     juice_total_under = request.json['juice_total_under']
@@ -10799,6 +10804,7 @@ def soccerEdit(id):
     juice_goal_home_1H = request.json['juice_goal_home_1H']
     moneyLineAway_1H = request.json['moneyLineAway_1H']
     moneyLineHome_1H = request.json['moneyLineHome_1H']
+    draw_1H = request.json['draw_1H']
     total_1H = request.json['total_1H']
     H1_juice_over = request.json['H1_juice_over']
     H1_juice_under = request.json['H1_juice_under']
@@ -10824,7 +10830,8 @@ def soccerEdit(id):
     soccer.juice_goal_away = juice_goal_away
     soccer.juice_goal_home = juice_goal_home
     soccer.moneyLineAway = moneyLineAway
-    soccer.moneyLineHome = moneyLineHome
+    soccer.moneyLineHome = moneyLineHome 
+    soccer.draw = draw 
     soccer.total = total
     soccer.juice_total_over = juice_total_over
     soccer.juice_total_under = juice_total_under
@@ -10842,7 +10849,8 @@ def soccerEdit(id):
     soccer.juice_goal_away_1H = juice_goal_away_1H
     soccer.juice_goal_home_1H = juice_goal_home_1H
     soccer.moneyLineAway_1H = moneyLineAway_1H
-    soccer.moneyLineHome_1H = moneyLineHome_1H
+    soccer.moneyLineHome_1H = moneyLineHome_1H 
+    soccer.draw_1H = draw_1H
     soccer.total_1H = total_1H
     soccer.H1_juice_over = H1_juice_over
     soccer.H1_juice_under = H1_juice_under
