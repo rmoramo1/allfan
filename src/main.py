@@ -6352,28 +6352,33 @@ def createStats_offensive_player_nfl():
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
     position = request.json.get("position", None)
-    headshot = request.json.get("headshot", None)
     dorsal = request.json.get("dorsal", None)
     season = request.json.get("season", None)
     team = request.json.get("team", None)
     games = request.json.get("games", None)
+    headshot = request.json.get("headshot", None)
+
     Cmp = request.json.get("Cmp", None)
     pass_att = request.json.get("pass_att", None)
     cmp_AVG = request.json.get("cmp_AVG", None)
     yards = request.json.get("yards", None)
     yards_AVG = request.json.get("yards_AVG", None)
     yards_pg = request.json.get("yards_pg", None)
+    long_pass = request.json.get("long_pass", None)
+
     pass_td = request.json.get("pass_td", None)
     Int = request.json.get("Int", None)
-    asck = request.json.get("asck", None)
+    sack = request.json.get("sack", None)
     syl = request.json.get("syl", None)
     rtg = request.json.get("rtg", None)
     russ_att = request.json.get("russ_att", None)
     russ_yards = request.json.get("russ_yards", None)
     yards_p_russ = request.json.get("yards_p_russ", None)
+    lr = request.json.get("lr", None)
     big = request.json.get("big", None)
-    rush_tt = request.json.get("rush_tt", None)
+    rush_td = request.json.get("rush_td", None)
     rush_yard_pg = request.json.get("rush_yard_pg", None)
+
     fum = request.json.get("fum", None)
     lst = request.json.get("lst", None)
     fd = request.json.get("fd", None)
@@ -6382,9 +6387,9 @@ def createStats_offensive_player_nfl():
     r_yards = request.json.get("r_yards", None)
     yards_p_r = request.json.get("yards_p_r", None)
     r_td = request.json.get("r_td", None)
-    lr = request.json.get("lr", None)
     r_big = request.json.get("r_big", None)
     r_ypg = request.json.get("r_ypg", None)
+    r_fum = request.json.get("r_fum", None)
     r_fl = request.json.get("r_fl", None)
     r_yac = request.json.get("r_yac", None)
     r_fd = request.json.get("r_fd", None)
@@ -6407,28 +6412,33 @@ def createStats_offensive_player_nfl():
             weight=weight,
             birth=birth,
             position=position,
-            headshot=headshot,
             dorsal=dorsal,
             season=season,
             team=team,
             games=games,
+            headshot=headshot,
+
             Cmp=Cmp,
             pass_att=pass_att,
             cmp_AVG=cmp_AVG,
             yards=yards,
             yards_AVG=yards_AVG,
             yards_pg=yards_pg,
+            long_pass=long_pass,
+
             pass_td=pass_td,
             Int=Int,
-            asck=asck,
+            sack=sack,
             syl=syl,
             rtg=rtg,
             russ_att=russ_att,
             russ_yards=russ_yards,
             yards_p_russ=yards_p_russ,
+            lr=lr,
             big=big,
-            rush_tt=rush_tt,
+            rush_td=rush_td,
             rush_yard_pg=rush_yard_pg,
+
             fum=fum,
             lst=lst,
             fd=fd,
@@ -6437,9 +6447,9 @@ def createStats_offensive_player_nfl():
             r_yards=r_yards,
             yards_p_r=yards_p_r,
             r_td=r_td,
-            lr=lr,
             r_big=r_big,
             r_ypg=r_ypg,
+            r_fum=r_fum,
             r_fl=r_fl,
             r_yac=r_yac,
             r_fd=r_fd,
@@ -11505,11 +11515,11 @@ def stats_offensive_player_nflEdit(id):
     weight = request.json['weight']
     birth = request.json['birth']
     position = request.json['position']
-    headshot = request.json['headshot']
     dorsal = request.json['dorsal']
     season = request.json['season']
     team = request.json['team']
     games = request.json['games']
+    headshot = request.json['headshot']
 
     Cmp = request.json['Cmp']
     pass_att = request.json['pass_att']
@@ -11517,29 +11527,32 @@ def stats_offensive_player_nflEdit(id):
     yards = request.json['yards']
     yards_AVG = request.json['yards_AVG']
     yards_pg = request.json['yards_pg']
+    long_pass = request.json['long_pass']
+
     pass_td = request.json['pass_td']
     Int = request.json['Int']
-    asck = request.json['asck']
+    sack = request.json['sack']
     syl = request.json['syl']
     rtg = request.json['rtg']
     russ_att = request.json['russ_att']
     russ_yards = request.json['russ_yards']
     yards_p_russ = request.json['yards_p_russ']
+    lr = request.json['lr']
     big = request.json['big']
-    rush_tt = request.json['rush_tt']
+    rush_td = request.json['rush_td']
     rush_yard_pg = request.json['rush_yard_pg']
+
     fum = request.json['fum']
     lst = request.json['lst']
-    long_pass = request.json['long_pass']
     fd = request.json['fd']
     rec = request.json['rec']
     r_tgts = request.json['r_tgts']
     r_yards = request.json['r_yards']
     yards_p_r = request.json['yards_p_r']
     r_td = request.json['r_td']
-    lr = request.json['lr']
     r_big = request.json['r_big']
     r_ypg = request.json['r_ypg']
+    r_fum = request.json['r_fum']
     r_fl = request.json['r_fl']
     r_yac = request.json['r_yac']
     r_fd = request.json['r_fd']
@@ -11550,41 +11563,44 @@ def stats_offensive_player_nflEdit(id):
     stats_offensive_player_nfl.weight = weight
     stats_offensive_player_nfl.birth = birth
     stats_offensive_player_nfl.position = position
-    stats_offensive_player_nfl.headshot = headshot
     stats_offensive_player_nfl.dorsal = dorsal
     stats_offensive_player_nfl.season = season
     stats_offensive_player_nfl.team = team
     stats_offensive_player_nfl.games = games
+    stats_offensive_player_nfl.headshot = headshot
+
     stats_offensive_player_nfl.Cmp = Cmp
     stats_offensive_player_nfl.pass_att = pass_att
     stats_offensive_player_nfl.cmp_AVG = cmp_AVG
     stats_offensive_player_nfl.yards = yards
     stats_offensive_player_nfl.yards_AVG = yards_AVG
     stats_offensive_player_nfl.yards_pg = yards_pg
+    stats_offensive_player_nfl.long_pass = long_pass
+
     stats_offensive_player_nfl.pass_td = pass_td
     stats_offensive_player_nfl.Int = Int
-    stats_offensive_player_nfl.asck = asck
+    stats_offensive_player_nfl.sack = sack
     stats_offensive_player_nfl.syl = syl
     stats_offensive_player_nfl.rtg = rtg
     stats_offensive_player_nfl.russ_att = russ_att
     stats_offensive_player_nfl.russ_yards = russ_yards
     stats_offensive_player_nfl.yards_p_russ = yards_p_russ
+    stats_offensive_player_nfl.lr = lr
     stats_offensive_player_nfl.big = big
-    stats_offensive_player_nfl.rush_tt = rush_tt
+    stats_offensive_player_nfl.rush_td = rush_td
     stats_offensive_player_nfl.rush_yard_pg = rush_yard_pg
+
     stats_offensive_player_nfl.fum = fum
     stats_offensive_player_nfl.lst = lst
-    stats_offensive_player_nfl.lst = lst
-    stats_offensive_player_nfl.long_pass = long_pass
     stats_offensive_player_nfl.fd = fd
     stats_offensive_player_nfl.rec = rec
     stats_offensive_player_nfl.r_tgts = r_tgts
     stats_offensive_player_nfl.r_yards = r_yards
     stats_offensive_player_nfl.yards_p_r = yards_p_r
     stats_offensive_player_nfl.r_td = r_td
-    stats_offensive_player_nfl.lr = lr
     stats_offensive_player_nfl.r_big = r_big
     stats_offensive_player_nfl.r_ypg = r_ypg
+    stats_offensive_player_nfl.r_fum = r_fum
     stats_offensive_player_nfl.r_fl = r_fl
     stats_offensive_player_nfl.r_yac = r_yac
     stats_offensive_player_nfl.r_fd = r_fd
