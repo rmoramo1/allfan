@@ -6030,7 +6030,6 @@ def createStats_mlb_player():
     three_b = request.json.get("three_b", None)
     hr = request.json.get("hr", None)
     rbi = request.json.get("rbi", None)
-    tb = request.json.get("tb", None)
     bb = request.json.get("bb", None)
     hbp = request.json.get("hbp", None)
     so = request.json.get("so", None)
@@ -6070,7 +6069,6 @@ def createStats_mlb_player():
             three_b=three_b,
             hr=hr,
             rbi=rbi,
-            tb=tb,
             bb=bb,
             hbp=hbp,
             so=so,
@@ -11165,7 +11163,6 @@ def stats_mlb_playerEdit(id):
     three_b = request.json['three_b']
     hr = request.json['hr']
     rbi = request.json['rbi']
-    tb = request.json['tb']
     bb = request.json['bb']
     hbp = request.json['hbp']
     so = request.json['so']
@@ -11194,7 +11191,6 @@ def stats_mlb_playerEdit(id):
     stats_mlb_player.three_b = three_b
     stats_mlb_player.hr = hr
     stats_mlb_player.rbi = rbi
-    stats_mlb_player.tb = tb
     stats_mlb_player.bb = bb
     stats_mlb_player.hbp = hbp
     stats_mlb_player.so = so

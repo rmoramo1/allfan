@@ -4848,7 +4848,6 @@ class Stats_mlb_player(db.Model):
     three_b = db.Column(db.String(10), default=0, nullable=False)
     hr = db.Column(db.String(10), default=0, nullable=False)
     rbi = db.Column(db.String(10), default=0, nullable=False)
-    tb = db.Column(db.String(10), default=0, nullable=False)
     bb = db.Column(db.String(10), default=0, nullable=False)
     hbp = db.Column(db.String(10), default=0, nullable=False)
     so = db.Column(db.String(10), default=0, nullable=False)
@@ -4881,7 +4880,6 @@ class Stats_mlb_player(db.Model):
             "three_b": self.three_b,
             "hr": self.hr,
             "rbi": self.rbi,
-            "tb": self.tb,
             "bb": self.bb,
             "hbp": self.hbp,
             "so": self.so,
