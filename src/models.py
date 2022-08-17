@@ -4846,12 +4846,14 @@ class Stats_mlb_player(db.Model):
     h = db.Column(db.String(10), default=0, nullable=False)
     two_b = db.Column(db.String(10), default=0, nullable=False)
     three_b = db.Column(db.String(10), default=0, nullable=False)
-    hb = db.Column(db.String(10), default=0, nullable=False)
+    hr = db.Column(db.String(10), default=0, nullable=False)
     rbi = db.Column(db.String(10), default=0, nullable=False)
     tb = db.Column(db.String(10), default=0, nullable=False)
     bb = db.Column(db.String(10), default=0, nullable=False)
+    hbp = db.Column(db.String(10), default=0, nullable=False)
     so = db.Column(db.String(10), default=0, nullable=False)
     sb = db.Column(db.String(10), default=-0, nullable=False)
+    cs = db.Column(db.String(10), default=-0, nullable=False)
     avg = db.Column(db.String(10), default=0, nullable=False)
     obp = db.Column(db.String(10), default=0, nullable=False)
     slg = db.Column(db.String(10), default=0, nullable=False)
@@ -4877,12 +4879,14 @@ class Stats_mlb_player(db.Model):
             "h": self.h,
             "two_b": self.two_b,
             "three_b": self.three_b,
-            "hb": self.hb,
+            "hr": self.hr,
             "rbi": self.rbi,
             "tb": self.tb,
             "bb": self.bb,
+            "hbp": self.hbp,
             "so": self.so,
             "sb": self.sb,
+            "cs": self.cs,
             "avg": self.avg,
             "obp": self.obp,
             "slg": self.slg,
