@@ -1970,30 +1970,31 @@ class Stats_offensive_player_ncaa_football(db.Model):
     yards = db.Column(db.String(10), nullable=False)
     yards_AVG = db.Column(db.String(10), nullable=False)
     yards_pg = db.Column(db.String(10), nullable=False)
+    long_pass = db.Column(db.String(10), nullable=False)
     pass_td = db.Column(db.String(10), nullable=False)
     Int = db.Column(db.String(10), nullable=False)
-    asck = db.Column(db.String(10), nullable=False)
+    sack = db.Column(db.String(10), nullable=False)
     syl = db.Column(db.String(10), nullable=False)
     rtg = db.Column(db.String(10), nullable=False)
     russ_att = db.Column(db.String(10), nullable=False)
     russ_yards = db.Column(db.String(10), nullable=False)
     yards_p_russ = db.Column(db.String(10), nullable=False)
+    lr = db.Column(db.String(10), nullable=False)
     big = db.Column(db.String(10), nullable=False)
-
-    rush_tt = db.Column(db.String(10), nullable=False)
+    rush_td = db.Column(db.String(10), nullable=False)
     rush_yard_pg = db.Column(db.String(10), nullable=False)
+
     fum = db.Column(db.String(10), nullable=False)
-    lst = db.Column(db.String(10), nullable=False) 
-    long_pass = db.Column(db.String(10), nullable=False) 
+    lst = db.Column(db.String(10), nullable=False)
     fd = db.Column(db.String(10), nullable=False)
     rec = db.Column(db.String(10), nullable=False)
     r_tgts = db.Column(db.String(10), nullable=False)
     r_yards = db.Column(db.String(10), nullable=False)
     yards_p_r = db.Column(db.String(10), nullable=False)
     r_td = db.Column(db.String(10), nullable=False)
-    lr = db.Column(db.String(10), nullable=False)
     r_big = db.Column(db.String(10), nullable=False)
     r_ypg = db.Column(db.String(10), nullable=False)
+    r_fum = db.Column(db.String(10), nullable=False)
     r_fl = db.Column(db.String(10), nullable=False)
     r_yac = db.Column(db.String(10), nullable=False)
     r_fd = db.Column(db.String(10), nullable=False)
@@ -2007,41 +2008,44 @@ class Stats_offensive_player_ncaa_football(db.Model):
             "weight": self.weight,
             "birth": self.birth,
             "position": self.position,
-            "headshot": self.headshot,
             "dorsal": self.dorsal,
             "season": self.season,
             "team": self.team,
             "games": self.games,
+            "headshot": self.headshot,
+
             "Cmp": self.Cmp,
             "pass_att": self.pass_att,
             "cmp_AVG": self.cmp_AVG,
             "yards": self.yards,
             "yards_AVG": self.yards_AVG,
             "yards_pg": self.yards_pg,
+            "long_pass": self.long_pass,
+
             "pass_td": self.pass_td,
             "Int": self.Int,
-            "asck": self.asck,
+            "sack": self.sack,
             "syl": self.syl,
             "rtg": self.rtg,
             "russ_att": self.russ_att,
             "russ_yards": self.russ_yards,
             "yards_p_russ": self.yards_p_russ,
+            "lr": self.lr,
             "big": self.big,
-            "rush_tt": self.rush_tt,
+            "rush_td": self.rush_td,
             "rush_yard_pg": self.rush_yard_pg,
+
             "fum": self.fum,
             "lst": self.lst,
-            "long_pass": self.long_pass,
             "fd": self.fd,
             "rec": self.rec,
             "r_tgts": self.r_tgts,
             "r_yards": self.r_yards,
             "yards_p_r": self.yards_p_r,
             "r_td": self.r_td,
-            "lr": self.lr,
-            "r_big": self.r_big,
             "r_big": self.r_big,
             "r_ypg": self.r_ypg,
+            "r_fum": self.r_fum,
             "r_fl": self.r_fl,
             "r_yac": self.r_yac,
             "r_fd": self.r_fd,
