@@ -70,7 +70,7 @@ def setup_admin(app):
     admin.add_view(ModelView(Futures, db.session))
     admin.add_view(ModelView(Moto_GP, db.session))
     admin.add_view(ModelView(Props_List, db.session))
-    admin.add_view(ModelView(W_Nba, db.session))
+    admin.add_view(ModelView(WNba, db.session))
     admin.add_view(ModelView(Logos_WNBA, db.session))
 
     # You can duplicate that line to add mew models
