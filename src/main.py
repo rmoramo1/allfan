@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_mlb_player, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Soccer, Soccer_Tournament, Stats_Soccer_Team, Stats_Soccer_Player, Logos_NFL, Logos_NBA, Logos_MLB, Logos_NHL, Logos_SOCCER, Logos_Ncaa_Basketball, Logos_Ncaa_Football, Logos_Ncaa_Baseball, Props, Odds_to_win, Stats_ncaa_baseball_player,  Stats_ncaa_baseball_team, Stats_ncaa_football_team, Stats_defensive_player_ncca_football, Stats_offensive_player_ncaa_football, Stats_returning_player_ncaa_football, Stats_kiking_player_ncaa_football, Stats_punting_player_ncaa_football, Stats_ncaa_basket_team, Stats_ncaa_basket_player, Injuries, Futures, Moto_GP, Moto_gp_drivers, Props_List
+from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_mlb_player, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Soccer, Soccer_Tournament, Stats_Soccer_Team, Stats_Soccer_Player, Logos_NFL, Logos_NBA, Logos_MLB, Logos_NHL, Logos_SOCCER, Logos_Ncaa_Basketball, Logos_Ncaa_Football, Logos_Ncaa_Baseball, Props, Odds_to_win, Stats_ncaa_baseball_player,  Stats_ncaa_baseball_team, Stats_ncaa_football_team, Stats_defensive_player_ncca_football, Stats_offensive_player_ncaa_football, Stats_returning_player_ncaa_football, Stats_kiking_player_ncaa_football, Stats_punting_player_ncaa_football, Stats_ncaa_basket_team, Stats_ncaa_basket_player, Injuries, Futures, Moto_GP, Moto_gp_drivers, Props_List, Stats_Nhl_Goalkeeper
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -494,7 +494,14 @@ def stats_nhl_team():
     else:
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
-
+@app.route("/stats_nhl_goalkeeper", methods=["GET"])
+def stats_nhl_goalkeeper():
+    if request.method == "GET":
+        records = Stats_Nhl_Goalkeeper().query.all()
+        return jsonify([Stats_Nhl_Goalkeeper.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+ # --------------------------------------------------------------------
 
 @app.route("/stats_nhl_player", methods=["GET"])
 def stats_nhl_player():
@@ -5893,6 +5900,70 @@ def createStats_nhl_team():
         db.session.commit()
         return jsonify({"msg": "Game stats_nhl_team created successfully"}), 200
 
+@app.route('/stats_nhl_goalkeeper', methods=['POST'])
+def createStats_nhl_goalkeeper():
+    name = request.json.get("name", None)
+    height = request.json.get("height", None)
+    weight = request.json.get("weight", None)
+    birth = request.json.get("birth", None)
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+    dorsal = request.json.get("dorsal", None)
+    position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
+
+    gp = request.json.get("gp", None)
+    gs = request.json.get("gs", None)
+    toi_g = request.json.get("toi_g", None)
+    wins = request.json.get("wins", None)
+    L = request.json.get("L", None)
+    t = request.json.get("t", None)
+    otl = request.json.get("otl", None)
+    ga = request.json.get("ga", None)
+    ga_g = request.json.get("ga_g", None)
+    sa = request.json.get("sa", None)
+    sv = request.json.get("sv", None)
+    sv_avg = request.json.get("sv_avg", None)
+    so = request.json.get("so", None)
+    # busca team en BBDD
+    stats_nhl_goalkeeper = Stats_Nhl_Goalkeeper.query.filter_by(
+        name=name, dorsal=dorsal, team=team,season=season).first()
+    # the team was not found on the database
+    if stats_nhl_goalkeeper:
+        return jsonify({"msg": "stats_nhl_goalkeeper already exists", "name": stats_nhl_goalkeeper.name}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_nhl_goalkeeper = Stats_Nhl_Goalkeeper(
+            name=name,
+            height=height,
+            weight=weight,
+            birth=birth,
+            season=season,
+            team=team,
+            dorsal=dorsal,
+            position=position,
+            headshot=headshot,
+
+            gp=gp,
+            gs=gs,
+            toi_g=toi_g,
+            wins=wins,
+            L=L,
+            t=t,
+            otl=otl,
+            ga=ga,
+            ga-G=ga-G,
+            sa=sa,
+            sv=sv,
+            sv_avg=sha,
+            so=so,
+            gtg=gtg,
+        )
+        db.session.add(stats_nhl_goalkeeper)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_nhl_goalkeeper created successfully"}), 200
+
 
 @app.route('/stats_nhl_player', methods=['POST'])
 def createStats_nhl_player():
@@ -11277,6 +11348,59 @@ def stats_nhl_teamEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_nhl_team edith successfully"}), 200
 
+@app.route('/stats_nhl_goalkeeper/<id>', methods=['PUT'])
+def stats_nhl_goalkeeperEdit(id):
+    stats_nhl_goalkeeper = Stats_Nhl_Goalkeeper.query.get(id)
+    name = request.json['name']
+    height = request.json['height']
+    weight = request.json['weight']
+    birth = request.json['birth']
+    season = request.json['season']
+    team = request.json['team']
+    dorsal = request.json['dorsal']
+    position = request.json['position']
+    headshot = request.json['headshot']
+
+    gp = request.json['gp']
+    gs = request.json['gs']
+    toi_g = request.json['toi_g']
+    wins = request.json['wins']
+    L = request.json['L']
+    t = request.json['t']
+    otl = request.json['otl']
+    ga = request.json['ga']
+    ga_g = request.json['ga_g']
+    sa = request.json['sa']
+    sv = request.json['sv']
+    sv_avg = request.json['sv_avg']
+    so = request.json['so']
+
+    stats_nhl_goalkeeper.name = name
+    stats_nhl_goalkeeper.height = height
+    stats_nhl_goalkeeper.weight = weight
+    stats_nhl_goalkeeper.birth = birth
+    stats_nhl_goalkeeper.season = season
+    stats_nhl_goalkeeper.team = team
+    stats_nhl_goalkeeper.dorsal = dorsal
+    stats_nhl_goalkeeper.position = position
+    stats_nhl_goalkeeper.headshot = headshot
+
+    stats_nhl_goalkeeper.gp = gp
+    stats_nhl_goalkeeper.gs = gs
+    stats_nhl_goalkeeper.toi_g = toi_g
+    stats_nhl_goalkeeper.wins = wins
+    stats_nhl_goalkeeper.L = L
+    stats_nhl_goalkeeper.t = t
+    stats_nhl_goalkeeper.otl = otl
+    stats_nhl_goalkeeper.ga = ga
+    stats_nhl_goalkeeper.ga_g = ga_g
+    stats_nhl_goalkeeper.sa = sa
+    stats_nhl_goalkeeper.sv = sv
+    stats_nhl_goalkeeper.sv_avg = sv_avg
+    stats_nhl_goalkeeper.so = so
+    db.session.commit()
+    return jsonify({"msg": "stats_nhl_goalkeeper edith successfully"}), 200
+
 
 @app.route('/stats_nhl_player/<id>', methods=['PUT'])
 def stats_nhl_playerEdit(id):
@@ -12230,6 +12354,12 @@ def stats_nhl_team_delete(id):
     db.session.commit()
     return "stats_nhl_team was successfully deleted"
 
+@app.route("/stats_nhl_goalkeeper/<id>", methods=["DELETE"])
+def stats_nhl_goalkeeper_delete(id):
+    stats_nhl_goalkeeper = Stats_Nhl_Goalkeeper.query.get(id)
+    db.session.delete(stats_nhl_goalkeeper)
+    db.session.commit()
+    return "stats_nhl_goalkeeper was successfully deleted"
 
 @app.route("/stats_nhl_player/<id>", methods=["DELETE"])
 def stats_nhl_player_delete(id):

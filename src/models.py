@@ -4954,6 +4954,63 @@ class Stats_nhl_team(db.Model):
         }
 
 
+class Stats_Nhl_Goalkeeper(db.Model):
+    __tablename__ = "stats_nhl_goalkeeper"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(20), nullable=False)
+    dorsal = db.Column(db.String(20), nullable=False)
+    position = db.Column(db.String(20), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
+
+    gp = db.Column(db.String(20), nullable=False)
+    gs = db.Column(db.String(10), default=0, nullable=False)
+    toi_g = db.Column(db.String(10), default=0, nullable=False)
+    wins = db.Column(db.String(10), default=0, nullable=False)
+    L = db.Column(db.String(10), default=0, nullable=False)
+    t = db.Column(db.String(10), default=0, nullable=False)
+    otl = db.Column(db.String(10), default=0, nullable=False)
+    ga = db.Column(db.String(10), default=0, nullable=False)
+    ga_g = db.Column(db.String(10), default=0, nullable=False)
+    sa = db.Column(db.String(10), default=0, nullable=False)
+    sv = db.Column(db.String(10), default=0, nullable=False)
+    sv_avg = db.Column(db.String(10), default=0, nullable=False)
+    so = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "season": self.season,
+            "team": self.team,
+            "dorsal": self.dorsal,
+            "position": self.position,
+            "headshot": self.headshot,
+
+            "gp": self.gp,
+            "gs": self.gs,
+            "toi_g": self.toi_g,
+            "wins": self.wins,
+            "L": self.L,
+            "t": self.t,
+            "otl": self.otl,
+            "ga": self.ga,
+            "ga_g": self.ga_g,
+            "sa": self.sa,
+            "sv": self.sv,
+            "sv_avg": self.sv_avg,
+            "so": self.so,
+            # do not serialize the password, its a security breach
+        }
+
 class Stats_nhl_player(db.Model):
     __tablename__ = "stats_nhl_player"
     id = db.Column(db.Integer, primary_key=True)
