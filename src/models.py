@@ -481,7 +481,6 @@ class Logos_WNBA(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     team = db.Column(db.String(50), nullable=False)
     url = db.Column(db.String(100), nullable=False)
-
     def serialize(self):
         return {
             "id": self.id,
