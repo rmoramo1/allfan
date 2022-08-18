@@ -5953,7 +5953,7 @@ def createStats_nhl_goalkeeper():
             t=t,
             otl=otl,
             ga=ga,
-            ga-G=ga-G,
+            ga_g=ga_g,
             sa=sa,
             sv=sv,
             sv_avg=sha,
