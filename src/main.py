@@ -464,7 +464,7 @@ def stats_nba_player():
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
 
- @app.route("/stats_wnba_player", methods=["GET"])
+@app.route("/stats_wnba_player", methods=["GET"])
 def stats_wnba_player():
     if request.method == "GET":
         records = Stats_wnba_player().query.all()
