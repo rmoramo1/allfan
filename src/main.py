@@ -5956,9 +5956,8 @@ def createStats_nhl_goalkeeper():
             ga_g=ga_g,
             sa=sa,
             sv=sv,
-            sv_avg=sha,
+            sv_avg=sv_avg,
             so=so,
-            gtg=gtg,
         )
         db.session.add(stats_nhl_goalkeeper)
         db.session.commit()
