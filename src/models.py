@@ -5034,10 +5034,13 @@ class Stats_box_fighter(db.Model):
     w_ko_tko = db.Column(db.String(10), default=0, nullable=False)
     w_sub = db.Column(db.String(10), default=0, nullable=False)
     w_dec = db.Column(db.String(10), default=0, nullable=False)
+    w_others = db.Column(db.String(10), default=0, nullable=False)
     L = db.Column(db.String(10), default=0, nullable=False)
     L_ko_tko = db.Column(db.String(10), default=0, nullable=False)
     L_sub = db.Column(db.String(10), default=0, nullable=False)
     L_dec = db.Column(db.String(10), default=0, nullable=False)
+    L_others = db.Column(db.String(10), default=0, nullable=False)
+    draw = db.Column(db.String(10), default=0, nullable=False)
     # -----------------------------------------------------------------------
 
     def serialize(self):
@@ -5057,10 +5060,13 @@ class Stats_box_fighter(db.Model):
             "w_ko_tko": self.w_ko_tko,
             "w_sub": self.w_sub,
             "w_dec": self.w_dec,
+            "w_others": self.w_others,
             "L": self.L,
             "L_ko_tko": self.L_ko_tko,
             "L_sub": self.L_sub,
             "L_dec": self.L_dec,
+            "L_others": self.L_others,
+            "draw": self.draw,
             # do not serialize the password, its a security breach
         }
 
@@ -5082,10 +5088,13 @@ class Stats_mma_fighter(db.Model):
     w_ko_tko = db.Column(db.String(10), default=0, nullable=False)
     w_sub = db.Column(db.String(10), default=0, nullable=False)
     w_dec = db.Column(db.String(10), default=0, nullable=False)
+    w_others = db.Column(db.String(10), default=0, nullable=False)
     L = db.Column(db.String(10), default=0, nullable=False)
     L_ko_tko = db.Column(db.String(10), default=0, nullable=False)
     L_sub = db.Column(db.String(10), default=0, nullable=False)
     L_dec = db.Column(db.String(10), default=0, nullable=False)
+    L_others = db.Column(db.String(10), default=0, nullable=False)
+    draw = db.Column(db.String(10), default=0, nullable=False)
     # -----------------------------------------------------------------------
 
     def serialize(self):
@@ -5105,10 +5114,13 @@ class Stats_mma_fighter(db.Model):
             "w_ko_tko": self.w_ko_tko,
             "w_sub": self.w_sub,
             "w_dec": self.w_dec,
+            "w_others": self.w_others,
             "L": self.L,
             "L_ko_tko": self.L_ko_tko,
             "L_sub": self.L_sub,
             "L_dec": self.L_dec,
+            "L_others": self.L_others,
+            "draw": self.draw,
             # do not serialize the password, its a security breach
         }
 

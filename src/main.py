@@ -6094,10 +6094,10 @@ def createStats_mlb_player():
 def createStats_box_fighter():
     name = request.json.get("name", None)
     nickname = request.json.get("nickname", None)
-    headshot = request.json.get("headshot", None)
     height = request.json.get("height", None)
     weight = request.json.get("weight", None)
     birth = request.json.get("birth", None)
+    headshot = request.json.get("headshot", None)
     country = request.json.get("country", None)
     season = request.json.get("season", None)
     association = request.json.get("association", None)
@@ -6106,10 +6106,13 @@ def createStats_box_fighter():
     w_ko_tko = request.json.get("w_ko_tko", None)
     w_sub = request.json.get("w_sub", None)
     w_dec = request.json.get("w_dec", None)
+    w_others = request.json.get("w_others", None)
     L = request.json.get("L", None)
     L_ko_tko = request.json.get("L_ko_tko", None)
     L_sub = request.json.get("L_sub", None)
     L_dec = request.json.get("L_dec", None)
+    L_others = request.json.get("L_others", None)
+    draw = request.json.get("draw", None)
 
     # busca team en BBDD
     stats_box_fighter = Stats_box_fighter.query.filter_by(
@@ -6123,9 +6126,9 @@ def createStats_box_fighter():
         stats_box_fighter = Stats_box_fighter(
             name=name,
             nickname=nickname,
-            headshot=headshot,
             height=height,
             weight=weight,
+            headshot=headshot,
             birth=birth,
             country=country,
             season=season,
@@ -6135,10 +6138,13 @@ def createStats_box_fighter():
             w_ko_tko=w_ko_tko,
             w_sub=w_sub,
             w_dec=w_dec,
+            w_others=w_others,
             L=L,
             L_ko_tko=L_ko_tko,
             L_sub=L_sub,
-            L_dec=L_dec
+            L_dec=L_dec,
+            L_others=L_others,
+            draw=draw,
         )
         db.session.add(stats_box_fighter)
         db.session.commit()
@@ -6161,10 +6167,13 @@ def createStats_mma_fighter():
     w_ko_tko = request.json.get("w_ko_tko", None)
     w_sub = request.json.get("w_sub", None)
     w_dec = request.json.get("w_dec", None)
+    w_others = request.json.get("w_others", None)
     L = request.json.get("L", None)
     L_ko_tko = request.json.get("L_ko_tko", None)
     L_sub = request.json.get("L_sub", None)
     L_dec = request.json.get("L_dec", None)
+    L_others = request.json.get("L_others", None)
+    draw = request.json.get("draw", None)
 
     # busca team en BBDD
     stats_mma_fighter = Stats_mma_fighter.query.filter_by(
@@ -6190,10 +6199,13 @@ def createStats_mma_fighter():
             w_ko_tko=w_ko_tko,
             w_sub=w_sub,
             w_dec=w_dec,
+            w_others=w_others,
             L=L,
             L_ko_tko=L_ko_tko,
             L_sub=L_sub,
-            L_dec=L_dec
+            L_dec=L_dec,
+            L_others=L_others,
+            draw=draw,
         )
         db.session.add(stats_mma_fighter)
         db.session.commit()
@@ -11342,10 +11354,13 @@ def stats_box_fighterEdit(id):
     w_ko_tko = request.json['w_ko_tko']
     w_sub = request.json['w_sub']
     w_dec = request.json['w_dec']
+    w_others = request.json['w_others']
     L = request.json['L']
     L_ko_tko = request.json['L_ko_tko']
     L_sub = request.json['L_sub']
     L_dec = request.json['L_dec']
+    L_others = request.json['L_others']
+    draw = request.json['draw']
 
     stats_box_fighter.name = name
     stats_box_fighter.nickname = nickname
@@ -11361,10 +11376,13 @@ def stats_box_fighterEdit(id):
     stats_box_fighter.w_ko_tko = w_ko_tko
     stats_box_fighter.w_sub = w_sub
     stats_box_fighter.w_dec = w_dec
+    stats_box_fighter.w_others = w_others
     stats_box_fighter.L = L
     stats_box_fighter.L_ko_tko = L_ko_tko
     stats_box_fighter.L_sub = L_sub
     stats_box_fighter.L_dec = L_dec
+    stats_box_fighter.L_others = L_others
+    stats_box_fighter.draw = draw
     db.session.commit()
     return jsonify({"msg": "stats_box_fighter edith successfully"}), 200
 
@@ -11386,10 +11404,13 @@ def stats_mma_fighterEdit(id):
     w_ko_tko = request.json['w_ko_tko']
     w_sub = request.json['w_sub']
     w_dec = request.json['w_dec']
+    w_others = request.json['w_others']
     L = request.json['L']
     L_ko_tko = request.json['L_ko_tko']
     L_sub = request.json['L_sub']
     L_dec = request.json['L_dec']
+    L_others = request.json['L_others']
+    draw = request.json['draw']
 
     stats_mma_fighter.name = name
     stats_mma_fighter.nickname = nickname
@@ -11405,10 +11426,13 @@ def stats_mma_fighterEdit(id):
     stats_mma_fighter.w_ko_tko = w_ko_tko
     stats_mma_fighter.w_sub = w_sub
     stats_mma_fighter.w_dec = w_dec
+    stats_mma_fighter.w_others = w_others
     stats_mma_fighter.L = L
     stats_mma_fighter.L_ko_tko = L_ko_tko
     stats_mma_fighter.L_sub = L_sub
     stats_mma_fighter.L_dec = L_dec
+    stats_mma_fighter.L_others = L_others
+    stats_mma_fighter.draw = draw
     db.session.commit()
     return jsonify({"msg": "stats_mma_fighter edith successfully"}), 200
 
