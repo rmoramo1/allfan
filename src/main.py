@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_mlb_player, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Soccer, Soccer_Tournament, Stats_Soccer_Team, Stats_Soccer_Player, Logos_NFL, Logos_NBA, Logos_MLB, Logos_NHL, Logos_SOCCER, Logos_Ncaa_Basketball, Logos_Ncaa_Football, Logos_Ncaa_Baseball, Props, Odds_to_win, Stats_ncaa_baseball_player,  Stats_ncaa_baseball_team, Stats_ncaa_football_team, Stats_defensive_player_ncca_football, Stats_offensive_player_ncaa_football, Stats_returning_player_ncaa_football, Stats_kiking_player_ncaa_football, Stats_punting_player_ncaa_football, Stats_ncaa_basket_team, Stats_ncaa_basket_player, Injuries, Futures, Moto_GP, Moto_gp_drivers, Props_List, Stats_Nhl_Goalkeeper, WNba, Logos_WNBA, Stats_wnba_player
+from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_mlb_player, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Soccer, Soccer_Tournament, Stats_Soccer_Team, Stats_Soccer_Player, Logos_NFL, Logos_NBA, Logos_MLB, Logos_NHL, Logos_SOCCER, Logos_Ncaa_Basketball, Logos_Ncaa_Football, Logos_Ncaa_Baseball, Props, Odds_to_win, Stats_ncaa_baseball_player,  Stats_ncaa_baseball_team, Stats_ncaa_football_team, Stats_defensive_player_ncca_football, Stats_offensive_player_ncaa_football, Stats_returning_player_ncaa_football, Stats_kiking_player_ncaa_football, Stats_punting_player_ncaa_football, Stats_ncaa_basket_team, Stats_ncaa_basket_player, Injuries, Futures, Moto_GP, Moto_gp_drivers, Props_List, Stats_Nhl_Goalkeeper, WNba, Logos_WNBA, Stats_wnba_player, Stats_wnba_team
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -482,6 +482,14 @@ def stats_nba_team():
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
 
+@app.route("/stats_wnba_team", methods=["GET"])
+def stats_wnba_team():
+    if request.method == "GET":
+        records = Stats_wnba_team().query.all()
+        return jsonify([Stats_wnba_team.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+ # --------------------------------------------------------------------
 
 @app.route("/stats_mlb_team", methods=["GET"])
 def stats_mlb_team():
@@ -6144,6 +6152,62 @@ def createStats_nba_team():
         db.session.add(stats_nba_team)
         db.session.commit()
         return jsonify({"msg": "Game stats_nba_team created successfully"}), 200
+
+@app.route('/stats_wnba_team', methods=['POST'])
+def createStats_wnba_team():
+    season = request.json.get("season", None)
+    season_type = request.json.get("season_type", None)
+    group_type_comparation = request.json.get("group_type_comparation", None)
+    team = request.json.get("team", None)
+    conference = request.json.get("conference", None)
+    division = request.json.get("division", None)
+
+    w = request.json.get("w", None)
+    L = request.json.get("L", None)
+    ptc = request.json.get("ptc", None)
+    gb = request.json.get("gb", None)
+    home = request.json.get("home", None)
+    away = request.json.get("away", None)
+    div = request.json.get("div", None)
+    conf = request.json.get("conf", None)
+    ppg = request.json.get("ppg", None)
+    opp_ppg = request.json.get("opp_ppg", None)
+    diff = request.json.get("diff", None)
+    strk = request.json.get("strk", None)
+    l10 = request.json.get("l10", None)
+
+    # busca team en BBDD
+    stats_wnba_team = Stats_wnba_team.query.filter_by(team=team).first()
+    # the team was not found on the database
+    if stats_wnba_team:
+        return jsonify({"msg": "stats_wnba_team already exists", "team": stats_wnba_team.team}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_wnba_team = Stats_wnba_team(
+            season=season,
+            season_type=season_type,
+            group_type_comparation=group_type_comparation,
+            team=team,
+            conference=conference,
+            division=division,
+            w=w,
+            L=L,
+            ptc=ptc,
+            gb=gb,
+            home=home,
+            away=away,
+            div=div,
+            conf=conf,
+            ppg=ppg,
+            opp_ppg=opp_ppg,
+            diff=diff,
+            strk=strk,
+            l10=l10
+        )
+        db.session.add(stats_wnba_team)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_wnba_team created successfully"}), 200
 
 
 @app.route('/stats_nba_player', methods=['POST'])
@@ -11823,7 +11887,6 @@ def stats_soccer_playerEdit(id):
     db.session.commit()
     return jsonify({"msg": "Stats_Soccer_Player edith successfully"}), 200
 
-
 @app.route('/stats_nba_team/<id>', methods=['PUT'])
 def stats_nba_teamEdit(id):
     stats_nba_team = Stats_nba_team.query.get(id)
@@ -11870,6 +11933,53 @@ def stats_nba_teamEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "stats_nba_team edith successfully"}), 200
+
+@app.route('/stats_wnba_team/<id>', methods=['PUT'])
+def stats_wnba_teamEdit(id):
+    stats_wnba_team = Stats_wnba_team.query.get(id)
+    season = request.json['season']
+    season_type = request.json['season_type']
+    group_type_comparation = request.json['group_type_comparation']
+    team = request.json['team']
+    conference = request.json['conference']
+    division = request.json['division']
+
+    w = request.json['w']
+    L = request.json['L']
+    ptc = request.json['ptc']
+    gb = request.json['gb']
+    home = request.json['home']
+    away = request.json['away']
+    div = request.json['div']
+    conf = request.json['conf']
+    ppg = request.json['ppg']
+    opp_ppg = request.json['opp_ppg']
+    diff = request.json['diff']
+    strk = request.json['strk']
+    l10 = request.json['l10']
+
+    stats_wnba_team.season = season
+    stats_wnba_team.season_type = season_type
+    stats_wnba_team.group_type_comparation = group_type_comparation
+    stats_wnba_team.team = team
+    stats_wnba_team.conference = conference
+    stats_wnba_team.division = division
+    stats_wnba_team.w = w
+    stats_wnba_team.L = L
+    stats_wnba_team.ptc = ptc
+    stats_wnba_team.gb = gb
+    stats_wnba_team.home = home
+    stats_wnba_team.away = away
+    stats_wnba_team.div = div
+    stats_wnba_team.conf = conf
+    stats_wnba_team.ppg = ppg
+    stats_wnba_team.opp_ppg = opp_ppg
+    stats_wnba_team.diff = diff
+    stats_wnba_team.strk = strk
+    stats_wnba_team.l10 = l10
+
+    db.session.commit()
+    return jsonify({"msg": "stats_wnba_team edith successfully"}), 200
 
 @app.route('/stats_nba_player/<id>', methods=['PUT'])
 def stats_nba_playerEdit(id):
@@ -13155,7 +13265,6 @@ def stats_ncaa_baseball_team_delete(id):
     db.session.commit()
     return "stats_ncaa_baseball_team was successfully deleted"
 
-
 @app.route("/stats_nba_team/<id>", methods=["DELETE"])
 def stats_nba_team_delete(id):
     stats_nba_team = Stats_nba_team.query.get(id)
@@ -13163,6 +13272,12 @@ def stats_nba_team_delete(id):
     db.session.commit()
     return "stats_nba_team was successfully deleted"
 
+@app.route("/stats_wnba_team/<id>", methods=["DELETE"])
+def stats_wnba_team_delete(id):
+    stats_wnba_team = Stats_wnba_team.query.get(id)
+    db.session.delete(stats_wnba_team)
+    db.session.commit()
+    return "stats_wnba_team was successfully deleted"
 
 @app.route("/stats_mlb_team/<id>", methods=["DELETE"])
 def stats_mlb_team_delete(id):

@@ -5201,6 +5201,56 @@ class Stats_nba_team(db.Model):
             # do not serialize the password, its a security breach
         }
 
+class Stats_wnba_team(db.Model):
+    __tablename__ = "stats_wnba_team"
+    id = db.Column(db.Integer, primary_key=True)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    conference = db.Column(db.String(30), nullable=False)
+    division = db.Column(db.String(30), nullable=False)
+    season_type = db.Column(db.String(20), nullable=False)
+    group_type_comparation = db.Column(db.String(20), nullable=False)
+
+    w = db.Column(db.String(10), default=0, nullable=False)
+    L = db.Column(db.String(10), default=0, nullable=False)
+    ptc = db.Column(db.String(10), default=0, nullable=False)
+    gb = db.Column(db.String(10), default=0, nullable=False)
+    home = db.Column(db.String(10), default=0, nullable=False)
+    away = db.Column(db.String(10), default=0, nullable=False)
+    div = db.Column(db.String(10), default=0, nullable=False)
+    conf = db.Column(db.String(10), default=0, nullable=False)
+    ppg = db.Column(db.String(10), default=0, nullable=False)
+    opp_ppg = db.Column(db.String(10), default=0, nullable=False)
+    diff = db.Column(db.String(10), default=0, nullable=False)
+    strk = db.Column(db.String(10), default=0, nullable=False)
+    l10 = db.Column(db.String(10), default=-0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "season": self.season,
+            "team": self.team,
+            "conference": self.conference,
+            "division": self.division,
+            "season_type": self.season_type,
+            "group_type_comparation": self.group_type_comparation,
+
+            "w": self.w,
+            "L": self.L,
+            "ptc": self.ptc,
+            "gb": self.gb,
+            "home": self.home,
+            "away": self.away,
+            "div": self.div,
+            "conf": self.conf,
+            "ppg": self.ppg,
+            "opp_ppg": self.opp_ppg,
+            "diff": self.diff,
+            "strk": self.strk,
+            "l10": self.l10
+            # do not serialize the password, its a security breach
+        }
 
 class Stats_mlb_team(db.Model):
     __tablename__ = "stats_mlb_team"
