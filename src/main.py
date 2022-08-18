@@ -601,7 +601,7 @@ def logos_nba():
 
  # --------------------------------------------------------------------
 
- @app.route("/logos_wnba", methods=["GET"])
+@app.route("/logos_wnba", methods=["GET"])
 def logos_wnba():
     if request.method == "GET":
         records = Logos_WNBA().query.all()
