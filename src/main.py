@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_mlb_player, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Soccer, Soccer_Tournament, Stats_Soccer_Team, Stats_Soccer_Player, Logos_NFL, Logos_NBA, Logos_MLB, Logos_NHL, Logos_SOCCER, Logos_Ncaa_Basketball, Logos_Ncaa_Football, Logos_Ncaa_Baseball, Props, Odds_to_win, Stats_ncaa_baseball_player,  Stats_ncaa_baseball_team, Stats_ncaa_football_team, Stats_defensive_player_ncca_football, Stats_offensive_player_ncaa_football, Stats_returning_player_ncaa_football, Stats_kiking_player_ncaa_football, Stats_punting_player_ncaa_football, Stats_ncaa_basket_team, Stats_ncaa_basket_player, Injuries, Futures, Moto_GP, Moto_gp_drivers, Props_List, Stats_Nhl_Goalkeeper,WNba,Logos_WNBA
+from models import db, User, Casinos, Nfl, Mlb, Nba, Nhl, Boxeo, Mma, Nascar, Nascar_drivers, Match_Ups_Nacar, Golf, Golfer, Ncaa_Baseball, Ncaa_Football, Ncaa_Basketball, Stats_nba_player, Stats_nba_team, Stats_mlb_team, Stats_mlb_player, Stats_nhl_team, Stats_nhl_player, Stats_box_fighter, Stats_mma_fighter, Stats_nfl_team, Stats_defensive_player_nfl, Stats_offensive_player_nfl, Stats_returning_player_nfl, Stats_kiking_player_nfl, Stats_punting_player_nfl, Soccer, Soccer_Tournament, Stats_Soccer_Team, Stats_Soccer_Player, Logos_NFL, Logos_NBA, Logos_MLB, Logos_NHL, Logos_SOCCER, Logos_Ncaa_Basketball, Logos_Ncaa_Football, Logos_Ncaa_Baseball, Props, Odds_to_win, Stats_ncaa_baseball_player,  Stats_ncaa_baseball_team, Stats_ncaa_football_team, Stats_defensive_player_ncca_football, Stats_offensive_player_ncaa_football, Stats_returning_player_ncaa_football, Stats_kiking_player_ncaa_football, Stats_punting_player_ncaa_football, Stats_ncaa_basket_team, Stats_ncaa_basket_player, Injuries, Futures, Moto_GP, Moto_gp_drivers, Props_List, Stats_Nhl_Goalkeeper, WNba, Logos_WNBA, Stats_wnba_player
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -122,6 +122,7 @@ def odds_to_win():
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
 
+
 @app.route("/soccer", methods=["GET"])
 def soccer():
     if request.method == "GET":
@@ -130,6 +131,7 @@ def soccer():
     else:
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
+
 
 @app.route("/soccer_tournament", methods=["GET"])
 def soccer_tournament():
@@ -140,6 +142,7 @@ def soccer_tournament():
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
 
+
 @app.route("/stats_soccer_player", methods=["GET"])
 def stats_soccer_player():
     if request.method == "GET":
@@ -148,6 +151,7 @@ def stats_soccer_player():
     else:
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
+
 
 @app.route("/stats_soccer_team", methods=["GET"])
 def stats_soccer_team():
@@ -158,6 +162,7 @@ def stats_soccer_team():
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
 
+
 @app.route("/casinos", methods=["GET"])
 def casinos():
     if request.method == "GET":
@@ -167,6 +172,7 @@ def casinos():
         return jsonify({"msg": "no autorizado"})
 # ----------------------------------------------------------------------------
 
+
 @app.route("/mlb", methods=["GET"])
 def mlb():
     if request.method == "GET":
@@ -175,6 +181,7 @@ def mlb():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
+
 
 @app.route("/ncaa_football", methods=["GET"])
 #   @limiter.limit("12 per hour")
@@ -186,6 +193,7 @@ def ncaa_football():
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
 
+
 @app.route("/stats_defensive_player_ncca_football", methods=["GET"])
 #   @limiter.limit("12 per hour")
 def stats_defensive_player_ncca_football():
@@ -195,6 +203,7 @@ def stats_defensive_player_ncca_football():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
+
 
 @app.route("/stats_offensive_player_ncaa_football", methods=["GET"])
 #   @limiter.limit("12 per hour")
@@ -206,6 +215,7 @@ def stats_offensive_player_ncaa_football():
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
 
+
 @app.route("/stats_returning_player_ncaa_football", methods=["GET"])
 #   @limiter.limit("12 per hour")
 def stats_returning_player_ncaa_football():
@@ -215,6 +225,7 @@ def stats_returning_player_ncaa_football():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
+
 
 @app.route("/stats_kiking_player_ncaa_football", methods=["GET"])
 #   @limiter.limit("12 per hour")
@@ -226,6 +237,7 @@ def stats_kiking_player_ncaa_football():
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
 
+
 @app.route("/stats_punting_player_ncaa_football", methods=["GET"])
 #   @limiter.limit("12 per hour")
 def stats_punting_player_ncaa_football():
@@ -235,6 +247,7 @@ def stats_punting_player_ncaa_football():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
+
 
 @app.route("/stats_ncaa_football_team", methods=["GET"])
 #   @limiter.limit("12 per hour")
@@ -246,6 +259,7 @@ def stats_ncaa_football_team():
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
 
+
 @app.route("/nfl", methods=["GET"])
 def nfl():
     if request.method == "GET":
@@ -254,6 +268,7 @@ def nfl():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
+
 
 @app.route("/ncaa_baseball", methods=["GET"])
 #   @limiter.limit("12 per hour")
@@ -265,6 +280,7 @@ def ncaa_baseball():
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
 
+
 @app.route("/stats_ncaa_baseball_player", methods=["GET"])
 #   @limiter.limit("12 per hour")
 def stats_ncaa_baseball_player():
@@ -274,6 +290,7 @@ def stats_ncaa_baseball_player():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
+
 
 @app.route("/stats_ncaa_baseball_team", methods=["GET"])
 #   @limiter.limit("12 per hour")
@@ -285,6 +302,7 @@ def stats_ncaa_baseball_team():
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
 
+
 @app.route("/nba", methods=["GET"])
 def nba():
     if request.method == "GET":
@@ -293,6 +311,8 @@ def nba():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
+
+
 @app.route("/wnba", methods=["GET"])
 def wnba():
     if request.method == "GET":
@@ -301,6 +321,7 @@ def wnba():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
+
 
 @app.route("/ncaa_basketball", methods=["GET"])
 #   @limiter.limit("12 per hour")
@@ -311,6 +332,7 @@ def ncaa_basketball():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
+
 
 @app.route("/stats_ncaa_basket_team", methods=["GET"])
 #   @limiter.limit("12 per hour")
@@ -433,7 +455,6 @@ def golfer():
         return jsonify({"msg": "no autorizado"})
  # ---------------------------------------------------------------------------
 
-
 @app.route("/stats_nba_player", methods=["GET"])
 def stats_nba_player():
     if request.method == "GET":
@@ -443,6 +464,14 @@ def stats_nba_player():
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
 
+ @app.route("/stats_wnba_player", methods=["GET"])
+def stats_wnba_player():
+    if request.method == "GET":
+        records = Stats_wnba_player().query.all()
+        return jsonify([Stats_wnba_player.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+ # --------------------------------------------------------------------
 
 @app.route("/stats_nba_team", methods=["GET"])
 def stats_nba_team():
@@ -482,6 +511,8 @@ def stats_nhl_team():
     else:
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
+
+
 @app.route("/stats_nhl_goalkeeper", methods=["GET"])
 def stats_nhl_goalkeeper():
     if request.method == "GET":
@@ -490,6 +521,7 @@ def stats_nhl_goalkeeper():
     else:
         return jsonify({"msg": "no autorizado"})
  # --------------------------------------------------------------------
+
 
 @app.route("/stats_nhl_player", methods=["GET"])
 def stats_nhl_player():
@@ -581,6 +613,7 @@ def stats_punting_player_nfl():
 
  # --------------------------------------------------------------------
 
+
 @app.route("/logos_nfl", methods=["GET"])
 def logos_nfl():
     if request.method == "GET":
@@ -590,6 +623,7 @@ def logos_nfl():
         return jsonify({"msg": "no autorizado"})
 
  # --------------------------------------------------------------------
+
 
 @app.route("/logos_nba", methods=["GET"])
 def logos_nba():
@@ -601,6 +635,7 @@ def logos_nba():
 
  # --------------------------------------------------------------------
 
+
 @app.route("/logos_wnba", methods=["GET"])
 def logos_wnba():
     if request.method == "GET":
@@ -610,6 +645,7 @@ def logos_wnba():
         return jsonify({"msg": "no autorizado"})
 
  # --------------------------------------------------------------------
+
 
 @app.route("/logos_nhl", methods=["GET"])
 def logos_nhl():
@@ -1183,6 +1219,7 @@ def createLogos_nba():
         db.session.add(logos_nba)
         db.session.commit()
         return jsonify({"msg": "Logos_NBA created successfully"}), 200
+
 
 @app.route('/logos_wnba', methods=['POST'])
 def createLogos_wnba():
@@ -1854,6 +1891,7 @@ def createGameNba():
         db.session.commit()
         return jsonify({"msg": "Game created successfully"}), 200
 
+
 @app.route('/wnba', methods=['POST'])
 def createGameWNba():
     date = request.json.get("date", None)
@@ -2037,7 +2075,7 @@ def createGameWNba():
         "q4_half_final_score_home", None)
     # busca mlb en BBDD
     wnba = WNba.query.filter_by(home=home, away=away,
-                              date=date, type_of_line=type_of_line).first()
+                                date=date, type_of_line=type_of_line).first()
     # the mlb was not found on the database
     if wnba:
         return jsonify({"msg": "nba game already exists", "status": wnba.home, "vrs": wnba.away}), 401
@@ -6183,6 +6221,80 @@ def createStats_nba_player():
         db.session.commit()
         return jsonify({"msg": "Game stats_nba_player created successfully"}), 200
 
+@app.route('/stats_wnba_player', methods=['POST'])
+def createStats_wnba_player():
+    name = request.json.get("name", None)
+    height = request.json.get("height", None)
+    weight = request.json.get("weight", None)
+    birth = request.json.get("birth", None)
+    college = request.json.get("college", None)
+    season = request.json.get("season", None)
+    team = request.json.get("team", None)
+
+    dorsal = request.json.get("dorsal", None)
+    minutes = request.json.get("minutes", None)
+    position = request.json.get("position", None)
+    headshot = request.json.get("headshot", None)
+    gp = request.json.get("gp", None)
+    gs = request.json.get("gs", None)
+    fg = request.json.get("fg", None)
+    fg_AVG = request.json.get("fg_AVG", None)
+    three_pt = request.json.get("three_pt", None)
+    three_pt_AVG = request.json.get("three_pt_AVG", None)
+    ft = request.json.get("ft", None)
+    ft_AVG = request.json.get("ft_AVG", None)
+    Or = request.json.get("Or", None)
+    dr = request.json.get("dr", None)
+    reb = request.json.get("reb", None)
+    ast = request.json.get("ast", None)
+    stl = request.json.get("stl", None)
+    blk = request.json.get("blk", None)
+    to = request.json.get("to", None)
+    pf = request.json.get("pf", None)
+    pts = request.json.get("pts", None)
+    # busca team en BBDD
+    stats_wnba_player = Stats_wnba_player.query.filter_by(
+        name=name, dorsal=dorsal, team=team).first()
+    # the team was not found on the database
+    if stats_wnba_player:
+        return jsonify({"msg": "stats_nba_player already exists", "name": stats_wnba_player.name}), 401
+    else:
+        # crea encuentro nuevo
+        # crea registro nuevo en BBDD de
+        stats_wnba_player = Stats_wnba_player(
+            name=name,
+            height=height,
+            weight=weight,
+            birth=birth,
+            college=college,
+            season=season,
+            team=team,
+
+            dorsal=dorsal,
+            minutes=minutes,
+            position=position,
+            headshot=headshot,
+            gp=gp,
+            gs=gs,
+            fg=fg,
+            fg_AVG=fg_AVG,
+            three_pt=three_pt,
+            three_pt_AVG=three_pt_AVG,
+            ft=ft,
+            ft_AVG=ft_AVG,
+            Or=Or,
+            dr=dr,
+            reb=reb,
+            ast=ast,
+            stl=stl,
+            blk=blk,
+            to=to,
+            pf=pf,
+            pts=pts
+        )
+        db.session.add(stats_wnba_player)
+        db.session.commit()
+        return jsonify({"msg": "Game stats_wnba_player created successfully"}), 200
 
 @app.route('/stats_nhl_team', methods=['POST'])
 def createStats_nhl_team():
@@ -6247,6 +6359,7 @@ def createStats_nhl_team():
         db.session.commit()
         return jsonify({"msg": "Game stats_nhl_team created successfully"}), 200
 
+
 @app.route('/stats_nhl_goalkeeper', methods=['POST'])
 def createStats_nhl_goalkeeper():
     name = request.json.get("name", None)
@@ -6274,7 +6387,7 @@ def createStats_nhl_goalkeeper():
     so = request.json.get("so", None)
     # busca team en BBDD
     stats_nhl_goalkeeper = Stats_Nhl_Goalkeeper.query.filter_by(
-        name=name, dorsal=dorsal, team=team,season=season).first()
+        name=name, dorsal=dorsal, team=team, season=season).first()
     # the team was not found on the database
     if stats_nhl_goalkeeper:
         return jsonify({"msg": "stats_nhl_goalkeeper already exists", "name": stats_nhl_goalkeeper.name}), 401
@@ -7540,6 +7653,7 @@ def newslogos_nba(id):
 
     db.session.commit()
     return jsonify({"msg": "logos_nba edith successfully"}), 200
+
 
 @app.route('/logos_wnba/<id>', methods=['PUT'])
 def newslogos_wnba(id):
@@ -9327,6 +9441,7 @@ def nbaEdit(id):
     nba.q4_half_final_score_home = q4_half_final_score_home
     db.session.commit()
     return jsonify({"msg": "nba edith successfully"}), 200
+
 
 @app.route('/wnba/<id>', methods=['PUT'])
 def wnbaEdit(id):
@@ -11586,8 +11701,8 @@ def soccerEdit(id):
     soccer.juice_goal_away = juice_goal_away
     soccer.juice_goal_home = juice_goal_home
     soccer.moneyLineAway = moneyLineAway
-    soccer.moneyLineHome = moneyLineHome 
-    soccer.draw = draw 
+    soccer.moneyLineHome = moneyLineHome
+    soccer.draw = draw
     soccer.total = total
     soccer.juice_total_over = juice_total_over
     soccer.juice_total_under = juice_total_under
@@ -11605,7 +11720,7 @@ def soccerEdit(id):
     soccer.juice_goal_away_1H = juice_goal_away_1H
     soccer.juice_goal_home_1H = juice_goal_home_1H
     soccer.moneyLineAway_1H = moneyLineAway_1H
-    soccer.moneyLineHome_1H = moneyLineHome_1H 
+    soccer.moneyLineHome_1H = moneyLineHome_1H
     soccer.draw_1H = draw_1H
     soccer.total_1H = total_1H
     soccer.H1_juice_over = H1_juice_over
@@ -11756,7 +11871,6 @@ def stats_nba_teamEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_nba_team edith successfully"}), 200
 
-
 @app.route('/stats_nba_player/<id>', methods=['PUT'])
 def stats_nba_playerEdit(id):
     stats_nba_player = Stats_nba_player.query.get(id)
@@ -11821,6 +11935,69 @@ def stats_nba_playerEdit(id):
     db.session.commit()
     return jsonify({"msg": "stats_nba_player edith successfully"}), 200
 
+@app.route('/stats_wnba_player/<id>', methods=['PUT'])
+def stats_wnba_playerEdit(id):
+    stats_wnba_player = Stats_wnba_player.query.get(id)
+    name = request.json['name']
+    height = request.json['height']
+    weight = request.json['weight']
+    birth = request.json['birth']
+    college = request.json['college']
+    season = request.json['season']
+    team = request.json['team']
+    dorsal = request.json['dorsal']
+    minutes = request.json['minutes']
+    position = request.json['position']
+    headshot = request.json['headshot']
+    gp = request.json['gp']
+    gs = request.json['gs']
+    fg = request.json['fg']
+    fg_AVG = request.json['fg_AVG']
+    three_pt = request.json['three_pt']
+    three_pt_AVG = request.json['three_pt_AVG']
+    ft = request.json['ft']
+    ft_AVG = request.json['ft_AVG']
+    Or = request.json['Or']
+    dr = request.json['dr']
+    reb = request.json['reb']
+    ast = request.json['ast']
+    stl = request.json['stl']
+    blk = request.json['blk']
+    to = request.json['to']
+    pf = request.json['pf']
+    pts = request.json['pts']
+
+    stats_wnba_player.name = name
+    stats_wnba_player.height = height
+    stats_wnba_player.weight = weight
+    stats_wnba_player.birth = birth
+    stats_wnba_player.college = college
+    stats_wnba_player.season = season
+    stats_wnba_player.team = team
+    stats_wnba_player.dorsal = dorsal
+    stats_wnba_player.minutes = minutes
+    stats_wnba_player.position = position
+    stats_wnba_player.headshot = headshot
+    stats_wnba_player.gp = gp
+    stats_wnba_player.gs = gs
+    stats_wnba_player.fg = fg
+    stats_wnba_player.fg_AVG = fg_AVG
+    stats_wnba_player.three_pt = three_pt
+    stats_wnba_player.three_pt_AVG = three_pt_AVG
+    stats_wnba_player.ft = ft
+    stats_wnba_player.ft_AVG = ft_AVG
+    stats_wnba_player.Or = Or
+    stats_wnba_player.dr = dr
+    stats_wnba_player.reb = reb
+    stats_wnba_player.ast = ast
+    stats_wnba_player.stl = stl
+    stats_wnba_player.blk = blk
+    stats_wnba_player.to = to
+    stats_wnba_player.pf = pf
+    stats_wnba_player.pts = pts
+
+    db.session.commit()
+    return jsonify({"msg": "stats_wnba_player edith successfully"}), 200
 
 @app.route('/stats_mlb_team/<id>', methods=['PUT'])
 def stats_mlb_teamEdit(id):
@@ -11981,6 +12158,7 @@ def stats_nhl_teamEdit(id):
 
     db.session.commit()
     return jsonify({"msg": "stats_nhl_team edith successfully"}), 200
+
 
 @app.route('/stats_nhl_goalkeeper/<id>', methods=['PUT'])
 def stats_nhl_goalkeeperEdit(id):
@@ -12671,6 +12849,7 @@ def logos_nba_delete(id):
     db.session.commit()
     return "logos_nba was successfully deleted"
 
+
 @app.route("/logos_wnba/<id>", methods=["DELETE"])
 def logos_wnba_delete(id):
     logos_wnba = Logos_WNBA.query.get(id)
@@ -12835,6 +13014,7 @@ def nba_delete(id):
     db.session.commit()
     return "nba was successfully deleted"
 
+
 @app.route("/wnba/<id>", methods=["DELETE"])
 def wnba_delete(id):
     wnba = WNba.query.get(id)
@@ -12922,7 +13102,6 @@ def stats_soccer_player_delete(id):
     db.session.commit()
     return "stats_soccer_player was successfully deleted"
 
-
 @app.route("/stats_nba_player/<id>", methods=["DELETE"])
 def stats_nba_player_delete(id):
     stats_nba_player = Stats_nba_player.query.get(id)
@@ -12930,6 +13109,12 @@ def stats_nba_player_delete(id):
     db.session.commit()
     return "stats_nba_player was successfully deleted"
 
+@app.route("/stats_wnba_player/<id>", methods=["DELETE"])
+def stats_wnba_player_delete(id):
+    stats_wnba_player = Stats_wnba_player.query.get(id)
+    db.session.delete(stats_wnba_player)
+    db.session.commit()
+    return "stats_wnba_player was successfully deleted"
 
 @app.route("/stats_ncaa_basket_player/<id>", methods=["DELETE"])
 def stats_ncaa_basket_player_delete(id):
@@ -13002,12 +13187,14 @@ def stats_nhl_team_delete(id):
     db.session.commit()
     return "stats_nhl_team was successfully deleted"
 
+
 @app.route("/stats_nhl_goalkeeper/<id>", methods=["DELETE"])
 def stats_nhl_goalkeeper_delete(id):
     stats_nhl_goalkeeper = Stats_Nhl_Goalkeeper.query.get(id)
     db.session.delete(stats_nhl_goalkeeper)
     db.session.commit()
     return "stats_nhl_goalkeeper was successfully deleted"
+
 
 @app.route("/stats_nhl_player/<id>", methods=["DELETE"])
 def stats_nhl_player_delete(id):

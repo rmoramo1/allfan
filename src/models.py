@@ -5082,6 +5082,73 @@ class Stats_nba_player(db.Model):
             # do not serialize the password, its a security breach
         }
 
+class Stats_wnba_player(db.Model):
+    __tablename__ = "stats_wnba_player"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    height = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.String(10), nullable=False)
+    birth = db.Column(db.String(10), nullable=False)
+    college = db.Column(db.String(30), nullable=False)
+    season = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    headshot = db.Column(db.String(30), nullable=False)
+
+    dorsal = db.Column(db.String(5), nullable=False)
+    minutes = db.Column(db.String(10), default=0, nullable=False)
+    position = db.Column(db.String(5), default=0, nullable=False)
+    gp = db.Column(db.String(10), default=0, nullable=False)
+    gs = db.Column(db.String(10), default=0, nullable=False)
+    fg = db.Column(db.String(10), default=0, nullable=False)
+    fg_AVG = db.Column(db.String(10), default=0, nullable=False)
+    three_pt = db.Column(db.String(10), default=0, nullable=False)
+    three_pt_AVG = db.Column(db.String(10), default=0, nullable=False)
+    ft = db.Column(db.String(10), default=0, nullable=False)
+    ft_AVG = db.Column(db.String(10), default=0, nullable=False)
+    Or = db.Column(db.String(10), default=0, nullable=False)
+    dr = db.Column(db.String(10), default=0, nullable=False)
+    reb = db.Column(db.String(10), default=0, nullable=False)
+    ast = db.Column(db.String(10), default=0, nullable=False)
+    stl = db.Column(db.String(10), default=0, nullable=False)
+    blk = db.Column(db.String(10), default=0, nullable=False)
+    to = db.Column(db.String(10), default=0, nullable=False)
+    pf = db.Column(db.String(10), default=0, nullable=False)
+    pts = db.Column(db.String(10), default=0, nullable=False)
+    # -----------------------------------------------------------------------
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "height": self.height,
+            "weight": self.weight,
+            "birth": self.birth,
+            "college": self.college,
+            "season": self.season,
+            "team": self.team,
+            "dorsal": self.dorsal,
+            "minutes": self.minutes,
+            "position": self.position,
+            "headshot": self.headshot,
+            "gp": self.gp,
+            "gs": self.gs,
+            "fg": self.fg,
+            "fg_AVG": self.fg_AVG,
+            "three_pt": self.three_pt,
+            "three_pt_AVG": self.three_pt_AVG,
+            "ft": self.ft,
+            "Or": self.Or,
+            "dr": self.dr,
+            "ft_AVG": self.ft_AVG,
+            "reb": self.reb,
+            "ast": self.ast,
+            "stl": self.stl,
+            "blk": self.blk,
+            "to": self.to,
+            "pf": self.pf,
+            "pts": self.pts
+            # do not serialize the password, its a security breach
+        }
 
 class Stats_nba_team(db.Model):
     __tablename__ = "stats_nba_team"
